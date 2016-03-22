@@ -1,0 +1,29 @@
+﻿<Window x:Name="MainFrame" x:Class="JAO_PI.Core.Views.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JAO_PI.Core.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="510" Width="740" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <DockPanel Height="25" VerticalAlignment="Bottom" >
+            <StatusBar Background="Bisque">
+                <StatusBar.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" MinWidth="115"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </StatusBar.ItemsPanel>
+                <StatusBarItem Content="Just another opensource Pawn IDE" Grid.Column="1" HorizontalAlignment="Center" />
+            </StatusBar>
+        </DockPanel>
+
+    </Grid>
+</Window>
