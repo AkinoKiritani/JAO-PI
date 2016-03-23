@@ -55,7 +55,7 @@
                     <Separator />
                     <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
                     <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
-                    <MenuItem x:Name="Exit" Header="Exit" />
+                    <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
                 </MenuItem>
             </Menu>
         </StatusBar>
