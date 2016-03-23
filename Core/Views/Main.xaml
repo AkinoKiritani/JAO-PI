@@ -21,9 +21,29 @@
                         </Grid>
                     </ItemsPanelTemplate>
                 </StatusBar.ItemsPanel>
-                <StatusBarItem Content="Just another opensource Pawn IDE" Grid.Column="1" HorizontalAlignment="Center" />
+                <StatusBarItem x:Name="JAOPI" Content="Just another opensource Pawn IDE" Grid.Column="1" HorizontalAlignment="Center" />
+                <StatusBarItem x:Name="FileName" Content="Filename" Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <StatusBarItem x:Name="Line" Content="Line" Grid.Column="2" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <StatusBarItem x:Name="Column" Content="Column" Grid.Column="3" HorizontalAlignment="Center" Visibility="Hidden"/>
             </StatusBar>
+
         </DockPanel>
+        <Menu HorizontalAlignment="Left" VerticalAlignment="Top">
+            <MenuItem x:Name="MainMenu" Header="Main" IsEnabled="False">
+                <MenuItem Header="File">
+                    <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" />
+                    <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" />
+                </MenuItem>
+                <MenuItem x:Name="Project" Header="Project">
+                    <MenuItem x:Name="Open_Project" Header="Create Project" IsTabStop="False" Focusable="False" />
+                    <MenuItem x:Name="Create_Project" Header="Open Project" IsTabStop="False" Focusable="False" />
+                </MenuItem>
+                <Separator />
+                <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
+                <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
+                <MenuItem x:Name="Exit" Header="Exit" />
+            </MenuItem>
+        </Menu>
 
     </Grid>
 </Window>
