@@ -34,10 +34,10 @@
                     <ItemsPanelTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto" MinWidth="60"/>
-                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                         </Grid>
                     </ItemsPanelTemplate>
@@ -57,7 +57,15 @@
                     <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
                     <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
                 </MenuItem>
+                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True">
+                    <MenuItem x:Name="Restore" Header="Restore" />
+                    <Separator />
+                    <MenuItem x:Name="Cut" Header="Cut" IsEnabled="False" />
+                    <MenuItem x:Name="Copy" Header="Copy" IsEnabled="False"/>
+                    <MenuItem x:Name="Paste" Header="Paste" IsEnabled="False"/>
+                </MenuItem>
             </Menu>
         </StatusBar>
+        
     </Grid>
 </Window>
