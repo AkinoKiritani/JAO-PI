@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JAO_PI.Core.Views"
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         mc:Ignorable="d"
         Title="MainWindow" Height="510" Width="740" ResizeMode="CanResizeWithGrip">
     <Grid>
@@ -28,20 +29,20 @@
             </StatusBar>
 
         </DockPanel>
-            
-            <StatusBar Background="Bisque" VerticalAlignment="Top" Height="25">
-                <StatusBar.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                        </Grid>
-                    </ItemsPanelTemplate>
-                </StatusBar.ItemsPanel>
+
+        <StatusBar Background="Bisque" VerticalAlignment="Top" Height="25">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
             <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}">
                 <MenuItem Grid.Column="0" x:Name="MainMenu" Header="Main" StaysOpenOnClick="True">
                     <MenuItem Header="File">
@@ -49,8 +50,8 @@
                         <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" />
                     </MenuItem>
                     <MenuItem x:Name="Project" Header="Project">
-                        <MenuItem x:Name="Open_Project" Header="Create Project" IsTabStop="False" Focusable="False" />
-                        <MenuItem x:Name="Create_Project" Header="Open Project" IsTabStop="False" Focusable="False" />
+                        <MenuItem x:Name="Open_Project" Header="Create Project" />
+                        <MenuItem x:Name="Create_Project" Header="Open Project" />
                     </MenuItem>
                     <Separator />
                     <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
@@ -66,6 +67,9 @@
                 </MenuItem>
             </Menu>
         </StatusBar>
-        
+
+        <avalonEdit:TextEditor Name="textEditor" FontFamily="Consolas" FontSize="13" Margin="0,25" HorizontalScrollBarVisibility="Auto"/>
+
     </Grid>
+    
 </Window>
