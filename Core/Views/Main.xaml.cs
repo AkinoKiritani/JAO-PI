@@ -16,5 +16,10 @@ namespace JAO_PI.Core.Views
         {
             this.Close();
         }
+        private void Create_File_Click(object sender, RoutedEventArgs e)
+        {
+            textEditor.Visibility = Visibility.Visible;
+            textEditor.ShowLineNumbers = true;
+        }
     }
 }

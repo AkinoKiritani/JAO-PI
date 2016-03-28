@@ -46,7 +46,7 @@
             <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}">
                 <MenuItem Grid.Column="0" x:Name="MainMenu" Header="Main" StaysOpenOnClick="True">
                     <MenuItem Header="File">
-                        <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" />
+                        <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" Click="Create_File_Click" />
                         <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" />
                     </MenuItem>
                     <MenuItem x:Name="Project" Header="Project">
