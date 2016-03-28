@@ -54,6 +54,8 @@
                         <MenuItem x:Name="Create_Project" Header="Open Project" />
                     </MenuItem>
                     <Separator />
+                    <MenuItem x:Name="Close" Header="Close" IsEnabled="False" />
+                    <Separator />
                     <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
                     <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
                     <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
@@ -68,7 +70,7 @@
             </Menu>
         </StatusBar>
 
-        <avalonEdit:TextEditor Name="textEditor" FontFamily="Consolas" FontSize="13" Margin="0,25" HorizontalScrollBarVisibility="Auto"/>
+        <avalonEdit:TextEditor Name="textEditor" FontFamily="Consolas" FontSize="13" Margin="0,25" HorizontalScrollBarVisibility="Auto" Visibility="Hidden"/>
 
     </Grid>
     
