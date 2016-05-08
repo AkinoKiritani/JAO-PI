@@ -13,9 +13,15 @@ namespace JAO_PI.Core.Views
     /// </summary>
     public partial class Main : Window
     {
+        private OpenFileDialog openFileDialog = null;
         public Main()
         {
             InitializeComponent();
+
+            openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|All files (*.*)|*.*";
+            openFileDialog.Title = "Open PAWN File...";
+            //openFileDialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -49,10 +55,6 @@ namespace JAO_PI.Core.Views
 
         private void Open_File_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|All files (*.*)|*.*";
-            openFileDialog.Title = "Open PAWN File...";
-            openFileDialog.InitialDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             if (openFileDialog.ShowDialog() == true)
             {
                 TextEditor text = new TextEditor();
