@@ -7,6 +7,7 @@
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         mc:Ignorable="d"
         Title="MainWindow" Height="510" Width="740" ResizeMode="CanResizeWithGrip">
+
     <Grid>
         <DockPanel Height="25" VerticalAlignment="Bottom" >
             <StatusBar Background="Bisque">
@@ -47,14 +48,15 @@
                 <MenuItem Grid.Column="0" x:Name="MainMenu" Header="Main" StaysOpenOnClick="True">
                     <MenuItem Header="File">
                         <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" Click="Create_File_Click" />
-                        <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" />
+                        <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" Click="Open_File_Click" />
                     </MenuItem>
                     <MenuItem x:Name="Project" Header="Project">
                         <MenuItem x:Name="Open_Project" Header="Create Project" />
                         <MenuItem x:Name="Create_Project" Header="Open Project" />
                     </MenuItem>
                     <Separator />
-                    <MenuItem x:Name="Close" Header="Close" IsEnabled="False" />
+                    <MenuItem x:Name="Close_File" Header="Close File" IsEnabled="False" Click="Close_File_Click" />
+                    <MenuItem x:Name="Close_All" Header="Close All" IsEnabled="False" />
                     <Separator />
                     <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
                     <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
@@ -70,8 +72,10 @@
             </Menu>
         </StatusBar>
 
-        <avalonEdit:TextEditor Name="textEditor" FontFamily="Consolas" FontSize="13" Margin="0,25" HorizontalScrollBarVisibility="Auto" Visibility="Hidden"/>
-
+        <Grid x:Name="Empty_Message" Margin="185,106,185,106" RenderTransformOrigin="0.5,0.5">
+            <Label x:Name="Message_Label" Content="I'm so lonely :(&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Open or create a File&#xD;&#xA;by using Main in the Header." Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="24"/>
+        </Grid>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="427" Margin="0,22,0,0" VerticalAlignment="Top" Width="732" Visibility="Hidden" />
     </Grid>
-    
+
 </Window>
