@@ -30,9 +30,11 @@ namespace JAO_PI.Core.Views
         {
             this.Close();
         }
+        
         private void Create_File_Click(object sender, RoutedEventArgs e)
         {
             TabItem tab = generator.TabItem("new.pwn", null);
+
             tabControl.Items.Add(tab);
             tabControl.SelectedItem = tab;
 

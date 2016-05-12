@@ -23,6 +23,11 @@ namespace JAO_PI.Core.Classes
             TabItem tab = new TabItem();
             tab.Header = header;
             tab.Content = grid;
+
+            ContextMenu menu = new ContextMenu();
+            menu.Items.Add(new MenuItem() { Header = "Close" });
+            menu.Items.Add(new MenuItem() { Header = "Rename" });
+            tab.ContextMenu = menu;
             return tab;
         }
     }
