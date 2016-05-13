@@ -1,5 +1,4 @@
 ﻿using ICSharpCode.AvalonEdit;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,15 +7,6 @@ namespace JAO_PI.Core.Classes
 {
     class Generator
     {
-        List<MenuItem> contextMenu = null;
-
-        public Generator()
-        {
-            contextMenu = new List<MenuItem>();
-            contextMenu.Add(new MenuItem() { Header = "Close" });
-            contextMenu.Add(new MenuItem() { Header = "Rename" });
-        }
-
         public TabItem TabItem(string header, string content)
         {
             TextEditor Editor = new TextEditor();
@@ -34,13 +24,16 @@ namespace JAO_PI.Core.Classes
             tab.Header = header;
             tab.Content = grid;
 
-            ContextMenu menu = new ContextMenu();
-            for(int i = 0; i != contextMenu.Count; i++)
-            {
-                menu.Items.Add(contextMenu[i]);
-            }
-            tab.ContextMenu = menu;
+            tab.ContextMenu = ContextMenu();
             return tab;
+        }
+
+        private ContextMenu ContextMenu()
+        {
+            ContextMenu menu = new ContextMenu();
+            menu.Items.Add(new MenuItem() { Header = "Close" });
+            menu.Items.Add(new MenuItem() { Header = "Rename" });
+            return menu;
         }
     }
 }
