@@ -17,6 +17,7 @@ namespace JAO_PI.Core.Views
             InitializeComponent();
 
             Classes.MainController.RegisterTabControl(tabControl);
+            Classes.MainController.RegisterEmptyMessage(Empty_Message);
 
             openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|All files (*.*)|*.*";
@@ -37,8 +38,8 @@ namespace JAO_PI.Core.Views
             Classes.MainController.tabControl.Items.Add(tab);
             Classes.MainController.tabControl.SelectedItem = tab;
 
-            Empty_Message.Visibility = Visibility.Hidden;
-            Empty_Message.IsEnabled = false;
+            Classes.MainController.Empty_Message.Visibility = Visibility.Hidden;
+            Classes.MainController.Empty_Message.IsEnabled = false;
 
             Classes.MainController.tabControl.Visibility = Visibility.Visible;  
         }
@@ -51,8 +52,8 @@ namespace JAO_PI.Core.Views
                 Classes.MainController.tabControl.Items.Add(tab);
                 Classes.MainController.tabControl.SelectedItem = tab;
 
-                Empty_Message.Visibility = Visibility.Hidden;
-                Empty_Message.IsEnabled = false;
+                Classes.MainController.Empty_Message.Visibility = Visibility.Hidden;
+                Classes.MainController.Empty_Message.IsEnabled = false;
 
                 Classes.MainController.tabControl.Visibility = Visibility.Visible;
             }
@@ -60,9 +61,9 @@ namespace JAO_PI.Core.Views
 
         private void Close_File_Click(object sender, RoutedEventArgs e)
         {
-            Empty_Message.IsEnabled = true;
+            Classes.MainController.Empty_Message.IsEnabled = true;
             Close_File.IsEnabled = false;
-            Empty_Message.Visibility = Visibility.Visible;
+            Classes.MainController.Empty_Message.Visibility = Visibility.Visible;
         }
     }
 }

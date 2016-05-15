@@ -8,9 +8,14 @@ namespace JAO_PI.Core.Classes
     class MainController
     {
         public static TabControl tabControl = null;
+        public static Grid Empty_Message = null;
         public static void RegisterTabControl(TabControl Control)
         {
             if(tabControl == null) tabControl = Control;
+        }
+        public static void RegisterEmptyMessage(Grid Empty_Message_Grid)
+        {
+            if (Empty_Message == null) Empty_Message = Empty_Message_Grid;
         }
         public static string RandomString(int length)
         {

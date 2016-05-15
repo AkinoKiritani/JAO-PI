@@ -66,7 +66,13 @@ namespace JAO_PI.Core.Classes
             grid.Children.Remove(Index.Editor);
 
             MainController.tabControl.Items.Remove(Index.TabItem);
-            if(MainController.tabControl.Items.Count == 0) MainController.tabControl.Visibility = Visibility.Hidden;
+            if (MainController.tabControl.Items.Count == 0)
+            {
+                MainController.tabControl.Visibility = Visibility.Hidden;
+
+                MainController.Empty_Message.IsEnabled = true;
+                MainController.Empty_Message.Visibility = Visibility.Visible;
+            }
         }
     }
 }
