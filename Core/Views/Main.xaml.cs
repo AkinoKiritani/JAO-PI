@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +25,22 @@ namespace JAO_PI.Core.Views
             openFileDialog.Title = "Open PAWN File...";
 
             generator = new Classes.Generator();
+        }
+        private void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        {
+            string[] arguments = Environment.GetCommandLineArgs();
+            if (arguments.GetLength(0) > 1)
+            {
+                string[] arg = arguments[1].Split('\\');
+                TabItem tab = generator.TabItem(arg[arg.Length-1], File.ReadAllText(arguments[1], System.Text.Encoding.Default));
+                Classes.MainController.tabControl.Items.Add(tab);
+                Classes.MainController.tabControl.SelectedItem = tab;
+
+                Classes.MainController.Empty_Message.Visibility = Visibility.Hidden;
+                Classes.MainController.Empty_Message.IsEnabled = false;
+
+                Classes.MainController.tabControl.Visibility = Visibility.Visible;
+            }
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
