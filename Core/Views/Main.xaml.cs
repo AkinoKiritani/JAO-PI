@@ -1,8 +1,5 @@
-﻿using ICSharpCode.AvalonEdit;
-using System.Windows.Media;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,6 +15,8 @@ namespace JAO_PI.Core.Views
         public Main()
         {
             InitializeComponent();
+
+            Classes.MainController.RegisterTabControl(tabControl);
 
             openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|All files (*.*)|*.*";
@@ -35,13 +34,13 @@ namespace JAO_PI.Core.Views
         {
             TabItem tab = generator.TabItem("new.pwn", null);
 
-            tabControl.Items.Add(tab);
-            tabControl.SelectedItem = tab;
+            Classes.MainController.tabControl.Items.Add(tab);
+            Classes.MainController.tabControl.SelectedItem = tab;
 
             Empty_Message.Visibility = Visibility.Hidden;
             Empty_Message.IsEnabled = false;
 
-            tabControl.Visibility = Visibility.Visible;  
+            Classes.MainController.tabControl.Visibility = Visibility.Visible;  
         }
 
         private void Open_File_Click(object sender, RoutedEventArgs e)
@@ -49,14 +48,13 @@ namespace JAO_PI.Core.Views
             if (openFileDialog.ShowDialog() == true)
             {
                 TabItem tab = generator.TabItem(openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.Default));
-
-                tabControl.Items.Add(tab);
-                tabControl.SelectedItem = tab;
+                Classes.MainController.tabControl.Items.Add(tab);
+                Classes.MainController.tabControl.SelectedItem = tab;
 
                 Empty_Message.Visibility = Visibility.Hidden;
                 Empty_Message.IsEnabled = false;
 
-                tabControl.Visibility = Visibility.Visible;
+                Classes.MainController.tabControl.Visibility = Visibility.Visible;
             }
         }
 
