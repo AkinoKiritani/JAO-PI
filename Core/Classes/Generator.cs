@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System;
 using System.Windows.Input;
 
 namespace JAO_PI.Core.Classes
 {
     class Generator
     {
-        List<TabController> kek = new List<TabController>();
+        List<TabController> TabControlList = new List<TabController>();
         public TabItem TabItem(string header, string content)
         {
 
@@ -38,7 +37,7 @@ namespace JAO_PI.Core.Classes
             menu.Items.Add(RenameItem);
 
             tab.ContextMenu = menu;
-            kek.Add(new TabController
+            TabControlList.Add(new TabController
             {
                 TabItem = tab,
                 Editor = Editor,
@@ -60,13 +59,13 @@ namespace JAO_PI.Core.Classes
         private void Item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MenuItem item = sender as MenuItem;
-            TabController k = kek.Find(x => x.Close.Uid == item.Uid);
+            TabController Index = TabControlList.Find(x => x.Close.Uid == item.Uid);
 
-            k.Editor.Clear();
-            Grid grid = k.TabItem.Content as Grid;
-            grid.Children.Remove(k.Editor);
+            Index.Editor.Clear();
+            Grid grid = Index.TabItem.Content as Grid;
+            grid.Children.Remove(Index.Editor);
 
-            MainController.tabControl.Items.Remove(k.TabItem);
+            MainController.tabControl.Items.Remove(Index.TabItem);
             if(MainController.tabControl.Items.Count == 0) MainController.tabControl.Visibility = Visibility.Hidden;
         }
     }
