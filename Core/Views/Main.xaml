@@ -58,8 +58,9 @@
                     <MenuItem x:Name="Close_File" Header="Close File" IsEnabled="False" Click="Close_File_Click" />
                     <MenuItem x:Name="Close_All" Header="Close All" IsEnabled="False" />
                     <Separator />
-                    <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
+                    <MenuItem x:Name="Save" Header="Save" IsEnabled="False" Click="Save_Click" />
                     <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
+                    <Separator />
                     <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
                 </MenuItem>
                 <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True">

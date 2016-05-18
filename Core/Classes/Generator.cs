@@ -10,7 +10,7 @@ namespace JAO_PI.Core.Classes
     class Generator
     {
         List<TabController> TabControlList = new List<TabController>();
-        public TabItem TabItem(string header, string content)
+        public TabItem TabItem(string path, string header, string content)
         {
 
             TextEditor Editor = new TextEditor();
@@ -23,10 +23,16 @@ namespace JAO_PI.Core.Classes
 
             Grid grid = new Grid();
             grid.Children.Add(Editor);
-
+            
             TabItem tab = new TabItem();
             tab.Header = header;
             tab.Content = grid;
+            
+            if (path.Contains(header) == true)
+            {
+                path = path.Remove(path.Length - header.Length, header.Length);
+            }
+            tab.Uid = path;
 
             ContextMenu menu = new ContextMenu();
 
@@ -63,7 +69,10 @@ namespace JAO_PI.Core.Classes
 
             Index.Editor.Clear();
             Grid grid = Index.TabItem.Content as Grid;
+            Index.Editor = null;
             grid.Children.Remove(Index.Editor);
+            grid = null;
+            TabControlList.Remove(Index);
 
             MainController.tabControl.Items.Remove(Index.TabItem);
             if (MainController.tabControl.Items.Count == 0)

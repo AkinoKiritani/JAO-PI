@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using ICSharpCode.AvalonEdit;
+using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Windows;
@@ -32,7 +33,8 @@ namespace JAO_PI.Core.Views
             if (arguments.GetLength(0) > 1)
             {
                 string[] arg = arguments[1].Split('\\');
-                TabItem tab = generator.TabItem(arg[arg.Length-1], File.ReadAllText(arguments[1], System.Text.Encoding.Default));
+                TabItem tab = generator.TabItem(arguments[1], arg[arg.Length-1], File.ReadAllText(arguments[1], System.Text.Encoding.Default));
+                
                 Classes.MainController.tabControl.Items.Add(tab);
                 Classes.MainController.tabControl.SelectedItem = tab;
 
@@ -40,6 +42,11 @@ namespace JAO_PI.Core.Views
                 Classes.MainController.Empty_Message.IsEnabled = false;
 
                 Classes.MainController.tabControl.Visibility = Visibility.Visible;
+                if (Classes.MainController.tabControl.Items.Count == 1)
+                {
+                    Save.IsEnabled = true;
+                    SaveAs.IsEnabled = true;
+                }
             }
         }
 
@@ -50,22 +57,28 @@ namespace JAO_PI.Core.Views
         
         private void Create_File_Click(object sender, RoutedEventArgs e)
         {
-            TabItem tab = generator.TabItem("new.pwn", null);
-
+            TabItem tab = generator.TabItem(System.Environment.CurrentDirectory, "new.pwn", null);
+            
             Classes.MainController.tabControl.Items.Add(tab);
             Classes.MainController.tabControl.SelectedItem = tab;
 
             Classes.MainController.Empty_Message.Visibility = Visibility.Hidden;
             Classes.MainController.Empty_Message.IsEnabled = false;
 
-            Classes.MainController.tabControl.Visibility = Visibility.Visible;  
+            Classes.MainController.tabControl.Visibility = Visibility.Visible;
+
+            if (Classes.MainController.tabControl.Items.Count == 1)
+            {
+                Save.IsEnabled = true;
+                SaveAs.IsEnabled = true;
+            }
         }
 
         private void Open_File_Click(object sender, RoutedEventArgs e)
         {
             if (openFileDialog.ShowDialog() == true)
             {
-                TabItem tab = generator.TabItem(openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.Default));
+                TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.Default));
                 Classes.MainController.tabControl.Items.Add(tab);
                 Classes.MainController.tabControl.SelectedItem = tab;
 
@@ -73,6 +86,12 @@ namespace JAO_PI.Core.Views
                 Classes.MainController.Empty_Message.IsEnabled = false;
 
                 Classes.MainController.tabControl.Visibility = Visibility.Visible;
+
+                if (Classes.MainController.tabControl.Items.Count == 1)
+                {
+                    Save.IsEnabled = true;
+                    SaveAs.IsEnabled = true;
+                }
             }
         }
 
@@ -81,6 +100,23 @@ namespace JAO_PI.Core.Views
             Classes.MainController.Empty_Message.IsEnabled = true;
             Close_File.IsEnabled = false;
             Classes.MainController.Empty_Message.Visibility = Visibility.Visible;
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem SaveTab = Classes.MainController.tabControl.Items[Classes.MainController.tabControl.SelectedIndex] as TabItem;
+            Grid SaveGrid = SaveTab.Content as Grid;
+            TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+            
+            System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+            FileToSave.Append(SaveTab.Uid);
+            FileToSave.Append(SaveTab.Header);
+
+            SaveEditor.Save(FileToSave.ToString());
+            SaveEditor = null;
+            SaveGrid = null;
+            SaveTab = null;
+            MessageBox.Show(FileToSave.ToString());            
         }
     }
 }
