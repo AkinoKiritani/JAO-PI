@@ -59,7 +59,7 @@
                     <MenuItem x:Name="Close_All" Header="Close All" IsEnabled="False" />
                     <Separator />
                     <MenuItem x:Name="Save" Header="Save" IsEnabled="False" Click="Save_Click" />
-                    <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
+                    <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" Click="SaveAs_Click" />
                     <Separator />
                     <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
                 </MenuItem>

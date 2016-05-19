@@ -22,7 +22,7 @@ namespace JAO_PI.Core.Views
             Classes.MainController.RegisterEmptyMessage(Empty_Message);
 
             openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|All files (*.*)|*.*";
+            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
             openFileDialog.Title = "Open PAWN File...";
 
             generator = new Classes.Generator();
@@ -116,7 +116,35 @@ namespace JAO_PI.Core.Views
             SaveEditor = null;
             SaveGrid = null;
             SaveTab = null;
-            MessageBox.Show(FileToSave.ToString());            
+            FileToSave = null;
+
+            MessageBox.Show("Save Complete", "JAO PI");
+        }
+
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.OverwritePrompt = true;
+            saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
+            saveFileDialog.Title = "Save PAWN File...";
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                TabItem SaveTab = Classes.MainController.tabControl.Items[Classes.MainController.tabControl.SelectedIndex] as TabItem;
+                Grid SaveGrid = SaveTab.Content as Grid;
+                TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+
+                System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+                FileToSave.Append(SaveTab.Uid);
+                FileToSave.Append(SaveTab.Header);
+
+                SaveEditor.Save(saveFileDialog.FileName);
+                SaveEditor = null;
+                SaveGrid = null;
+                SaveTab = null;
+                FileToSave = null;
+
+                MessageBox.Show("Save Complete", "JAO PI");
+            }
         }
     }
 }

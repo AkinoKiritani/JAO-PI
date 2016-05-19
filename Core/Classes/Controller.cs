@@ -23,7 +23,6 @@ namespace JAO_PI.Core.Classes
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
-
     }
     public class TabController
     {
