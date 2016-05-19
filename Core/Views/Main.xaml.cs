@@ -18,8 +18,9 @@ namespace JAO_PI.Core.Views
         {
             InitializeComponent();
 
-            Classes.MainController.RegisterTabControl(tabControl);
-            Classes.MainController.RegisterEmptyMessage(Empty_Message);
+            Classes.MainController.RegisterTabControl(this.tabControl);
+            Classes.MainController.RegisterEmptyMessage(this.Empty_Message);
+            Classes.MainController.RegisterSaveOptions(this.Save, this.SaveAs, this.Close_File);
 
             openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
@@ -44,8 +45,7 @@ namespace JAO_PI.Core.Views
                 Classes.MainController.tabControl.Visibility = Visibility.Visible;
                 if (Classes.MainController.tabControl.Items.Count == 1)
                 {
-                    Save.IsEnabled = true;
-                    SaveAs.IsEnabled = true;
+                    Classes.MainController.ToggleSaveOptions(true);
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace JAO_PI.Core.Views
         
         private void Create_File_Click(object sender, RoutedEventArgs e)
         {
-            TabItem tab = generator.TabItem(System.Environment.CurrentDirectory, "new.pwn", null);
+            TabItem tab = generator.TabItem(Environment.CurrentDirectory, "new.pwn", null);
             
             Classes.MainController.tabControl.Items.Add(tab);
             Classes.MainController.tabControl.SelectedItem = tab;
@@ -69,8 +69,7 @@ namespace JAO_PI.Core.Views
 
             if (Classes.MainController.tabControl.Items.Count == 1)
             {
-                Save.IsEnabled = true;
-                SaveAs.IsEnabled = true;
+                Classes.MainController.ToggleSaveOptions(true);
             }
         }
 
@@ -89,17 +88,20 @@ namespace JAO_PI.Core.Views
 
                 if (Classes.MainController.tabControl.Items.Count == 1)
                 {
-                    Save.IsEnabled = true;
-                    SaveAs.IsEnabled = true;
+                    Classes.MainController.ToggleSaveOptions(true);
                 }
             }
         }
 
         private void Close_File_Click(object sender, RoutedEventArgs e)
         {
-            Classes.MainController.Empty_Message.IsEnabled = true;
-            Close_File.IsEnabled = false;
-            Classes.MainController.Empty_Message.Visibility = Visibility.Visible;
+            if (Classes.MainController.tabControl.Items.Count == 0)
+            {
+                Classes.MainController.ToggleSaveOptions(false);
+
+                Classes.MainController.Empty_Message.IsEnabled = true;
+                Classes.MainController.Empty_Message.Visibility = Visibility.Visible;
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
