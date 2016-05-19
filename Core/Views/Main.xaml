@@ -50,10 +50,12 @@
                         <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" Click="Create_File_Click" />
                         <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" Click="Open_File_Click" />
                     </MenuItem>
+                    <!--
                     <MenuItem x:Name="Project" Header="Project" IsEnabled="False">
                         <MenuItem x:Name="Open_Project" Header="Create Project" />
                         <MenuItem x:Name="Create_Project" Header="Open Project" IsEnabled="False"/>
                     </MenuItem>
+                    -->
                     <Separator />
                     <MenuItem x:Name="Close_File" Header="Close File" IsEnabled="False" Click="Close_File_Click" />
                     <MenuItem x:Name="Close_All" Header="Close All" IsEnabled="False" />
