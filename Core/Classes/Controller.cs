@@ -10,32 +10,45 @@ namespace JAO_PI.Core
     {
         public static TabControl tabControl = null;
         public static Grid Empty_Message = null;
-
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
-        public static void RegisterTabControl(TabControl Control)
-        {
-            if (tabControl == null) tabControl = Control;
-        }
-        public static void RegisterEmptyMessage(Grid Empty_Message_Grid)
-        {
-            if (Empty_Message == null) Empty_Message = Empty_Message_Grid;
-        }
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcefghijklmnopqrstuvw";
-            var random = new Random();
-            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-        }
 
-        public static void RegisterSaveOptions(MenuItem Save, MenuItem SaveAs, MenuItem CloseFile)
+        public static bool RegisterTabControl(TabControl Control)
+        {
+            if (tabControl == null)
+            {
+                tabControl = Control;
+                return true;
+            }
+            return false;
+        }
+        public static bool RegisterEmptyMessage(Grid Empty_Message_Grid)
+        {
+            if (Empty_Message == null)
+            {
+                Empty_Message = Empty_Message_Grid;
+                return true;
+            }
+            return false;
+        }
+        public static bool RegisterSaveOptions(MenuItem Save, MenuItem SaveAs, MenuItem CloseFile)
         {
             if (SaveOptions.Count == 0)
             {
                 SaveOptions.Add(Save);
                 SaveOptions.Add(SaveAs);
                 SaveOptions.Add(CloseFile);
+                return true;
             }
+            return false;
         }
+
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcefghijklmnopqrstuvw";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        
         public static void ToggleSaveOptions(bool toggle)
         {
             foreach (MenuItem item in SaveOptions)
@@ -43,6 +56,7 @@ namespace JAO_PI.Core
                 item.IsEnabled = toggle;
             }
         }
+
         public static void SaveTab(TabItem SaveTab)
         {
             Grid SaveGrid = SaveTab.Content as Grid;
