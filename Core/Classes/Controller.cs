@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace JAO_PI.Core.Classes
+namespace JAO_PI.Core
 {
     class MainController
     {
@@ -14,7 +14,7 @@ namespace JAO_PI.Core.Classes
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
         public static void RegisterTabControl(TabControl Control)
         {
-            if(tabControl == null) tabControl = Control;
+            if (tabControl == null) tabControl = Control;
         }
         public static void RegisterEmptyMessage(Grid Empty_Message_Grid)
         {
@@ -29,7 +29,7 @@ namespace JAO_PI.Core.Classes
 
         public static void RegisterSaveOptions(MenuItem Save, MenuItem SaveAs, MenuItem CloseFile)
         {
-            if(SaveOptions.Count == 0)
+            if (SaveOptions.Count == 0)
             {
                 SaveOptions.Add(Save);
                 SaveOptions.Add(SaveAs);
@@ -43,7 +43,40 @@ namespace JAO_PI.Core.Classes
                 item.IsEnabled = toggle;
             }
         }
+        public static void SaveTab(TabItem SaveTab)
+        {
+            Grid SaveGrid = SaveTab.Content as Grid;
+            TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+
+            System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+            FileToSave.Append(SaveTab.Uid);
+            FileToSave.Append(SaveTab.Header);
+
+            SaveEditor.Save(FileToSave.ToString());
+            SaveEditor = null;
+            SaveGrid = null;
+            SaveTab = null;
+            FileToSave = null;
+        }
+        public static void SaveTab(TabItem SaveTab, Microsoft.Win32.SaveFileDialog saveFileDialog)
+        {
+            Grid SaveGrid = SaveTab.Content as Grid;
+            TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+
+            System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+            FileToSave.Append(SaveTab.Uid);
+            FileToSave.Append(SaveTab.Header);
+
+            SaveEditor.Save(saveFileDialog.FileName);
+            SaveEditor = null;
+            SaveGrid = null;
+            SaveTab = null;
+            FileToSave = null;
+        }
     }
+}
+namespace JAO_PI.Core.Classes
+{
     public class TabController
     {
         public MenuItem Close { get; set; }
