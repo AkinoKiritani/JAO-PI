@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace JAO_PI.Core.Views
 {
@@ -27,7 +28,12 @@ namespace JAO_PI.Core.Views
             openFileDialog.Title = "Open PAWN File...";
 
             generator = new Classes.Generator();
+
+            RoutedCommand SaveCmd = new RoutedCommand();
+            SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(SaveCmd, Save_Click));
         }
+
         private void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             string[] arguments = Environment.GetCommandLineArgs();
@@ -106,22 +112,25 @@ namespace JAO_PI.Core.Views
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            MainController.SaveTab(MainController.tabControl.Items[MainController.tabControl.SelectedIndex] as TabItem);
-
-            MessageBox.Show("Save Complete", "JAO PI");
+            if(MainController.tabControl.Items.Count > 0 && MainController.tabControl.Visibility == Visibility.Visible)
+            { 
+                MainController.SaveTab(MainController.tabControl.Items[MainController.tabControl.SelectedIndex] as TabItem);
+                MessageBox.Show("kek");
+            }
         }
 
         private void SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.OverwritePrompt = true;
-            saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
-            saveFileDialog.Title = "Save PAWN File...";
-            if(saveFileDialog.ShowDialog() == true)
+            if (MainController.tabControl.Items.Count > 0 && MainController.tabControl.Visibility == Visibility.Visible)
             {
-                MainController.SaveTab(MainController.tabControl.Items[MainController.tabControl.SelectedIndex] as TabItem, saveFileDialog);
-
-                MessageBox.Show("Save Complete", "JAO PI");
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.OverwritePrompt = true;
+                saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
+                saveFileDialog.Title = "Save PAWN File...";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    MainController.SaveTab(MainController.tabControl.Items[MainController.tabControl.SelectedIndex] as TabItem, saveFileDialog);
+                }
             }
         }
     }

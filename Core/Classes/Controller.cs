@@ -59,33 +59,39 @@ namespace JAO_PI.Core
 
         public static void SaveTab(TabItem SaveTab)
         {
-            Grid SaveGrid = SaveTab.Content as Grid;
-            TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+            if (tabControl.Visibility == System.Windows.Visibility.Visible && tabControl.Items.Contains(SaveTab) == true)
+            { 
+                Grid SaveGrid = SaveTab.Content as Grid;
+                TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
 
-            System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
-            FileToSave.Append(SaveTab.Uid);
-            FileToSave.Append(SaveTab.Header);
+                System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+                FileToSave.Append(SaveTab.Uid);
+                FileToSave.Append(SaveTab.Header);
 
-            SaveEditor.Save(FileToSave.ToString());
-            SaveEditor = null;
-            SaveGrid = null;
-            SaveTab = null;
-            FileToSave = null;
+                SaveEditor.Save(FileToSave.ToString());
+                SaveEditor = null;
+                SaveGrid = null;
+                SaveTab = null;
+                FileToSave = null;
+            }
         }
         public static void SaveTab(TabItem SaveTab, Microsoft.Win32.SaveFileDialog saveFileDialog)
         {
-            Grid SaveGrid = SaveTab.Content as Grid;
-            TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+            if(tabControl.Visibility == System.Windows.Visibility.Visible && tabControl.Items.Contains(SaveTab) == true)
+            { 
+                Grid SaveGrid = SaveTab.Content as Grid;
+                TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
 
-            System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
-            FileToSave.Append(SaveTab.Uid);
-            FileToSave.Append(SaveTab.Header);
+                System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+                FileToSave.Append(SaveTab.Uid);
+                FileToSave.Append(SaveTab.Header);
 
-            SaveEditor.Save(saveFileDialog.FileName);
-            SaveEditor = null;
-            SaveGrid = null;
-            SaveTab = null;
-            FileToSave = null;
+                SaveEditor.Save(saveFileDialog.FileName);
+                SaveEditor = null;
+                SaveGrid = null;
+                SaveTab = null;
+                FileToSave = null;
+            }
         }
     }
 }
@@ -93,9 +99,10 @@ namespace JAO_PI.Core.Classes
 {
     public class TabController
     {
-        public MenuItem Close { get; set; }
-        public MenuItem Rename { get; set; }
         public TabItem TabItem { get; set; }
         public TextEditor Editor { get; set; }
+        public MenuItem Close { get; set; }
+        public MenuItem Rename { get; set; }
+        public MenuItem Save { get; set; }
     }
 }

@@ -42,13 +42,17 @@ namespace JAO_PI.Core.Classes
             MenuItem RenameItem = Menuitem("Rename", MainController.RandomString(10));
             menu.Items.Add(RenameItem);
 
+            MenuItem SaveItem = Menuitem("Save", MainController.RandomString(10));
+            menu.Items.Add(SaveItem);
+
             tab.ContextMenu = menu;
             TabControlList.Add(new TabController
             {
                 TabItem = tab,
                 Editor = Editor,
                 Close = CloseItem,
-                Rename = RenameItem                
+                Rename = RenameItem,
+                Save = SaveItem
             });
             return tab;
         }

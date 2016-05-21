@@ -78,7 +78,7 @@
         <Grid x:Name="Empty_Message" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label x:Name="Message_Label" Content="I'm so lonely :(&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Open or create a File&#xD;&#xA;by using Main in the Header." Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26"/>
         </Grid>
-        <TabControl x:Name="tabControl" Margin="0,25,0,25" Visibility="Hidden"/>
+        <TabControl x:Name="tabControl" Margin="0,25,0,25" Visibility="Hidden" />
     </Grid>
 
 </Window>
