@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Linq;
@@ -27,7 +28,7 @@ namespace JAO_PI.Core.Classes
             MessageBox.Show("Paste clicked");
         }
 
-        internal void Item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        internal void CloseItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MenuItem item = sender as MenuItem;
             Controller.Tab Index = Controller.Main.TabControlList.Find(x => x.Close.Uid == item.Uid);
@@ -47,6 +48,16 @@ namespace JAO_PI.Core.Classes
                 Controller.Main.Empty_Message.IsEnabled = true;
                 Controller.Main.Empty_Message.Visibility = Visibility.Visible;
             }
+        }
+
+        internal void RenameItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Rename clicked");
+        }
+
+        internal void SaveItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Save clicked");
         }
     }
 }

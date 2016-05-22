@@ -34,13 +34,22 @@ namespace JAO_PI.Core.Classes
 
             ContextMenu menu = new ContextMenu();
 
-            MenuItem CloseItem = Menuitem("Close", Controller.Main.RandomString(10));
+            MenuItem CloseItem = new MenuItem();
+            CloseItem.Header = "Close";
+            CloseItem.Uid = Controller.Main.RandomString(10);
+            CloseItem.PreviewMouseLeftButtonUp += Events.CloseItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseItem);
 
             MenuItem RenameItem = Menuitem("Rename", Controller.Main.RandomString(10));
+            RenameItem.Header = "Rename";
+            RenameItem.Uid = Controller.Main.RandomString(10);
+            RenameItem.PreviewMouseLeftButtonUp += Events.RenameItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(RenameItem);
 
             MenuItem SaveItem = Menuitem("Save", Controller.Main.RandomString(10));
+            SaveItem.Header = "Save";
+            SaveItem.Uid = Controller.Main.RandomString(10);
+            SaveItem.PreviewMouseLeftButtonUp += Events.SaveItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(SaveItem);
 
             tab.ContextMenu = menu;
@@ -60,7 +69,6 @@ namespace JAO_PI.Core.Classes
             MenuItem Item = new MenuItem();
             Item.Header = Header;
             Item.Uid = Uid;
-            Item.PreviewMouseLeftButtonUp += Events.Item_PreviewMouseLeftButtonUp;
             return Item;
         }
     }
