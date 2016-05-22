@@ -1,15 +1,13 @@
 ﻿using ICSharpCode.AvalonEdit;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Input;
 
 namespace JAO_PI.Core.Classes
 {
     class Generator
     {
-        List<TabController> TabControlList = new List<TabController>();
+        EventHandler Events = new EventHandler(); 
         public TabItem TabItem(string path, string header, string content)
         {
 
@@ -36,17 +34,17 @@ namespace JAO_PI.Core.Classes
 
             ContextMenu menu = new ContextMenu();
 
-            MenuItem CloseItem = Menuitem("Close", MainController.RandomString(10));
+            MenuItem CloseItem = Menuitem("Close", Controller.Main.RandomString(10));
             menu.Items.Add(CloseItem);
 
-            MenuItem RenameItem = Menuitem("Rename", MainController.RandomString(10));
+            MenuItem RenameItem = Menuitem("Rename", Controller.Main.RandomString(10));
             menu.Items.Add(RenameItem);
 
-            MenuItem SaveItem = Menuitem("Save", MainController.RandomString(10));
+            MenuItem SaveItem = Menuitem("Save", Controller.Main.RandomString(10));
             menu.Items.Add(SaveItem);
 
             tab.ContextMenu = menu;
-            TabControlList.Add(new TabController
+            Controller.Main.TabControlList.Add(new Controller.Tab()
             {
                 TabItem = tab,
                 Editor = Editor,
@@ -62,30 +60,8 @@ namespace JAO_PI.Core.Classes
             MenuItem Item = new MenuItem();
             Item.Header = Header;
             Item.Uid = Uid;
-            Item.PreviewMouseLeftButtonUp += Item_PreviewMouseLeftButtonUp;
+            Item.PreviewMouseLeftButtonUp += Events.Item_PreviewMouseLeftButtonUp;
             return Item;
-        }
-
-        private void Item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MenuItem item = sender as MenuItem;
-            TabController Index = TabControlList.Find(x => x.Close.Uid == item.Uid);
-
-            Index.Editor.Clear();
-            Grid grid = Index.TabItem.Content as Grid;
-            Index.Editor = null;
-            grid.Children.Remove(Index.Editor);
-            grid = null;
-            TabControlList.Remove(Index);
-
-            MainController.tabControl.Items.Remove(Index.TabItem);
-            if (MainController.tabControl.Items.Count == 0)
-            {
-                MainController.tabControl.Visibility = Visibility.Hidden;
-
-                MainController.Empty_Message.IsEnabled = true;
-                MainController.Empty_Message.Visibility = Visibility.Visible;
-            }
         }
     }
 }

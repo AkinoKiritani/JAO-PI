@@ -65,12 +65,12 @@
                     <Separator />
                     <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
                 </MenuItem>
-                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True">
+                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True" IsEnabled="false">
                     <MenuItem x:Name="Restore" Header="Restore" />
                     <Separator />
-                    <MenuItem x:Name="Cut" Header="Cut" IsEnabled="False" />
-                    <MenuItem x:Name="Copy" Header="Copy" IsEnabled="False"/>
-                    <MenuItem x:Name="Paste" Header="Paste" IsEnabled="False"/>
+                    <MenuItem x:Name="Cut" Header="Cut" />
+                    <MenuItem x:Name="Copy" Header="Copy" />
+                    <MenuItem x:Name="Paste" Header="Paste" />
                 </MenuItem>
             </Menu>
         </StatusBar>

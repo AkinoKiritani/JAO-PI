@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace JAO_PI.Core
+namespace JAO_PI.Core.Controller
 {
-    class MainController
+    class Main
     {
         public static TabControl tabControl = null;
         public static Grid Empty_Message = null;
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
+        public static List<Tab> TabControlList = new List<Tab>();
 
         public static bool RegisterTabControl(TabControl Control)
         {
@@ -93,16 +94,5 @@ namespace JAO_PI.Core
                 FileToSave = null;
             }
         }
-    }
-}
-namespace JAO_PI.Core.Classes
-{
-    public class TabController
-    {
-        public TabItem TabItem { get; set; }
-        public TextEditor Editor { get; set; }
-        public MenuItem Close { get; set; }
-        public MenuItem Rename { get; set; }
-        public MenuItem Save { get; set; }
     }
 }

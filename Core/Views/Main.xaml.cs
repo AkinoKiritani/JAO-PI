@@ -1,5 +1,4 @@
-﻿using ICSharpCode.AvalonEdit;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Windows;
@@ -14,14 +13,16 @@ namespace JAO_PI.Core.Views
     public partial class Main : Window
     {
         private OpenFileDialog openFileDialog = null;
+        private Classes.EventHandler handler = null;
         Classes.Generator generator = null;
         public Main()
         {
+            handler = new Classes.EventHandler();
             InitializeComponent();
 
-            MainController.RegisterTabControl(this.tabControl);
-            MainController.RegisterEmptyMessage(this.Empty_Message);
-            MainController.RegisterSaveOptions(this.Save, this.SaveAs, this.Close_File);
+            Controller.Main.RegisterTabControl(this.tabControl);
+            Controller.Main.RegisterEmptyMessage(this.Empty_Message);
+            Controller.Main.RegisterSaveOptions(this.Save, this.SaveAs, this.Close_File);
 
             openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
@@ -32,6 +33,11 @@ namespace JAO_PI.Core.Views
             RoutedCommand SaveCmd = new RoutedCommand();
             SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(SaveCmd, Save_Click));
+
+            Restore.PreviewMouseLeftButtonUp += handler.Restore_PreviewMouseLeftButtonUp;
+            Cut.PreviewMouseLeftButtonUp += handler.Cut_PreviewMouseLeftButtonUp;
+            Copy.PreviewMouseLeftButtonUp += handler.Copy_PreviewMouseLeftButtonUp;
+            Paste.PreviewMouseLeftButtonUp += handler.Paste_PreviewMouseLeftButtonUp;
         }
 
         private void MainFrame_Loaded(object sender, RoutedEventArgs e)
@@ -42,16 +48,16 @@ namespace JAO_PI.Core.Views
                 string[] arg = arguments[1].Split('\\');
                 TabItem tab = generator.TabItem(arguments[1], arg[arg.Length-1], File.ReadAllText(arguments[1], System.Text.Encoding.Default));
                 
-                MainController.tabControl.Items.Add(tab);
-                MainController.tabControl.SelectedItem = tab;
+                Controller.Main.tabControl.Items.Add(tab);
+                Controller.Main.tabControl.SelectedItem = tab;
 
-                MainController.Empty_Message.Visibility = Visibility.Hidden;
-                MainController.Empty_Message.IsEnabled = false;
+                Controller.Main.Empty_Message.Visibility = Visibility.Hidden;
+                Controller.Main.Empty_Message.IsEnabled = false;
 
-                MainController.tabControl.Visibility = Visibility.Visible;
-                if (MainController.tabControl.Items.Count == 1)
+                Controller.Main.tabControl.Visibility = Visibility.Visible;
+                if (Controller.Main.tabControl.Items.Count == 1)
                 {
-                    MainController.ToggleSaveOptions(true);
+                    Controller.Main.ToggleSaveOptions(true);
                 }
             }
         }
@@ -65,17 +71,17 @@ namespace JAO_PI.Core.Views
         {
             TabItem tab = generator.TabItem(Environment.CurrentDirectory, "new.pwn", null);
             
-            MainController.tabControl.Items.Add(tab);
-            MainController.tabControl.SelectedItem = tab;
+            Controller.Main.tabControl.Items.Add(tab);
+            Controller.Main.tabControl.SelectedItem = tab;
 
-            MainController.Empty_Message.Visibility = Visibility.Hidden;
-            MainController.Empty_Message.IsEnabled = false;
+            Controller.Main.Empty_Message.Visibility = Visibility.Hidden;
+            Controller.Main.Empty_Message.IsEnabled = false;
 
-            MainController.tabControl.Visibility = Visibility.Visible;
+            Controller.Main.tabControl.Visibility = Visibility.Visible;
 
-            if (MainController.tabControl.Items.Count == 1)
+            if (Controller.Main.tabControl.Items.Count == 1)
             {
-                MainController.ToggleSaveOptions(true);
+                Controller.Main.ToggleSaveOptions(true);
             }
         }
 
@@ -84,44 +90,44 @@ namespace JAO_PI.Core.Views
             if (openFileDialog.ShowDialog() == true)
             {
                 TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.Default));
-                MainController.tabControl.Items.Add(tab);
-                MainController.tabControl.SelectedItem = tab;
+                Controller.Main.tabControl.Items.Add(tab);
+                Controller.Main.tabControl.SelectedItem = tab;
 
-                MainController.Empty_Message.Visibility = Visibility.Hidden;
-                MainController.Empty_Message.IsEnabled = false;
+                Controller.Main.Empty_Message.Visibility = Visibility.Hidden;
+                Controller.Main.Empty_Message.IsEnabled = false;
 
-                MainController.tabControl.Visibility = Visibility.Visible;
+                Controller.Main.tabControl.Visibility = Visibility.Visible;
 
-                if (MainController.tabControl.Items.Count == 1)
+                if (Controller.Main.tabControl.Items.Count == 1)
                 {
-                    MainController.ToggleSaveOptions(true);
+                    Controller.Main.ToggleSaveOptions(true);
                 }
             }
         }
 
         private void Close_File_Click(object sender, RoutedEventArgs e)
         {
-            if (MainController.tabControl.Items.Count == 0)
+            if (Controller.Main.tabControl.Items.Count == 0)
             {
-                MainController.ToggleSaveOptions(false);
+                Controller.Main.ToggleSaveOptions(false);
 
-                MainController.Empty_Message.IsEnabled = true;
-                MainController.Empty_Message.Visibility = Visibility.Visible;
+                Controller.Main.Empty_Message.IsEnabled = true;
+                Controller.Main.Empty_Message.Visibility = Visibility.Visible;
             }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if(MainController.tabControl.Items.Count > 0 && MainController.tabControl.Visibility == Visibility.Visible)
+            if(Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
             { 
-                MainController.SaveTab(MainController.tabControl.Items[MainController.tabControl.SelectedIndex] as TabItem);
+                Controller.Main.SaveTab(Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem);
                 MessageBox.Show("kek");
             }
         }
 
         private void SaveAs_Click(object sender, RoutedEventArgs e)
         {
-            if (MainController.tabControl.Items.Count > 0 && MainController.tabControl.Visibility == Visibility.Visible)
+            if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.OverwritePrompt = true;
@@ -129,7 +135,7 @@ namespace JAO_PI.Core.Views
                 saveFileDialog.Title = "Save PAWN File...";
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    MainController.SaveTab(MainController.tabControl.Items[MainController.tabControl.SelectedIndex] as TabItem, saveFileDialog);
+                    Controller.Main.SaveTab(Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem, saveFileDialog);
                 }
             }
         }
