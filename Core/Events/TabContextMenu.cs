@@ -1,33 +1,11 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Xml.Linq;
 
-namespace JAO_PI.Core.Classes
+namespace JAO_PI.Core.Events
 {
-    class EventHandler
+    class TabContextMenu
     {
-        internal void Restore_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Restore clicked");
-        }
-
-        internal void Cut_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Cut clicked");
-        }
-
-        internal void Copy_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Copy clicked");
-        }
-
-        internal void Paste_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Paste clicked");
-        }
-
         internal void CloseItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MenuItem item = sender as MenuItem;

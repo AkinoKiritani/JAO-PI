@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JAO_PI.Core.Views"
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="260" MinWidth="375" Height="510" Width="740" ResizeMode="CanResizeWithGrip" Loaded="MainFrame_Loaded">
+        Title="MainWindow" MinHeight="260" MinWidth="375" Height="510" Width="740" ResizeMode="CanResizeWithGrip" >
 
     <Grid>
         <DockPanel Height="25" VerticalAlignment="Bottom" >
@@ -47,8 +47,8 @@
             <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}">
                 <MenuItem Grid.Column="0" x:Name="MainMenu" Header="Main" StaysOpenOnClick="True">
                     <MenuItem Header="File">
-                        <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" Click="Create_File_Click" />
-                        <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" Click="Open_File_Click" />
+                        <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" />
+                        <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" />
                     </MenuItem>
                     <!--
                     <MenuItem x:Name="Project" Header="Project" IsEnabled="False">
@@ -57,11 +57,11 @@
                     </MenuItem>
                     -->
                     <Separator />
-                    <MenuItem x:Name="Close_File" Header="Close File" IsEnabled="False" Click="Close_File_Click" />
+                    <MenuItem x:Name="Close_File" Header="Close File" IsEnabled="False" />
                     <MenuItem x:Name="Close_All" Header="Close All" IsEnabled="False" />
                     <Separator />
-                    <MenuItem x:Name="Save" Header="Save" IsEnabled="False" Click="Save_Click" />
-                    <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" Click="SaveAs_Click" />
+                    <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
+                    <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
                     <Separator />
                     <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
                 </MenuItem>
@@ -72,6 +72,7 @@
                     <MenuItem x:Name="Copy" Header="Copy" />
                     <MenuItem x:Name="Paste" Header="Paste" />
                 </MenuItem>
+                <MenuItem Grid.Column="2" x:Name="Compile" Header="Compile" />
             </Menu>
         </StatusBar>
 
