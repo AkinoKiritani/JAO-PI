@@ -65,7 +65,9 @@ namespace JAO_PI.Core.Events
                 saveFileDialog.Title = "Save PAWN File...";
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    Controller.Main.SaveTab(Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem, saveFileDialog);
+                    TabItem Tab = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
+                    Controller.Main.SaveTab(Tab, saveFileDialog);
+                    Tab.Header = saveFileDialog.SafeFileName;
                 }
             }
         }
