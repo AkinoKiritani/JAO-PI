@@ -12,7 +12,8 @@ namespace JAO_PI.Core.Controller
         public static Grid Empty_Message = null;
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
         public static List<Tab> TabControlList = new List<Tab>();
-
+        public static string Compiler_Errors = null;
+        
         public static bool RegisterTabControl(TabControl Control)
         {
             if (tabControl == null)

@@ -10,7 +10,6 @@ namespace JAO_PI.Core.Classes
         Events.TabContextMenu Events = new Events.TabContextMenu(); 
         public TabItem TabItem(string path, string header, string content)
         {
-
             TextEditor Editor = new TextEditor();
             Editor.FontSize = 13;
             Editor.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;

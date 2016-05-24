@@ -100,33 +100,13 @@ namespace JAO_PI.Core.Events
 
         internal void Compile_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Process Compiler = new Process();
-            ProcessStartInfo StartInfo = new ProcessStartInfo();
-
-            TabItem itemToCompile = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
-            Compiler.StartInfo = new ProcessStartInfo()
-            {
-                FileName = "G:/Desk/PrP/pawno/pawncc.exe",
-                WorkingDirectory = itemToCompile.Uid,
-                Arguments = itemToCompile.Header.ToString(),
-                CreateNoWindow = true,
-                RedirectStandardError = true,
-                UseShellExecute = false
-            };
-            Compiler.Start();
-            Compiler.WaitForExit();
-
-            string errors = Compiler.StandardError.ReadToEnd();
-            if (errors.Length == 0)
-            {
-                MessageBox.Show("Erfolg ! :)");
-            }
-            else
-            {
-                MessageBox.Show(errors);
-            }
+            Controller.Worker.CompileWorker.RunWorkerAsync();
         }
 
+        internal void Compile(object sender, ExecutedRoutedEventArgs e)
+        {
+            Controller.Worker.CompileWorker.RunWorkerAsync();
+        }
 
         internal void Create_File_Click(object sender, RoutedEventArgs e)
         {

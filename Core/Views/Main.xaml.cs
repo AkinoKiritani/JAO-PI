@@ -14,9 +14,10 @@ namespace JAO_PI.Core.Views
     public partial class Main : Window
     {
         private Events.MainMenu Events;
-        
+        private Controller.Worker worker = null;
         public Main()
         {
+            worker = new Controller.Worker();
             Events = new Events.MainMenu();
             InitializeComponent();
 
@@ -27,6 +28,10 @@ namespace JAO_PI.Core.Views
             RoutedCommand SaveCmd = new RoutedCommand();
             SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(SaveCmd, Events.Save_Click));
+
+            RoutedCommand CompileCmd = new RoutedCommand();
+            CompileCmd.InputGestures.Add(new KeyGesture(Key.F5));
+            CommandBindings.Add(new CommandBinding(CompileCmd, Events.Compile));
 
             MainFrame.Loaded += Events.MainFrame_Loaded;
 
