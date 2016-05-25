@@ -72,7 +72,10 @@
                     <MenuItem x:Name="Copy" Header="Copy" />
                     <MenuItem x:Name="Paste" Header="Paste" />
                 </MenuItem>
-                <MenuItem Grid.Column="2" x:Name="Compile" Header="Compile" />
+                <MenuItem Grid.Column="2" x:Name="Compiler" Header="Compiler" StaysOpenOnClick="True" >
+                    <MenuItem x:Name="Compile" Header="Compile" />
+                    <MenuItem x:Name="Compiler_Path" Header="Set Compiler" />
+                </MenuItem>
             </Menu>
         </StatusBar>
 

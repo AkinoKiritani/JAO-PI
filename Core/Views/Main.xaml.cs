@@ -13,12 +13,15 @@ namespace JAO_PI.Core.Views
     /// </summary>
     public partial class Main : Window
     {
-        private Events.MainMenu Events;
-        private Controller.Worker worker = null;
+        private Events.MainFrame FrameEvents;
+        private Events.MainMenu MenuEvents;
+        private Controller.Worker Worker = null;
+
         public Main()
         {
-            worker = new Controller.Worker();
-            Events = new Events.MainMenu();
+            Worker = new Controller.Worker();
+            FrameEvents = new Events.MainFrame();
+            MenuEvents = new Events.MainMenu();
             InitializeComponent();
 
             Controller.Main.RegisterTabControl(this.tabControl);
@@ -27,25 +30,30 @@ namespace JAO_PI.Core.Views
 
             RoutedCommand SaveCmd = new RoutedCommand();
             SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(SaveCmd, Events.Save_Click));
+            CommandBindings.Add(new CommandBinding(SaveCmd, MenuEvents.Save_Click));
 
             RoutedCommand CompileCmd = new RoutedCommand();
             CompileCmd.InputGestures.Add(new KeyGesture(Key.F5));
-            CommandBindings.Add(new CommandBinding(CompileCmd, Events.Compile));
+            CommandBindings.Add(new CommandBinding(CompileCmd, MenuEvents.Compile));
 
-            MainFrame.Loaded += Events.MainFrame_Loaded;
+            MainFrame.Loaded += FrameEvents.MainFrame_Loaded;
 
-            Restore.PreviewMouseLeftButtonUp += Events.Restore_PreviewMouseLeftButtonUp;
-            Cut.PreviewMouseLeftButtonUp += Events.Cut_PreviewMouseLeftButtonUp;
-            Copy.PreviewMouseLeftButtonUp += Events.Copy_PreviewMouseLeftButtonUp;
-            Paste.PreviewMouseLeftButtonUp += Events.Paste_PreviewMouseLeftButtonUp;
-            Compile.PreviewMouseLeftButtonUp += Events.Compile_PreviewMouseLeftButtonUp;
+            //Data
+            Create_File.Click += MenuEvents.Create_File_Click;
+            Open_File.Click += MenuEvents.Open_File_Click;
+            Close_File.Click += MenuEvents.Close_File_Click;
+            Save.Click += MenuEvents.Save_Click;
+            SaveAs.Click += MenuEvents.SaveAs_Click;
 
-            Create_File.Click += Events.Create_File_Click;
-            Open_File.Click += Events.Open_File_Click;
-            Close_File.Click += Events.Close_File_Click;
-            Save.Click += Events.Save_Click;
-            SaveAs.Click += Events.SaveAs_Click;
+            //Edit
+            Restore.PreviewMouseLeftButtonUp += MenuEvents.Restore_PreviewMouseLeftButtonUp;
+            Cut.PreviewMouseLeftButtonUp += MenuEvents.Cut_PreviewMouseLeftButtonUp;
+            Copy.PreviewMouseLeftButtonUp += MenuEvents.Copy_PreviewMouseLeftButtonUp;
+            Paste.PreviewMouseLeftButtonUp += MenuEvents.Paste_PreviewMouseLeftButtonUp;
+
+            //Compier
+            Compile.PreviewMouseLeftButtonUp += MenuEvents.Compile_PreviewMouseLeftButtonUp;
+            Compiler_Path.PreviewMouseLeftButtonUp += MenuEvents.Compiler_Path_PreviewMouseLeftButtonUp;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

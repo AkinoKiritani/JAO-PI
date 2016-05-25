@@ -12,33 +12,14 @@ namespace JAO_PI.Core.Events
     {
         Classes.Generator generator = null;
         private OpenFileDialog openFileDialog = null;
-
-        internal void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        
+        public MainMenu()
         {
             generator = new Classes.Generator();
-            string[] arguments = Environment.GetCommandLineArgs();
-            if (arguments.GetLength(0) > 1)
-            {
-                string[] arg = arguments[1].Split('\\');
-                TabItem tab = generator.TabItem(arguments[1], arg[arg.Length - 1], File.ReadAllText(arguments[1], System.Text.Encoding.Default));
-
-                Controller.Main.tabControl.Items.Add(tab);
-                Controller.Main.tabControl.SelectedItem = tab;
-
-                Controller.Main.Empty_Message.Visibility = Visibility.Hidden;
-                Controller.Main.Empty_Message.IsEnabled = false;
-
-                Controller.Main.tabControl.Visibility = Visibility.Visible;
-                if (Controller.Main.tabControl.Items.Count == 1)
-                {
-                    Controller.Main.ToggleSaveOptions(true);
-                }
-            }
 
             openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
             openFileDialog.Title = "Open PAWN File...";
-            //Worker = new Controller.Worker();
         }
 
         internal void Restore_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -51,7 +32,6 @@ namespace JAO_PI.Core.Events
             if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
                 Controller.Main.SaveTab(Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem);
-                MessageBox.Show("kek");
             }
         }
 
@@ -83,6 +63,21 @@ namespace JAO_PI.Core.Events
             }
         }
 
+        internal void Compiler_Path_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog CompilerPathDialog = new OpenFileDialog();
+            CompilerPathDialog = new OpenFileDialog();
+            CompilerPathDialog.Filter = "PAWN Compiler (pawncc.exe)|pawncc.exe";
+            CompilerPathDialog.Title = "Set Compiler Path ...";
+            CompilerPathDialog.InitialDirectory = Environment.CurrentDirectory;
+            if (CompilerPathDialog.ShowDialog() == true)
+            {
+                Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
+                MessageBox.Show("Path set", "JAO PI");
+                Properties.Settings.Default.Save();
+            }
+        }
+
         internal void Cut_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show("Cut clicked");
@@ -100,12 +95,12 @@ namespace JAO_PI.Core.Events
 
         internal void Compile_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Controller.Worker.CompileWorker.RunWorkerAsync();
+            Controller.Worker.SaveWorker.RunWorkerAsync();
         }
 
         internal void Compile(object sender, ExecutedRoutedEventArgs e)
         {
-            Controller.Worker.CompileWorker.RunWorkerAsync();
+            Controller.Worker.SaveWorker.RunWorkerAsync();
         }
 
         internal void Create_File_Click(object sender, RoutedEventArgs e)

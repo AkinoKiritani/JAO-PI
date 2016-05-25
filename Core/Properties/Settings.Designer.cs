@@ -22,5 +22,17 @@ namespace JAO_PI.Core.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CompilerPath {
+            get {
+                return ((string)(this["CompilerPath"]));
+            }
+            set {
+                this["CompilerPath"] = value;
+            }
+        }
     }
 }

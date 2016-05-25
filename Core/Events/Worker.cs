@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICSharpCode.AvalonEdit;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
@@ -30,7 +31,7 @@ namespace JAO_PI.Core.Events
 
                     Compiler.StartInfo = new ProcessStartInfo()
                     {
-                        FileName = "G:/Desk/PrP/pawno/pawncc.exe",
+                        FileName = Properties.Settings.Default.CompilerPath,
                         WorkingDirectory = uID,
                         Arguments = Header,
                         CreateNoWindow = true,
@@ -57,25 +58,61 @@ namespace JAO_PI.Core.Events
         {
             if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                if (Controller.Main.Compiler_Errors.Length == 0)
+                if(Controller.Main.Compiler_Errors != null)
                 {
-                    MessageBox.Show("No Errors ! :)");
-                }
-                else
-                {
-                    MessageBox.Show(Controller.Main.Compiler_Errors);
+                    if (Controller.Main.Compiler_Errors.Length == 0)
+                    {
+                        MessageBox.Show("No Errors ! :)");
+                    }
+                    else
+                    {
+                        MessageBox.Show(Controller.Main.Compiler_Errors);
+                    }
                 }
             }
         }
 
         internal static void Save_DoWork(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {                    
+                if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
+                {
+                    TabItem itemToSave = null;
+                    Grid SaveGrid = null;
+                    TextEditor SaveEditor = null;
+                    string Header = null;
+                    string uID = null;
+                    Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
+                    {
+                        itemToSave = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
+                        SaveGrid = itemToSave.Content as Grid;
+                        SaveEditor = SaveGrid.Children[0] as TextEditor;
+                        Header = itemToSave.Header.ToString();
+                        uID = itemToSave.Uid;
+                    }));
+
+                    System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+                    FileToSave.Append(uID);
+                    FileToSave.Append(Header);
+
+                    SaveEditor.Dispatcher.Invoke(new Action(() => SaveEditor.Save(FileToSave.ToString())));
+                    
+                    SaveEditor = null;
+                    SaveGrid = null;
+                    itemToSave = null;
+                    FileToSave = null;                    
+                }
+            }
+            catch(Exception ee)
+            {
+                MessageBox.Show(ee.ToString());
+            }
         }
 
         internal static void Save_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
+            Controller.Worker.CompileWorker.RunWorkerAsync();
         }
     }
 }
