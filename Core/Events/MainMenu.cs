@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,20 +10,23 @@ namespace JAO_PI.Core.Events
     class MainMenu
     {
         Classes.Generator generator = null;
+        Classes.Utility utility = null;
         private OpenFileDialog openFileDialog = null;
         
         public MainMenu()
         {
             generator = new Classes.Generator();
+            utility = new Classes.Utility();
 
             openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
             openFileDialog.Title = "Open PAWN File...";
         }
 
-        internal void Restore_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        internal void Undo_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Restore clicked");
+            ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Controller.Main.tabControl.SelectedIndex);
+            Editor.Undo();
         }
 
         internal void Save_Click(object sender, RoutedEventArgs e)
@@ -80,17 +82,20 @@ namespace JAO_PI.Core.Events
 
         internal void Cut_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Cut clicked");
+            ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Controller.Main.tabControl.SelectedIndex);
+            Editor.Cut();
         }
 
         internal void Copy_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Copy clicked");
+            ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Controller.Main.tabControl.SelectedIndex);
+            Editor.Copy();
         }
 
         internal void Paste_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Paste clicked");
+            ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Controller.Main.tabControl.SelectedIndex);
+            Editor.Paste();
         }
 
         internal void Compile_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

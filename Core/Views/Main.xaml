@@ -65,8 +65,8 @@
                     <Separator />
                     <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
                 </MenuItem>
-                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True" IsEnabled="false">
-                    <MenuItem x:Name="Restore" Header="Restore" />
+                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True" IsEnabled="true">
+                    <MenuItem x:Name="Undo" Header="Undo" />
                     <Separator />
                     <MenuItem x:Name="Cut" Header="Cut" />
                     <MenuItem x:Name="Copy" Header="Copy" />

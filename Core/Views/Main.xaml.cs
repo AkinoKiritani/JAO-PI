@@ -46,7 +46,7 @@ namespace JAO_PI.Core.Views
             SaveAs.Click += MenuEvents.SaveAs_Click;
 
             //Edit
-            Restore.PreviewMouseLeftButtonUp += MenuEvents.Restore_PreviewMouseLeftButtonUp;
+            Undo.PreviewMouseLeftButtonUp += MenuEvents.Undo_PreviewMouseLeftButtonUp;
             Cut.PreviewMouseLeftButtonUp += MenuEvents.Cut_PreviewMouseLeftButtonUp;
             Copy.PreviewMouseLeftButtonUp += MenuEvents.Copy_PreviewMouseLeftButtonUp;
             Paste.PreviewMouseLeftButtonUp += MenuEvents.Paste_PreviewMouseLeftButtonUp;
