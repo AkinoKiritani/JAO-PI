@@ -109,12 +109,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\JAO PI.Core.csproj">
-      <Project>{4b322586-5d07-46f8-8e3b-0a3b6f07e4db}</Project>
-      <Name>JAO PI.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 und x64%29</ProductName>
@@ -125,6 +119,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\JAO PI.Core.csproj">
+      <Project>{4b322586-5d07-46f8-8e3b-0a3b6f07e4db}</Project>
+      <Name>JAO PI.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,15 +13,15 @@ namespace JAO_PI.Core.Views
     /// </summary>
     public partial class Main : Window
     {
-        private Events.MainFrame FrameEvents;
-        private Events.MainMenu MenuEvents;
+        private EventsManager.MainFrame FrameEvents;
+        private EventsManager.MainMenu MenuEvents;
         private Controller.Worker Worker = null;
 
         public Main()
         {
             Worker = new Controller.Worker();
-            FrameEvents = new Events.MainFrame();
-            MenuEvents = new Events.MainMenu();
+            FrameEvents = new EventsManager.MainFrame();
+            MenuEvents = new EventsManager.MainMenu();
             InitializeComponent();
 
             Controller.Main.RegisterTabControl(this.tabControl);

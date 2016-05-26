@@ -7,7 +7,7 @@ namespace JAO_PI.Core.Classes
 {
     class Generator
     {
-        Events.TabContextMenu Events = new Events.TabContextMenu(); 
+        EventsManager.TabContextMenu Events = new EventsManager.TabContextMenu(); 
         public TabItem TabItem(string path, string header, string content)
         {
             TextEditor Editor = new TextEditor();

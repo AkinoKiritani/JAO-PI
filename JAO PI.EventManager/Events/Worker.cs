@@ -7,11 +7,11 @@ using System.Windows.Controls;
 
 namespace JAO_PI.EventsManager
 {
-    class Worker
+    public class Worker
     {
-        internal static void Compiler_DoWork(object sender, DoWorkEventArgs e)
+        public static void Compiler_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
                 try
                 { 
@@ -22,16 +22,16 @@ namespace JAO_PI.EventsManager
                     string Header = null;
                     string uID = null;
 
-                    Core.Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
+                    Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
                     {
-                        itemToCompile = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
+                        itemToCompile = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
                         Header = itemToCompile.Header.ToString();
                         uID = itemToCompile.Uid;
                     }));
 
                     Compiler.StartInfo = new ProcessStartInfo()
                     {
-                        FileName = Core.Properties.Settings.Default.CompilerPath,
+                        FileName = Properties.Settings.Default.CompilerPath,
                         WorkingDirectory = uID,
                         Arguments = Header,
                         CreateNoWindow = true,
@@ -42,7 +42,7 @@ namespace JAO_PI.EventsManager
                     Compiler.Start();
                     Compiler.WaitForExit();
 
-                    Core.Controller.Main.Compiler_Errors = Compiler.StandardError.ReadToEnd();
+                    Controller.Main.Compiler_Errors = Compiler.StandardError.ReadToEnd();
                     Compiler.Dispose();
                     
                 }
@@ -54,38 +54,38 @@ namespace JAO_PI.EventsManager
             else MessageBox.Show("Nothing to compile");
         }
 
-        internal static void Compiler_Completed(object sender, RunWorkerCompletedEventArgs e)
+        public static void Compiler_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                if(Core.Controller.Main.Compiler_Errors != null)
+                if(Controller.Main.Compiler_Errors != null)
                 {
-                    if (Core.Controller.Main.Compiler_Errors.Length == 0)
+                    if (Controller.Main.Compiler_Errors.Length == 0)
                     {
                         MessageBox.Show("No Errors ! :)");
                     }
                     else
                     {
-                        MessageBox.Show(Core.Controller.Main.Compiler_Errors);
+                        MessageBox.Show(Controller.Main.Compiler_Errors);
                     }
                 }
             }
         }
 
-        internal static void Save_DoWork(object sender, DoWorkEventArgs e)
+        public static void Save_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {                    
-                if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+                if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
                 {
                     TabItem itemToSave = null;
                     Grid SaveGrid = null;
                     TextEditor SaveEditor = null;
                     string Header = null;
                     string uID = null;
-                    Core.Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
+                    Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
                     {
-                        itemToSave = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
+                        itemToSave = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
                         SaveGrid = itemToSave.Content as Grid;
                         SaveEditor = SaveGrid.Children[0] as TextEditor;
                         Header = itemToSave.Header.ToString();
@@ -110,9 +110,9 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        internal static void Save_Completed(object sender, RunWorkerCompletedEventArgs e)
+        public static void Save_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            Core.Controller.Worker.CompileWorker.RunWorkerAsync();
+            Controller.Worker.CompileWorker.RunWorkerAsync();
         }
     }
 }

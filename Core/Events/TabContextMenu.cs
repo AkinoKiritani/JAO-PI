@@ -2,29 +2,29 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace JAO_PI.Core.Events
+namespace JAO_PI.EventsManager
 {
     class TabContextMenu
     {
         internal void CloseItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MenuItem item = sender as MenuItem;
-            Controller.Tab Index = Controller.Main.TabControlList.Find(x => x.Close.Uid == item.Uid);
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Close.Uid == item.Uid);
 
             Index.Editor.Clear();
             Grid grid = Index.TabItem.Content as Grid;
             Index.Editor = null;
             grid.Children.Remove(Index.Editor);
             grid = null;
-            Controller.Main.TabControlList.Remove(Index);
+            Core.Controller.Main.TabControlList.Remove(Index);
 
-            Controller.Main.tabControl.Items.Remove(Index.TabItem);
-            if (Controller.Main.tabControl.Items.Count == 0)
+            Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
+            if (Core.Controller.Main.tabControl.Items.Count == 0)
             {
-                Controller.Main.tabControl.Visibility = Visibility.Hidden;
+                Core.Controller.Main.tabControl.Visibility = Visibility.Hidden;
 
-                Controller.Main.Empty_Message.IsEnabled = true;
-                Controller.Main.Empty_Message.Visibility = Visibility.Visible;
+                Core.Controller.Main.Empty_Message.IsEnabled = true;
+                Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
             }
         }
 

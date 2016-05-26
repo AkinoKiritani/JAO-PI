@@ -4,15 +4,15 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace JAO_PI.EventsManager
+namespace JAO_PI.EventsManager.MainFrame
 {
-    class MainFrame
+    public class MainFrame
     {
-        Core.Classes.Generator generator = null;
+        JAO_PI.Core.Classes.Generator generator = null;
 
-        internal void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            if(Core.Properties.Settings.Default.CompilerPath.Length == 0)
+            if(JAO_PI.Properties.Settings.Default.CompilerPath.Length == 0)
             {
                 MessageBoxResult result = MessageBox.Show("There is no Compiler path set. Do you want to set it now?", "JAO PI", MessageBoxButton.YesNo);
                 if(result == MessageBoxResult.Yes)
@@ -24,15 +24,15 @@ namespace JAO_PI.EventsManager
                     CompilerPathDialog.InitialDirectory = Environment.CurrentDirectory;
                     if (CompilerPathDialog.ShowDialog() == true)
                     {
-                        Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
+                        Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
                         MessageBox.Show("Path set", "JAO PI");
-                        Core.Properties.Settings.Default.Save();
+                        Properties.Settings.Default.Save();
                     }
                 }
             }
             else
             {
-                MessageBox.Show(Core.Properties.Settings.Default.CompilerPath);
+                MessageBox.Show(Properties.Settings.Default.CompilerPath);
             }
             MainMenu main = new MainMenu();
             generator = new Core.Classes.Generator();

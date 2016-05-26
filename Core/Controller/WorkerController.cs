@@ -14,9 +14,8 @@ namespace JAO_PI.Core.Controller
                 SaveWorker = new BackgroundWorker();
                 SaveWorker.WorkerReportsProgress = true;
                 SaveWorker.WorkerSupportsCancellation = true;
-
-                SaveWorker.DoWork += new DoWorkEventHandler(Events.Worker.Save_DoWork);
-                SaveWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Events.Worker.Save_Completed);
+                SaveWorker.DoWork += new DoWorkEventHandler(EventsManager.Worker.Save_DoWork);
+                SaveWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(EventsManager.Worker.Save_Completed);
             }
 
             if(CompileWorker == null)
@@ -25,8 +24,8 @@ namespace JAO_PI.Core.Controller
                 CompileWorker.WorkerReportsProgress = true;
                 CompileWorker.WorkerSupportsCancellation = true;
                 
-                CompileWorker.DoWork += new DoWorkEventHandler(Events.Worker.Compiler_DoWork);
-                CompileWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Events.Worker.Compiler_Completed);
+                CompileWorker.DoWork += new DoWorkEventHandler(EventsManager.Worker.Compiler_DoWork);
+                CompileWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(EventsManager.Worker.Compiler_Completed);
             }
         }
     }
