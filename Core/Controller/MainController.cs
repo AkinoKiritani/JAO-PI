@@ -1,7 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace JAO_PI.Core.Controller
@@ -42,13 +40,6 @@ namespace JAO_PI.Core.Controller
                 return true;
             }
             return false;
-        }
-
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcefghijklmnopqrstuvw";
-            var random = new Random();
-            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
         
         public static void ToggleSaveOptions(bool toggle)

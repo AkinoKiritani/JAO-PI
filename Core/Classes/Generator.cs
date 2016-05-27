@@ -10,6 +10,7 @@ namespace JAO_PI.Core.Classes
         EventsManager.TabContextMenu Events = new EventsManager.TabContextMenu(); 
         public TabItem TabItem(string path, string header, string content)
         {
+            Utility utility = new Utility();
             TextEditor Editor = new TextEditor();
             Editor.FontSize = 13;
             Editor.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
@@ -35,19 +36,19 @@ namespace JAO_PI.Core.Classes
 
             MenuItem CloseItem = new MenuItem();
             CloseItem.Header = "Close";
-            CloseItem.Uid = Controller.Main.RandomString(10);
+            CloseItem.Uid = utility.RandomString(10);
             CloseItem.PreviewMouseLeftButtonUp += Events.CloseItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseItem);
 
-            MenuItem RenameItem = Menuitem("Rename", Controller.Main.RandomString(10));
+            MenuItem RenameItem = utility.Menuitem("Rename", utility.RandomString(10));
             RenameItem.Header = "Rename";
-            RenameItem.Uid = Controller.Main.RandomString(10);
+            RenameItem.Uid = utility.RandomString(10);
             RenameItem.PreviewMouseLeftButtonUp += Events.RenameItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(RenameItem);
 
-            MenuItem SaveItem = Menuitem("Save", Controller.Main.RandomString(10));
+            MenuItem SaveItem = utility.Menuitem("Save", utility.RandomString(10));
             SaveItem.Header = "Save";
-            SaveItem.Uid = Controller.Main.RandomString(10);
+            SaveItem.Uid = utility.RandomString(10);
             SaveItem.PreviewMouseLeftButtonUp += Events.SaveItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(SaveItem);
 
@@ -61,14 +62,6 @@ namespace JAO_PI.Core.Classes
                 Save = SaveItem
             });
             return tab;
-        }
-
-        private MenuItem Menuitem(string Header, string Uid)
-        {
-            MenuItem Item = new MenuItem();
-            Item.Header = Header;
-            Item.Uid = Uid;
-            return Item;
         }
     }
 }
