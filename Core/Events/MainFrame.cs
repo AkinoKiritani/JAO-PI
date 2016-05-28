@@ -6,11 +6,11 @@ using System.Windows.Controls;
 
 namespace JAO_PI.EventsManager
 {
-    class MainFrame
+    public class MainFrame
     {
         Core.Classes.Generator generator = null;
 
-        internal void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             if(Core.Properties.Settings.Default.CompilerPath.Length == 0)
             {
@@ -30,10 +30,7 @@ namespace JAO_PI.EventsManager
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show(Core.Properties.Settings.Default.CompilerPath);
-            }
+
             MainMenu main = new MainMenu();
             generator = new Core.Classes.Generator();
             string[] arguments = Environment.GetCommandLineArgs();
@@ -54,6 +51,11 @@ namespace JAO_PI.EventsManager
                     Core.Controller.Main.ToggleSaveOptions(true);
                 }
             }
+        }
+
+        public void MainFrame_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

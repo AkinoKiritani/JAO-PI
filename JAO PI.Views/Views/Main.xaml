@@ -1,9 +1,9 @@
-﻿<Window x:Name="MainFrame" x:Class="JAO_PI.Core.Views.Main"
+﻿<Window x:Name="MainFrame" x:Class="JAO_PI.Views.Main"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:JAO_PI.Core.Views"
+        xmlns:local="clr-namespace:JAO_PI.Views"
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="260" MinWidth="375" Height="510" Width="740" ResizeMode="CanResizeWithGrip" >
@@ -63,7 +63,7 @@
                     <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
                     <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
                     <Separator />
-                    <MenuItem x:Name="Exit" Header="Exit" Click="Exit_Click" />
+                    <MenuItem x:Name="Exit" Header="Exit" />
                 </MenuItem>
                 <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True" IsEnabled="true">
                     <MenuItem x:Name="Undo" Header="Undo" />
@@ -71,6 +71,8 @@
                     <MenuItem x:Name="Cut" Header="Cut" />
                     <MenuItem x:Name="Copy" Header="Copy" />
                     <MenuItem x:Name="Paste" Header="Paste" />
+                    <Separator />
+                    <MenuItem x:Name="Find" Header="Find" />
                 </MenuItem>
                 <MenuItem Grid.Column="2" x:Name="Compiler" Header="Compiler" StaysOpenOnClick="True" >
                     <MenuItem x:Name="Compile" Header="Compile" />

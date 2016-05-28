@@ -10,7 +10,7 @@ namespace JAO_PI
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            Core.Views.Main window = new Core.Views.Main();
+            Views.Main window = new Views.Main();
             Application.Current.MainWindow = window;
 
             window.Show();

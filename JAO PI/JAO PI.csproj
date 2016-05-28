@@ -121,9 +121,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\JAO PI.Core.csproj">
-      <Project>{4b322586-5d07-46f8-8e3b-0a3b6f07e4db}</Project>
-      <Name>JAO PI.Core</Name>
+    <ProjectReference Include="..\JAO PI.Views\JAO PI.Views.csproj">
+      <Project>{f527d833-778b-471d-8cab-3248428e0b0b}</Project>
+      <Name>JAO PI.Views</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

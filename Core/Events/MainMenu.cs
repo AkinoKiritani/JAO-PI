@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using JAO_PI.Core.Classes;
+using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Windows;
@@ -9,27 +10,27 @@ namespace JAO_PI.EventsManager
 {
     public class MainMenu
     {
-        Core.Classes.Generator generator = null;
-        Core.Classes.Utility utility = null;
+        Generator generator = null;
+        Utility utility = null;
         private OpenFileDialog openFileDialog = null;
         
         public MainMenu()
         {
-            generator = new Core.Classes.Generator();
-            utility = new Core.Classes.Utility();
+            generator = new Generator();
+            utility = new Utility();
 
             openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
             openFileDialog.Title = "Open PAWN File...";
         }
 
-        internal void Undo_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void Undo_Click(object sender, RoutedEventArgs e)
         {
             ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
             Editor.Undo();
         }
 
-        internal void Save_Click(object sender, RoutedEventArgs e)
+        public void Save_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
@@ -37,7 +38,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        internal void SaveAs_Click(object sender, RoutedEventArgs e)
+        public void SaveAs_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
@@ -54,7 +55,33 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        internal void Close_File_Click(object sender, RoutedEventArgs e)
+        public void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Main.Frames[(int)Utility.Frames.MainFrame].Close();
+        }
+
+        public void FindNext(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        public void Search(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            {
+                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Show();
+            }
+        }
+
+        public void Find_Click(object sender, RoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            {
+                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Show();
+            }
+        }
+
+        public void Close_File_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count == 0)
             {
@@ -65,7 +92,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        internal void Compiler_Path_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void Compiler_Path_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog CompilerPathDialog = new OpenFileDialog();
             CompilerPathDialog = new OpenFileDialog();
@@ -80,35 +107,35 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        internal void Cut_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void Cut_Click(object sender, RoutedEventArgs e)
         {
             ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
             Editor.Cut();
         }
 
-        internal void Copy_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void Copy_Click(object sender, RoutedEventArgs e)
         {
             ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
             Editor.Copy();
         }
 
-        internal void Paste_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void Paste_Click(object sender, RoutedEventArgs e)
         {
             ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
             Editor.Paste();
         }
 
-        internal void Compile_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        public void Compile_Click(object sender, RoutedEventArgs e)
         {
             Core.Controller.Worker.SaveWorker.RunWorkerAsync();
         }
 
-        internal void Compile(object sender, ExecutedRoutedEventArgs e)
+        public void Compile(object sender, RoutedEventArgs e)
         {
             Core.Controller.Worker.SaveWorker.RunWorkerAsync();
         }
 
-        internal void Create_File_Click(object sender, RoutedEventArgs e)
+        public void Create_File_Click(object sender, RoutedEventArgs e)
         {
             TabItem tab = generator.TabItem(Environment.CurrentDirectory, "new.pwn", null);
 
@@ -126,8 +153,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-
-        internal void Open_File_Click(object sender, RoutedEventArgs e)
+        public void Open_File_Click(object sender, RoutedEventArgs e)
         {
             if (openFileDialog.ShowDialog() == true)
             {

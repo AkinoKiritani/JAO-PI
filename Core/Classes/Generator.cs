@@ -18,7 +18,7 @@ namespace JAO_PI.Core.Classes
             Editor.ShowLineNumbers = true;
             Editor.Text = content;
             Editor.Margin = new Thickness(0, 0, 5, 0);
-
+            
             Grid grid = new Grid();
             grid.Children.Add(Editor);
             

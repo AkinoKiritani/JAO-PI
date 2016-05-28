@@ -1,17 +1,46 @@
 ﻿using ICSharpCode.AvalonEdit;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace JAO_PI.Core.Controller
 {
-    class Main
+    public class Main
     {
         public static TabControl tabControl = null;
         public static Grid Empty_Message = null;
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
         public static List<Tab> TabControlList = new List<Tab>();
         public static string Compiler_Errors = null;
-        
+        public static int LastIndex;
+
+        //Frames
+        public static List<Window> Frames = new List<Window>();
+
+        //Search
+        public static TextBox SearchBox = null;
+        public static string CurrentSearch = null;
+        public static int CurrentSearchIndex { get; set; }
+
+        public static bool RegisterFrames(Window mainFrame, Window searchFrame)
+        {
+            if (Frames.Count == 0)
+            {
+                Frames.Add(mainFrame);
+                Frames.Add(searchFrame);
+                return true;
+            }
+            return false;
+        }
+        public static bool RegisterSearchBox(TextBox searchBox)
+        {
+            if (SearchBox == null)
+            {
+                SearchBox = searchBox;
+                return true;
+            }
+            return false;
+        }
         public static bool RegisterTabControl(TabControl Control)
         {
             if (tabControl == null)

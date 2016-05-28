@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace JAO_PI.EventsManager
 {
-    class TabContextMenu
+    public class TabContextMenu
     {
         internal void CloseItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {

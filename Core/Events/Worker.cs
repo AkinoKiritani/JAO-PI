@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace JAO_PI.EventsManager
 {
-    class Worker
+    public class Worker
     {
         internal static void Compiler_DoWork(object sender, DoWorkEventArgs e)
         {

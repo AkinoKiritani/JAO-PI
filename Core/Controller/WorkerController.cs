@@ -2,7 +2,7 @@
 
 namespace JAO_PI.Core.Controller
 {
-    class Worker
+    public class Worker
     {
         public static BackgroundWorker SaveWorker = null;
         public static BackgroundWorker CompileWorker = null;
