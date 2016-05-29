@@ -12,16 +12,11 @@ namespace JAO_PI.EventsManager
     {
         Generator generator = null;
         Utility utility = null;
-        private OpenFileDialog openFileDialog = null;
         
         public MainMenu()
         {
             generator = new Generator();
             utility = new Utility();
-
-            openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
-            openFileDialog.Title = "Open PAWN File...";
         }
 
         public void Undo_Click(object sender, RoutedEventArgs e)
@@ -155,6 +150,9 @@ namespace JAO_PI.EventsManager
 
         public void Open_File_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
+            openFileDialog.Title = "Open PAWN File...";
             if (openFileDialog.ShowDialog() == true)
             {
                 TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.Default));
@@ -171,6 +169,7 @@ namespace JAO_PI.EventsManager
                     Core.Controller.Main.ToggleSaveOptions(true);
                 }
             }
+            GC.ReRegisterForFinalize(openFileDialog);
         }
     }
 }

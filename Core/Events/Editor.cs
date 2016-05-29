@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
+using System.Windows;
 
 namespace JAO_PI.EventsManager
 {
@@ -11,7 +12,13 @@ namespace JAO_PI.EventsManager
             {
                 Core.Controller.Tab result = Core.Controller.Main.TabControlList.Find(x => x.Editor.Document.FileName.Equals(Document.FileName));
                 Document.FileName = Document.FileName.Replace(".JAOsaved", ".JAOnotsaved");
+                Document.Changed -= Document_Changed;
             }
+        }
+
+        internal void Editor_Unloaded(object sender, RoutedEventArgs e)
+        {
+            System.GC.ReRegisterForFinalize(sender);
         }
     }
 }

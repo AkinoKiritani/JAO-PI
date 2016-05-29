@@ -86,6 +86,9 @@ namespace JAO_PI.Core.Controller
                 Grid SaveGrid = SaveTab.Content as Grid;
                 TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
 
+                EventsManager.Editor EditorEvents = new EventsManager.Editor();
+                SaveEditor.Document.Changed += EditorEvents.Document_Changed;
+
                 System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
                 FileToSave.Append(SaveTab.Uid);
                 FileToSave.Append(SaveTab.Header);
@@ -104,6 +107,8 @@ namespace JAO_PI.Core.Controller
                 Grid SaveGrid = SaveTab.Content as Grid;
                 TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
 
+                EventsManager.Editor EditorEvents = new EventsManager.Editor();
+                SaveEditor.Document.Changed += EditorEvents.Document_Changed;
 
                 SaveEditor.Save(saveFileDialog.FileName);
                 SaveEditor = null;

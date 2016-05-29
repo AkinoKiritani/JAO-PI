@@ -90,6 +90,7 @@ namespace JAO_PI.Core.Classes
 
             Editor.Document.Changed += EditorEvents.Document_Changed;
             Editor.Document.FileName = header + ".JAOsaved";
+            Editor.Unloaded += EditorEvents.Editor_Unloaded;
             return tab;
         }
     }

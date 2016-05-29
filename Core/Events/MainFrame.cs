@@ -31,6 +31,7 @@ namespace JAO_PI.EventsManager
                         MessageBox.Show("Path set", "JAO PI");
                         Core.Properties.Settings.Default.Save();
                     }
+                    GC.ReRegisterForFinalize(CompilerPathDialog);
                 }
             }
 
