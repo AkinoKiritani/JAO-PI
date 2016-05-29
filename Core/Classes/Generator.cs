@@ -87,10 +87,12 @@ namespace JAO_PI.Core.Classes
                 Rename = RenameItem,
                 Save = SaveItem
             });
-
+            Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
             Editor.Document.FileName = header + ".JAOsaved";
             Editor.Unloaded += EditorEvents.Editor_Unloaded;
+
+            Controller.Main.EditItem.IsEnabled = true;
             return tab;
         }
     }

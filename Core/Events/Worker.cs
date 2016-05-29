@@ -11,10 +11,15 @@ namespace JAO_PI.EventsManager
     {
         internal static void Compiler_DoWork(object sender, DoWorkEventArgs e)
         {
+            Core.Controller.Main.Compile.Dispatcher.Invoke(new Action(() =>
+            {
+                Core.Controller.Main.Compile.Visibility = Visibility.Visible;
+            }));
+            
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
                 try
-                { 
+                {
                     Process Compiler = new Process();
                     ProcessStartInfo StartInfo = new ProcessStartInfo();
 
@@ -48,10 +53,10 @@ namespace JAO_PI.EventsManager
                 }
                 catch(Exception ee)
                 {
-                    MessageBox.Show(ee.ToString());
+                    MessageBox.Show(ee.ToString(), "JAO PI", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            else MessageBox.Show("Nothing to compile");
+            else MessageBox.Show("Nothing to compile", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         internal static void Compiler_Completed(object sender, RunWorkerCompletedEventArgs e)
@@ -62,13 +67,14 @@ namespace JAO_PI.EventsManager
                 {
                     if (Core.Controller.Main.Compiler_Errors.Length == 0)
                     {
-                        MessageBox.Show("No Errors ! :)");
+                        MessageBox.Show("No Errors ! :)", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        MessageBox.Show(Core.Controller.Main.Compiler_Errors);
+                        MessageBox.Show(Core.Controller.Main.Compiler_Errors, "JAO PI", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
+                Core.Controller.Main.Compile.Visibility = Visibility.Hidden;
             }
         }
 
@@ -106,7 +112,7 @@ namespace JAO_PI.EventsManager
             }
             catch(Exception ee)
             {
-                MessageBox.Show(ee.ToString());
+                MessageBox.Show(ee.ToString(), "JAO PI", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

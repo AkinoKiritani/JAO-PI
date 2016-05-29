@@ -17,7 +17,7 @@ namespace JAO_PI.EventsManager
         {
             if(Core.Properties.Settings.Default.CompilerPath.Length == 0)
             {
-                MessageBoxResult result = MessageBox.Show("There is no Compiler path set. Do you want to set it now?", "JAO PI", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("There is no Compiler path set. Do you want to set it now?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if(result == MessageBoxResult.Yes)
                 {
                     OpenFileDialog CompilerPathDialog = new OpenFileDialog();
@@ -28,7 +28,7 @@ namespace JAO_PI.EventsManager
                     if (CompilerPathDialog.ShowDialog() == true)
                     {
                         Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
-                        MessageBox.Show("Path set", "JAO PI");
+                        MessageBox.Show("Path set", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
                         Core.Properties.Settings.Default.Save();
                     }
                     GC.ReRegisterForFinalize(CompilerPathDialog);

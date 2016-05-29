@@ -24,6 +24,8 @@ namespace JAO_PI.Views
             Core.Controller.Main.RegisterTabControl(this.tabControl);
             Core.Controller.Main.RegisterEmptyMessage(this.Empty_Message);
             Core.Controller.Main.RegisterSaveOptions(this.Save, this.SaveAs, this.Close_File);
+            Core.Controller.Main.RegisterCompile(this.Compiling);
+            Core.Controller.Main.RegisterEdit(this.Edit);
 
             RoutedCommand SaveCmd = new RoutedCommand();
             SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
@@ -58,7 +60,7 @@ namespace JAO_PI.Views
             Paste.Click += MenuEvents.Paste_Click;
             Find.Click += MenuEvents.Find_Click;
 
-            //Compier
+            //Compiler
             Compile.Click += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
 

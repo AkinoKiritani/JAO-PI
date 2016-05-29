@@ -27,7 +27,7 @@ namespace JAO_PI.EventsManager
                     }
                     else
                     {
-                        MessageBox.Show("No further results");
+                        MessageBox.Show("No further results", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
@@ -55,7 +55,7 @@ namespace JAO_PI.EventsManager
                         }
                         else
                         {
-                            MessageBox.Show("No result");
+                            MessageBox.Show("No result", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }
                 }

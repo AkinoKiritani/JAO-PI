@@ -25,6 +25,7 @@ namespace JAO_PI.EventsManager
 
                 Core.Controller.Main.Empty_Message.IsEnabled = true;
                 Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
+                Core.Controller.Main.EditItem.IsEnabled = false;
             }
         }
 

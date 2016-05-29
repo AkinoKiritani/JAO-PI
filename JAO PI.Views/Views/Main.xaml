@@ -24,7 +24,7 @@
                     </ItemsPanelTemplate>
                 </StatusBar.ItemsPanel>
                 <StatusBarItem x:Name="JAOPI" Content="Just another opensource Pawn IDE" Grid.Column="1" HorizontalAlignment="Center" />
-                <StatusBarItem x:Name="FileName" Content="Filename" Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <StatusBarItem x:Name="Compiling" Content="Compiling ..." Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden"/>
                 <StatusBarItem x:Name="Line" Content="Line" Grid.Column="2" HorizontalAlignment="Center" Visibility="Hidden"/>
                 <StatusBarItem x:Name="Column" Content="Column" Grid.Column="3" HorizontalAlignment="Center" Visibility="Hidden"/>
             </StatusBar>
@@ -65,7 +65,7 @@
                     <Separator />
                     <MenuItem x:Name="Exit" Header="Exit" />
                 </MenuItem>
-                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True" IsEnabled="true">
+                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True" IsEnabled="false">
                     <MenuItem x:Name="Undo" Header="Undo" />
                     <Separator />
                     <MenuItem x:Name="Cut" Header="Cut" />
