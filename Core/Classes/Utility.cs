@@ -1,8 +1,11 @@
 ﻿using ICSharpCode.AvalonEdit;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Xml;
 
 namespace JAO_PI.Core.Classes
 {
@@ -45,6 +48,24 @@ namespace JAO_PI.Core.Classes
             find.Index = myComp.IndexOf(Text, SearchQuery, lastIndex, (IgnoreCase == true) ? CompareOptions.IgnoreCase: CompareOptions.None);
             find.Line = (find.Index == -1) ? -1 : Editor.TextArea.Document.GetLineByOffset(find.Index).LineNumber;
             return find;
+        }
+        public void LoadSyntax(TextEditor Editor, string Path)
+        {
+            try
+            {
+                using (Stream s = File.OpenRead(Path))
+                {
+                    using (XmlTextReader reader = new XmlTextReader(s))
+                    {
+                        Editor.SyntaxHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader.Load
+                                                    (reader, ICSharpCode.AvalonEdit.Highlighting.HighlightingManager.Instance);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("An Error occurred while reading the Syntax");
+            }
         }
     }
 }

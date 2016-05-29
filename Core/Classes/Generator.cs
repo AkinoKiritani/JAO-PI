@@ -1,4 +1,7 @@
 ﻿using ICSharpCode.AvalonEdit;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,6 +21,32 @@ namespace JAO_PI.Core.Classes
             Editor.ShowLineNumbers = true;
             Editor.Text = content;
             Editor.Margin = new Thickness(0, 0, 5, 0);
+
+            StringBuilder SyntaxPath = new StringBuilder();
+            SyntaxPath.Append(System.Environment.CurrentDirectory);
+            SyntaxPath.Append(@"\Language\PAWN.xshd");
+
+            string syntaxPath = SyntaxPath.ToString();
+
+            if (File.Exists(syntaxPath))
+            {
+                utility.LoadSyntax(Editor, syntaxPath);
+            }
+            else
+            {
+                Directory.CreateDirectory("Language");
+                using (FileStream fs = File.Create(syntaxPath))
+                {
+                    var assembly = Assembly.GetExecutingAssembly();
+                    var resourceName = "JAO_PI.Core.Resources.PAWN.xshd";
+                    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        byte[] info = new UTF8Encoding(true).GetBytes(reader.ReadToEnd());
+                        fs.Write(info, 0, info.Length);
+                    }
+                }
+            }
             
             Grid grid = new Grid();
             grid.Children.Add(Editor);
