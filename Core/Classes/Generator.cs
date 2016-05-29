@@ -10,7 +10,8 @@ namespace JAO_PI.Core.Classes
 {
     class Generator
     {
-        EventsManager.TabContextMenu Events = new EventsManager.TabContextMenu(); 
+        EventsManager.TabContextMenu TabEvents = new EventsManager.TabContextMenu();
+        EventsManager.Editor EditorEvents = new EventsManager.Editor();
         public TabItem TabItem(string path, string header, string content)
         {
             Utility utility = new Utility();
@@ -62,19 +63,19 @@ namespace JAO_PI.Core.Classes
             MenuItem CloseItem = new MenuItem();
             CloseItem.Header = "Close";
             CloseItem.Uid = utility.RandomString(10);
-            CloseItem.PreviewMouseLeftButtonUp += Events.CloseItem_PreviewMouseLeftButtonUp;
+            CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseItem);
 
             MenuItem RenameItem = utility.Menuitem("Rename", utility.RandomString(10));
             RenameItem.Header = "Rename";
             RenameItem.Uid = utility.RandomString(10);
-            RenameItem.PreviewMouseLeftButtonUp += Events.RenameItem_PreviewMouseLeftButtonUp;
+            RenameItem.PreviewMouseLeftButtonUp += TabEvents.RenameItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(RenameItem);
 
             MenuItem SaveItem = utility.Menuitem("Save", utility.RandomString(10));
             SaveItem.Header = "Save";
             SaveItem.Uid = utility.RandomString(10);
-            SaveItem.PreviewMouseLeftButtonUp += Events.SaveItem_PreviewMouseLeftButtonUp;
+            SaveItem.PreviewMouseLeftButtonUp += TabEvents.SaveItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(SaveItem);
 
             tab.ContextMenu = menu;
@@ -86,6 +87,9 @@ namespace JAO_PI.Core.Classes
                 Rename = RenameItem,
                 Save = SaveItem
             });
+
+            Editor.Document.Changed += EditorEvents.Document_Changed;
+            Editor.Document.FileName = header + ".JAOsaved";
             return tab;
         }
     }

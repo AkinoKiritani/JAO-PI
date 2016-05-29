@@ -3,13 +3,16 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.ComponentModel;
+using System.Collections.Generic;
+using JAO_PI.Core.Classes;
+using System.Text;
 
 namespace JAO_PI.EventsManager
 {
     public class MainFrame
     {
-        Core.Classes.Generator generator = null;
-
+        Generator generator = null;
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             if(Core.Properties.Settings.Default.CompilerPath.Length == 0)
@@ -32,7 +35,7 @@ namespace JAO_PI.EventsManager
             }
 
             MainMenu main = new MainMenu();
-            generator = new Core.Classes.Generator();
+            generator = new Generator();
             string[] arguments = Environment.GetCommandLineArgs();
             if (arguments.GetLength(0) > 1)
             {
@@ -56,6 +59,57 @@ namespace JAO_PI.EventsManager
         public void MainFrame_Closed(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        public void MainFrame_Closing(object sender, CancelEventArgs e)
+        {
+            List<Core.Controller.Tab> notSavedList = Core.Controller.Main.TabControlList.FindAll(x => x.Editor.Document.FileName.Contains(".JAOnotsaved"));
+            if(notSavedList.Count > 0)
+            {
+                MessageBoxResult result = MessageBox.Show("Some files are not saved. Do you want to save them now ?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if(result == MessageBoxResult.Yes)
+                {
+                    StringBuilder FileToSave = new StringBuilder();
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.OverwritePrompt = true;
+                    saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
+                    saveFileDialog.Title = "Save PAWN File...";
+                    for (int i = 0; i != notSavedList.Count; i++)
+                    {
+                        FileToSave.Clear();
+                        FileToSave.Append(notSavedList[i].TabItem.Uid);
+                        FileToSave.Append(notSavedList[i].TabItem.Header);
+                        string[] arg = FileToSave.ToString().Split('\\');
+                        saveFileDialog.InitialDirectory = notSavedList[i].TabItem.Uid;
+                        saveFileDialog.FileName = notSavedList[i].TabItem.Header.ToString();
+                        if (notSavedList[i].TabItem.Header.Equals(arg[arg.Length - 1]))
+                        {
+                            if (File.Exists(FileToSave.ToString()))
+                            {
+                                result = MessageBox.Show("Do you want to overwrite " + notSavedList[i].TabItem.Header.ToString() +" ?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Stop);
+                                if (result == MessageBoxResult.Yes)
+                                {
+                                    Core.Controller.Main.SaveTab(notSavedList[i].TabItem);
+                                }
+                                else
+                                {
+                                    if (saveFileDialog.ShowDialog() == true)
+                                    {
+                                        Core.Controller.Main.SaveTab(notSavedList[i].TabItem, saveFileDialog);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (saveFileDialog.ShowDialog() == true)
+                            {
+                                Core.Controller.Main.SaveTab(notSavedList[i].TabItem, saveFileDialog);
+                            }
+                        }
+                    }   
+                }
+            }
         }
     }
 }
