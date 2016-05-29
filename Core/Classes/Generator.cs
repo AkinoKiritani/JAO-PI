@@ -27,18 +27,14 @@ namespace JAO_PI.Core.Classes
             SyntaxPath.Append(@"\Language\PAWN.xshd");
 
             string syntaxPath = SyntaxPath.ToString();
-
-            if (File.Exists(syntaxPath))
-            {
-                utility.LoadSyntax(Editor, syntaxPath);
-            }
-            else
+            if (File.Exists(syntaxPath) == false)
             {
                 Directory.CreateDirectory("Language");
                 using (FileStream fs = File.Create(syntaxPath))
                 {
                     var assembly = Assembly.GetExecutingAssembly();
                     var resourceName = "JAO_PI.Core.Resources.PAWN.xshd";
+
                     using (Stream stream = assembly.GetManifestResourceStream(resourceName))
                     using (StreamReader reader = new StreamReader(stream))
                     {
@@ -47,7 +43,7 @@ namespace JAO_PI.Core.Classes
                     }
                 }
             }
-            
+            utility.LoadSyntax(Editor, syntaxPath);
             Grid grid = new Grid();
             grid.Children.Add(Editor);
             
