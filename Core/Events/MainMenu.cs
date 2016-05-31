@@ -186,7 +186,7 @@ namespace JAO_PI.EventsManager
             openFileDialog.Title = "Open PAWN File...";
             if (openFileDialog.ShowDialog() == true)
             {
-                TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.Default));
+                TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.UTF8));
                 Core.Controller.Main.tabControl.Items.Add(tab);
                 Core.Controller.Main.tabControl.SelectedItem = tab;
 

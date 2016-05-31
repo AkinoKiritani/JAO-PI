@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:JAO_PI.Views"
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="260" MinWidth="375" Height="510" Width="740" ResizeMode="CanResizeWithGrip" >
+        Title="JAO PI" MinHeight="260" MinWidth="375" Height="510" Width="740" ResizeMode="CanResizeWithGrip" >
 
     <Grid>
         <DockPanel Height="25" VerticalAlignment="Bottom" >
