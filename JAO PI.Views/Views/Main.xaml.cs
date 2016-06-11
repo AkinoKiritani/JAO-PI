@@ -14,18 +14,18 @@ namespace JAO_PI.Views
 
         public Main()
         {
-            Core.Controller.Main.RegisterFrames(this, new Search()).ToString();
+            Core.Controller.Register.Frames(this, new Search()).ToString();
             Worker = new Core.Controller.Worker();
             FrameEvents = new EventsManager.MainFrame();
             MenuEvents = new EventsManager.MainMenu();
 
             InitializeComponent();
 
-            Core.Controller.Main.RegisterTabControl(this.tabControl);
-            Core.Controller.Main.RegisterEmptyMessage(this.Empty_Message);
-            Core.Controller.Main.RegisterSaveOptions(this.Save, this.SaveAs, this.Close_File);
-            Core.Controller.Main.RegisterCompile(this.Compiling);
-            Core.Controller.Main.RegisterEdit(this.Edit);
+            Core.Controller.Register.TabControl(this.tabControl);
+            Core.Controller.Register.EmptyMessage(this.Empty_Message);
+            Core.Controller.Register.SaveOptions(this.Save, this.SaveAs, this.Close_File);
+            Core.Controller.Register.Compile(this.Compiling);
+            Core.Controller.Register.Edit(this.Edit);
 
             RoutedCommand SaveCmd = new RoutedCommand();
             SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));

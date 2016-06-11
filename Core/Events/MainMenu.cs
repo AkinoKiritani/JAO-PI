@@ -31,7 +31,7 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                Core.Controller.Main.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
+                utility.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
             }
         }
 
@@ -46,7 +46,7 @@ namespace JAO_PI.EventsManager
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     TabItem Tab = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
-                    Core.Controller.Main.SaveTab(Tab, saveFileDialog);
+                    utility.SaveTab(Tab, saveFileDialog);
                     Tab.Header = saveFileDialog.SafeFileName;
                 }
             }
@@ -92,7 +92,7 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
             {
-                Core.Controller.Main.ToggleSaveOptions(false);
+                utility.ToggleSaveOptions(false);
 
                 Core.Controller.Main.Empty_Message.IsEnabled = true;
                 Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
@@ -176,7 +176,7 @@ namespace JAO_PI.EventsManager
 
             if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
-                Core.Controller.Main.ToggleSaveOptions(true);
+                utility.ToggleSaveOptions(true);
             }
         }
 
@@ -200,7 +200,7 @@ namespace JAO_PI.EventsManager
 
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
-                    Core.Controller.Main.ToggleSaveOptions(true);
+                    utility.ToggleSaveOptions(true);
                 }
                 stream.Dispose();
             }

@@ -13,9 +13,11 @@ namespace JAO_PI.EventsManager
     public class MainFrame
     {
         Generator generator = null;
+        Utility utility = null;
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            if(Core.Properties.Settings.Default.CompilerPath.Length == 0)
+            utility = new Utility();
+            if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {
                 MessageBoxResult result = MessageBox.Show("There is no Compiler path set. Do you want to set it now?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if(result == MessageBoxResult.Yes)
@@ -54,7 +56,7 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.tabControl.Visibility = Visibility.Visible;
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
-                    Core.Controller.Main.ToggleSaveOptions(true);
+                    utility.ToggleSaveOptions(true);
                 }
             }
         }
@@ -92,13 +94,13 @@ namespace JAO_PI.EventsManager
                                 result = MessageBox.Show("Do you want to overwrite " + notSavedList[i].TabItem.Header.ToString() +" ?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Stop);
                                 if (result == MessageBoxResult.Yes)
                                 {
-                                    Core.Controller.Main.SaveTab(notSavedList[i].TabItem);
+                                    utility.SaveTab(notSavedList[i].TabItem);
                                 }
                                 else
                                 {
                                     if (saveFileDialog.ShowDialog() == true)
                                     {
-                                        Core.Controller.Main.SaveTab(notSavedList[i].TabItem, saveFileDialog);
+                                        utility.SaveTab(notSavedList[i].TabItem, saveFileDialog);
                                     }
                                 }
                             }
@@ -107,7 +109,7 @@ namespace JAO_PI.EventsManager
                         {
                             if (saveFileDialog.ShowDialog() == true)
                             {
-                                Core.Controller.Main.SaveTab(notSavedList[i].TabItem, saveFileDialog);
+                                utility.SaveTab(notSavedList[i].TabItem, saveFileDialog);
                             }
                         }
                     }   

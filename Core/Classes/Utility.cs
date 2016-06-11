@@ -67,5 +67,52 @@ namespace JAO_PI.Core.Classes
                 MessageBox.Show("An Error occurred while reading the Syntax");
             }
         }
+
+        public void ToggleSaveOptions(bool toggle)
+        {
+            foreach (MenuItem item in Controller.Main.SaveOptions)
+            {
+                item.IsEnabled = toggle;
+            }
+        }
+
+        public void SaveTab(TabItem SaveTab)
+        {
+            if (Controller.Main.tabControl.Visibility == Visibility.Visible && Controller.Main.tabControl.Items.Contains(SaveTab) == true)
+            {
+                Grid SaveGrid = SaveTab.Content as Grid;
+                TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+
+                EventsManager.Editor EditorEvents = new EventsManager.Editor();
+                SaveEditor.Document.Changed += EditorEvents.Document_Changed;
+
+                System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+                FileToSave.Append(SaveTab.Uid);
+                FileToSave.Append(SaveTab.Header);
+
+                SaveEditor.Save(FileToSave.ToString());
+
+                SaveEditor = null;
+                SaveGrid = null;
+                SaveTab = null;
+                FileToSave = null;
+            }
+        }
+        public void SaveTab(TabItem SaveTab, Microsoft.Win32.SaveFileDialog saveFileDialog)
+        {
+            if (Controller.Main.tabControl.Visibility == Visibility.Visible && Controller.Main.tabControl.Items.Contains(SaveTab) == true)
+            {
+                Grid SaveGrid = SaveTab.Content as Grid;
+                TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
+
+                EventsManager.Editor EditorEvents = new EventsManager.Editor();
+                SaveEditor.Document.Changed += EditorEvents.Document_Changed;
+
+                SaveEditor.Save(saveFileDialog.FileName);
+                SaveEditor = null;
+                SaveGrid = null;
+                SaveTab = null;
+            }
+        }
     }
 }

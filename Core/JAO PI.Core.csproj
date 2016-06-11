@@ -79,6 +79,7 @@
     <Compile Include="Classes\Find.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Controller\RegisterController.cs" />
     <Compile Include="Events\Editor.cs" />
     <Compile Include="Events\MainFrame.cs" />
     <Compile Include="Events\SearchFrame.cs" />

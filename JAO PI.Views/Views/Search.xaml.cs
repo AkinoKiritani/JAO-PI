@@ -13,7 +13,7 @@ namespace JAO_PI.Views
             SearchEvents = new EventsManager.SearchFrame();
             InitializeComponent();
 
-            Core.Controller.Main.RegisterSearchBox(SearchBox);
+            Core.Controller.Register.SearchBox(SearchBox);
 
             Cancel.Click += SearchEvents.Cancel_Click;
             Do_Search.Click += SearchEvents.Search_Click;
