@@ -78,11 +78,6 @@
                     <MenuItem x:Name="Compile" Header="Compile" />
                     <MenuItem x:Name="Compiler_Path" Header="Set Compiler" />
                 </MenuItem>
-                <MenuItem Grid.Column="3" x:Name="Encoding" Header="Encoding" StaysOpenOnClick="True" >
-                    <MenuItem x:Name="Ansi" Header="Encode in ANSI" />
-                    <MenuItem x:Name="UTF_8_wo_B" Header="Encode in UTF 8 without BOM" />
-                    <MenuItem x:Name="UTF_8" Header="Encode in UTF 8" />
-                </MenuItem>
             </Menu>
         </StatusBar>
 

@@ -189,7 +189,7 @@ namespace JAO_PI.EventsManager
             {
                 FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
                 TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, stream);
-                
+
                 Core.Controller.Main.tabControl.Items.Add(tab);
                 Core.Controller.Main.tabControl.SelectedItem = tab;
 

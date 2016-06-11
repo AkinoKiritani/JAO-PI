@@ -26,7 +26,7 @@ namespace JAO_PI.Core.Classes
             {
                 Editor.Load(content);
             }
-            MessageBox.Show(Editor.Encoding.ToString()); 
+
             Editor.Margin = new Thickness(0, 0, 5, 0); 
 
             StringBuilder SyntaxPath = new StringBuilder();
