@@ -12,16 +12,22 @@ namespace JAO_PI.Core.Classes
     {
         EventsManager.TabContextMenu TabEvents = new EventsManager.TabContextMenu();
         EventsManager.Editor EditorEvents = new EventsManager.Editor();
-        public TabItem TabItem(string path, string header, string content)
+        public TabItem TabItem(string path, string header, Stream content)
         {
             Utility utility = new Utility();
             TextEditor Editor = new TextEditor();
+            
             Editor.FontSize = 13;
             Editor.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             Editor.FontFamily = new FontFamily("Consolas");
             Editor.ShowLineNumbers = true;
-            Editor.Text = content;
-            Editor.Margin = new Thickness(0, 0, 5, 0);
+
+            if (content != null)
+            {
+                Editor.Load(content);
+            }
+            MessageBox.Show(Editor.Encoding.ToString()); 
+            Editor.Margin = new Thickness(0, 0, 5, 0); 
 
             StringBuilder SyntaxPath = new StringBuilder();
             SyntaxPath.Append(System.Environment.CurrentDirectory);

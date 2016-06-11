@@ -63,7 +63,7 @@ namespace JAO_PI.Views
             //Compiler
             Compile.Click += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
-
+            
             this.Closed += FrameEvents.MainFrame_Closed;
             this.Closing += FrameEvents.MainFrame_Closing;
         }

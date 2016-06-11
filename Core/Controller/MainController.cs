@@ -117,6 +117,7 @@ namespace JAO_PI.Core.Controller
                 FileToSave.Append(SaveTab.Header);
 
                 SaveEditor.Save(FileToSave.ToString());
+
                 SaveEditor = null;
                 SaveGrid = null;
                 SaveTab = null;

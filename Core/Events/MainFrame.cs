@@ -41,7 +41,9 @@ namespace JAO_PI.EventsManager
             if (arguments.GetLength(0) > 1)
             {
                 string[] arg = arguments[1].Split('\\');
-                TabItem tab = generator.TabItem(arguments[1], arg[arg.Length - 1], File.ReadAllText(arguments[1], System.Text.Encoding.UTF8));
+
+                FileStream stream = new FileStream(arguments[1], FileMode.Open, FileAccess.Read);
+                TabItem tab = generator.TabItem(arguments[1], arg[arg.Length - 1], stream);
 
                 Core.Controller.Main.tabControl.Items.Add(tab);
                 Core.Controller.Main.tabControl.SelectedItem = tab;

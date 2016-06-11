@@ -3,6 +3,7 @@ using JAO_PI.Core.Classes;
 using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -70,7 +71,7 @@ namespace JAO_PI.EventsManager
                 MessageBox.Show("No further results", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
+        
         public void Search(object sender, ExecutedRoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
@@ -186,7 +187,9 @@ namespace JAO_PI.EventsManager
             openFileDialog.Title = "Open PAWN File...";
             if (openFileDialog.ShowDialog() == true)
             {
-                TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, File.ReadAllText(openFileDialog.FileName, System.Text.Encoding.UTF8));
+                FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
+                TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, stream);
+                
                 Core.Controller.Main.tabControl.Items.Add(tab);
                 Core.Controller.Main.tabControl.SelectedItem = tab;
 
@@ -199,6 +202,7 @@ namespace JAO_PI.EventsManager
                 {
                     Core.Controller.Main.ToggleSaveOptions(true);
                 }
+                stream.Dispose();
             }
             GC.ReRegisterForFinalize(openFileDialog);
         }
