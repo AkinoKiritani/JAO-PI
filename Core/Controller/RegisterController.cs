@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
@@ -26,16 +27,19 @@ namespace JAO_PI.Core.Controller
             return false;
         }
 
-        public static bool Frames(Window mainFrame, Window searchFrame)
+        public static bool Frames(Window[] Frame)
         {
             if (Main.Frames.Count == 0)
             {
-                Main.Frames.Add(mainFrame);
-                Main.Frames.Add(searchFrame);
+                foreach (Window frame in Frame)
+                {
+                    Main.Frames.Add(frame);
+                }
                 return true;
             }
             return false;
         }
+
         public static bool SearchBox(TextBox searchBox)
         {
             if (Main.SearchBox == null)

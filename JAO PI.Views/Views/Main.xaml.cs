@@ -14,7 +14,7 @@ namespace JAO_PI.Views
 
         public Main()
         {
-            Core.Controller.Register.Frames(this, new Search());
+            Core.Controller.Register.Frames(new Window[] { this, new Search() });
             Worker = new Core.Controller.Worker();
             FrameEvents = new EventsManager.MainFrame();
             MenuEvents = new EventsManager.MainMenu();

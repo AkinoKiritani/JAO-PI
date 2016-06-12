@@ -62,7 +62,7 @@ namespace JAO_PI.Core.Classes
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("An Error occurred while reading the Syntax");
             }
