@@ -1,36 +1,107 @@
 <SyntaxDefinition name="PAWN"
         xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
-    <Color name="Comment" foreground="Green" />
-    <Color name="String" foreground="Blue" />
+  <Color name="Comment" foreground="Green" />
+  <Color name="String" foreground="#808080" />
+  <Color name="Preprocess" foreground="#800000" />
 
-    <!-- This is the main ruleset. -->
-    <RuleSet>
-        <Span color="Comment" begin="//" />
-        <Span color="Comment" multiline="true" begin="/\*" end="\*/" />
+  <Color name="SpecialWords" foreground="#276867" />
 
-        <Span color="String">
-            <Begin>"</Begin>
-            <End>"</End>
-            <RuleSet>
-                <!-- nested span for escape sequences -->
-                <Span begin="\\" end="." />
-            </RuleSet>
-        </Span>
+  <!-- This is the main ruleset. -->
+  <RuleSet>
+    <Span color="Comment" begin="//" />
+    <Span color="Comment" multiline="true" begin="/\*" end="\*/" />
 
-        <Keywords fontWeight="bold" foreground="Blue">
-            <Word>if</Word>
-            <Word>else</Word>
-            <!-- ... -->
-        </Keywords>
+    <Span color="String">
+      <Begin>"</Begin>
+      <End>"</End>
+      <RuleSet>
+        <!-- nested span for escape sequences -->
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
 
-        <!-- Digits -->
-        <Rule foreground="DarkBlue">
-            \b0[xX][0-9a-fA-F]+  # hex number
-        |    \b
-            (    \d+(\.[0-9]+)?   #number with optional floating point
-            |    \.[0-9]+         #or just starting with floating point
-            )
-            ([eE][+-]?[0-9]+)? # optional exponent
-        </Rule>
-    </RuleSet>
+    <Keywords color="Preprocess">
+      <Word>#assert</Word>
+      <Word>#define</Word>
+      <Word>#else</Word>
+      <Word>#elseif</Word>
+      <Word>#endif</Word>
+      <Word>#endinput</Word>
+      <Word>#error</Word>
+      <Word>#file</Word>
+      <Word>#if</Word>
+      <Word>#include</Word>
+      <Word>#line</Word>
+      <Word>#pragma</Word>
+      <Word>#tryinclude</Word>
+      <Word>#undef</Word>
+      <Word>#emit</Word>
+    </Keywords>
+
+    <Keywords fontWeight="bold" foreground="DarkBlue">
+      <Word>native</Word>
+      <Word>new</Word>
+      <Word>if</Word>
+      <Word>else</Word>
+      <Word>for</Word>
+      <Word>while</Word>
+      <Word>do</Word>
+      <Word>switch</Word>
+      <Word>case</Word>
+      <Word>enum</Word>
+      <Word>DB</Word>
+      <Word>DBResult</Word>
+      <Word>File</Word>
+      <Word>Menu</Word>
+      <Word>PlayerText3D</Word>
+      <Word>Text</Word>
+      <Word>PlayerText</Word>
+      <Word>Text3D</Word>
+      <Word>anglemode</Word>
+      <Word>assert</Word>
+      <Word>break</Word>
+      <Word>const</Word>
+      <Word>continue</Word>
+      <Word>default</Word>
+      <Word>defined</Word>
+      <Word>exit</Word>
+      <Word>filemode</Word>
+      <Word>floatround_method</Word>
+      <Word>goto</Word>
+      <Word>library</Word>
+      <Word>operator</Word>
+      <Word>return</Word>
+      <Word>seek_whence</Word>
+      <Word>sizeof</Word>
+      <Word>state</Word>
+      <Word>tagof</Word>
+    </Keywords>
+
+    <Keywords color="SpecialWords">
+      <Word>Float</Word>
+      <Word>bool</Word>
+      <Word>char</Word>
+      <Word>false</Word>
+      <Word>true</Word>
+      <Word>static</Word>
+    </Keywords>
+
+    <Keywords fontWeight="bold">
+      <Word>forward</Word>
+      <Word>public</Word>
+      <Word>stock</Word>
+    </Keywords>
+    <!-- 
+		
+		-->
+    <!-- Digits -->
+    <Rule foreground="#FF8000">
+      \b0[xX][0-9a-fA-F]+  # hex number
+      |    \b
+      (    \d+(\.[0-9]+)?   #number with optional floating point
+      |    \.[0-9]+         #or just starting with floating point
+      )
+      ([eE][+-]?[0-9]+)? # optional exponent
+    </Rule>
+  </RuleSet>
 </SyntaxDefinition>
