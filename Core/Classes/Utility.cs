@@ -45,9 +45,13 @@ namespace JAO_PI.Core.Classes
             CompareInfo myComp = CultureInfo.InvariantCulture.CompareInfo;
 
             string Text = Editor.Text;
-            find.Index = myComp.IndexOf(Text, SearchQuery, lastIndex, (IgnoreCase == true) ? CompareOptions.IgnoreCase : CompareOptions.None);
-            find.Line = (find.Index == -1) ? -1 : Editor.TextArea.Document.GetLineByOffset(find.Index).LineNumber;
-            return find;
+            if (SearchQuery.Length > 0)
+            {
+                find.Index = myComp.IndexOf(Text, SearchQuery, lastIndex, (IgnoreCase == true) ? CompareOptions.IgnoreCase : CompareOptions.None);
+                find.Line = (find.Index == -1) ? -1 : Editor.TextArea.Document.GetLineByOffset(find.Index).LineNumber;
+                return find;
+            }
+            return find = null;
         }
         public void LoadSyntax(TextEditor Editor, string Path)
         {
@@ -62,7 +66,7 @@ namespace JAO_PI.Core.Classes
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("An Error occurred while reading the Syntax");
             }
