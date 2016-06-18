@@ -3,7 +3,6 @@ using JAO_PI.Core.Classes;
 using Microsoft.Win32;
 using System;
 using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,74 +19,49 @@ namespace JAO_PI.EventsManager
             generator = new Generator();
             utility = new Utility();
         }
-
-        public void Undo_Click(object sender, RoutedEventArgs e)
+        public void Create_File_Click(object sender, RoutedEventArgs e)
         {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Undo();
-        }
+            TabItem tab = generator.TabItem(Environment.CurrentDirectory, "new.pwn", null);
 
-        public void Save_Click(object sender, RoutedEventArgs e)
-        {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            Core.Controller.Main.tabControl.Items.Add(tab);
+            Core.Controller.Main.tabControl.SelectedItem = tab;
+
+            Core.Controller.Main.Empty_Message.Visibility = Visibility.Collapsed;
+            Core.Controller.Main.Empty_Message.IsEnabled = false;
+
+            Core.Controller.Main.tabControl.Visibility = Visibility.Visible;
+
+            if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
-                utility.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
+                utility.ToggleSaveOptions(true);
             }
         }
-
-        public void SaveAs_Click(object sender, RoutedEventArgs e)
+        public void Open_File_Click(object sender, RoutedEventArgs e)
         {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
+            openFileDialog.Title = "Open PAWN File...";
+            if (openFileDialog.ShowDialog() == true)
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.OverwritePrompt = true;
-                saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
-                saveFileDialog.Title = "Save PAWN File...";
-                if (saveFileDialog.ShowDialog() == true)
+                FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
+                TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, stream);
+
+                Core.Controller.Main.tabControl.Items.Add(tab);
+                Core.Controller.Main.tabControl.SelectedItem = tab;
+
+                Core.Controller.Main.Empty_Message.Visibility = Visibility.Collapsed;
+                Core.Controller.Main.Empty_Message.IsEnabled = false;
+
+                Core.Controller.Main.tabControl.Visibility = Visibility.Visible;
+
+                if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
-                    TabItem Tab = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
-                    utility.SaveTab(Tab, saveFileDialog);
-                    Tab.Header = saveFileDialog.SafeFileName;
+                    utility.ToggleSaveOptions(true);
                 }
+                stream.Dispose();
             }
+            GC.ReRegisterForFinalize(openFileDialog);
         }
-
-        public void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Core.Controller.Main.Frames[(int)Utility.Frames.MainFrame].Close();
-        }
-
-        public void FindNext(object sender, ExecutedRoutedEventArgs e)
-        {
-            Core.Controller.Main.CurrentSearchIndex++;
-            if (Core.Controller.Main.CurrentSearchIndex < Find.SearchIndex.Count)
-            {
-                TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-                Editor.ScrollToLine(Editor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex]).LineNumber);
-                Editor.Select((Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex] - (Core.Controller.Main.CurrentSearch.Length + 1)), Core.Controller.Main.CurrentSearch.Length);
-            }
-            else
-            {
-                MessageBox.Show("No further results", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-        
-        public void Search(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
-            {
-                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Show();
-            }
-        }
-
-        public void Find_Click(object sender, RoutedEventArgs e)
-        {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
-            {
-                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Show();
-            }
-        }
-
         public void Close_File_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
@@ -110,7 +84,7 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
                 if (Core.Controller.Main.tabControl.Items.Count == 0)
                 {
-                    Core.Controller.Main.tabControl.Visibility = Visibility.Hidden;
+                    Core.Controller.Main.tabControl.Visibility = Visibility.Collapsed;
 
                     Core.Controller.Main.Empty_Message.IsEnabled = true;
                     Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
@@ -118,7 +92,99 @@ namespace JAO_PI.EventsManager
                 }
             }
         }
-
+        public void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            {
+                utility.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
+            }
+        }
+        public void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.OverwritePrompt = true;
+                saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
+                saveFileDialog.Title = "Save PAWN File...";
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    TabItem Tab = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
+                    utility.SaveTab(Tab, saveFileDialog);
+                    Tab.Header = saveFileDialog.SafeFileName;
+                }
+            }
+        }
+        public void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Main.Frames[(int)Utility.Frames.MainFrame].Close();
+        }
+        public void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
+            Editor.Undo();
+        }
+        public void Cut_Click(object sender, RoutedEventArgs e)
+        {
+            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
+            Editor.Cut();
+        }
+        public void Copy_Click(object sender, RoutedEventArgs e)
+        {
+            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
+            Editor.Copy();
+        }
+        public void Paste_Click(object sender, RoutedEventArgs e)
+        {
+            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
+            Editor.Paste();
+        }
+        public void Find_Click(object sender, RoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
+                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
+                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+            {
+                if (Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+                {
+                    Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility = Visibility.Visible;
+                }
+            }
+        }
+        public void Search(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
+                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
+                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+            {
+                if (Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+                {
+                    Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility = Visibility.Visible;
+                }
+            }
+        }
+        public void FindNext(object sender, ExecutedRoutedEventArgs e)
+        {
+            Core.Controller.Main.CurrentSearchIndex++;
+            if (Core.Controller.Main.CurrentSearchIndex < Find.SearchIndex.Count)
+            {
+                TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
+                Editor.ScrollToLine(Editor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex]).LineNumber);
+                Editor.Select((Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex] - (Core.Controller.Main.CurrentSearch.Length + 1)), Core.Controller.Main.CurrentSearch.Length);
+            }
+            else
+            {
+                MessageBox.Show("No further results", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        public void Compile_Click(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Worker.SaveWorker.RunWorkerAsync();
+        }
+        public void Compile(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Worker.SaveWorker.RunWorkerAsync();
+        }
         public void Compiler_Path_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog CompilerPathDialog = new OpenFileDialog();
@@ -133,78 +199,29 @@ namespace JAO_PI.EventsManager
                 Core.Properties.Settings.Default.Save();
             }
         }
-
-        public void Cut_Click(object sender, RoutedEventArgs e)
+        public void GoTo(object sender, ExecutedRoutedEventArgs e)
         {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Cut();
-        }
-
-        public void Copy_Click(object sender, RoutedEventArgs e)
-        {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Copy();
-        }
-
-        public void Paste_Click(object sender, RoutedEventArgs e)
-        {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Paste();
-        }
-
-        public void Compile_Click(object sender, RoutedEventArgs e)
-        {
-            Core.Controller.Worker.SaveWorker.RunWorkerAsync();
-        }
-
-        public void Compile(object sender, RoutedEventArgs e)
-        {
-            Core.Controller.Worker.SaveWorker.RunWorkerAsync();
-        }
-
-        public void Create_File_Click(object sender, RoutedEventArgs e)
-        {
-            TabItem tab = generator.TabItem(Environment.CurrentDirectory, "new.pwn", null);
-
-            Core.Controller.Main.tabControl.Items.Add(tab);
-            Core.Controller.Main.tabControl.SelectedItem = tab;
-
-            Core.Controller.Main.Empty_Message.Visibility = Visibility.Hidden;
-            Core.Controller.Main.Empty_Message.IsEnabled = false;
-
-            Core.Controller.Main.tabControl.Visibility = Visibility.Visible;
-
-            if (Core.Controller.Main.tabControl.Items.Count == 1)
+            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
+                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
+                Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
             {
-                utility.ToggleSaveOptions(true);
-            }
-        }
-
-        public void Open_File_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
-            openFileDialog.Title = "Open PAWN File...";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
-                TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, stream);
-
-                Core.Controller.Main.tabControl.Items.Add(tab);
-                Core.Controller.Main.tabControl.SelectedItem = tab;
-
-                Core.Controller.Main.Empty_Message.Visibility = Visibility.Hidden;
-                Core.Controller.Main.Empty_Message.IsEnabled = false;
-
-                Core.Controller.Main.tabControl.Visibility = Visibility.Visible;
-
-                if (Core.Controller.Main.tabControl.Items.Count == 1)
+                if (Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
                 {
-                    utility.ToggleSaveOptions(true);
+                    Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Visible;
                 }
-                stream.Dispose();
             }
-            GC.ReRegisterForFinalize(openFileDialog);
+        }
+        public void GoTo_Click(object sender, RoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
+                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
+                Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
+            {
+                if (Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
+                {
+                    Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Visible;
+                }
+            }
         }
     }
 }

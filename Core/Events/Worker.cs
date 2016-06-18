@@ -74,7 +74,7 @@ namespace JAO_PI.EventsManager
                         MessageBox.Show(Core.Controller.Main.Compiler_Errors, "JAO PI", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                Core.Controller.Main.Compile.Visibility = Visibility.Hidden;
+                Core.Controller.Main.Compile.Visibility = Visibility.Collapsed;
             }
         }
 

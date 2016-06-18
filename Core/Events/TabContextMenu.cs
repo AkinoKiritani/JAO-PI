@@ -21,7 +21,7 @@ namespace JAO_PI.EventsManager
             Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
             if (Core.Controller.Main.tabControl.Items.Count == 0)
             {
-                Core.Controller.Main.tabControl.Visibility = Visibility.Hidden;
+                Core.Controller.Main.tabControl.Visibility = Visibility.Collapsed;
 
                 Core.Controller.Main.Empty_Message.IsEnabled = true;
                 Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;

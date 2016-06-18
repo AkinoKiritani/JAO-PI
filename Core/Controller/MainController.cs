@@ -19,6 +19,13 @@ namespace JAO_PI.Core.Controller
         //Frames
         public static List<Window> Frames = new List<Window>();
 
+        //Goto
+        public static TextBox GoToBox = null;
+        public static Label LineLabel = null;
+        public static Label MaxLineLabel = null;
+        public static RadioButton Line = null;
+        public static RadioButton Offset = null;
+
         //Search
         public static TextBox SearchBox = null;
         public static string CurrentSearch = null;

@@ -14,9 +14,9 @@ namespace JAO_PI.Views
             InitializeComponent();
 
             Core.Controller.Register.SearchBox(SearchBox);
-
             Cancel.Click += SearchEvents.Cancel_Click;
             Do_Search.Click += SearchEvents.Search_Click;
+            this.Closing += SearchEvents.Closing;
         }
     }
 }

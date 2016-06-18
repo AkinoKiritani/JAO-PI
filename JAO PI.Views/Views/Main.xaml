@@ -73,6 +73,7 @@
                     <MenuItem x:Name="Paste" Header="Paste" />
                     <Separator />
                     <MenuItem x:Name="Find" Header="Find" />
+                    <MenuItem x:Name="Go_To" Header="Go To ..." />
                 </MenuItem>
                 <MenuItem Grid.Column="2" x:Name="Compiler" Header="Compiler" StaysOpenOnClick="True" >
                     <MenuItem x:Name="Compile" Header="Compile" />

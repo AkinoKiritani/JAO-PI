@@ -17,6 +17,8 @@ namespace JAO_PI.EventsManager
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             utility = new Utility();
+            Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Utility.Frames.MainFrame]);
+
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {
                 MessageBoxResult result = MessageBox.Show("There is no Compiler path set. Do you want to set it now?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -50,7 +52,7 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.tabControl.Items.Add(tab);
                 Core.Controller.Main.tabControl.SelectedItem = tab;
 
-                Core.Controller.Main.Empty_Message.Visibility = Visibility.Hidden;
+                Core.Controller.Main.Empty_Message.Visibility = Visibility.Collapsed;
                 Core.Controller.Main.Empty_Message.IsEnabled = false;
 
                 Core.Controller.Main.tabControl.Visibility = Visibility.Visible;

@@ -16,11 +16,11 @@ namespace JAO_PI.Core.Classes
         {
             Utility utility = new Utility();
             TextEditor Editor = new TextEditor();
-            
+
             Editor.FontSize = 13;
             Editor.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             Editor.FontFamily = new FontFamily("Consolas");
-            Editor.ShowLineNumbers = true;
+            Editor.ShowLineNumbers = true;            
 
             if (content != null)
             {

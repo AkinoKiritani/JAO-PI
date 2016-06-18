@@ -81,6 +81,7 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\RegisterController.cs" />
     <Compile Include="Events\Editor.cs" />
+    <Compile Include="Events\GoToFrame.cs" />
     <Compile Include="Events\MainFrame.cs" />
     <Compile Include="Events\SearchFrame.cs" />
     <Compile Include="Events\TabContextMenu.cs" />
@@ -116,7 +117,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <EmbeddedResource Include="Resources\PAWN.xshd" />
+    <EmbeddedResource Include="Resources\PAWN.xshd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

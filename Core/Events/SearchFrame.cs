@@ -1,5 +1,6 @@
 ﻿using JAO_PI.Core.Controller;
 using System.Windows;
+using System.ComponentModel;
 
 namespace JAO_PI.EventsManager
 {
@@ -7,7 +8,7 @@ namespace JAO_PI.EventsManager
     {
         public void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Main.Frames[(int)Core.Classes.Utility.Frames.SearchFrame].Close();
+            Main.Frames[(int)Core.Classes.Utility.Frames.SearchFrame].Visibility = Visibility.Collapsed;
         }
 
         public void Search_Click(object sender, RoutedEventArgs e)
@@ -60,6 +61,12 @@ namespace JAO_PI.EventsManager
                     }
                 }
             }
+        }
+
+        public void Closing(object sender, CancelEventArgs e)
+        {
+            Main.Frames[(int)Core.Classes.Utility.Frames.SearchFrame].Visibility = Visibility.Collapsed;
+            e.Cancel = true;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
@@ -40,6 +39,22 @@ namespace JAO_PI.Core.Controller
             return false;
         }
 
+        public static void SetFrameAsOwner(Window main)
+        {
+            for(int i = 1; i != Main.Frames.Count; i++)
+            {
+                Main.Frames[i].Owner = main;
+            }
+        }
+        public static bool GoToComponents(TextBox GoToBox, Label lineLabel, Label MaxLineLabel, RadioButton Line, RadioButton Offset)
+        {
+            Main.GoToBox = GoToBox;
+            Main.LineLabel = lineLabel;
+            Main.MaxLineLabel = MaxLineLabel;
+            Main.Line = Line;
+            Main.Offset = Offset;
+            return true;
+        }
         public static bool SearchBox(TextBox searchBox)
         {
             if (Main.SearchBox == null)
