@@ -1,12 +1,11 @@
 ﻿<Window x:Name="MainFrame" x:Class="JAO_PI.Views.Main"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JAO_PI.Views"
+        xmlns:p="clr-namespace:JAO_PI.Views.Properties"
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-        mc:Ignorable="d"
-        Title="JAO PI" MinHeight="260" MinWidth="375" Height="510" Width="740" ResizeMode="CanResizeWithGrip" >
+        Title="{x:Static p:Resources.Title}" MinHeight="260" MinWidth="375" Height="510" Width="740" ResizeMode="CanResizeWithGrip" >
 
     <Grid>
         <DockPanel Height="25" VerticalAlignment="Bottom" >
@@ -23,10 +22,10 @@
                         </Grid>
                     </ItemsPanelTemplate>
                 </StatusBar.ItemsPanel>
-                <StatusBarItem x:Name="JAOPI" Content="Just another opensource Pawn IDE" Grid.Column="1" HorizontalAlignment="Center" />
-                <StatusBarItem x:Name="Compiling" Content="Compiling ..." Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden"/>
-                <StatusBarItem x:Name="Line" Content="Line" Grid.Column="2" HorizontalAlignment="Center" Visibility="Hidden"/>
-                <StatusBarItem x:Name="Column" Content="Column" Grid.Column="3" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <StatusBarItem x:Name="JAOPI" Content="{x:Static p:Resources.JAOPI}" Grid.Column="1" HorizontalAlignment="Center" />
+                <StatusBarItem x:Name="Compiling" Content="{x:Static p:Resources.Compiling}" Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <StatusBarItem x:Name="Line" Content="{x:Static p:Resources.Line}" Grid.Column="2" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <StatusBarItem x:Name="Column" Content="{x:Static p:Resources.Column}" Grid.Column="3" HorizontalAlignment="Center" Visibility="Hidden"/>
             </StatusBar>
 
         </DockPanel>
@@ -45,10 +44,10 @@
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
             <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}">
-                <MenuItem Grid.Column="0" x:Name="MainMenu" Header="Main" StaysOpenOnClick="True">
-                    <MenuItem Header="File">
-                        <MenuItem x:Name="Create_File" Header="New File" IsTabStop="False" Focusable="False" />
-                        <MenuItem x:Name="Open_File" Header="Open File" IsTabStop="False" Focusable="False" />
+                <MenuItem Grid.Column="0" x:Name="MainMenu" Header="{x:Static p:Resources.Main}" StaysOpenOnClick="True">
+                    <MenuItem Header="{x:Static p:Resources.File}">
+                        <MenuItem x:Name="Create_File" Header="{x:Static p:Resources.NewFile}" IsTabStop="False" Focusable="False" />
+                        <MenuItem x:Name="Open_File" Header="{x:Static p:Resources.OpenFile}" IsTabStop="False" Focusable="False" />
                     </MenuItem>
                     <!--
                     <MenuItem x:Name="Project" Header="Project" IsEnabled="False">
@@ -57,33 +56,33 @@
                     </MenuItem>
                     -->
                     <Separator />
-                    <MenuItem x:Name="Close_File" Header="Close File" IsEnabled="False" />
-                    <MenuItem x:Name="Close_All" Header="Close All" IsEnabled="False" />
+                    <MenuItem x:Name="Close_File" Header="{x:Static p:Resources.CloseFile}" IsEnabled="False" />
+                    <MenuItem x:Name="Close_All" Header="{x:Static p:Resources.CloseAll}" IsEnabled="False" />
                     <Separator />
-                    <MenuItem x:Name="Save" Header="Save" IsEnabled="False" />
-                    <MenuItem x:Name="SaveAs" Header="Save as ..." IsEnabled="False" />
+                    <MenuItem x:Name="Save" Header="{x:Static p:Resources.Save}" IsEnabled="False" />
+                    <MenuItem x:Name="SaveAs" Header="{x:Static p:Resources.SaveAs}" IsEnabled="False" />
                     <Separator />
-                    <MenuItem x:Name="Exit" Header="Exit" />
+                    <MenuItem x:Name="Exit" Header="{x:Static p:Resources.Exit}" />
                 </MenuItem>
-                <MenuItem Grid.Column="1" x:Name="Edit" Header="Edit" StaysOpenOnClick="True" IsEnabled="false">
-                    <MenuItem x:Name="Undo" Header="Undo" />
+                <MenuItem Grid.Column="1" x:Name="Edit" Header="{x:Static p:Resources.Edit}" StaysOpenOnClick="True" IsEnabled="false">
+                    <MenuItem x:Name="Undo" Header="{x:Static p:Resources.Undo}" />
                     <Separator />
-                    <MenuItem x:Name="Cut" Header="Cut" />
-                    <MenuItem x:Name="Copy" Header="Copy" />
-                    <MenuItem x:Name="Paste" Header="Paste" />
+                    <MenuItem x:Name="Cut" Header="{x:Static p:Resources.Cut}" />
+                    <MenuItem x:Name="Copy" Header="{x:Static p:Resources.Copy}" />
+                    <MenuItem x:Name="Paste" Header="{x:Static p:Resources.Paste}" />
                     <Separator />
-                    <MenuItem x:Name="Find" Header="Find" />
-                    <MenuItem x:Name="Go_To" Header="Go To ..." />
+                    <MenuItem x:Name="Find" Header="{x:Static p:Resources.Find}" />
+                    <MenuItem x:Name="Go_To" Header="{x:Static p:Resources.GoTo}" />
                 </MenuItem>
-                <MenuItem Grid.Column="2" x:Name="Compiler" Header="Compiler" StaysOpenOnClick="True" >
-                    <MenuItem x:Name="Compile" Header="Compile" />
-                    <MenuItem x:Name="Compiler_Path" Header="Set Compiler" />
+                <MenuItem Grid.Column="2" x:Name="Compiler" Header="{x:Static p:Resources.Compiler}" StaysOpenOnClick="True" >
+                    <MenuItem x:Name="Compile" Header="{x:Static p:Resources.Compile}" />
+                    <MenuItem x:Name="Compiler_Path" Header="{x:Static p:Resources.CompilePath}" />
                 </MenuItem>
             </Menu>
         </StatusBar>
 
         <Grid x:Name="Empty_Message" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label x:Name="Message_Label" Content="I'm so lonely :(&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;Open or create a File&#xD;&#xA;by using Main in the Header." Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26"/>
+            <Label x:Name="Message_Label" Content="{x:Static p:Resources.Empty_Message}" Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26"/>
         </Grid>
         <TabControl x:Name="tabControl" Margin="0,25,0,25" Visibility="Hidden" />
     </Grid>
