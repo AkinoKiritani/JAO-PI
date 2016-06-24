@@ -1,22 +1,21 @@
 ﻿<Window x:Class="JAO_PI.Views.GoTo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JAO_PI.Views"
-        mc:Ignorable="d"
-        Title="Go To ... " Height="165" Width="415" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        xmlns:p="clr-namespace:JAO_PI.Views.Properties"
+        Title="{x:Static p:Resources.GoTo}" Height="165" Width="415" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
-        <RadioButton x:Name="Line" Content="Line" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsChecked="True" GroupName="GoToButtons"/>
-        <RadioButton x:Name="Offset" Content="Offset" HorizontalAlignment="Left" Margin="161,10,0,0" VerticalAlignment="Top" GroupName="GoToButtons"/>
-        <Label Content="You are here:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
-        <Label Content="Where to go:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
-        <Label Content="Max line you can go to:" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="Line" Content="{x:Static p:Resources.Line}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsChecked="True" GroupName="GoToButtons"/>
+        <RadioButton x:Name="Offset" Content="{x:Static p:Resources.Offset}" HorizontalAlignment="Left" Margin="161,10,0,0" VerticalAlignment="Top" GroupName="GoToButtons"/>
+        <Label Content="{x:Static p:Resources.GoToLocation}" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static p:Resources.ToGoLocation}" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static p:Resources.MaxGoToLocation}" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
         <Label x:Name="Position" Content="0" HorizontalAlignment="Left" Margin="161,30,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="GoToBox" HorizontalAlignment="Left" Height="20" Margin="161,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
         <Label x:Name="Max_Position" Content="0" HorizontalAlignment="Left" Margin="161,92,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Button_ToGo" Content="Go !" Margin="307,61,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
-        <Button x:Name="Button_ToNowhere" Content="Go Nowhere" Margin="307,92,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80" />
+        <Button x:Name="Button_ToGo" Content="{x:Static p:Resources.Button_ToGo}" Margin="307,61,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
+        <Button x:Name="Button_ToNowhere" Content="{x:Static p:Resources.Button_ToNowhere}" Margin="307,92,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80" />
 
     </Grid>
 </Window>

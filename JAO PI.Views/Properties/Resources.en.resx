@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Button_ToGo" xml:space="preserve">
+    <value>Go !</value>
+  </data>
+  <data name="Button_ToNowhere" xml:space="preserve">
+    <value>Go Nowhere</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CloseAll" xml:space="preserve">
     <value>Close All</value>
   </data>
@@ -162,8 +171,14 @@ by using Main in the Header.</value>
   <data name="Find" xml:space="preserve">
     <value>Find</value>
   </data>
+  <data name="FindWhat" xml:space="preserve">
+    <value>Find what</value>
+  </data>
   <data name="GoTo" xml:space="preserve">
     <value>Go to ...</value>
+  </data>
+  <data name="GoToLocation" xml:space="preserve">
+    <value>You are here:</value>
   </data>
   <data name="JAOPI" xml:space="preserve">
     <value>Just another opensource Pawn IDE</value>
@@ -174,8 +189,14 @@ by using Main in the Header.</value>
   <data name="Main" xml:space="preserve">
     <value>Main</value>
   </data>
+  <data name="MaxGoToLocation" xml:space="preserve">
+    <value>Max line you can go to:</value>
+  </data>
   <data name="NewFile" xml:space="preserve">
     <value>New File</value>
+  </data>
+  <data name="Offset" xml:space="preserve">
+    <value>Offset</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Open File</value>
@@ -189,8 +210,14 @@ by using Main in the Header.</value>
   <data name="SaveAs" xml:space="preserve">
     <value>Save As</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>JAO PI</value>
+  </data>
+  <data name="ToGoLocation" xml:space="preserve">
+    <value>Where to go:</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Undo</value>

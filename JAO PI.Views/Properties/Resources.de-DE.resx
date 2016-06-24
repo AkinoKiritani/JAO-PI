@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Button_ToGo" xml:space="preserve">
+    <value>Gehe zu ... !</value>
+  </data>
+  <data name="Button_ToNowhere" xml:space="preserve">
+    <value>Nirgends</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
   <data name="CloseAll" xml:space="preserve">
     <value>Alles schließen</value>
   </data>
@@ -159,8 +168,14 @@ Erstelle oder Öffne eine Datei
   <data name="Find" xml:space="preserve">
     <value>Suchen</value>
   </data>
+  <data name="FindWhat" xml:space="preserve">
+    <value>Suche nach</value>
+  </data>
   <data name="GoTo" xml:space="preserve">
     <value>Gehe zu ...</value>
+  </data>
+  <data name="GoToLocation" xml:space="preserve">
+    <value>Du bist hier:</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Zeile</value>
@@ -168,8 +183,14 @@ Erstelle oder Öffne eine Datei
   <data name="Main" xml:space="preserve">
     <value>Hauptmenü</value>
   </data>
+  <data name="MaxGoToLocation" xml:space="preserve">
+    <value>Insgesamt in der Datei</value>
+  </data>
   <data name="NewFile" xml:space="preserve">
     <value>Neue Datei</value>
+  </data>
+  <data name="Offset" xml:space="preserve">
+    <value>Offset</value>
   </data>
   <data name="OpenFile" xml:space="preserve">
     <value>Öffne Datei</value>
@@ -183,8 +204,14 @@ Erstelle oder Öffne eine Datei
   <data name="SaveAs" xml:space="preserve">
     <value>Speichern unter</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Suchen</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>JAO PI</value>
+  </data>
+  <data name="ToGoLocation" xml:space="preserve">
+    <value>Ziel:</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Rückgängig</value>

@@ -1,17 +1,16 @@
 ﻿<Window x:Name="SearchFrame" x:Class="JAO_PI.Views.Search"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JAO_PI.Views"
-        mc:Ignorable="d"
-        Title="Search" Height="125" Width="332" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
-    
+        xmlns:p="clr-namespace:JAO_PI.Views.Properties"
+        Title="{x:Static p:Resources.Search}" Height="125" Width="332" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+
     <Grid>
         <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="23" Margin="195,10,0,0" VerticalAlignment="Top" Width="105" VerticalContentAlignment="Center" />
-        <Label Content="Find what:" Margin="113,10,136,0" Height="23" VerticalAlignment="Top" VerticalContentAlignment="Center" />
-        <Button x:Name="Do_Search" Content="Search" HorizontalAlignment="Left" Margin="225,55,0,0" VerticalAlignment="Top" Width="75" />
-        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="144,55,0,0" VerticalAlignment="Top" Width="75" />
+        <Label Content="{x:Static p:Resources.FindWhat}" Margin="0,10,136,0" Height="23" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Right" FlowDirection="RightToLeft" Width="80" />
+        <Button x:Name="Do_Search" Content="{x:Static p:Resources.Search}" HorizontalAlignment="Left" Margin="225,55,0,0" VerticalAlignment="Top" Width="75" />
+        <Button x:Name="Cancel" Content="{x:Static p:Resources.Cancel}" HorizontalAlignment="Left" Margin="144,55,0,0" VerticalAlignment="Top" Width="75" />
 
     </Grid>
 

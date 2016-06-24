@@ -73,5 +73,6 @@ namespace JAO_PI.Views
             Compile.Click       += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
         }
+
     }
 }

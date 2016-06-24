@@ -61,6 +61,33 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Go ! ähnelt.
+        /// </summary>
+        public static string Button_ToGo {
+            get {
+                return ResourceManager.GetString("Button_ToGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Go Nowhere ähnelt.
+        /// </summary>
+        public static string Button_ToNowhere {
+            get {
+                return ResourceManager.GetString("Button_ToNowhere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Close All ähnelt.
         /// </summary>
         public static string CloseAll {
@@ -190,11 +217,29 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Find what ähnelt.
+        /// </summary>
+        public static string FindWhat {
+            get {
+                return ResourceManager.GetString("FindWhat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Go to ... ähnelt.
         /// </summary>
         public static string GoTo {
             get {
                 return ResourceManager.GetString("GoTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You are here: ähnelt.
+        /// </summary>
+        public static string GoToLocation {
+            get {
+                return ResourceManager.GetString("GoToLocation", resourceCulture);
             }
         }
         
@@ -226,11 +271,29 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Max line you can go to: ähnelt.
+        /// </summary>
+        public static string MaxGoToLocation {
+            get {
+                return ResourceManager.GetString("MaxGoToLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die New File ähnelt.
         /// </summary>
         public static string NewFile {
             get {
                 return ResourceManager.GetString("NewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Offset ähnelt.
+        /// </summary>
+        public static string Offset {
+            get {
+                return ResourceManager.GetString("Offset", resourceCulture);
             }
         }
         
@@ -271,11 +334,29 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Search ähnelt.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die JAO PI ähnelt.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Where to go: ähnelt.
+        /// </summary>
+        public static string ToGoLocation {
+            get {
+                return ResourceManager.GetString("ToGoLocation", resourceCulture);
             }
         }
         
