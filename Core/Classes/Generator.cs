@@ -64,34 +64,15 @@ namespace JAO_PI.Core.Classes
             }
             tab.Uid = path;
 
-            ContextMenu menu = new ContextMenu();
+            tab.ContextMenu = GenerateContextMenu();
 
-            MenuItem CloseItem = new MenuItem();
-            CloseItem.Header = "Close";
-            CloseItem.Uid = utility.RandomString(10);
-            CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
-            menu.Items.Add(CloseItem);
-
-            MenuItem RenameItem = utility.Menuitem("Rename", utility.RandomString(10));
-            RenameItem.Header = "Rename";
-            RenameItem.Uid = utility.RandomString(10);
-            RenameItem.PreviewMouseLeftButtonUp += TabEvents.RenameItem_PreviewMouseLeftButtonUp;
-            menu.Items.Add(RenameItem);
-
-            MenuItem SaveItem = utility.Menuitem("Save", utility.RandomString(10));
-            SaveItem.Header = "Save";
-            SaveItem.Uid = utility.RandomString(10);
-            SaveItem.PreviewMouseLeftButtonUp += TabEvents.SaveItem_PreviewMouseLeftButtonUp;
-            menu.Items.Add(SaveItem);
-
-            tab.ContextMenu = menu;
             Controller.Main.TabControlList.Add(new Controller.Tab()
             {
                 TabItem = tab,
                 Editor = Editor,
-                Close = CloseItem,
-                Rename = RenameItem,
-                Save = SaveItem
+                Close = tab.ContextMenu.Items[0] as MenuItem,
+                Rename = tab.ContextMenu.Items[1] as MenuItem,
+                Save = tab.ContextMenu.Items[2] as MenuItem
             });
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
@@ -100,6 +81,31 @@ namespace JAO_PI.Core.Classes
 
             Controller.Main.EditItem.IsEnabled = true;
             return tab;
+        }
+
+        private ContextMenu GenerateContextMenu()
+        {
+            ContextMenu menu = new ContextMenu();
+
+            MenuItem CloseItem = new MenuItem();
+            CloseItem.Header = "Close";
+            CloseItem.Uid = Utility.RandomString(10);
+            CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
+            menu.Items.Add(CloseItem);
+
+            MenuItem RenameItem = new MenuItem();
+            RenameItem.Header = "Rename";
+            RenameItem.Uid = Utility.RandomString(10);
+            RenameItem.PreviewMouseLeftButtonUp += TabEvents.RenameItem_PreviewMouseLeftButtonUp;
+            menu.Items.Add(RenameItem);
+
+            MenuItem SaveItem = new MenuItem();
+            SaveItem.Header = "Save";
+            SaveItem.Uid = Utility.RandomString(10);
+            SaveItem.PreviewMouseLeftButtonUp += TabEvents.SaveItem_PreviewMouseLeftButtonUp;
+            menu.Items.Add(SaveItem);
+
+            return menu;
         }
     }
 }
