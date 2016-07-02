@@ -1,5 +1,4 @@
-﻿using ICSharpCode.AvalonEdit;
-using JAO_PI.Core.Classes;
+﻿using JAO_PI.Core.Classes;
 using Microsoft.Win32;
 using System;
 using System.IO;
