@@ -17,14 +17,13 @@ namespace JAO_PI.EventsManager
             {
                 Core.Classes.Find find = new Core.Classes.Find();
                 Core.Classes.Utility utility = new Core.Classes.Utility();
-                ICSharpCode.AvalonEdit.TextEditor Editor = utility.GetTextEditor(Main.tabControl.SelectedIndex);
                 if (Main.CurrentSearch != null && Main.CurrentSearch.Equals(Main.SearchBox.Text) == true)
                 {
                     Main.CurrentSearchIndex++;
                     if (Main.CurrentSearchIndex < Core.Classes.Find.SearchIndex.Count)
                     {
-                        Editor.ScrollToLine(Editor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[Main.CurrentSearchIndex]).LineNumber);
-                        Editor.Select((Core.Classes.Find.SearchIndex[Main.CurrentSearchIndex] - (Main.CurrentSearch.Length+1)), Main.CurrentSearch.Length);
+                        Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[Main.CurrentSearchIndex]).LineNumber);
+                        Main.CurrentEditor.Select((Core.Classes.Find.SearchIndex[Main.CurrentSearchIndex] - (Main.CurrentSearch.Length+1)), Main.CurrentSearch.Length);
                     }
                     else
                     {
@@ -43,7 +42,7 @@ namespace JAO_PI.EventsManager
                     Main.CurrentSearch = Main.SearchBox.Text;
                     if (Main.CurrentSearch != null)
                     {
-                        while ((find = utility.FindString(Editor, Main.CurrentSearch, Main.LastIndex, true)) != null)
+                        while ((find = utility.FindString(Main.CurrentEditor, Main.CurrentSearch, Main.LastIndex, true)) != null)
                         {
                             if (find.Index == -1) break;
                             Main.LastIndex = find.Index + Main.CurrentSearch.Length + 1;
@@ -51,8 +50,8 @@ namespace JAO_PI.EventsManager
                         }
                         if (Core.Classes.Find.SearchIndex.Count > 0)
                         {
-                            Editor.ScrollToLine(Editor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[0]).LineNumber);
-                            Editor.Select((Core.Classes.Find.SearchIndex[0] - (Main.CurrentSearch.Length + 1)), Main.CurrentSearch.Length);
+                            Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[0]).LineNumber);
+                            Main.CurrentEditor.Select((Core.Classes.Find.SearchIndex[0] - (Main.CurrentSearch.Length + 1)), Main.CurrentSearch.Length);
                         }
                         else
                         {

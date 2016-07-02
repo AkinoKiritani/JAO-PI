@@ -9,6 +9,7 @@ namespace JAO_PI.Core.Controller
     public class Main
     {
         public static TabControl tabControl = null;
+        public static TextEditor CurrentEditor = null;
         public static Grid Empty_Message = null;
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
         public static List<Tab> TabControlList = new List<Tab>();

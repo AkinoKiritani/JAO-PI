@@ -90,6 +90,7 @@
     <Compile Include="Controller\TabController.cs" />
     <Compile Include="Controller\WorkerController.cs" />
     <Compile Include="Events\MainMenu.cs" />
+    <Compile Include="Events\TabControl.cs" />
     <Compile Include="Events\Worker.cs" />
   </ItemGroup>
   <ItemGroup>

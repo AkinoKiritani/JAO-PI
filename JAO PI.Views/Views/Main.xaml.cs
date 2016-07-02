@@ -9,6 +9,7 @@ namespace JAO_PI.Views
     public partial class Main : Window
     {
         private EventsManager.MainFrame FrameEvents;
+        private EventsManager.TabControl TabControllEvents;
         private EventsManager.MainMenu MenuEvents;
         private Core.Controller.Worker Worker = null;
 
@@ -18,6 +19,7 @@ namespace JAO_PI.Views
             Core.Controller.Register.Frames(new Window[] { this, new Search(), new GoTo() });
             Worker = new Core.Controller.Worker();
             FrameEvents = new EventsManager.MainFrame();
+            TabControllEvents = new EventsManager.TabControl();
             MenuEvents = new EventsManager.MainMenu();
 
             InitializeComponent();
@@ -37,6 +39,8 @@ namespace JAO_PI.Views
             this.Loaded         += FrameEvents.MainFrame_Loaded;
             this.Closed         += FrameEvents.MainFrame_Closed;
             this.Closing        += FrameEvents.MainFrame_Closing;
+
+            tabControl.SelectionChanged += TabControllEvents.SelectionChanged;
 
             //Data
             Create_File.Click   += MenuEvents.Create_File_Click;

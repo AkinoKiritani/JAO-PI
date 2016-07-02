@@ -23,16 +23,15 @@ namespace JAO_PI.EventsManager
 
         public void Activated(object sender, EventArgs e)
         {
-            TextEditor ed = ut.GetTextEditor(Main.tabControl.SelectedIndex);
             if (Main.Line.IsChecked.Value == true)
             {
-                Main.MaxLineLabel.Content = ed.Document.LineCount.ToString();
-                Main.LineLabel.Content = ed.TextArea.Caret.Line.ToString();
+                Main.MaxLineLabel.Content = Main.CurrentEditor.Document.LineCount.ToString();
+                Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Line.ToString();
             }
             else
             {
-                Main.MaxLineLabel.Content = ed.Document.TextLength.ToString();
-                Main.LineLabel.Content = ed.TextArea.Caret.Offset.ToString();
+                Main.MaxLineLabel.Content = Main.CurrentEditor.Document.TextLength.ToString();
+                Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Offset.ToString();
             }
         }
 
@@ -49,38 +48,37 @@ namespace JAO_PI.EventsManager
         {
             if (Main.GoToBox.Text.Length > 0)
             {
-                TextEditor ed = ut.GetTextEditor(Main.tabControl.SelectedIndex);
                 int GoToValue = Convert.ToInt32(Main.GoToBox.Text);
                 Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Collapsed;
                 Main.Frames[(int)Utility.Frames.MainFrame].Activate();
                 if (Main.Line.IsChecked.Value == true)
                 {
-                    if (GoToValue > ed.Document.LineCount)
+                    if (GoToValue > Main.CurrentEditor.Document.LineCount)
                     {
-                        ed.TextArea.Caret.Line = ed.Document.LineCount;
-                        ed.TextArea.Caret.VisualColumn = ed.Document.LineCount;
-                        ed.ScrollToLine(ed.Document.LineCount);
+                        Main.CurrentEditor.TextArea.Caret.Line = Main.CurrentEditor.Document.LineCount;
+                        Main.CurrentEditor.TextArea.Caret.VisualColumn = Main.CurrentEditor.Document.LineCount;
+                        Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.Document.LineCount);
                     }
                     else
                     {
-                        ed.TextArea.Caret.Line = GoToValue;
-                        ed.TextArea.Caret.VisualColumn = GoToValue;
-                        ed.ScrollToLine(GoToValue);
+                        Main.CurrentEditor.TextArea.Caret.Line = GoToValue;
+                        Main.CurrentEditor.TextArea.Caret.VisualColumn = GoToValue;
+                        Main.CurrentEditor.ScrollToLine(GoToValue);
                     }
                 }
                 else
                 {
-                    if (GoToValue > ed.Document.TextLength)
+                    if (GoToValue > Main.CurrentEditor.Document.TextLength)
                     {
-                        ed.TextArea.Caret.Line = ed.Document.TextLength;
-                        ed.TextArea.Caret.VisualColumn = ed.Document.TextLength;
-                        ed.ScrollToLine(ed.Document.LineCount);
+                        Main.CurrentEditor.TextArea.Caret.Line = Main.CurrentEditor.Document.TextLength;
+                        Main.CurrentEditor.TextArea.Caret.VisualColumn = Main.CurrentEditor.Document.TextLength;
+                        Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.Document.LineCount);
                     }
                     else
                     {
-                        ed.TextArea.Caret.Offset = GoToValue;
-                        ed.TextArea.Caret.VisualColumn = GoToValue;
-                        ed.ScrollToLine(GoToValue);
+                        Main.CurrentEditor.TextArea.Caret.Offset = GoToValue;
+                        Main.CurrentEditor.TextArea.Caret.VisualColumn = GoToValue;
+                        Main.CurrentEditor.ScrollToLine(GoToValue);
                     }
                 }
             }
@@ -88,16 +86,14 @@ namespace JAO_PI.EventsManager
 
         public void Line_Checked(object sender, RoutedEventArgs e)
         {
-            TextEditor ed = ut.GetTextEditor(Main.tabControl.SelectedIndex);
-            Main.MaxLineLabel.Content = ed.Document.LineCount.ToString();
-            Main.LineLabel.Content = ed.TextArea.Caret.Line.ToString();
+            Main.MaxLineLabel.Content = Main.CurrentEditor.Document.LineCount.ToString();
+            Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Line.ToString();
         }
 
         public void Offset_Checked(object sender, RoutedEventArgs e)
         {
-            TextEditor ed = ut.GetTextEditor(Main.tabControl.SelectedIndex);
-            Main.MaxLineLabel.Content = ed.Document.TextLength.ToString();
-            Main.LineLabel.Content = ed.TextArea.Caret.Offset.ToString();
+            Main.MaxLineLabel.Content = Main.CurrentEditor.Document.TextLength.ToString();
+            Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Offset.ToString();
         }        
     }
 }

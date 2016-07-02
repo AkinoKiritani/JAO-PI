@@ -18,6 +18,7 @@ namespace JAO_PI.EventsManager
             grid = null;
             Core.Controller.Main.TabControlList.Remove(Index);
 
+            Index.TabItem.ContextMenu.Items.Clear();
             Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
             if (Core.Controller.Main.tabControl.Items.Count == 0)
             {
@@ -26,7 +27,11 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.Empty_Message.IsEnabled = true;
                 Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
                 Core.Controller.Main.EditItem.IsEnabled = false;
+                Core.Classes.Utility utility = new Core.Classes.Utility();
+                utility.ToggleSaveOptions(false);
             }
+            System.GC.ReRegisterForFinalize(Index);
+            System.GC.Collect();
         }
 
         internal void RenameItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

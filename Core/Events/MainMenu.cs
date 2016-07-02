@@ -66,14 +66,7 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
             {
-                utility.ToggleSaveOptions(false);
-
-                Core.Controller.Main.Empty_Message.IsEnabled = true;
-                Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
-
-                TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-
-                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Editor.Uid == Editor.Uid);
+                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Editor.Uid == Core.Controller.Main.CurrentEditor.Uid);
                 Index.Editor.Clear();
                 Grid grid = Index.TabItem.Content as Grid;
                 Index.Editor = null;
@@ -81,6 +74,7 @@ namespace JAO_PI.EventsManager
                 grid = null;
                 Core.Controller.Main.TabControlList.Remove(Index);
 
+                Index.TabItem.ContextMenu.Items.Clear();
                 Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
                 if (Core.Controller.Main.tabControl.Items.Count == 0)
                 {
@@ -89,7 +83,10 @@ namespace JAO_PI.EventsManager
                     Core.Controller.Main.Empty_Message.IsEnabled = true;
                     Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
                     Core.Controller.Main.EditItem.IsEnabled = false;
+                    utility.ToggleSaveOptions(false);
                 }
+                GC.ReRegisterForFinalize(Index);
+                GC.Collect();
             }
         }
         public void Save_Click(object sender, RoutedEventArgs e)
@@ -121,23 +118,19 @@ namespace JAO_PI.EventsManager
         }
         public void Undo_Click(object sender, RoutedEventArgs e)
         {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Undo();
+            Core.Controller.Main.CurrentEditor.Undo();
         }
         public void Cut_Click(object sender, RoutedEventArgs e)
         {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Cut();
+            Core.Controller.Main.CurrentEditor.Cut();
         }
         public void Copy_Click(object sender, RoutedEventArgs e)
         {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Copy();
+            Core.Controller.Main.CurrentEditor.Copy();
         }
         public void Paste_Click(object sender, RoutedEventArgs e)
         {
-            TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-            Editor.Paste();
+            Core.Controller.Main.CurrentEditor.Paste();
         }
         public void Find_Click(object sender, RoutedEventArgs e)
         {
@@ -168,9 +161,8 @@ namespace JAO_PI.EventsManager
             Core.Controller.Main.CurrentSearchIndex++;
             if (Core.Controller.Main.CurrentSearchIndex < Find.SearchIndex.Count)
             {
-                TextEditor Editor = utility.GetTextEditor(Core.Controller.Main.tabControl.SelectedIndex);
-                Editor.ScrollToLine(Editor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex]).LineNumber);
-                Editor.Select((Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex] - (Core.Controller.Main.CurrentSearch.Length + 1)), Core.Controller.Main.CurrentSearch.Length);
+                Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex]).LineNumber);
+                Core.Controller.Main.CurrentEditor.Select((Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex] - (Core.Controller.Main.CurrentSearch.Length + 1)), Core.Controller.Main.CurrentSearch.Length);
             }
             else
             {
