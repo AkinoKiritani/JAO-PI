@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ICSharpCode.AvalonEdit;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -15,6 +16,7 @@ namespace JAO_PI.Core.Controller
         public static int LastIndex;
         public static StatusBarItem Compile = null;
         public static MenuItem EditItem = null;
+        public static List<StatusBarItem> StatusBarItems = new List<StatusBarItem>();
 
         //Frames
         public static List<Window> Frames = new List<Window>();

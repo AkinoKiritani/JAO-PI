@@ -70,15 +70,14 @@ namespace JAO_PI.Core.Classes
             {
                 TabItem = tab,
                 Editor = Editor,
-                Close = tab.ContextMenu.Items[0] as MenuItem,
-                Rename = tab.ContextMenu.Items[1] as MenuItem,
-                Save = tab.ContextMenu.Items[2] as MenuItem
+                Close = tab.ContextMenu.Items[(int)Utility.ContextMenuItems.Close] as MenuItem,
+                Rename = tab.ContextMenu.Items[(int)Utility.ContextMenuItems.Rename] as MenuItem,
+                Save = tab.ContextMenu.Items[(int)Utility.ContextMenuItems.Save] as MenuItem
             });
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
             Editor.Document.FileName = header + ".JAOsaved";
             Editor.Unloaded += EditorEvents.Editor_Unloaded;
-
             Controller.Main.EditItem.IsEnabled = true;
             return tab;
         }

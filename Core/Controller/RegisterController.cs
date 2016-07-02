@@ -25,7 +25,16 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
-
+        public static bool StatusBar(StatusBarItem Line, StatusBarItem Column)
+        {
+            if (Main.StatusBarItems.Count == 0)
+            {
+                Main.StatusBarItems.Add(Line);
+                Main.StatusBarItems.Add(Column);
+                return true;
+            }
+            return false;
+        }
         public static bool Frames(Window[] Frame)
         {
             if (Main.Frames.Count == 0)

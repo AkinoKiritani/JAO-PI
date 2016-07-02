@@ -38,7 +38,8 @@ namespace JAO_PI.EventsManager
 
         public void KeyDown(object sender, KeyEventArgs e)
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "\\d+") == false)
+            System.Windows.Controls.TextBox GoToBox = sender as System.Windows.Controls.TextBox;
+            if (System.Text.RegularExpressions.Regex.IsMatch(GoToBox.Text, "\\d+") == false)
             {
                 e.Handled = true;
             }

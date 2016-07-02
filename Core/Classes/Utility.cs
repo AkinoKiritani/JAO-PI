@@ -17,6 +17,12 @@ namespace JAO_PI.Core.Classes
             SearchFrame,
             GoToFrame
         }
+        public enum ContextMenuItems
+        {
+            Close,
+            Rename,
+            Save
+        }
 
         public TextEditor GetTextEditor(int index)
         {

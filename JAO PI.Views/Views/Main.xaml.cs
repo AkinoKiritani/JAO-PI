@@ -27,6 +27,7 @@ namespace JAO_PI.Views
             Core.Controller.Register.SaveOptions(this.Save, this.SaveAs, this.Close_File);
             Core.Controller.Register.Compile(this.Compiling);
             Core.Controller.Register.Edit(this.Edit);
+            Core.Controller.Register.StatusBar(this.Line, this.Column);
 
             RoutedCommand CompileCmd = new RoutedCommand();
             CompileCmd.InputGestures.Add(new KeyGesture(Key.F5));
@@ -73,6 +74,5 @@ namespace JAO_PI.Views
             Compile.Click       += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
         }
-
     }
 }
