@@ -31,12 +31,12 @@ namespace JAO_PI.Core.Classes
 
             StringBuilder SyntaxPath = new StringBuilder();
             SyntaxPath.Append(System.Environment.CurrentDirectory);
-            SyntaxPath.Append(@"\Language\PAWN.xshd");
+            SyntaxPath.Append(@"\Languages\PAWN.xshd");
 
             string syntaxPath = SyntaxPath.ToString();
             if (File.Exists(syntaxPath) == false)
             {
-                Directory.CreateDirectory("Language");
+                Directory.CreateDirectory("Languages");
                 using (FileStream fs = File.Create(syntaxPath))
                 {
                     var assembly = Assembly.GetExecutingAssembly();
