@@ -1,5 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
 using System.Windows;
+using System;
 
 namespace JAO_PI.EventsManager
 {
@@ -10,7 +11,6 @@ namespace JAO_PI.EventsManager
             TextDocument Document = sender as TextDocument;
             if (Document.FileName.Contains(".JAOsaved"))
             {
-                Core.Controller.Tab result = Core.Controller.Main.TabControlList.Find(x => x.Editor.Document.FileName.Equals(Document.FileName));
                 Document.FileName = Document.FileName.Replace(".JAOsaved", ".JAOnotsaved");
                 Document.Changed -= Document_Changed;
             }
@@ -18,7 +18,14 @@ namespace JAO_PI.EventsManager
 
         internal void Editor_Unloaded(object sender, RoutedEventArgs e)
         {
-            System.GC.ReRegisterForFinalize(sender);
+            GC.ReRegisterForFinalize(sender);
+            GC.Collect();
+        }
+
+        internal void TextInput(object sender, EventArgs e)
+        {
+            Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
+            Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
         }
     }
 }

@@ -43,6 +43,8 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.Empty_Message.Visibility = System.Windows.Visibility.Visible;
                 Core.Controller.Main.EditItem.IsEnabled = false;
                 utility.ToggleSaveOptions(false);
+                Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Line].Visibility = System.Windows.Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Column].Visibility = System.Windows.Visibility.Collapsed;
             }
             GC.ReRegisterForFinalize(Index);
             GC.Collect();

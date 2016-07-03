@@ -33,6 +33,10 @@ namespace JAO_PI.EventsManager
             if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
                 utility.ToggleSaveOptions(true);
+                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Visibility = Visibility.Visible;
+                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Visibility = Visibility.Visible;
+                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
+                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
             }
         }
         public void Open_File_Click(object sender, RoutedEventArgs e)
@@ -56,6 +60,10 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
                     utility.ToggleSaveOptions(true);
+                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Visibility = Visibility.Visible;
+                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Visibility = Visibility.Visible;
+                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
+                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
                 }
                 stream.Dispose();
             }

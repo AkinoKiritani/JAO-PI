@@ -23,7 +23,11 @@ namespace JAO_PI.Core.Classes
             Rename,
             Save
         }
-
+        public enum StatusBar
+        {
+            Line,
+            Column
+        }
         public TextEditor GetTextEditor(int index)
         {
             TabItem item = Controller.Main.tabControl.Items[index] as TabItem;

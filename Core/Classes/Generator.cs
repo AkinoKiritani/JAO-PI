@@ -78,6 +78,7 @@ namespace JAO_PI.Core.Classes
             Editor.Document.Changed += EditorEvents.Document_Changed;
             Editor.Document.FileName = header + ".JAOsaved";
             Editor.Unloaded += EditorEvents.Editor_Unloaded;
+            Editor.Document.TextChanged += EditorEvents.TextInput;
             Controller.Main.EditItem.IsEnabled = true;
             return tab;
         }

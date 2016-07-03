@@ -14,18 +14,18 @@
                     <ItemsPanelTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" MinWidth="115"/>
+                                <ColumnDefinition Width="Auto" MinWidth="100"/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="Auto" MinWidth="60"/>
-                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                <ColumnDefinition Width="Auto" MinWidth="75"/>
+                                <ColumnDefinition Width="Auto" MinWidth="75"/>
                             </Grid.ColumnDefinitions>
                         </Grid>
                     </ItemsPanelTemplate>
                 </StatusBar.ItemsPanel>
                 <StatusBarItem x:Name="JAOPI" Content="{x:Static p:Resources.JAOPI}" Grid.Column="1" HorizontalAlignment="Center" />
-                <StatusBarItem x:Name="Compiling" Content="{x:Static p:Resources.Compiling}" Grid.Column="0" HorizontalAlignment="Center" Visibility="Hidden"/>
-                <StatusBarItem x:Name="Line" Content="{x:Static p:Resources.Line}" Grid.Column="2" HorizontalAlignment="Center" Visibility="Hidden"/>
-                <StatusBarItem x:Name="Column" Content="{x:Static p:Resources.Column}" Grid.Column="3" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <StatusBarItem x:Name="Compiling" Content="{x:Static p:Resources.Compiling}" Grid.Column="0" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                <StatusBarItem x:Name="Column" Content="Column" Grid.Column="2" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                <StatusBarItem x:Name="Line" Content="Line" Grid.Column="3" HorizontalAlignment="Left" Visibility="Collapsed"/>
             </StatusBar>
 
         </DockPanel>
