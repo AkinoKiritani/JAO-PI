@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
+using Microsoft.Win32;
 using System;
 using System.Globalization;
 using System.IO;
@@ -97,15 +98,31 @@ namespace JAO_PI.Core.Classes
                 FileToSave.Append(SaveTab.Uid);
                 FileToSave.Append(SaveTab.Header);
 
-                SaveEditor.Save(FileToSave.ToString());
+                if (File.Exists(FileToSave.ToString()))
+                {
+                    SaveEditor.Save(FileToSave.ToString());
 
-                SaveEditor = null;
-                SaveGrid = null;
-                SaveTab = null;
-                FileToSave = null;
+                    SaveEditor = null;
+                    SaveGrid = null;
+                    SaveTab = null;
+                    FileToSave = null;
+                }
+                else
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.OverwritePrompt = true;
+                    saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
+                    saveFileDialog.Title = "Save PAWN File...";
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        TabItem Tab = Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
+                        this.SaveTab(Tab, saveFileDialog);
+                        Tab.Header = saveFileDialog.SafeFileName;
+                    }
+                }
             }
         }
-        public void SaveTab(TabItem SaveTab, Microsoft.Win32.SaveFileDialog saveFileDialog)
+        public void SaveTab(TabItem SaveTab, SaveFileDialog saveFileDialog)
         {
             if (Controller.Main.tabControl.Visibility == Visibility.Visible && Controller.Main.tabControl.Items.Contains(SaveTab) == true)
             {
