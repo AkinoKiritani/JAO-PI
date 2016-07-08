@@ -24,8 +24,8 @@ namespace JAO_PI.EventsManager
 
         internal void TextInput(object sender, EventArgs e)
         {
-            Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
-            Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
+            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
+            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
         }
     }
 }

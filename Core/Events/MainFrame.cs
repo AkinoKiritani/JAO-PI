@@ -7,13 +7,14 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using JAO_PI.Core.Classes;
 using System.Text;
+using JAO_PI.Core.Utility;
 
 namespace JAO_PI.EventsManager
 {
     public class MainFrame
     {
         Generator generator = null;
-        Utility utility = null;
+        Functions utility = null;
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             if (Directory.Exists("Language"))
@@ -21,8 +22,8 @@ namespace JAO_PI.EventsManager
                 Directory.Move("Language", "Languages");
             }
 
-            utility = new Utility();
-            Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Utility.Frames.MainFrame]);
+            utility = new Functions();
+            Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
 
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {

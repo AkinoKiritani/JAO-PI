@@ -1,24 +1,23 @@
-﻿using ICSharpCode.AvalonEdit;
-using JAO_PI.Core.Controller;
+﻿using JAO_PI.Core.Controller;
 using System.ComponentModel;
 using System.Windows;
-using JAO_PI.Core.Classes;
 using System;
 using System.Windows.Input;
+using JAO_PI.Core.Utility;
 
 namespace JAO_PI.EventsManager
 {
     public class GoToFrame
     {
-        Utility ut = new Utility();
+        Functions ut = new Functions();
         public void Closing(object sender, CancelEventArgs e)
         {
-            Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Collapsed;
+            Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
             e.Cancel = true;
         }
         public void GoNowhere_Click(object sender, RoutedEventArgs e)
         {
-            Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Collapsed;
+            Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
         }
 
         public void Activated(object sender, EventArgs e)
@@ -49,8 +48,8 @@ namespace JAO_PI.EventsManager
             if (Main.GoToBox.Text.Length > 0)
             {
                 int GoToValue = Convert.ToInt32(Main.GoToBox.Text);
-                Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Collapsed;
-                Main.Frames[(int)Utility.Frames.MainFrame].Activate();
+                Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
+                Main.Frames[(int)Structures.Frames.MainFrame].Activate();
                 if (Main.Line.IsChecked.Value == true)
                 {
                     if (GoToValue > Main.CurrentEditor.Document.LineCount)

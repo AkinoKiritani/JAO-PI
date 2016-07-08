@@ -1,4 +1,5 @@
 ﻿using JAO_PI.Core.Classes;
+using JAO_PI.Core.Utility;
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -11,12 +12,12 @@ namespace JAO_PI.EventsManager
     public class MainMenu
     {
         Generator generator = null;
-        Utility utility = null;
+        Functions utility = null;
         
         public MainMenu()
         {
             generator = new Generator();
-            utility = new Utility();
+            utility = new Functions();
         }
         public void Create_File_Click(object sender, RoutedEventArgs e)
         {
@@ -33,10 +34,10 @@ namespace JAO_PI.EventsManager
             if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
                 utility.ToggleSaveOptions(true);
-                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Visibility = Visibility.Visible;
-                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Visibility = Visibility.Visible;
-                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
-                Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Visible;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
             }
         }
         public void Open_File_Click(object sender, RoutedEventArgs e)
@@ -60,10 +61,10 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
                     utility.ToggleSaveOptions(true);
-                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Visibility = Visibility.Visible;
-                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Visibility = Visibility.Visible;
-                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
-                    Core.Controller.Main.StatusBarItems[(int)Utility.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Visible;
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
                 }
                 stream.Dispose();
             }
@@ -101,7 +102,7 @@ namespace JAO_PI.EventsManager
         }
         public void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Core.Controller.Main.Frames[(int)Utility.Frames.MainFrame].Close();
+            Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame].Close();
         }
         public void Undo_Click(object sender, RoutedEventArgs e)
         {
@@ -123,11 +124,11 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 &&
                 Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+                Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
             {
-                if (Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+                if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
                 {
-                    Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility = Visibility.Visible;
+                    Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Visible;
                 }
             }
         }
@@ -135,11 +136,11 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 &&
                 Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+                Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
             {
-                if (Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+                if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
                 {
-                    Core.Controller.Main.Frames[(int)Utility.Frames.SearchFrame].Visibility = Visibility.Visible;
+                    Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Visible;
                 }
             }
         }
@@ -182,11 +183,11 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 &&
                 Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
+                Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
             {
-                if (Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
+                if (Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
                 {
-                    Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Visible;
+                    Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Visible;
                 }
             }
         }
@@ -194,11 +195,11 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 &&
                 Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
+                Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
             {
-                if (Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility == Visibility.Collapsed)
+                if (Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
                 {
-                    Core.Controller.Main.Frames[(int)Utility.Frames.GoToFrame].Visibility = Visibility.Visible;
+                    Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Visible;
                 }
             }
         }

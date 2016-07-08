@@ -21,7 +21,7 @@ namespace JAO_PI.EventsManager
         {
             MenuItem SaveItem = sender as MenuItem;
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Save.Uid == SaveItem.Uid);
-            Core.Classes.Utility utility = new Core.Classes.Utility();
+            Core.Utility.Functions utility = new Core.Utility.Functions();
             utility.SaveTab(Index.TabItem);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
+using JAO_PI.Core.Classes;
 using Microsoft.Win32;
 using System;
 using System.Globalization;
@@ -8,27 +9,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 
-namespace JAO_PI.Core.Classes
+namespace JAO_PI.Core.Utility
 {
-    class Utility
+    class Functions
     {
-        public enum Frames
-        {
-            MainFrame,
-            SearchFrame,
-            GoToFrame
-        }
-        public enum ContextMenuItems
-        {
-            Close,
-            Rename,
-            Save
-        }
-        public enum StatusBar
-        {
-            Line,
-            Column
-        }
         public TextEditor GetTextEditor(int index)
         {
             TabItem item = Controller.Main.tabControl.Items[index] as TabItem;
@@ -115,7 +99,7 @@ namespace JAO_PI.Core.Classes
                     saveFileDialog.Title = "Save PAWN File...";
                     if (saveFileDialog.ShowDialog() == true)
                     {
-                        TabItem Tab = Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
+                        TabItem Tab = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
                         this.SaveTab(Tab, saveFileDialog);
                         Tab.Header = saveFileDialog.SafeFileName;
                     }

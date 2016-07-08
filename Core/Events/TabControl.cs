@@ -25,7 +25,7 @@ namespace JAO_PI.EventsManager
 
         internal static void CloseFile(Core.Controller.Tab Index)
         {
-            Core.Classes.Utility utility = new Core.Classes.Utility();
+            Core.Utility.Functions utility = new Core.Utility.Functions();
             Index.Editor.Clear();
             Grid grid = Index.TabItem.Content as Grid;
             Index.Editor = null;
@@ -43,8 +43,8 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.Empty_Message.Visibility = System.Windows.Visibility.Visible;
                 Core.Controller.Main.EditItem.IsEnabled = false;
                 utility.ToggleSaveOptions(false);
-                Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Line].Visibility = System.Windows.Visibility.Collapsed;
-                Core.Controller.Main.StatusBarItems[(int)Core.Classes.Utility.StatusBar.Column].Visibility = System.Windows.Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = System.Windows.Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = System.Windows.Visibility.Collapsed;
             }
             GC.ReRegisterForFinalize(Index);
             GC.Collect();

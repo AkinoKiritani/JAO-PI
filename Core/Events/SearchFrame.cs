@@ -1,6 +1,7 @@
 ﻿using JAO_PI.Core.Controller;
 using System.Windows;
 using System.ComponentModel;
+using JAO_PI.Core.Utility;
 
 namespace JAO_PI.EventsManager
 {
@@ -8,7 +9,7 @@ namespace JAO_PI.EventsManager
     {
         public void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Main.Frames[(int)Core.Classes.Utility.Frames.SearchFrame].Visibility = Visibility.Collapsed;
+            Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
         }
 
         public void Search_Click(object sender, RoutedEventArgs e)
@@ -16,7 +17,7 @@ namespace JAO_PI.EventsManager
             if(Main.SearchBox != null)
             {
                 Core.Classes.Find find = new Core.Classes.Find();
-                Core.Classes.Utility utility = new Core.Classes.Utility();
+                Functions utility = new Functions();
                 if (Main.CurrentSearch != null && Main.CurrentSearch.Equals(Main.SearchBox.Text) == true)
                 {
                     Main.CurrentSearchIndex++;
@@ -64,7 +65,7 @@ namespace JAO_PI.EventsManager
 
         public void Closing(object sender, CancelEventArgs e)
         {
-            Main.Frames[(int)Core.Classes.Utility.Frames.SearchFrame].Visibility = Visibility.Collapsed;
+            Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
             e.Cancel = true;
         }
     }

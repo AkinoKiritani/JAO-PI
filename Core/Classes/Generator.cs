@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
+using JAO_PI.Core.Utility;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -14,7 +15,7 @@ namespace JAO_PI.Core.Classes
         EventsManager.Editor EditorEvents = new EventsManager.Editor();
         public TabItem TabItem(string path, string header, Stream content)
         {
-            Utility utility = new Utility();
+            Functions utility = new Functions();
             TextEditor Editor = new TextEditor();
 
             Editor.FontSize = 13;
@@ -70,9 +71,9 @@ namespace JAO_PI.Core.Classes
             {
                 TabItem = tab,
                 Editor = Editor,
-                Close = tab.ContextMenu.Items[(int)Utility.ContextMenuItems.Close] as MenuItem,
-                Rename = tab.ContextMenu.Items[(int)Utility.ContextMenuItems.Rename] as MenuItem,
-                Save = tab.ContextMenu.Items[(int)Utility.ContextMenuItems.Save] as MenuItem
+                Close = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Close] as MenuItem,
+                Rename = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Rename] as MenuItem,
+                Save = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save] as MenuItem
             });
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
@@ -89,19 +90,19 @@ namespace JAO_PI.Core.Classes
 
             MenuItem CloseItem = new MenuItem();
             CloseItem.Header = "Close";
-            CloseItem.Uid = Utility.RandomString(10);
+            CloseItem.Uid = Functions.RandomString(10);
             CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseItem);
 
             MenuItem RenameItem = new MenuItem();
             RenameItem.Header = "Rename";
-            RenameItem.Uid = Utility.RandomString(10);
+            RenameItem.Uid = Functions.RandomString(10);
             RenameItem.PreviewMouseLeftButtonUp += TabEvents.RenameItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(RenameItem);
 
             MenuItem SaveItem = new MenuItem();
             SaveItem.Header = "Save";
-            SaveItem.Uid = Utility.RandomString(10);
+            SaveItem.Uid = Functions.RandomString(10);
             SaveItem.PreviewMouseLeftButtonUp += TabEvents.SaveItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(SaveItem);
 
