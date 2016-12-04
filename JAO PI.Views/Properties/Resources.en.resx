@@ -136,7 +136,7 @@
     <value>Column</value>
   </data>
   <data name="Compile" xml:space="preserve">
-    <value>Compile</value>
+    <value>Compile .amx</value>
   </data>
   <data name="CompilePath" xml:space="preserve">
     <value>Set Compiler</value>

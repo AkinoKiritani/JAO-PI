@@ -27,18 +27,19 @@ namespace JAO_PI.EventsManager
 
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {
-                MessageBoxResult result = MessageBox.Show("There is no Compiler path set. Do you want to set it now?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                
+                MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.NoCompilerPath, "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if(result == MessageBoxResult.Yes)
                 {
                     OpenFileDialog CompilerPathDialog = new OpenFileDialog();
                     CompilerPathDialog = new OpenFileDialog();
-                    CompilerPathDialog.Filter = "PAWN Compiler (pawncc.exe)|pawncc.exe";
-                    CompilerPathDialog.Title = "Set Compiler Path ...";
+                    CompilerPathDialog.Filter = Core.Properties.Resources.PathFilter;
+                    CompilerPathDialog.Title = Core.Properties.Resources.SetPath;
                     CompilerPathDialog.InitialDirectory = Environment.CurrentDirectory;
                     if (CompilerPathDialog.ShowDialog() == true)
                     {
                         Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
-                        MessageBox.Show("Path set", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Core.Properties.Resources.PathSet, "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
                         Core.Properties.Settings.Default.Save();
                     }
                     GC.ReRegisterForFinalize(CompilerPathDialog);
@@ -79,14 +80,14 @@ namespace JAO_PI.EventsManager
             List<Core.Controller.Tab> notSavedList = Core.Controller.Main.TabControlList.FindAll(x => x.Editor.Document.FileName.Contains(".JAOnotsaved"));
             if(notSavedList.Count > 0)
             {
-                MessageBoxResult result = MessageBox.Show("Some files are not saved. Do you want to save them now ?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.NotSaved, "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if(result == MessageBoxResult.Yes)
                 {
                     StringBuilder FileToSave = new StringBuilder();
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.OverwritePrompt = true;
-                    saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
-                    saveFileDialog.Title = "Save PAWN File...";
+                    saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
+                    saveFileDialog.Title = Core.Properties.Resources.SaveFile;
                     for (int i = 0; i != notSavedList.Count; i++)
                     {
                         FileToSave.Clear();
@@ -99,7 +100,7 @@ namespace JAO_PI.EventsManager
                         {
                             if (File.Exists(FileToSave.ToString()))
                             {
-                                result = MessageBox.Show("Do you want to overwrite " + notSavedList[i].TabItem.Header.ToString() +" ?", "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Stop);
+                                result = MessageBox.Show(Core.Properties.Resources.OverwriteSave + notSavedList[i].TabItem.Header.ToString() + Core.Properties.Resources.OverwriteSaveEnd, "JAO PI", MessageBoxButton.YesNo, MessageBoxImage.Stop);
                                 if (result == MessageBoxResult.Yes)
                                 {
                                     utility.SaveTab(notSavedList[i].TabItem);

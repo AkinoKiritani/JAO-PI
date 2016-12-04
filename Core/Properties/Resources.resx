@@ -120,11 +120,38 @@
   <data name="Column" xml:space="preserve">
     <value>Column</value>
   </data>
+  <data name="FileFilter" xml:space="preserve">
+    <value>Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*</value>
+  </data>
   <data name="Line" xml:space="preserve">
     <value>Line</value>
+  </data>
+  <data name="NoCompilerPath" xml:space="preserve">
+    <value>There is no Compiler path set. Do you want to set it now?</value>
+  </data>
+  <data name="NotSaved" xml:space="preserve">
+    <value>Some files are not saved. Do you want to save them now ?</value>
+  </data>
+  <data name="OverwriteSave" xml:space="preserve">
+    <value>Do you want to overwrite </value>
+  </data>
+  <data name="OverwriteSaveEnd" xml:space="preserve">
+    <value> ?</value>
+  </data>
+  <data name="PathFilter" xml:space="preserve">
+    <value>PAWN Compiler (pawncc.exe)|pawncc.exe</value>
+  </data>
+  <data name="PathSet" xml:space="preserve">
+    <value>Path set</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="PAWN" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PAWN.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SaveFile" xml:space="preserve">
+    <value>Save File as ...</value>
+  </data>
+  <data name="SetPath" xml:space="preserve">
+    <value>Set Compiler Path ...</value>
   </data>
 </root>

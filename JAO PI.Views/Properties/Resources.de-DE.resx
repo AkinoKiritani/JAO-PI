@@ -136,13 +136,13 @@
     <value>Spalte</value>
   </data>
   <data name="Compile" xml:space="preserve">
-    <value>Kompilieren</value>
+    <value>.amx erstellen</value>
   </data>
   <data name="CompilePath" xml:space="preserve">
     <value>Kompiler Pfad</value>
   </data>
   <data name="Compiler" xml:space="preserve">
-    <value>Kompiler</value>
+    <value>Erstellen</value>
   </data>
   <data name="Copy" xml:space="preserve">
     <value>Kopieren</value>

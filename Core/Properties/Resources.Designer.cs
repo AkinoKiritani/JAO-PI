@@ -70,11 +70,74 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.* ähnelt.
+        /// </summary>
+        public static string FileFilter {
+            get {
+                return ResourceManager.GetString("FileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Line ähnelt.
         /// </summary>
         public static string Line {
             get {
                 return ResourceManager.GetString("Line", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is no Compiler path set. Do you want to set it now? ähnelt.
+        /// </summary>
+        public static string NoCompilerPath {
+            get {
+                return ResourceManager.GetString("NoCompilerPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Some files are not saved. Do you want to save them now ? ähnelt.
+        /// </summary>
+        public static string NotSaved {
+            get {
+                return ResourceManager.GetString("NotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you want to overwrite  ähnelt.
+        /// </summary>
+        public static string OverwriteSave {
+            get {
+                return ResourceManager.GetString("OverwriteSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ? ähnelt.
+        /// </summary>
+        public static string OverwriteSaveEnd {
+            get {
+                return ResourceManager.GetString("OverwriteSaveEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PAWN Compiler (pawncc.exe)|pawncc.exe ähnelt.
+        /// </summary>
+        public static string PathFilter {
+            get {
+                return ResourceManager.GetString("PathFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path set ähnelt.
+        /// </summary>
+        public static string PathSet {
+            get {
+                return ResourceManager.GetString("PathSet", resourceCulture);
             }
         }
         
@@ -85,6 +148,24 @@ namespace JAO_PI.Core.Properties {
             get {
                 object obj = ResourceManager.GetObject("PAWN", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save File as ... ähnelt.
+        /// </summary>
+        public static string SaveFile {
+            get {
+                return ResourceManager.GetString("SaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set Compiler Path ... ähnelt.
+        /// </summary>
+        public static string SetPath {
+            get {
+                return ResourceManager.GetString("SetPath", resourceCulture);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace JAO_PI.EventsManager
@@ -9,12 +8,13 @@ namespace JAO_PI.EventsManager
         internal void CloseItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             MenuItem CloseItem = sender as MenuItem;
-            TabControl.CloseFile(Core.Controller.Main.TabControlList.Find(x => x.Close.Uid == CloseItem.Uid));          
+            TabControl.CloseFile(Core.Controller.Main.TabControlList.Find(x => x.Close.Uid == CloseItem.Uid));
         }
 
         internal void RenameItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            //MessageBox.Show("Rename clicked");
+            MenuItem ReaameItem = sender as MenuItem;
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Rename.Uid == ReaameItem.Uid);
         }
 
         internal void SaveItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
