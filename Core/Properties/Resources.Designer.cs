@@ -195,5 +195,14 @@ namespace JAO_PI.Core.Properties {
                 return ResourceManager.GetString("SetPath", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;An Error occurred while reading the Syntax&quot; ähnelt.
+        /// </summary>
+        public static string SyntaxReadingError {
+            get {
+                return ResourceManager.GetString("SyntaxReadingError", resourceCulture);
+            }
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace JAO_PI.Core.Utility
             }
             catch (Exception)
             {
-                MessageBox.Show("An Error occurred while reading the Syntax");
+                MessageBox.Show(Core.Properties.Resources.SyntaxReadingError);
             }
         }
 
@@ -95,8 +95,8 @@ namespace JAO_PI.Core.Utility
                 {
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.OverwritePrompt = true;
-                    saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
-                    saveFileDialog.Title = "Save PAWN File...";
+                    saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
+                    saveFileDialog.Title = Core.Properties.Resources.SaveFile;
                     if (saveFileDialog.ShowDialog() == true)
                     {
                         TabItem Tab = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;

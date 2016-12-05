@@ -163,4 +163,7 @@
   <data name="OpenFile" xml:space="preserve">
     <value>Open PAWN File ...</value>
   </data>
+  <data name="SyntaxReadingError" xml:space="preserve">
+    <value>"An Error occurred while reading the Syntax"</value>
+  </data>
 </root>
