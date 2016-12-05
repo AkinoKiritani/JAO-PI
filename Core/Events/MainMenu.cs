@@ -154,7 +154,7 @@ namespace JAO_PI.EventsManager
             }
             else
             {
-                MessageBox.Show("No further results", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No further results", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         public void Compile_Click(object sender, RoutedEventArgs e)
@@ -175,7 +175,7 @@ namespace JAO_PI.EventsManager
             if (CompilerPathDialog.ShowDialog() == true)
             {
                 Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
-                MessageBox.Show("Path set", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Path set", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
                 Core.Properties.Settings.Default.Save();
             }
         }

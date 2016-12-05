@@ -53,10 +53,10 @@ namespace JAO_PI.EventsManager
                 }
                 catch(Exception ee)
                 {
-                    MessageBox.Show(ee.ToString(), "JAO PI", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ee.ToString(), Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            else MessageBox.Show("Nothing to compile", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
+            else MessageBox.Show("Nothing to compile", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         internal static void Compiler_Completed(object sender, RunWorkerCompletedEventArgs e)
@@ -67,11 +67,11 @@ namespace JAO_PI.EventsManager
                 {
                     if (Core.Controller.Main.Compiler_Errors.Length == 0)
                     {
-                        MessageBox.Show("No Errors ! :)", "JAO PI", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("No Errors ! :)", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
-                        MessageBox.Show(Core.Controller.Main.Compiler_Errors, "JAO PI", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(Core.Controller.Main.Compiler_Errors, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 Core.Controller.Main.Compile.Visibility = Visibility.Collapsed;
@@ -112,7 +112,7 @@ namespace JAO_PI.EventsManager
             }
             catch(Exception ee)
             {
-                MessageBox.Show(ee.ToString(), "JAO PI", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ee.ToString(), Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

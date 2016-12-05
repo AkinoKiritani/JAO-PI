@@ -152,6 +152,15 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die JAO PI ähnelt.
+        /// </summary>
+        public static string ProgName {
+            get {
+                return ResourceManager.GetString("ProgName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save File as ... ähnelt.
         /// </summary>
         public static string SaveFile {
