@@ -97,11 +97,29 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No further results ähnelt.
+        /// </summary>
+        public static string NoFurtherResult {
+            get {
+                return ResourceManager.GetString("NoFurtherResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Some files are not saved. Do you want to save them now ? ähnelt.
         /// </summary>
         public static string NotSaved {
             get {
                 return ResourceManager.GetString("NotSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open PAWN File ... ähnelt.
+        /// </summary>
+        public static string OpenFile {
+            get {
+                return ResourceManager.GetString("OpenFile", resourceCulture);
             }
         }
         

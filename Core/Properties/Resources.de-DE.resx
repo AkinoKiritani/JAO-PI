@@ -148,4 +148,10 @@
   <data name="SetPath" xml:space="preserve">
     <value>Setze Kompiler Pfad</value>
   </data>
+  <data name="NoFurtherResult" xml:space="preserve">
+    <value>Keine weiteren Ergebnisse</value>
+  </data>
+  <data name="OpenFile" xml:space="preserve">
+    <value>Öffne PAWN Datei ...</value>
+  </data>
 </root>

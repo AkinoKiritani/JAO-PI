@@ -44,10 +44,12 @@ namespace JAO_PI.Core.Classes
                     var resourceName = "JAO_PI.Core.Resources.PAWN.xshd";
 
                     using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                    using (StreamReader reader = new StreamReader(stream))
                     {
-                        byte[] info = new UTF8Encoding(true).GetBytes(reader.ReadToEnd());
-                        fs.Write(info, 0, info.Length);
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            byte[] info = new UTF8Encoding(true).GetBytes(reader.ReadToEnd());
+                            fs.Write(info, 0, info.Length);
+                        }
                     }
                 }
             }

@@ -43,8 +43,8 @@ namespace JAO_PI.EventsManager
         public void Open_File_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PAWN Files (*.inc, *.pwn)|*.inc;*.pwn|Include Files (*.inc)|*.inc|Only Pawn Files (*.pwn)|*.pwn|All files (*.*)|*.*";
-            openFileDialog.Title = "Open PAWN File...";
+            openFileDialog.Filter = Core.Properties.Resources.FileFilter;
+            openFileDialog.Title = Core.Properties.Resources.OpenFile;
             if (openFileDialog.ShowDialog() == true)
             {
                 FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
@@ -90,8 +90,8 @@ namespace JAO_PI.EventsManager
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.OverwritePrompt = true;
-                saveFileDialog.Filter = "Only Pawn File (*.pwn)|*.pwn|Include File (*.inc)|*.inc|All files (*.*)|*.*";
-                saveFileDialog.Title = "Save PAWN File...";
+                saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
+                saveFileDialog.Title = Core.Properties.Resources.SaveFile;
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     TabItem Tab = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
@@ -154,7 +154,7 @@ namespace JAO_PI.EventsManager
             }
             else
             {
-                MessageBox.Show("No further results", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Core.Properties.Resources.NoFurtherResult, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         public void Compile_Click(object sender, RoutedEventArgs e)
@@ -169,13 +169,13 @@ namespace JAO_PI.EventsManager
         {
             OpenFileDialog CompilerPathDialog = new OpenFileDialog();
             CompilerPathDialog = new OpenFileDialog();
-            CompilerPathDialog.Filter = "PAWN Compiler (pawncc.exe)|pawncc.exe";
-            CompilerPathDialog.Title = "Set Compiler Path ...";
+            CompilerPathDialog.Filter = Core.Properties.Resources.PathFilter;
+            CompilerPathDialog.Title = Core.Properties.Resources.SetPath;
             CompilerPathDialog.InitialDirectory = Environment.CurrentDirectory;
             if (CompilerPathDialog.ShowDialog() == true)
             {
                 Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
-                MessageBox.Show("Path set", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Core.Properties.Resources.PathSet, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
                 Core.Properties.Settings.Default.Save();
             }
         }
