@@ -32,12 +32,12 @@ namespace JAO_PI.Core.Classes
 
             StringBuilder SyntaxPath = new StringBuilder();
             SyntaxPath.Append(System.Environment.CurrentDirectory);
-            SyntaxPath.Append(@"\" + Core.Utility.Folder.Languages+ @"\PAWN.xshd");
+            SyntaxPath.Append(@"\" + Core.Resources.Folder.Languages+ @"\PAWN.xshd");
 
             string syntaxPath = SyntaxPath.ToString();
             if (File.Exists(syntaxPath) == false)
             {
-                Directory.CreateDirectory(Core.Utility.Folder.Languages);
+                Directory.CreateDirectory(Core.Resources.Folder.Languages);
                 using (FileStream fs = File.Create(syntaxPath))
                 {
                     var assembly = Assembly.GetExecutingAssembly();
@@ -89,19 +89,19 @@ namespace JAO_PI.Core.Classes
             ContextMenu menu = new ContextMenu();
 
             MenuItem CloseItem = new MenuItem();
-            CloseItem.Header = "Close";
+            CloseItem.Header = Core.Resources.ContextMenu.CloseItem;
             CloseItem.Uid = Functions.RandomString(10);
             CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseItem);
 
             MenuItem RenameItem = new MenuItem();
-            RenameItem.Header = "Rename";
+            RenameItem.Header = Core.Resources.ContextMenu.RenameItem;
             RenameItem.Uid = Functions.RandomString(10);
             RenameItem.PreviewMouseLeftButtonUp += TabEvents.RenameItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(RenameItem);
 
             MenuItem SaveItem = new MenuItem();
-            SaveItem.Header = "Save";
+            SaveItem.Header = Core.Resources.ContextMenu.SaveItem;
             SaveItem.Uid = Functions.RandomString(10);
             SaveItem.PreviewMouseLeftButtonUp += TabEvents.SaveItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(SaveItem);

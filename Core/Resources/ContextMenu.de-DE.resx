@@ -117,35 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Column" xml:space="preserve">
-    <value>Spalte</value>
+  <data name="CloseItem" xml:space="preserve">
+    <value>Schließen</value>
   </data>
-  <data name="Line" xml:space="preserve">
-    <value>Zeile</value>
+  <data name="RenameItem" xml:space="preserve">
+    <value>Umbenennen</value>
   </data>
-  <data name="NoCompilerPath" xml:space="preserve">
-    <value>Es wurde kein Kompiler gefunden, möchtest du ihn jetzt einrichten ?</value>
-  </data>
-  <data name="NotSaved" xml:space="preserve">
-    <value>Es gibt noch Datein, die nicht gespeichert wurden. Möchtest du diese jetzt speichern ?</value>
-  </data>
-  <data name="OverwriteSave" xml:space="preserve">
-    <value>Willst du wirklich </value>
-  </data>
-  <data name="OverwriteSaveEnd" xml:space="preserve">
-    <value> überschreiben ?</value>
-  </data>
-  <data name="PathSet" xml:space="preserve">
-    <value>Pfad gesetzt</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PAWN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PAWN.xshd;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SaveFile" xml:space="preserve">
-    <value>Speichere Datei als ...</value>
-  </data>
-  <data name="SetPath" xml:space="preserve">
-    <value>Setze Kompiler Pfad</value>
+  <data name="SaveItem" xml:space="preserve">
+    <value>Speichern</value>
   </data>
 </root>

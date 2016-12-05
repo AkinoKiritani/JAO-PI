@@ -78,7 +78,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Find.cs" />
-    <Compile Include="Utility\Folder.Designer.cs">
+    <Compile Include="Resources\ContextMenu.de-DE.Designer.cs">
+      <DependentUpon>ContextMenu.de-DE.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ContextMenu.en.Designer.cs">
+      <DependentUpon>ContextMenu.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ContextMenu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContextMenu.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Folder.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Folder.resx</DependentUpon>
@@ -123,7 +138,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Utility\Folder.resx">
+    <EmbeddedResource Include="Resources\ContextMenu.de-DE.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContextMenu.de-DE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContextMenu.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContextMenu.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ContextMenu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContextMenu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Folder.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Folder.Designer.cs</LastGenOutput>
     </EmbeddedResource>

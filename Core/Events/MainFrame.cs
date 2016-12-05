@@ -79,6 +79,7 @@ namespace JAO_PI.EventsManager
                 if(result == MessageBoxResult.Yes)
                 {
                     StringBuilder FileToSave = new StringBuilder();
+                    
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.OverwritePrompt = true;
                     saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
@@ -91,11 +92,17 @@ namespace JAO_PI.EventsManager
                         string[] arg = FileToSave.ToString().Split('\\');
                         saveFileDialog.InitialDirectory = notSavedList[i].TabItem.Uid;
                         saveFileDialog.FileName = notSavedList[i].TabItem.Header.ToString();
+
                         if (notSavedList[i].TabItem.Header.Equals(arg[arg.Length - 1]))
                         {
                             if (File.Exists(FileToSave.ToString()))
                             {
-                                result = MessageBox.Show(Core.Properties.Resources.OverwriteSave + notSavedList[i].TabItem.Header.ToString() + Core.Properties.Resources.OverwriteSaveEnd, Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Stop);
+                                StringBuilder OverwriteMessage = new StringBuilder();
+                                OverwriteMessage.Append(Core.Properties.Resources.OverwriteSave);
+                                OverwriteMessage.Append(saveFileDialog.FileName);
+                                OverwriteMessage.Append(Core.Properties.Resources.OverwriteSaveEnd);
+
+                                result = MessageBox.Show(OverwriteMessage.ToString(), Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Stop);
                                 if (result == MessageBoxResult.Yes)
                                 {
                                     utility.SaveTab(notSavedList[i].TabItem);
@@ -116,7 +123,7 @@ namespace JAO_PI.EventsManager
                                 utility.SaveTab(notSavedList[i].TabItem, saveFileDialog);
                             }
                         }
-                    }   
+                    }
                 }
             }
         }

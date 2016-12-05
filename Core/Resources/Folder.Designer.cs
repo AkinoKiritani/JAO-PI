@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JAO_PI.Core.Utility {
+namespace JAO_PI.Core.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace JAO_PI.Core.Utility {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JAO_PI.Core.Utility.Folder", typeof(Folder).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JAO_PI.Core.Resources.Folder", typeof(Folder).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
