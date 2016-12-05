@@ -159,11 +159,11 @@ namespace JAO_PI.EventsManager
         }
         public void Compile_Click(object sender, RoutedEventArgs e)
         {
-            Core.Controller.Worker.SaveWorker.RunWorkerAsync();
+            Core.Controller.Worker.SaveWorker.RunWorkerAsync(); // Will trigger the Compilerworker
         }
         public void Compile(object sender, RoutedEventArgs e)
         {
-            Core.Controller.Worker.SaveWorker.RunWorkerAsync();
+            Core.Controller.Worker.SaveWorker.RunWorkerAsync(); // Will trigger the Compilerworker
         }
         public void Compiler_Path_Click(object sender, RoutedEventArgs e)
         {
