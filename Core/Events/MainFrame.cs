@@ -17,11 +17,6 @@ namespace JAO_PI.EventsManager
         Functions utility = null;
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Directory.Exists("Language"))
-            {
-                Directory.Move("Language", "Languages");
-            }
-
             utility = new Functions();
             Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
 
