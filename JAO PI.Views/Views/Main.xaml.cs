@@ -75,6 +75,8 @@ namespace JAO_PI.Views
             CommandBindings.Add(new CommandBinding(GoToCmd, MenuEvents.GoTo));
 
             //Compiler
+            Core.Controller.Register.CompileMenuItem(this.Compile);
+
             Compile.Click       += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
         }

@@ -34,6 +34,7 @@ namespace JAO_PI.EventsManager
             if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
                 utility.ToggleSaveOptions(true);
+                Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Visible;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
@@ -61,6 +62,7 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
                     utility.ToggleSaveOptions(true);
+                    Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Visible;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";

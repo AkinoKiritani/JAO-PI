@@ -62,6 +62,7 @@ namespace JAO_PI.EventsManager
                 {
                     utility.ToggleSaveOptions(true);
                 }
+                Core.Controller.Main.CompileMenuItem.IsEnabled = true;
             }
         }
 

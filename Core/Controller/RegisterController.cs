@@ -102,5 +102,14 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
+        public static bool CompileMenuItem(MenuItem compileMenuItem)
+        {
+            if (Main.CompileMenuItem == null)
+            {
+                Main.CompileMenuItem = compileMenuItem;
+                return true;
+            }
+            return false;
+        }
     }
 }
