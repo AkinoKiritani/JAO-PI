@@ -160,4 +160,7 @@
   <data name="NoError" xml:space="preserve">
     <value>Keine Fehler :)</value>
   </data>
+  <data name="NoResult" xml:space="preserve">
+    <value>Keine Ergebnisse</value>
+  </data>
 </root>
