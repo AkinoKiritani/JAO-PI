@@ -88,11 +88,29 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nothing to compile ähnelt.
+        /// </summary>
+        public static string NoCompile {
+            get {
+                return ResourceManager.GetString("NoCompile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There is no Compiler path set. Do you want to set it now? ähnelt.
         /// </summary>
         public static string NoCompilerPath {
             get {
                 return ResourceManager.GetString("NoCompilerPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Errors ! :) ähnelt.
+        /// </summary>
+        public static string NoError {
+            get {
+                return ResourceManager.GetString("NoError", resourceCulture);
             }
         }
         

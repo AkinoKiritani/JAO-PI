@@ -56,7 +56,7 @@ namespace JAO_PI.EventsManager
                     MessageBox.Show(ee.ToString(), Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            else MessageBox.Show("Nothing to compile", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
+            else MessageBox.Show(Core.Properties.Resources.NoCompile, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         internal static void Compiler_Completed(object sender, RunWorkerCompletedEventArgs e)
@@ -67,7 +67,7 @@ namespace JAO_PI.EventsManager
                 {
                     if (Core.Controller.Main.Compiler_Errors.Length == 0)
                     {
-                        MessageBox.Show("No Errors ! :)", Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(Core.Properties.Resources.NoError, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {

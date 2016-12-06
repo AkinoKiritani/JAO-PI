@@ -166,4 +166,10 @@
   <data name="SyntaxReadingError" xml:space="preserve">
     <value>"An Error occurred while reading the Syntax"</value>
   </data>
+  <data name="NoCompile" xml:space="preserve">
+    <value>Nothing to compile</value>
+  </data>
+  <data name="NoError" xml:space="preserve">
+    <value>No Errors ! :)</value>
+  </data>
 </root>

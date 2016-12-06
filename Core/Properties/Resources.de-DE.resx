@@ -154,4 +154,10 @@
   <data name="OpenFile" xml:space="preserve">
     <value>Öffne PAWN Datei ...</value>
   </data>
+  <data name="NoCompile" xml:space="preserve">
+    <value>Nichts zu kompilieren</value>
+  </data>
+  <data name="NoError" xml:space="preserve">
+    <value>Keine Fehler :)</value>
+  </data>
 </root>
