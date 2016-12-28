@@ -75,6 +75,11 @@ namespace JAO_PI.Core.Utility
                 Grid SaveGrid = SaveTab.Content as Grid;
                 TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
 
+                if (SaveEditor.Document.FileName.Contains(".JAOnotsaved"))
+                {
+                    SaveEditor.Document.FileName = SaveEditor.Document.FileName.Replace(".JAOnotsaved", ".JAOsaved");
+                }
+
                 EventsManager.Editor EditorEvents = new EventsManager.Editor();
                 SaveEditor.Document.Changed += EditorEvents.Document_Changed;
 
