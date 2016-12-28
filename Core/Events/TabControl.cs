@@ -46,15 +46,15 @@ namespace JAO_PI.EventsManager
             Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
             if (Core.Controller.Main.tabControl.Items.Count == 0)
             {
-                Core.Controller.Main.tabControl.Visibility = System.Windows.Visibility.Collapsed;
+                Core.Controller.Main.tabControl.Visibility = Visibility.Collapsed;
 
                 Core.Controller.Main.Empty_Message.IsEnabled = true;
-                Core.Controller.Main.Empty_Message.Visibility = System.Windows.Visibility.Visible;
+                Core.Controller.Main.Empty_Message.Visibility = Visibility.Visible;
                 Core.Controller.Main.EditItem.IsEnabled = false;
                 utility.ToggleSaveOptions(false);
                 Core.Controller.Main.CompileMenuItem.IsEnabled = false;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = System.Windows.Visibility.Collapsed;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = System.Windows.Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
             }
             GC.ReRegisterForFinalize(Index);
             GC.Collect();
