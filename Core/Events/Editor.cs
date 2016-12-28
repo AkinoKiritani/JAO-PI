@@ -1,6 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
-using System.Windows;
 using System;
+using System.Windows;
 
 namespace JAO_PI.EventsManager
 {

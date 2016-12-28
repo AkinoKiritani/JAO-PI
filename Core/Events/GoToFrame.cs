@@ -1,9 +1,9 @@
 ﻿using JAO_PI.Core.Controller;
+using JAO_PI.Core.Utility;
+using System;
 using System.ComponentModel;
 using System.Windows;
-using System;
 using System.Windows.Input;
-using JAO_PI.Core.Utility;
 
 namespace JAO_PI.EventsManager
 {

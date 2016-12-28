@@ -11,16 +11,9 @@ namespace JAO_PI.EventsManager
 {
     public class MainMenu
     {
-        Generator generator = null;
-        Functions utility = null;
-        
-        public MainMenu()
-        {
-            generator = new Generator();
-            utility = new Functions();
-        }
         public void Create_File_Click(object sender, RoutedEventArgs e)
         {
+            Generator generator = new Generator();
             TabItem tab = generator.TabItem(Environment.CurrentDirectory, "new.pwn", null);
 
             Core.Controller.Main.tabControl.Items.Add(tab);
@@ -33,6 +26,7 @@ namespace JAO_PI.EventsManager
 
             if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
+                Functions utility = new Functions();
                 utility.ToggleSaveOptions(true);
                 Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
@@ -55,6 +49,7 @@ namespace JAO_PI.EventsManager
                 }
 
                 FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
+                Generator generator = new Generator();
                 TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, stream);
 
                 Core.Controller.Main.tabControl.Items.Add(tab);
@@ -67,6 +62,7 @@ namespace JAO_PI.EventsManager
 
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
+                    Functions utility = new Functions();
                     utility.ToggleSaveOptions(true);
                     Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
@@ -89,6 +85,7 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
+                Functions utility = new Functions();
                 utility.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
             }
         }
@@ -103,6 +100,7 @@ namespace JAO_PI.EventsManager
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     TabItem Tab = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
+                    Functions utility = new Functions();
                     utility.SaveTab(Tab, saveFileDialog);
                     Tab.Header = saveFileDialog.SafeFileName;
                 }
