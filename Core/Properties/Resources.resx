@@ -164,7 +164,7 @@
     <value>Open PAWN File ...</value>
   </data>
   <data name="SyntaxReadingError" xml:space="preserve">
-    <value>"An Error occurred while reading the Syntax"</value>
+    <value>An Error occurred while reading the Syntax</value>
   </data>
   <data name="NoCompile" xml:space="preserve">
     <value>Nothing to compile</value>
@@ -174,5 +174,11 @@
   </data>
   <data name="NoResult" xml:space="preserve">
     <value>No result</value>
+  </data>
+  <data name="CloseSave" xml:space="preserve">
+    <value>File has not been saved yet\nDo you want to save it now ?</value>
+  </data>
+  <data name="CloseSaveHeader" xml:space="preserve">
+    <value>Unsaved File</value>
   </data>
 </root>

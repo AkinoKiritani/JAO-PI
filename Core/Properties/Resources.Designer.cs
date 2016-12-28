@@ -61,6 +61,24 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File has not been saved yet\nDo you want to save it now ? ähnelt.
+        /// </summary>
+        public static string CloseSave {
+            get {
+                return ResourceManager.GetString("CloseSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unsaved File ähnelt.
+        /// </summary>
+        public static string CloseSaveHeader {
+            get {
+                return ResourceManager.GetString("CloseSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Column ähnelt.
         /// </summary>
         public static string Column {
@@ -224,7 +242,7 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;An Error occurred while reading the Syntax&quot; ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die An Error occurred while reading the Syntax ähnelt.
         /// </summary>
         public static string SyntaxReadingError {
             get {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace JAO_PI.EventsManager
@@ -26,6 +27,14 @@ namespace JAO_PI.EventsManager
         internal static void CloseFile(Core.Controller.Tab Index)
         {
             Core.Utility.Functions utility = new Core.Utility.Functions();
+            if(Index.Editor.Document.FileName.Contains(".JAOnotsaved"))
+            {
+                MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.CloseSave, Core.Properties.Resources.CloseSaveHeader, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if(result == MessageBoxResult.Yes)
+                {
+                    utility.SaveTab(Index.TabItem);
+                }
+            }
             Index.Editor.Clear();
             Grid grid = Index.TabItem.Content as Grid;
             Index.Editor = null;

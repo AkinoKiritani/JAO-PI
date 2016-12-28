@@ -169,4 +169,10 @@
   <data name="NoResult" xml:space="preserve">
     <value>No result</value>
   </data>
+  <data name="CloseSave" xml:space="preserve">
+    <value>File has not been saved yet\nDo you want to save it now ?</value>
+  </data>
+  <data name="CloseSaveHeader" xml:space="preserve">
+    <value>Unsaved File</value>
+  </data>
 </root>
