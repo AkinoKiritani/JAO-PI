@@ -48,6 +48,12 @@ namespace JAO_PI.EventsManager
             openFileDialog.Title = Core.Properties.Resources.OpenFile;
             if (openFileDialog.ShowDialog() == true)
             {
+                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => (x.TabItem.Uid + x.TabItem.Header) == openFileDialog.FileName);
+                if(Index != null)
+                {
+                    return;
+                }
+
                 FileStream stream = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
                 TabItem tab = generator.TabItem(openFileDialog.FileName, openFileDialog.SafeFileName, stream);
 
