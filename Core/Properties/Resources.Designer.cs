@@ -61,7 +61,7 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die File has not been saved yet\nDo you want to save it now ? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die File has not been saved yet. Do you want to save it now ? ähnelt.
         /// </summary>
         public static string CloseSave {
             get {

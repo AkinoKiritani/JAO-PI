@@ -164,7 +164,7 @@
     <value>Keine Ergebnisse</value>
   </data>
   <data name="CloseSave" xml:space="preserve">
-    <value>Datei wurde noch nicht gespeichert\nMöchten Sie sie jetzt speichern ?</value>
+    <value>Datei wurde noch nicht gespeichert. Möchten Sie sie jetzt speichern ?</value>
   </data>
   <data name="CloseSaveHeader" xml:space="preserve">
     <value>Nicht gespeicherte Datei</value>
