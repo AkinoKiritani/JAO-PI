@@ -1,6 +1,8 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Editing;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace JAO_PI.EventsManager
 {
@@ -22,10 +24,11 @@ namespace JAO_PI.EventsManager
             GC.Collect();
         }
 
-        internal void TextInput(object sender, EventArgs e)
+        internal void Caret_PositionChanged(object sender, EventArgs e)
         {
-            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
-            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
+            Caret Area = sender as Caret;
+            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Area.Line;
+            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Area.Column;
         }
     }
 }
