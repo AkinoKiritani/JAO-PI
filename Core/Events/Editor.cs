@@ -2,7 +2,6 @@
 using ICSharpCode.AvalonEdit.Editing;
 using System;
 using System.Windows;
-using System.Windows.Input;
 
 namespace JAO_PI.EventsManager
 {
