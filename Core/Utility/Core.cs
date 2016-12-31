@@ -5,6 +5,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
@@ -33,11 +34,11 @@ namespace JAO_PI.Core.Utility
             CompareInfo myComp = CultureInfo.InvariantCulture.CompareInfo;
 
             string Text = Editor.Text;
-            if(SearchQuery.Length > 0)
+            if (SearchQuery.Length > 0 && Text.Length > 0)
             {
-                find.Index = myComp.IndexOf(Text, SearchQuery, lastIndex, (IgnoreCase == true) ? CompareOptions.IgnoreCase : CompareOptions.None);
-                find.Line = (find.Index == -1) ? -1 : Editor.TextArea.Document.GetLineByOffset(find.Index).LineNumber;
-                return find;
+                 find.Index = myComp.IndexOf(Text, SearchQuery, lastIndex, (IgnoreCase == true) ? CompareOptions.IgnoreCase : CompareOptions.None);
+                 find.Line = (find.Index == -1) ? -1 : Editor.TextArea.Document.GetLineByOffset(find.Index).LineNumber;
+                 return find;
             }
             return find = null;
         }
@@ -126,6 +127,32 @@ namespace JAO_PI.Core.Utility
                 SaveGrid = null;
                 SaveTab = null;
             }
+        }
+        public bool SetSearchInfo(string text)
+        {
+            if (Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Visible)
+            {
+                if (Controller.Main.SearchInfo.Visibility == Visibility.Collapsed)
+                {
+                    Controller.Main.SearchInfo.Visibility = Visibility.Visible;
+                }
+                Controller.Main.SearchInfo.Text = text;
+                return true;
+            }
+            return false;
+        }
+        public bool SetSearchInfo(StringBuilder text)
+        {
+            if (Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Visible)
+            {
+                if (Controller.Main.SearchInfo.Visibility == Visibility.Collapsed)
+                {
+                    Controller.Main.SearchInfo.Visibility = Visibility.Visible;
+                }
+                Controller.Main.SearchInfo.Text = text.ToString();
+                return true;
+            }
+            return false;
         }
     }
 }

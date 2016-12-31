@@ -73,6 +73,15 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
+        public static bool SearchInfo(TextBlock searchInfo)
+        {
+            if (Main.SearchInfo == null)
+            {
+                Main.SearchInfo = searchInfo;
+                return true;
+            }
+            return false;
+        }
         public static bool TabControl(TabControl Control)
         {
             if (Main.tabControl == null)

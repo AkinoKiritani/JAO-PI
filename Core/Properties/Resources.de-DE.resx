@@ -169,4 +169,7 @@
   <data name="CloseSaveHeader" xml:space="preserve">
     <value>Nicht gespeicherte Datei</value>
   </data>
+  <data name="Result" xml:space="preserve">
+    <value>Ergebnisse: </value>
+  </data>
 </root>

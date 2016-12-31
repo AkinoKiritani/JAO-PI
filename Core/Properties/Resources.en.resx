@@ -175,4 +175,7 @@
   <data name="CloseSaveHeader" xml:space="preserve">
     <value>Unsaved File</value>
   </data>
+  <data name="Result" xml:space="preserve">
+    <value>Results: </value>
+  </data>
 </root>

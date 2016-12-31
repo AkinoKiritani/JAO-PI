@@ -14,7 +14,7 @@ namespace JAO_PI.Core.Controller
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
         public static List<Tab> TabControlList = new List<Tab>();
         public static string Compiler_Errors = null;
-        public static int LastIndex;
+        public static int LastIndex = 0;
         public static StatusBarItem Compile = null;
         public static MenuItem EditItem = null;
         public static List<StatusBarItem> StatusBarItems = new List<StatusBarItem>();
@@ -34,5 +34,6 @@ namespace JAO_PI.Core.Controller
         public static TextBox SearchBox = null;
         public static string CurrentSearch = null;
         public static int CurrentSearchIndex { get; set; }
+        public static TextBlock SearchInfo = null;
     }
 }
