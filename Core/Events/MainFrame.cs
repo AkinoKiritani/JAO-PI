@@ -13,11 +13,9 @@ namespace JAO_PI.EventsManager
 {
     public class MainFrame
     {
-        Generator generator = null;
-        Functions utility = null;
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            utility = new Functions();
+            Functions utility = new Functions();
             Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
 
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
@@ -42,7 +40,7 @@ namespace JAO_PI.EventsManager
             }
 
             MainMenu main = new MainMenu();
-            generator = new Generator();
+            Generator generator = new Generator();
             string[] arguments = Environment.GetCommandLineArgs();
             if (arguments.GetLength(0) > 1)
             {
@@ -71,17 +69,18 @@ namespace JAO_PI.EventsManager
         public void MainFrame_Closing(object sender, CancelEventArgs e)
         {
             List<Core.Controller.Tab> notSavedList = Core.Controller.Main.TabControlList.FindAll(x => x.Editor.Document.FileName.Contains(".JAOnotsaved"));
-            if(notSavedList.Count > 0)
+            if (notSavedList.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.NotSaved, Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if(result == MessageBoxResult.Yes)
+                if (result == MessageBoxResult.Yes)
                 {
                     StringBuilder FileToSave = new StringBuilder();
-                    
+
                     SaveFileDialog saveFileDialog = new SaveFileDialog();
                     saveFileDialog.OverwritePrompt = true;
                     saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
                     saveFileDialog.Title = Core.Properties.Resources.SaveFile;
+                    Functions utility = new Functions();
                     for (int i = 0; i != notSavedList.Count; i++)
                     {
                         FileToSave.Clear();

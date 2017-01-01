@@ -27,14 +27,22 @@ namespace JAO_PI.EventsManager
             }
         }
 
+        internal static void CloseAllFiles()
+        {
+            while(Core.Controller.Main.TabControlList.Count > 0)
+            {
+                CloseFile(Core.Controller.Main.TabControlList[0]);
+            }
+        }
+
         internal static void CloseFile(Core.Controller.Tab Index)
         {
-            Core.Utility.Functions utility = new Core.Utility.Functions();
             if(Index.Editor.Document.FileName.Contains(".JAOnotsaved"))
             {
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.CloseSave, Core.Properties.Resources.CloseSaveHeader, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if(result == MessageBoxResult.Yes)
                 {
+                    Core.Utility.Functions utility = new Core.Utility.Functions();
                     utility.SaveTab(Index.TabItem);
                 }
             }

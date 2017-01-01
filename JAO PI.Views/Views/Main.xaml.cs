@@ -26,7 +26,7 @@ namespace JAO_PI.Views
             
             Core.Controller.Register.TabControl(this.tabControl);
             Core.Controller.Register.EmptyMessage(this.Empty_Message);
-            Core.Controller.Register.SaveOptions(this.Save, this.SaveAs, this.Close_File);
+            Core.Controller.Register.SaveOptions(this.Save, this.SaveAs, this.Close_File, this.Close_All);
             Core.Controller.Register.Compile(this.Compiling);
             Core.Controller.Register.Edit(this.Edit);
             Core.Controller.Register.StatusBar(this.Line, this.Column);
@@ -46,6 +46,7 @@ namespace JAO_PI.Views
             Create_File.Click   += MenuEvents.Create_File_Click;
             Open_File.Click     += MenuEvents.Open_File_Click;
             Close_File.Click    += MenuEvents.Close_File_Click;
+            Close_All.Click     += MenuEvents.Close_All_Click;
             Save.Click          += MenuEvents.Save_Click;
             SaveAs.Click        += MenuEvents.SaveAs_Click;
             Exit.Click          += MenuEvents.Exit_Click;

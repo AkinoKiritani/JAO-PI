@@ -100,13 +100,14 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
-        public static bool SaveOptions(MenuItem Save, MenuItem SaveAs, MenuItem CloseFile)
+        public static bool SaveOptions(MenuItem Save, MenuItem SaveAs, MenuItem CloseFile, MenuItem CloseAll)
         {
             if (Main.SaveOptions.Count == 0)
             {
                 Main.SaveOptions.Add(Save);
                 Main.SaveOptions.Add(SaveAs);
                 Main.SaveOptions.Add(CloseFile);
+                Main.SaveOptions.Add(CloseAll);
                 return true;
             }
             return false;

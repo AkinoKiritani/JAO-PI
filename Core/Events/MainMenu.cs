@@ -68,6 +68,15 @@ namespace JAO_PI.EventsManager
             }
             GC.ReRegisterForFinalize(openFileDialog);
         }
+
+        public void Close_All_Click(object sender, RoutedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count > 0)
+            {
+                TabControl.CloseAllFiles();
+            }
+        }
+
         public void Close_File_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
