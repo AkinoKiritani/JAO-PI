@@ -132,6 +132,9 @@
   <data name="CloseFile" xml:space="preserve">
     <value>Datei schließen</value>
   </data>
+  <data name="CloseSearch" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
   <data name="Column" xml:space="preserve">
     <value>Spalte</value>
   </data>

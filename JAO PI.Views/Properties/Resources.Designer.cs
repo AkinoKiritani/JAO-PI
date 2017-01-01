@@ -106,6 +106,15 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
+        /// </summary>
+        public static string CloseSearch {
+            get {
+                return ResourceManager.GetString("CloseSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Column ähnelt.
         /// </summary>
         public static string Column {

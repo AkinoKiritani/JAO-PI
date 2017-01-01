@@ -13,7 +13,7 @@
                 <Label Content="{x:Static p:Resources.FindWhat}" Margin="10,10,0,0" Height="23" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" FlowDirection="RightToLeft" Width="80" />
                 <Button x:Name="Do_Search" Content="{x:Static p:Resources.Search}" HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top" Width="89" Height="23" />
                 <Button x:Name="Do_Count" Content="{x:Static p:Resources.Count}" HorizontalAlignment="Left" Margin="262,38,0,0" VerticalAlignment="Top" Width="89" Height="23" />
-                <Button x:Name="Cancel" Content="{x:Static p:Resources.Cancel}" HorizontalAlignment="Left" Margin="262,91,0,0" VerticalAlignment="Top" Width="89" Height="22" />
+                <Button x:Name="Cancel" Content="{x:Static p:Resources.CloseSearch}" HorizontalAlignment="Left" Margin="262,91,0,0" VerticalAlignment="Top" Width="89" Height="22" />
                 <TextBlock x:Name="SearchInfo" HorizontalAlignment="Left" Margin="10,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Collapsed"/>
             </Grid>
         </TabItem>
