@@ -54,6 +54,10 @@ namespace JAO_PI.Views
             SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(SaveCmd, MenuEvents.Save_Click));
 
+            RoutedCommand NewFileCmd = new RoutedCommand();
+            NewFileCmd.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(NewFileCmd, MenuEvents.Create_File_Click));
+
             //Edit
             Undo.Click          += MenuEvents.Undo_Click;
             Cut.Click           += MenuEvents.Cut_Click;

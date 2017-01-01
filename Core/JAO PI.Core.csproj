@@ -104,6 +104,7 @@
     <Compile Include="Events\MainMenu.cs" />
     <Compile Include="Events\TabControl.cs" />
     <Compile Include="Events\Worker.cs" />
+    <Compile Include="Utility\Toggle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

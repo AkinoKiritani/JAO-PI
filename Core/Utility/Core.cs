@@ -61,14 +61,6 @@ namespace JAO_PI.Core.Utility
             }
         }
 
-        public void ToggleSaveOptions(bool toggle)
-        {
-            foreach (MenuItem item in Controller.Main.SaveOptions)
-            {
-                item.IsEnabled = toggle;
-            }
-        }
-
         public void SaveTab(TabItem SaveTab)
         {
             if (Controller.Main.tabControl.Visibility == Visibility.Visible && Controller.Main.tabControl.Items.Contains(SaveTab) == true)
@@ -84,7 +76,7 @@ namespace JAO_PI.Core.Utility
                 EventsManager.Editor EditorEvents = new EventsManager.Editor();
                 SaveEditor.Document.Changed += EditorEvents.Document_Changed;
 
-                System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
+                StringBuilder FileToSave = new System.Text.StringBuilder();
                 FileToSave.Append(SaveTab.Uid);
                 FileToSave.Append(SaveTab.Header);
 

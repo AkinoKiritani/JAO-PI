@@ -19,15 +19,12 @@ namespace JAO_PI.EventsManager
             Core.Controller.Main.tabControl.Items.Add(tab);
             Core.Controller.Main.tabControl.SelectedItem = tab;
 
-            Core.Controller.Main.Empty_Message.Visibility = Visibility.Collapsed;
-            Core.Controller.Main.Empty_Message.IsEnabled = false;
-
-            Core.Controller.Main.tabControl.Visibility = Visibility.Visible;
+            Toggle.TabControl(true);
 
             if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
                 Functions utility = new Functions();
-                utility.ToggleSaveOptions(true);
+                Toggle.SaveOptions(true);
                 Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Visible;
@@ -55,15 +52,12 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.tabControl.Items.Add(tab);
                 Core.Controller.Main.tabControl.SelectedItem = tab;
 
-                Core.Controller.Main.Empty_Message.Visibility = Visibility.Collapsed;
-                Core.Controller.Main.Empty_Message.IsEnabled = false;
-
-                Core.Controller.Main.tabControl.Visibility = Visibility.Visible;
+                Toggle.TabControl(true);
 
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
                     Functions utility = new Functions();
-                    utility.ToggleSaveOptions(true);
+                    Toggle.SaveOptions(true);
                     Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Visible;
