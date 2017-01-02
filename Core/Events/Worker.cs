@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace JAO_PI.EventsManager
 {
-    public class Worker
+    public static class Worker
     {
         internal static void Compiler_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -57,6 +57,39 @@ namespace JAO_PI.EventsManager
                 }
             }
             else MessageBox.Show(Core.Properties.Resources.NoCompile, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        internal static void CloseAll_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (Core.Controller.Main.tabControl.Items.Count == 0)
+            {
+                Core.Utility.Toggle.TabControl(false);
+                Core.Utility.Toggle.SaveOptions(false);
+                Core.Controller.Main.CompileMenuItem.IsEnabled = false;
+                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
+            }
+        }
+
+        internal static void CloseAll_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (Core.Controller.Main.TabControlList.Count > 0)
+            {
+                Core.Controller.Tab Index = Core.Controller.Main.TabControlList[0];
+
+                Core.Controller.Main.tabControl.Dispatcher.Invoke(new Action(() =>
+                {
+                    Index.Editor.Clear();
+                    Grid grid = Index.TabItem.Content as Grid;
+                    Index.Editor = null;
+                    grid.Children.Remove(Index.Editor);
+                    grid = null;
+                    Core.Controller.Main.TabControlList.Remove(Index);
+
+                    Index.TabItem.ContextMenu.Items.Clear();
+                    Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
+                }));                
+            }
         }
 
         internal static void Compiler_Completed(object sender, RunWorkerCompletedEventArgs e)

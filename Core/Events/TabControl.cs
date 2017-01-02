@@ -29,30 +29,7 @@ namespace JAO_PI.EventsManager
 
         internal static void CloseAllFiles()
         {
-            while(Core.Controller.Main.TabControlList.Count > 0)
-            {
-                Core.Controller.Tab Index = Core.Controller.Main.TabControlList[0];
-
-                Index.Editor.Clear();
-                Grid grid = Index.TabItem.Content as Grid;
-                Index.Editor = null;
-                grid.Children.Remove(Index.Editor);
-                grid = null;
-                Core.Controller.Main.TabControlList.Remove(Index);
-
-                Index.TabItem.ContextMenu.Items.Clear();
-                Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
-                GC.ReRegisterForFinalize(Index);
-            }
-            if (Core.Controller.Main.tabControl.Items.Count == 0)
-            {
-                Core.Utility.Toggle.TabControl(false);
-                Core.Utility.Toggle.SaveOptions(false);
-                Core.Controller.Main.CompileMenuItem.IsEnabled = false;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
-            }
-            GC.Collect();
+            Core.Controller.Worker.CloseAllWorker.RunWorkerAsync();
         }
 
         internal static void CloseFile(Core.Controller.Tab Index)
