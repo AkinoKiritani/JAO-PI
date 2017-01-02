@@ -12,7 +12,8 @@
         {
             Close,
             Rename,
-            Save
+            Save,
+            CloseAll
         }
         public enum StatusBar
         {

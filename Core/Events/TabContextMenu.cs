@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System;
 
 namespace JAO_PI.EventsManager
 {
@@ -45,6 +46,11 @@ namespace JAO_PI.EventsManager
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Save.Uid == SaveItem.Uid);
             Core.Utility.Functions utility = new Core.Utility.Functions();
             utility.SaveTab(Index.TabItem);
+        }
+
+        internal void CloseAllItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            TabControl.CloseAllFiles();
         }
     }
 }

@@ -59,10 +59,10 @@ namespace JAO_PI.EventsManager
                     Functions utility = new Functions();
                     Toggle.SaveOptions(true);
                     Core.Controller.Main.CompileMenuItem.IsEnabled = true;
-                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility   = Visibility.Visible;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Visible;
-                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": 0";
-                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content      = Core.Properties.Resources.Line + ": 0";
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content    = Core.Properties.Resources.Column + ": 1";
                 }
                 stream.Dispose();
             }

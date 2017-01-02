@@ -71,11 +71,12 @@ namespace JAO_PI.Core.Classes
 
             Controller.Main.TabControlList.Add(new Controller.Tab()
             {
-                TabItem = tab,
-                Editor = Editor,
-                Close = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Close] as MenuItem,
-                Rename = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Rename] as MenuItem,
-                Save = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save] as MenuItem
+                TabItem  = tab,
+                Editor   = Editor,
+                Close    = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Close]    as MenuItem,
+                CloseAll = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAll] as MenuItem,
+                Rename   = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Rename]   as MenuItem,
+                Save     = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save]     as MenuItem
             });
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
@@ -95,6 +96,12 @@ namespace JAO_PI.Core.Classes
             CloseItem.Uid = Functions.RandomString(10);
             CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseItem);
+
+            MenuItem CloseAllItem = new MenuItem();
+            CloseAllItem.Header = Core.Resources.ContextMenu.CloseAllItem;
+            CloseAllItem.Uid = Functions.RandomString(10);
+            CloseAllItem.PreviewMouseLeftButtonUp += TabEvents.CloseAllItem_PreviewMouseLeftButtonUp;
+            menu.Items.Add(CloseAllItem);
 
             MenuItem RenameItem = new MenuItem();
             RenameItem.Header = Core.Resources.ContextMenu.RenameItem;
