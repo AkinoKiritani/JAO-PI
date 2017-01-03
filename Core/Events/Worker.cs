@@ -59,6 +59,67 @@ namespace JAO_PI.EventsManager
             else MessageBox.Show(Core.Properties.Resources.NoCompile, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        internal static void CloseAllBut_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Core.Controller.Main.tabControl.Dispatcher.Invoke(new Action(() =>
+            {
+                MenuItem CloseAll_But = e.Argument as MenuItem;
+                Grid grid = null;
+
+                Core.Controller.Tab NoClose = Core.Controller.Main.TabControlList.Find(x => x.CloseAllBut.Uid == CloseAll_But.Uid);
+                
+                ushort index = 0;
+                Core.Controller.Tab Index = null;
+                while (Core.Controller.Main.TabControlList.Count > 0 + index)
+                {
+                    Index = Core.Controller.Main.TabControlList[index];
+                    if (NoClose == Index)
+                    {
+                        index++;
+                        continue;
+                    }
+
+                    Index.Editor.Clear();
+                    grid = Index.TabItem.Content as Grid;
+                    Index.Editor = null;
+                    grid.Children.Remove(Index.Editor);
+                    grid = null;
+                    Core.Controller.Main.TabControlList.Remove(Index);
+
+                    Index.TabItem.ContextMenu.Items.Clear();
+                    Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
+                }
+            }));
+        }
+
+        internal static void CloseAllBut_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            GC.Collect(GC.GetGeneration(Core.Controller.Main.tabControl));
+        }
+
+        internal static void CloseAll_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Core.Controller.Tab Index = null;
+            Grid grid = null;
+            Core.Controller.Main.tabControl.Dispatcher.Invoke(new Action(() =>
+            {
+                while (Core.Controller.Main.TabControlList.Count > 0)
+                {
+                    Index = Core.Controller.Main.TabControlList[0];
+                
+                    Index.Editor.Clear();
+                    grid = Index.TabItem.Content as Grid;
+                    Index.Editor = null;
+                    grid.Children.Remove(Index.Editor);
+                    grid = null;
+                    Core.Controller.Main.TabControlList.Remove(Index);
+
+                    Index.TabItem.ContextMenu.Items.Clear();
+                    Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
+                }                
+            }));
+        }
+
         internal static void CloseAll_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count == 0)
@@ -69,27 +130,7 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
                 Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
             }
-        }
-
-        internal static void CloseAll_DoWork(object sender, DoWorkEventArgs e)
-        {
-            while (Core.Controller.Main.TabControlList.Count > 0)
-            {
-                Core.Controller.Tab Index = Core.Controller.Main.TabControlList[0];
-
-                Core.Controller.Main.tabControl.Dispatcher.Invoke(new Action(() =>
-                {
-                    Index.Editor.Clear();
-                    Grid grid = Index.TabItem.Content as Grid;
-                    Index.Editor = null;
-                    grid.Children.Remove(Index.Editor);
-                    grid = null;
-                    Core.Controller.Main.TabControlList.Remove(Index);
-
-                    Index.TabItem.ContextMenu.Items.Clear();
-                    Core.Controller.Main.tabControl.Items.Remove(Index.TabItem);
-                }));                
-            }
+            GC.Collect(GC.GetGeneration(Core.Controller.Main.tabControl));
         }
 
         internal static void Compiler_Completed(object sender, RunWorkerCompletedEventArgs e)

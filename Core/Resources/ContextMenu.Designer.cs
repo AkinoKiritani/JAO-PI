@@ -61,6 +61,15 @@ namespace JAO_PI.Core.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Close all but this ähnelt.
+        /// </summary>
+        internal static string CloseAllButItem {
+            get {
+                return ResourceManager.GetString("CloseAllButItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Close all ähnelt.
         /// </summary>
         internal static string CloseAllItem {

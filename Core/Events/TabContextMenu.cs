@@ -50,7 +50,12 @@ namespace JAO_PI.EventsManager
 
         internal void CloseAllItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            TabControl.CloseAllFiles();
+            Core.Controller.Worker.CloseAllWorker.RunWorkerAsync();
+        }
+
+        internal void CloseAllButItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Core.Controller.Worker.CloseAllButWorker.RunWorkerAsync(sender);
         }
     }
 }

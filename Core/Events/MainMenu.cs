@@ -73,7 +73,7 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
             {
-                TabControl.CloseAllFiles();
+                Core.Controller.Worker.CloseAllWorker.RunWorkerAsync();
             }
         }
 

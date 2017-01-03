@@ -27,11 +27,6 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        internal static void CloseAllFiles()
-        {
-            Core.Controller.Worker.CloseAllWorker.RunWorkerAsync();
-        }
-
         internal static void CloseFile(Core.Controller.Tab Index)
         {
             if(Index.Editor.Document.FileName.Contains(".JAOnotsaved"))

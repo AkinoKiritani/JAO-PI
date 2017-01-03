@@ -71,12 +71,13 @@ namespace JAO_PI.Core.Classes
 
             Controller.Main.TabControlList.Add(new Controller.Tab()
             {
-                TabItem  = tab,
-                Editor   = Editor,
-                Close    = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Close]    as MenuItem,
-                CloseAll = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAll] as MenuItem,
-                Rename   = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Rename]   as MenuItem,
-                Save     = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save]     as MenuItem
+                TabItem     = tab,
+                Editor      = Editor,
+                Close       = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Close]         as MenuItem,
+                CloseAll    = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAll]      as MenuItem,
+                CloseAllBut = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAllBut]   as MenuItem,
+                Rename      = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Rename]        as MenuItem,
+                Save        = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save]          as MenuItem
             });
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
@@ -102,6 +103,12 @@ namespace JAO_PI.Core.Classes
             CloseAllItem.Uid = Functions.RandomString(10);
             CloseAllItem.PreviewMouseLeftButtonUp += TabEvents.CloseAllItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseAllItem);
+
+            MenuItem CloseAllButItem = new MenuItem();
+            CloseAllButItem.Header = Core.Resources.ContextMenu.CloseAllButItem;
+            CloseAllButItem.Uid = Functions.RandomString(10);
+            CloseAllButItem.PreviewMouseLeftButtonUp += TabEvents.CloseAllButItem_PreviewMouseLeftButtonUp;
+            menu.Items.Add(CloseAllButItem);
 
             MenuItem RenameItem = new MenuItem();
             RenameItem.Header = Core.Resources.ContextMenu.RenameItem;

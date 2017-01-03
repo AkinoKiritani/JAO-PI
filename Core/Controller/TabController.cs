@@ -9,6 +9,7 @@ namespace JAO_PI.Core.Controller
         public TextEditor   Editor      { get; set; }
         public MenuItem     Close       { get; set; }
         public MenuItem     CloseAll    { get; set; }
+        public MenuItem     CloseAllBut { get; set; }
         public MenuItem     Rename      { get; set; }
         public MenuItem     Save        { get; set; }
     }
