@@ -189,6 +189,9 @@ Erstelle oder Öffne eine Datei
   <data name="Main" xml:space="preserve">
     <value>Hauptmenü</value>
   </data>
+  <data name="MatchCase" xml:space="preserve">
+    <value>Groß/Kleinschreibung</value>
+  </data>
   <data name="MaxGoToLocation" xml:space="preserve">
     <value>Insgesamt in der Datei</value>
   </data>

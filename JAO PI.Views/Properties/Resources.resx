@@ -195,6 +195,9 @@ by using Main in the Header.</value>
   <data name="Main" xml:space="preserve">
     <value>Main</value>
   </data>
+  <data name="MatchCase" xml:space="preserve">
+    <value>Match case</value>
+  </data>
   <data name="MaxGoToLocation" xml:space="preserve">
     <value>Max line you can go to:</value>
   </data>

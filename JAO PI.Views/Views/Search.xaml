@@ -14,6 +14,8 @@
                     <Button x:Name="Do_Search" Content="{x:Static p:Resources.Search}" HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top" Width="89" Height="23" />
                     <Button x:Name="Do_Count" Content="{x:Static p:Resources.Count}" HorizontalAlignment="Left" Margin="262,38,0,0" VerticalAlignment="Top" Width="89" Height="23" />
                     <Button x:Name="Cancel" Content="{x:Static p:Resources.CloseSearch}" HorizontalAlignment="Left" Margin="262,91,0,0" VerticalAlignment="Top" Width="89" Height="22" />
+
+                    <CheckBox x:Name="MatchCase" Content="{x:Static p:Resources.MatchCase}" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <!--
