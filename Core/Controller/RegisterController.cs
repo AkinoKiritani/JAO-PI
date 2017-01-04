@@ -121,5 +121,15 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
+
+        public static bool MatchCase(CheckBox matchCase)
+        {
+            if (Main.MatchCase == null)
+            {
+                Main.MatchCase = matchCase;
+                return true;
+            }
+            return false;
+        }
     }
 }

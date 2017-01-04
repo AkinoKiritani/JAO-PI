@@ -35,5 +35,6 @@ namespace JAO_PI.Core.Controller
         public static string CurrentSearch = null;
         public static int CurrentSearchIndex { get; set; }
         public static TextBlock SearchInfo = null;
+        public static CheckBox MatchCase = null;
     }
 }

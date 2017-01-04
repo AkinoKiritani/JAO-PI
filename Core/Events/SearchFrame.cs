@@ -44,7 +44,7 @@ namespace JAO_PI.EventsManager
                     if (Main.CurrentSearch != null)
                     {
                         Core.Classes.Find find = new Core.Classes.Find();
-                        while ((find = utility.FindString(Main.CurrentEditor, Main.CurrentSearch, Main.LastIndex, true)) != null)
+                        while ((find = utility.FindString(Main.CurrentEditor, Main.CurrentSearch, Main.LastIndex, !(Main.MatchCase.IsChecked.Value))) != null)
                         {
                             if (find.Index == -1) break;
                             Main.LastIndex = find.Index + Main.CurrentSearch.Length;
@@ -101,7 +101,7 @@ namespace JAO_PI.EventsManager
                     if (Main.CurrentSearch != null)
                     {
                         Core.Classes.Find find = new Core.Classes.Find();
-                        while ((find = utility.FindString(Main.CurrentEditor, Main.CurrentSearch, Main.LastIndex, true)) != null)
+                        while ((find = utility.FindString(Main.CurrentEditor, Main.CurrentSearch, Main.LastIndex, !(Main.MatchCase.IsChecked.Value))) != null)
                         {
                             if (find.Index == -1) break;
                             Main.LastIndex = find.Index + Main.CurrentSearch.Length;

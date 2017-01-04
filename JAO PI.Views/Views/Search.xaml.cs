@@ -16,6 +16,7 @@ namespace JAO_PI.Views
             // Register
             Core.Controller.Register.SearchBox(SearchBox);
             Core.Controller.Register.SearchInfo(SearchInfo);
+            Core.Controller.Register.MatchCase(MatchCase);
 
             // Events
             Cancel.Click += SearchEvents.Cancel_Click;
