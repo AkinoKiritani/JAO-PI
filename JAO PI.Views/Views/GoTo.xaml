@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JAO_PI.Views"
         xmlns:p="clr-namespace:JAO_PI.Views.Properties"
-        Title="{x:Static p:Resources.GoTo}" Height="165" Width="415" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="{x:Static p:Resources.GoTo}" Height="165" Width="415" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
     <Grid>
         <RadioButton x:Name="Line" Content="{x:Static p:Resources.Line}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsChecked="True" GroupName="GoToButtons"/>
         <RadioButton x:Name="Offset" Content="{x:Static p:Resources.Offset}" HorizontalAlignment="Left" Margin="161,10,0,0" VerticalAlignment="Top" GroupName="GoToButtons"/>
