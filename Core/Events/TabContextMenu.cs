@@ -1,8 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using JAO_PI.Core.Utility;
+using Microsoft.Win32;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System;
 
 namespace JAO_PI.EventsManager
 {
@@ -23,20 +23,21 @@ namespace JAO_PI.EventsManager
             saveFileDialog.OverwritePrompt = true;
             saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
             saveFileDialog.Title = Core.Properties.Resources.SaveFile;
-            saveFileDialog.FileName = Index.TabItem.Header.ToString();
+            Functions utility = new Functions();
+            string HeaderText = utility.GetTabHeaderText(Index.TabItem);
+            saveFileDialog.FileName = HeaderText;
             if (saveFileDialog.ShowDialog() == true)
             {
                 System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
                 FileToSave.Append(Index.TabItem.Uid);
-                FileToSave.Append(Index.TabItem.Header);
+                FileToSave.Append(HeaderText);
                 string file = FileToSave.ToString();
                 if (File.Exists(file))
                 {
                     File.Delete(file);
                 }
-                Core.Utility.Functions utility = new Core.Utility.Functions();
                 utility.SaveTab(Index.TabItem, saveFileDialog);
-                Index.TabItem.Header = saveFileDialog.SafeFileName;
+                utility.UpdateTabHeaderText(Index.TabItem, saveFileDialog.SafeFileName);
             }
         }
 

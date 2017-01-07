@@ -76,9 +76,10 @@ namespace JAO_PI.Core.Utility
                 EventsManager.Editor EditorEvents = new EventsManager.Editor();
                 SaveEditor.Document.Changed += EditorEvents.Document_Changed;
 
-                StringBuilder FileToSave = new System.Text.StringBuilder();
-                FileToSave.Append(SaveTab.Uid);
-                FileToSave.Append(SaveTab.Header);
+                Functions utility = new Functions();
+                StringBuilder FileToSave = new StringBuilder();
+                FileToSave.Append(SaveTab.Uid);                
+                FileToSave.Append(utility.GetTabHeaderText(SaveTab));
 
                 if (File.Exists(FileToSave.ToString()))
                 {
@@ -99,7 +100,7 @@ namespace JAO_PI.Core.Utility
                     {
                         TabItem Tab = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
                         this.SaveTab(Tab, saveFileDialog);
-                        Tab.Header = saveFileDialog.SafeFileName;
+                        UpdateTabHeaderText(Tab, saveFileDialog.SafeFileName);
                     }
                 }
             }
@@ -145,6 +146,27 @@ namespace JAO_PI.Core.Utility
                 return true;
             }
             return false;
+        }
+        public bool UpdateTabHeaderText(TabItem tab, string newHeaderText)
+        {
+            if (tab != null)
+            {
+                StackPanel sp = tab.Header as StackPanel;
+                TextBlock tb = sp.Children[1] as TextBlock;
+                tb.Text = newHeaderText;
+                return true;
+            }
+            return false;
+        }
+        public string GetTabHeaderText(TabItem tab)
+        {
+            if (tab != null)
+            {
+                StackPanel sp = tab.Header as StackPanel;
+                TextBlock tb = sp.Children[1] as TextBlock;
+                return tb.Text;
+            }
+            return null;
         }
     }
 }

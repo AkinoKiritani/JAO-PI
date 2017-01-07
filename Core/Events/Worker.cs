@@ -20,6 +20,7 @@ namespace JAO_PI.EventsManager
             {
                 try
                 {
+                    Core.Utility.Functions utility = new Core.Utility.Functions();
                     Process Compiler = new Process();
                     ProcessStartInfo StartInfo = new ProcessStartInfo();
 
@@ -30,7 +31,7 @@ namespace JAO_PI.EventsManager
                     Core.Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
                     {
                         itemToCompile = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
-                        Header = itemToCompile.Header.ToString();
+                        Header = utility.GetTabHeaderText(itemToCompile);
                         uID = itemToCompile.Uid;
                     }));
 
@@ -158,6 +159,7 @@ namespace JAO_PI.EventsManager
             {                    
                 if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
                 {
+                    Core.Utility.Functions utility = new Core.Utility.Functions();
                     TabItem itemToSave = null;
                     Grid SaveGrid = null;
                     TextEditor SaveEditor = null;
@@ -168,7 +170,7 @@ namespace JAO_PI.EventsManager
                         itemToSave = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
                         SaveGrid = itemToSave.Content as Grid;
                         SaveEditor = SaveGrid.Children[0] as TextEditor;
-                        Header = itemToSave.Header.ToString();
+                        Header = utility.GetTabHeaderText(itemToSave);
                         uID = itemToSave.Uid;
                     }));
 

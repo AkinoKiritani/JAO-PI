@@ -81,16 +81,18 @@ namespace JAO_PI.EventsManager
                     saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
                     saveFileDialog.Title = Core.Properties.Resources.SaveFile;
                     Functions utility = new Functions();
+                    string HeaderText = null;
                     for (int i = 0; i != notSavedList.Count; i++)
                     {
+                        HeaderText = utility.GetTabHeaderText(notSavedList[i].TabItem);
                         FileToSave.Clear();
                         FileToSave.Append(notSavedList[i].TabItem.Uid);
-                        FileToSave.Append(notSavedList[i].TabItem.Header);
+                        FileToSave.Append(HeaderText);
                         string[] arg = FileToSave.ToString().Split('\\');
                         saveFileDialog.InitialDirectory = notSavedList[i].TabItem.Uid;
-                        saveFileDialog.FileName = notSavedList[i].TabItem.Header.ToString();
+                        saveFileDialog.FileName = HeaderText;
 
-                        if (notSavedList[i].TabItem.Header.Equals(arg[arg.Length - 1]))
+                        if (HeaderText.Equals(arg[arg.Length - 1]))
                         {
                             if (File.Exists(FileToSave.ToString()))
                             {

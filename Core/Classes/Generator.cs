@@ -1,11 +1,13 @@
 ﻿using ICSharpCode.AvalonEdit;
 using JAO_PI.Core.Utility;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace JAO_PI.Core.Classes
 {
@@ -55,10 +57,10 @@ namespace JAO_PI.Core.Classes
             }
             utility.LoadSyntax(Editor, syntaxPath);
             Grid grid = new Grid();
-            grid.Children.Add(Editor);
-            
+            grid.Children.Add(Editor);        
+
             TabItem tab = new TabItem();
-            tab.Header = header;
+            tab.Header = GenerateTabHeader(header, Properties.Resources.save_text);
             tab.Content = grid;
             
             if (path.Contains(header) == true)
@@ -73,6 +75,7 @@ namespace JAO_PI.Core.Classes
             {
                 TabItem     = tab,
                 Editor      = Editor,
+                HeaderPanel = tab.Header,
                 Close       = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Close]         as MenuItem,
                 CloseAll    = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAll]      as MenuItem,
                 CloseAllBut = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAllBut]   as MenuItem,
@@ -123,6 +126,35 @@ namespace JAO_PI.Core.Classes
             menu.Items.Add(SaveItem);
 
             return menu;
+        }
+
+        private StackPanel GenerateTabHeader(string Header, System.Drawing.Bitmap Icon)
+        {
+            StackPanel stack = new StackPanel();
+            stack.Orientation = Orientation.Horizontal;
+            
+            // Load Image 
+            Stream ImageStream = new MemoryStream();
+            Icon.Save(ImageStream, ImageFormat.Png);
+            
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.StreamSource = ImageStream;
+            bitmap.EndInit();
+            
+            Image SaveIcon = new Image();
+            SaveIcon.Source = bitmap;
+            SaveIcon.Width = 22;
+            SaveIcon.Height = 18;
+            SaveIcon.HorizontalAlignment = HorizontalAlignment.Left;
+
+            // Add Image and Textblock to the StackPanel
+            stack.Children.Add(SaveIcon);
+            stack.Children.Add(new TextBlock()
+            {
+                Text = Header
+            });
+            return stack;
         }
     }
 }

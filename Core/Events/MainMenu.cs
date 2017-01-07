@@ -37,9 +37,10 @@ namespace JAO_PI.EventsManager
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = Core.Properties.Resources.FileFilter;
             openFileDialog.Title = Core.Properties.Resources.OpenFile;
+            Functions utility = new Functions();
             if (openFileDialog.ShowDialog() == true)
             {
-                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => (x.TabItem.Uid + x.TabItem.Header) == openFileDialog.FileName);
+                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => (x.TabItem.Uid + utility.GetTabHeaderText(x.TabItem)) == openFileDialog.FileName);
                 if(Index != null)
                 {
                     return;
@@ -56,7 +57,6 @@ namespace JAO_PI.EventsManager
 
                 if (Core.Controller.Main.tabControl.Items.Count == 1)
                 {
-                    Functions utility = new Functions();
                     Toggle.SaveOptions(true);
                     Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                     Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility   = Visibility.Visible;
@@ -105,7 +105,7 @@ namespace JAO_PI.EventsManager
                     TabItem Tab = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
                     Functions utility = new Functions();
                     utility.SaveTab(Tab, saveFileDialog);
-                    Tab.Header = saveFileDialog.SafeFileName;
+                    utility.UpdateTabHeaderText(Tab, saveFileDialog.SafeFileName);
                 }
             }
         }
