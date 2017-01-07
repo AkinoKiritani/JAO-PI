@@ -84,7 +84,6 @@ namespace JAO_PI.Core.Utility
 
                     SaveEditor = null;
                     SaveGrid = null;
-                    SaveTab = null;
                     FileToSave = null;
                 }
                 else
@@ -112,7 +111,8 @@ namespace JAO_PI.Core.Utility
                 SaveEditor.Save(saveFileDialog.FileName);
                 SaveEditor = null;
                 SaveGrid = null;
-                SaveTab = null;
+
+                Toggle.UnsavedMark(SaveTab, false);
             }
         }
         public bool SetSearchInfo(string text)
