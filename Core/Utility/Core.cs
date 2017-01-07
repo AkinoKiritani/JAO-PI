@@ -98,7 +98,9 @@ namespace JAO_PI.Core.Utility
                     saveFileDialog.Title = Core.Properties.Resources.SaveFile;
                     if (saveFileDialog.ShowDialog() == true)
                     {
-                        UpdateTabHeaderText(SaveTab, saveFileDialog.SafeFileName);
+                        TabItem Tab = Controller.Main.tabControl.Items[Controller.Main.tabControl.SelectedIndex] as TabItem;
+                        this.SaveTab(Tab, saveFileDialog);
+                        UpdateTabHeaderText(Tab, saveFileDialog.SafeFileName);
                     }
                 }
                 Toggle.UnsavedMark(SaveTab, false);
