@@ -10,11 +10,9 @@ namespace JAO_PI.EventsManager
         internal void Document_Changed(object sender, DocumentChangeEventArgs e)
         {
             TextDocument Document = sender as TextDocument;
-            
             if (Document.FileName.Contains(".JAOsaved"))
             {
                 Document.FileName = Document.FileName.Replace(".JAOsaved", ".JAOnotsaved");
-                Document.Changed -= Document_Changed;
 
                 Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Editor.Document == Document);
                 Core.Utility.Toggle.UnsavedMark(Index.TabItem, true);
