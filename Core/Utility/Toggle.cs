@@ -27,5 +27,21 @@ namespace JAO_PI.Core.Utility
                 Controller.Main.Empty_Message.IsEnabled = true;
             }
         }
+        public static void UnsavedMark(TabItem tab, bool toggle)
+        {
+            if (tab != null)
+            {
+                StackPanel sp = tab.Header as StackPanel;
+                TextBlock tb = sp.Children[2] as TextBlock;
+                if(toggle)
+                {
+                    tb.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    tb.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
     }
 }

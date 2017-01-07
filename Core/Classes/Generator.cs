@@ -154,6 +154,12 @@ namespace JAO_PI.Core.Classes
             {
                 Text = Header
             });
+            // Add "unsaved mark" to the StackPanel
+            stack.Children.Add(new TextBlock()
+            {
+                Text = " *",
+                Visibility = Visibility.Collapsed
+            });
             return stack;
         }
     }

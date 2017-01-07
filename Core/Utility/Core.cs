@@ -72,7 +72,7 @@ namespace JAO_PI.Core.Utility
                 {
                     SaveEditor.Document.FileName = SaveEditor.Document.FileName.Replace(".JAOnotsaved", ".JAOsaved");
                 }
-
+                
                 EventsManager.Editor EditorEvents = new EventsManager.Editor();
                 SaveEditor.Document.Changed += EditorEvents.Document_Changed;
 
@@ -103,6 +103,7 @@ namespace JAO_PI.Core.Utility
                         UpdateTabHeaderText(Tab, saveFileDialog.SafeFileName);
                     }
                 }
+                Toggle.UnsavedMark(SaveTab, false);
             }
         }
         public void SaveTab(TabItem SaveTab, SaveFileDialog saveFileDialog)
