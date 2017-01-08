@@ -15,8 +15,7 @@ namespace JAO_PI.Views
 
         public Main()
         {
-
-            Core.Controller.Register.Frames(new Window[] { this, new Search(), new GoTo() });
+            Core.Controller.Register.Frames(new Window[] { this, new Search(), new GoTo(), new Credits() });
             Worker = new Core.Controller.Worker();
             FrameEvents = new EventsManager.MainFrame();
             TabControllEvents = new EventsManager.TabControl();
@@ -84,6 +83,13 @@ namespace JAO_PI.Views
 
             Compile.Click       += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
+
+            //About
+            RoutedCommand AboutCmd = new RoutedCommand();
+            AboutCmd.InputGestures.Add(new KeyGesture(Key.F1));
+            CommandBindings.Add(new CommandBinding(AboutCmd, MenuEvents.About_Click));
+
+            About.Click += MenuEvents.About_Click;
         }
     }
 }

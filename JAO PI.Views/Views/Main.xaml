@@ -78,6 +78,7 @@
                     <MenuItem x:Name="Compile" Header="{x:Static p:Resources.Compile}" IsEnabled="False" />
                     <MenuItem x:Name="Compiler_Path" Header="{x:Static p:Resources.CompilePath}" />
                 </MenuItem>
+                <MenuItem Grid.Column="3" x:Name="About" Header="{x:Static p:Resources.About}" />
             </Menu>
         </StatusBar>
 

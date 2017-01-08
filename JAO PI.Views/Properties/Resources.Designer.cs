@@ -61,6 +61,24 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About ähnelt.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Author: Nils Peters ähnelt.
+        /// </summary>
+        public static string Author {
+            get {
+                return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Go ! ähnelt.
         /// </summary>
         public static string Button_ToGo {
@@ -262,11 +280,38 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die JAO PI Icon by: Hansjörg Malthaner ähnelt.
+        /// </summary>
+        public static string IconBy {
+            get {
+                return ResourceManager.GetString("IconBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die http://opengameart.org/users/varkalandar ähnelt.
+        /// </summary>
+        public static string IconByWebsite {
+            get {
+                return ResourceManager.GetString("IconByWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Just another opensource Pawn IDE ähnelt.
         /// </summary>
         public static string JAOPI {
             get {
                 return ResourceManager.GetString("JAOPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Just another opensource Pawn IDE 0.2 ähnelt.
+        /// </summary>
+        public static string JAOPI_Version {
+            get {
+                return ResourceManager.GetString("JAOPI_Version", resourceCulture);
             }
         }
         
@@ -343,6 +388,16 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap pawn {
+            get {
+                object obj = ResourceManager.GetObject("pawn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
         /// </summary>
         public static string Save {
@@ -357,6 +412,24 @@ namespace JAO_PI.Views.Properties {
         public static string SaveAs {
             get {
                 return ResourceManager.GetString("SaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SaveIcon by: Bojidar Marinov.CC0 ähnelt.
+        /// </summary>
+        public static string SaveIconBy {
+            get {
+                return ResourceManager.GetString("SaveIconBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die http://opengameart.org/users/bojidar-bg ähnelt.
+        /// </summary>
+        public static string SaveIconByWebsite {
+            get {
+                return ResourceManager.GetString("SaveIconByWebsite", resourceCulture);
             }
         }
         
@@ -393,6 +466,15 @@ namespace JAO_PI.Views.Properties {
         public static string Undo {
             get {
                 return ResourceManager.GetString("Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Website: ähnelt.
+        /// </summary>
+        public static string Website {
+            get {
+                return ResourceManager.GetString("Website", resourceCulture);
             }
         }
     }

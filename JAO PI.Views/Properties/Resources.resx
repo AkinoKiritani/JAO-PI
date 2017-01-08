@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author: Nils Peters</value>
+  </data>
   <data name="Button_ToGo" xml:space="preserve">
     <value>Go !</value>
   </data>
@@ -186,8 +192,17 @@ by using Main in the Header.</value>
   <data name="GoToLocation" xml:space="preserve">
     <value>You are here:</value>
   </data>
+  <data name="IconBy" xml:space="preserve">
+    <value>JAO PI Icon by: Hansjörg Malthaner</value>
+  </data>
+  <data name="IconByWebsite" xml:space="preserve">
+    <value>http://opengameart.org/users/varkalandar</value>
+  </data>
   <data name="JAOPI" xml:space="preserve">
     <value>Just another opensource Pawn IDE</value>
+  </data>
+  <data name="JAOPI_Version" xml:space="preserve">
+    <value>Just another opensource Pawn IDE 0.2</value>
   </data>
   <data name="Line" xml:space="preserve">
     <value>Line</value>
@@ -213,11 +228,21 @@ by using Main in the Header.</value>
   <data name="Paste" xml:space="preserve">
     <value>Paste</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pawn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pawn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save As</value>
+  </data>
+  <data name="SaveIconBy" xml:space="preserve">
+    <value>SaveIcon by: Bojidar Marinov.CC0</value>
+  </data>
+  <data name="SaveIconByWebsite" xml:space="preserve">
+    <value>http://opengameart.org/users/bojidar-bg</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -230,5 +255,8 @@ by using Main in the Header.</value>
   </data>
   <data name="Undo" xml:space="preserve">
     <value>Undo</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Website:</value>
   </data>
 </root>

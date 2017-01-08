@@ -6,7 +6,8 @@
         {
             MainFrame,
             SearchFrame,
-            GoToFrame
+            GoToFrame,
+            CreditsFrame
         }
         public enum ContextMenuItems
         {

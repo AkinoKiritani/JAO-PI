@@ -84,6 +84,12 @@ namespace JAO_PI.EventsManager
                 TabControl.CloseFile(Core.Controller.Main.TabControlList.Find(x => x.Editor.Uid == Core.Controller.Main.CurrentEditor.Uid));
             }
         }
+
+        public void About_Click(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Main.Frames[(int)Structures.Frames.CreditsFrame].Visibility = Visibility.Visible;
+        }
+
         public void Save_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
