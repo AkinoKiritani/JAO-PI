@@ -8,18 +8,12 @@ namespace JAO_PI.Views
     /// </summary>
     public partial class Main : Window
     {
-        private EventsManager.MainFrame FrameEvents;
-        private EventsManager.TabControl TabControllEvents;
-        private EventsManager.MainMenu MenuEvents;
-        private Core.Controller.Worker Worker = null;
-
         public Main()
         {
             Core.Controller.Register.Frames(new Window[] { this, new Search(), new GoTo(), new Credits() });
-            Worker = new Core.Controller.Worker();
-            FrameEvents = new EventsManager.MainFrame();
-            TabControllEvents = new EventsManager.TabControl();
-            MenuEvents = new EventsManager.MainMenu();
+            EventsManager.MainFrame FrameEvents = new EventsManager.MainFrame();
+            EventsManager.TabControl TabControllEvents = new EventsManager.TabControl();
+            EventsManager.MainMenu MenuEvents = new EventsManager.MainMenu();
 
             InitializeComponent();
             
@@ -30,18 +24,14 @@ namespace JAO_PI.Views
             Core.Controller.Register.Edit(this.Edit);
             Core.Controller.Register.StatusBar(this.Line, this.Column);
 
-            RoutedCommand CompileCmd = new RoutedCommand();
-            CompileCmd.InputGestures.Add(new KeyGesture(Key.F5));
-            CommandBindings.Add(new CommandBinding(CompileCmd, MenuEvents.Compile));
-
-            //MainFrame
+            // MainFrame
             this.Loaded         += FrameEvents.MainFrame_Loaded;
             this.Closed         += FrameEvents.MainFrame_Closed;
             this.Closing        += FrameEvents.MainFrame_Closing;
 
             tabControl.SelectionChanged += TabControllEvents.SelectionChanged;
 
-            //Data
+            // Data
             Create_File.Click   += MenuEvents.Create_File_Click;
             Open_File.Click     += MenuEvents.Open_File_Click;
             Close_File.Click    += MenuEvents.Close_File_Click;
@@ -58,14 +48,13 @@ namespace JAO_PI.Views
             NewFileCmd.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(NewFileCmd, MenuEvents.Create_File_Click));
 
-            //Edit
+            // Edit
             Undo.Click          += MenuEvents.Undo_Click;
             Cut.Click           += MenuEvents.Cut_Click;
             Copy.Click          += MenuEvents.Copy_Click;
             Paste.Click         += MenuEvents.Paste_Click;
-            Find.Click          += MenuEvents.Find_Click;
-            Go_To.Click         += MenuEvents.GoTo_Click;
 
+            // Find | GoTo
             RoutedCommand FindCmd = new RoutedCommand();
             FindCmd.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(FindCmd, MenuEvents.Search));
@@ -78,13 +67,20 @@ namespace JAO_PI.Views
             GoToCmd.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(GoToCmd, MenuEvents.GoTo));
 
-            //Compiler
+            Find.Click += MenuEvents.Find_Click;
+            Go_To.Click += MenuEvents.GoTo_Click;
+
+            // Compiler
+            RoutedCommand CompileCmd = new RoutedCommand();
+            CompileCmd.InputGestures.Add(new KeyGesture(Key.F5));
+            CommandBindings.Add(new CommandBinding(CompileCmd, MenuEvents.Compile));
+
             Core.Controller.Register.CompileMenuItem(this.Compile);
 
             Compile.Click       += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
 
-            //About
+            // About
             RoutedCommand AboutCmd = new RoutedCommand();
             AboutCmd.InputGestures.Add(new KeyGesture(Key.F1));
             CommandBindings.Add(new CommandBinding(AboutCmd, MenuEvents.About_Click));
