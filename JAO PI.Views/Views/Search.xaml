@@ -4,25 +4,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JAO_PI.Views"
         xmlns:p="clr-namespace:JAO_PI.Views.Properties"
-        Title="{x:Static p:Resources.Search}" Height="214.5" Width="385" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+        Title="{x:Static p:Resources.SearchReplace}" Height="214.5" Width="385" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TabItem Header="Suchen">
+        <TabControl x:Name="SearchControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabItem x:Name="SearchTab" Header="{x:Static p:Resources.Search}">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,25">
                     <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="23" Margin="90,10,0,0" VerticalAlignment="Top" Width="160" VerticalContentAlignment="Center" />
                     <Label Content="{x:Static p:Resources.FindWhat}" Margin="10,10,0,0" Height="23" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" FlowDirection="RightToLeft" Width="80" />
                     <Button x:Name="Do_Search" Content="{x:Static p:Resources.Search}" HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top" Width="89" Height="23" />
                     <Button x:Name="Do_Count" Content="{x:Static p:Resources.Count}" HorizontalAlignment="Left" Margin="262,38,0,0" VerticalAlignment="Top" Width="89" Height="23" />
-                    <Button x:Name="Cancel" Content="{x:Static p:Resources.CloseSearch}" HorizontalAlignment="Left" Margin="262,91,0,0" VerticalAlignment="Top" Width="89" Height="22" />
+                    <Button x:Name="Cancel" Content="{x:Static p:Resources.CloseSearch}" HorizontalAlignment="Left" Margin="262,94,0,0" VerticalAlignment="Top" Width="89" Height="22" />
 
                     <CheckBox x:Name="MatchCase" Content="{x:Static p:Resources.MatchCase}" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <!--
-            <TabItem Header="Ersetzen">
-                <Grid Background="#FFE5E5E5"/>
+
+            <TabItem x:Name="Replace" Header="{x:Static p:Resources.Replace}">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="SearchBox_Replace" HorizontalAlignment="Left" Height="23" Margin="110,10,0,0" VerticalAlignment="Top" Width="140" VerticalContentAlignment="Center" />
+                    <Label Content="{x:Static p:Resources.FindWhat}" Margin="25,10,0,0" Height="23" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" FlowDirection="RightToLeft" Width="80" />
+
+                    <TextBox x:Name="ReplaceBox" HorizontalAlignment="Left" Height="23" Margin="110,38,0,0" VerticalAlignment="Top" Width="140" VerticalContentAlignment="Center" />
+                    <Label Content="{x:Static p:Resources.ReplaceWith}" Margin="18,38,0,0" Height="23" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" FlowDirection="RightToLeft" Width="87" />
+
+                    <Button x:Name="Do_Search_Replace" Content="{x:Static p:Resources.Search}" HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top" Width="89" Height="23" />
+                    <Button x:Name="Do_Replace" Content="{x:Static p:Resources.Replace}" HorizontalAlignment="Left" Margin="262,38,0,0" VerticalAlignment="Top" Width="89" Height="23" />
+                    <Button x:Name="Do_Replace_All" Content="{x:Static p:Resources.ReplaceAll}" HorizontalAlignment="Left" Margin="262,66,0,0" VerticalAlignment="Top" Width="89" Height="23" />
+
+                    <Button x:Name="Cancel_Replace" Content="{x:Static p:Resources.CloseSearch}" HorizontalAlignment="Left" Margin="262,94,0,0" VerticalAlignment="Top" Width="89" Height="22" />
+                </Grid>
             </TabItem>
-            -->
         </TabControl>
         <TextBlock x:Name="SearchInfo" HorizontalAlignment="Left" Margin="10,0,0,7" TextWrapping="Wrap" VerticalAlignment="Bottom" Visibility="Collapsed" />
     </Grid>

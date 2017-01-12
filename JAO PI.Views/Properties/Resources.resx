@@ -259,4 +259,16 @@ by using Main in the Header.</value>
   <data name="Website" xml:space="preserve">
     <value>Website:</value>
   </data>
+  <data name="ReplaceWith" xml:space="preserve">
+    <value>Replace with</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="ReplaceAll" xml:space="preserve">
+    <value>Replace all</value>
+  </data>
+  <data name="SearchReplace" xml:space="preserve">
+    <value>Search &amp; Replace</value>
+  </data>
 </root>

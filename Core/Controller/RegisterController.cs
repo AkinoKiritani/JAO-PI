@@ -35,6 +35,27 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
+
+        public static bool ReplaceBox(TextBox replaceBox)
+        {
+            if (Search.ReplaceBox == null)
+            {
+                Search.ReplaceBox = replaceBox;
+                return true;
+            }
+            return false;
+        }
+
+        public static bool SearchBox_Replace(TextBox searchBox_Replace)
+        {
+            if (Search.SearchBox_Replace == null)
+            {
+                Search.SearchBox_Replace = searchBox_Replace;
+                return true;
+            }
+            return false;
+        }
+
         public static bool Frames(Window[] Frame)
         {
             if (Main.Frames.Count == 0)
@@ -66,18 +87,27 @@ namespace JAO_PI.Core.Controller
         }
         public static bool SearchBox(TextBox searchBox)
         {
-            if (Main.SearchBox == null)
+            if (Search.SearchBox == null)
             {
-                Main.SearchBox = searchBox;
+                Search.SearchBox = searchBox;
                 return true;
             }
             return false;
         }
         public static bool SearchInfo(TextBlock searchInfo)
         {
-            if (Main.SearchInfo == null)
+            if (Search.SearchInfo == null)
             {
-                Main.SearchInfo = searchInfo;
+                Search.SearchInfo = searchInfo;
+                return true;
+            }
+            return false;
+        }
+        public static bool SearchControl(TabControl searchControl)
+        {
+            if (Search.SearchControl == null)
+            {
+                Search.SearchControl = searchControl;
                 return true;
             }
             return false;
@@ -124,9 +154,9 @@ namespace JAO_PI.Core.Controller
 
         public static bool MatchCase(CheckBox matchCase)
         {
-            if (Main.MatchCase == null)
+            if (Search.MatchCase == null)
             {
-                Main.MatchCase = matchCase;
+                Search.MatchCase = matchCase;
                 return true;
             }
             return false;

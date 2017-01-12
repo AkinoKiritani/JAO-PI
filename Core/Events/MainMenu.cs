@@ -161,11 +161,11 @@ namespace JAO_PI.EventsManager
         }
         public void FindNext(object sender, ExecutedRoutedEventArgs e)
         {
-            Core.Controller.Main.CurrentSearchIndex++;
-            if (Core.Controller.Main.CurrentSearchIndex < Find.SearchIndex.Count)
+            Core.Controller.Search.CurrentSearchIndex++;
+            if (Core.Controller.Search.CurrentSearchIndex < Find.SearchIndex.Count)
             {
-                Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex]).LineNumber);
-                Core.Controller.Main.CurrentEditor.Select((Find.SearchIndex[Core.Controller.Main.CurrentSearchIndex] - (Core.Controller.Main.CurrentSearch.Length + 1)), Core.Controller.Main.CurrentSearch.Length);
+                Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Core.Controller.Search.CurrentSearchIndex]).LineNumber);
+                Core.Controller.Main.CurrentEditor.Select((Find.SearchIndex[Core.Controller.Search.CurrentSearchIndex] - (Core.Controller.Search.CurrentSearch.Length + 1)), Core.Controller.Search.CurrentSearch.Length);
             }
             else
             {

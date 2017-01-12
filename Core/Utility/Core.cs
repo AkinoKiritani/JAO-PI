@@ -119,11 +119,11 @@ namespace JAO_PI.Core.Utility
         {
             if (Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Visible)
             {
-                if (Controller.Main.SearchInfo.Visibility == Visibility.Collapsed)
+                if (Controller.Search.SearchInfo.Visibility == Visibility.Collapsed)
                 {
-                    Controller.Main.SearchInfo.Visibility = Visibility.Visible;
+                    Controller.Search.SearchInfo.Visibility = Visibility.Visible;
                 }
-                Controller.Main.SearchInfo.Text = text;
+                Controller.Search.SearchInfo.Text = text;
                 return true;
             }
             return false;
@@ -132,11 +132,11 @@ namespace JAO_PI.Core.Utility
         {
             if (Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Visible)
             {
-                if (Controller.Main.SearchInfo.Visibility == Visibility.Collapsed)
+                if (Controller.Search.SearchInfo.Visibility == Visibility.Collapsed)
                 {
-                    Controller.Main.SearchInfo.Visibility = Visibility.Visible;
+                    Controller.Search.SearchInfo.Visibility = Visibility.Visible;
                 }
-                Controller.Main.SearchInfo.Text = text.ToString();
+                Controller.Search.SearchInfo.Text = text.ToString();
                 return true;
             }
             return false;

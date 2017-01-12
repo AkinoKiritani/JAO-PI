@@ -28,13 +28,6 @@ namespace JAO_PI.Core.Controller
         public static Label LineLabel = null;
         public static Label MaxLineLabel = null;
         public static RadioButton Line = null;
-        public static RadioButton Offset = null;
-
-        //Search
-        public static TextBox SearchBox = null;
-        public static string CurrentSearch = null;
-        public static int CurrentSearchIndex { get; set; }
-        public static TextBlock SearchInfo = null;
-        public static CheckBox MatchCase = null;
+        public static RadioButton Offset = null;        
     }
 }
