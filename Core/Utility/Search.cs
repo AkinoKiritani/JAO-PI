@@ -3,6 +3,7 @@ using JAO_PI.Core.Classes;
 using System.Globalization;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace JAO_PI.Core.Utility
 {
@@ -48,6 +49,118 @@ namespace JAO_PI.Core.Utility
                 return true;
             }
             return false;
+        }
+
+        public static void DoSearch(TextBox SearchBox)
+        {
+            if (Controller.Search.SearchBox != null)
+            {
+                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(Controller.Search.SearchBox.Text) == true)
+                {
+                    Controller.Search.CurrentSearchIndex++;
+                    if (Controller.Search.CurrentSearchIndex < Find.SearchIndex.Count)
+                    {
+                        Controller.Main.CurrentEditor.ScrollToLine(Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Controller.Search.CurrentSearchIndex]).LineNumber);
+                        Controller.Main.CurrentEditor.Select((Find.SearchIndex[Controller.Search.CurrentSearchIndex] - (Controller.Search.CurrentSearch.Length)), Controller.Search.CurrentSearch.Length);
+                    }
+                    else
+                    {
+                        SetSearchInfo(Properties.Resources.NoFurtherResult);
+                    }
+                }
+                else
+                {
+                    if (Find.SearchIndex.Count > 0)
+                    {
+                        Find.SearchIndex.Clear();
+                        Controller.Search.CurrentSearchIndex = 0;
+                        Controller.Main.LastIndex = 0;
+                    }
+
+                    Controller.Search.CurrentSearch = Controller.Search.SearchBox.Text;
+                    if (Controller.Search.CurrentSearch != null)
+                    {
+                        Find find = new Find();
+                        while ((find = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, Controller.Main.LastIndex, !(Controller.Search.MatchCase.IsChecked.Value))) != null)
+                        {
+                            if (find.Index == -1) break;
+                            Controller.Main.LastIndex = find.Index + Controller.Search.CurrentSearch.Length;
+                            Find.SearchIndex.Add(Controller.Main.LastIndex);
+                        }
+                        if (Find.SearchIndex.Count > 0)
+                        {
+                            Controller.Main.CurrentEditor.ScrollToLine(Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Find.SearchIndex[0]).LineNumber);
+                            int index = Find.SearchIndex[0] - (Controller.Search.CurrentSearch.Length);
+                            if (index < 0)
+                            {
+                                index = 0;
+                            }
+                            Controller.Main.CurrentEditor.Select(index, Controller.Search.CurrentSearch.Length);
+
+                            StringBuilder ResultText = new StringBuilder();
+                            ResultText.Append(Properties.Resources.Result);
+                            ResultText.Append(Find.SearchIndex.Count);
+
+                            SetSearchInfo(ResultText);
+                        }
+                        else
+                        {
+                            SetSearchInfo(Properties.Resources.NoResult);
+                        }
+                    }
+                }
+            }
+        }
+        public static void DoCount(TextBox SearchBox)
+        {
+            if (Controller.Search.SearchBox != null)
+            {
+                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(Core.Controller.Search.SearchBox.Text) == true)
+                {
+                    StringBuilder ResultText = new StringBuilder();
+                    ResultText.Append(Properties.Resources.Result);
+                    ResultText.Append(Find.SearchIndex.Count);
+
+                    SetSearchInfo(ResultText);
+                    return;
+                }
+                else
+                {
+                    if (Find.SearchIndex.Count > 0)
+                    {
+                        Find.SearchIndex.Clear();
+                        Controller.Search.CurrentSearchIndex = 0;
+                        Controller.Main.LastIndex = 1;
+                    }
+                    Controller.Search.CurrentSearch = Controller.Search.SearchBox.Text;
+                    if (Controller.Search.CurrentSearch != null)
+                    {
+                        Find find = new Find();
+                        while ((find = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, Controller.Main.LastIndex, !(Controller.Search.MatchCase.IsChecked.Value))) != null)
+                        {
+                            if (find.Index == -1) break;
+                            Controller.Main.LastIndex = find.Index + Controller.Search.CurrentSearch.Length;
+                            Find.SearchIndex.Add(Controller.Main.LastIndex);
+                        }
+                        if (Find.SearchIndex.Count > 0)
+                        {
+                            if (Controller.Search.SearchInfo.Visibility == Visibility.Collapsed)
+                            {
+                                Controller.Search.SearchInfo.Visibility = Visibility.Visible;
+                            }
+                            StringBuilder ResultText = new StringBuilder();
+                            ResultText.Append(Properties.Resources.Result);
+                            ResultText.Append(Find.SearchIndex.Count);
+
+                            SetSearchInfo(ResultText);
+                        }
+                        else
+                        {
+                            SetSearchInfo(Properties.Resources.NoResult);
+                        }
+                    }
+                }
+            }
         }
     }
 }
