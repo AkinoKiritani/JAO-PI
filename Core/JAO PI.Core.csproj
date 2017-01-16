@@ -97,7 +97,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Folder.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utility\Core.cs" />
+    <Compile Include="Utility\Main.cs" />
+    <Compile Include="Utility\Search.cs" />
     <Compile Include="Utility\Structures.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\RegisterController.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Events\MainMenu.cs" />
     <Compile Include="Events\TabControl.cs" />
     <Compile Include="Events\Worker.cs" />
+    <Compile Include="Utility\Tab.cs" />
     <Compile Include="Utility\Toggle.cs" />
   </ItemGroup>
   <ItemGroup>

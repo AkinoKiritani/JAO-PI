@@ -13,16 +13,16 @@ namespace JAO_PI.EventsManager
         public void Loaded(object sender, RoutedEventArgs e)
         {
             SearchFrame SearchEvents = new SearchFrame();
-            Search.SearchControl.SelectionChanged += SearchEvents.SelectionChanged;
-            Search.SearchControl.Loaded -= SearchEvents.Loaded;
+            Core.Controller.Search.SearchControl.SelectionChanged += SearchEvents.SelectionChanged;
+            Core.Controller.Search.SearchControl.Loaded -= SearchEvents.Loaded;
         }
 
         public void Closing(object sender, CancelEventArgs e)
         {
-            Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
-            if (Search.SearchInfo.Visibility == Visibility.Visible)
+            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
+            if (Core.Controller.Search.SearchInfo.Visibility == Visibility.Visible)
             {
-                Search.SearchInfo.Visibility = Visibility.Collapsed;
+                Core.Controller.Search.SearchInfo.Visibility = Visibility.Collapsed;
             }
             e.Cancel = true;
         }
@@ -30,32 +30,31 @@ namespace JAO_PI.EventsManager
         // TabControl
         public void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TabItem CurSelected = Search.SearchControl.Items[Search.SearchControl.SelectedIndex] as TabItem;
-            Main.Frames[(int)Structures.Frames.SearchFrame].Title = CurSelected.Header.ToString();
+            TabItem CurSelected = Core.Controller.Search.SearchControl.Items[Core.Controller.Search.SearchControl.SelectedIndex] as TabItem;
+            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Title = CurSelected.Header.ToString();
         }
 
         // Search
         public void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
+            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
         }
 
         public void Search_Click(object sender, RoutedEventArgs e)
         {
-            if(Search.SearchBox != null)
+            if(Core.Controller.Search.SearchBox != null)
             {
-                Functions utility = new Functions();
-                if (Search.CurrentSearch != null && Search.CurrentSearch.Equals(Search.SearchBox.Text) == true)
+                if (Core.Controller.Search.CurrentSearch != null && Core.Controller.Search.CurrentSearch.Equals(Core.Controller.Search.SearchBox.Text) == true)
                 {
-                    Search.CurrentSearchIndex++;
-                    if (Search.CurrentSearchIndex < Core.Classes.Find.SearchIndex.Count)
+                    Core.Controller.Search.CurrentSearchIndex++;
+                    if (Core.Controller.Search.CurrentSearchIndex < Core.Classes.Find.SearchIndex.Count)
                     {
-                        Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[Search.CurrentSearchIndex]).LineNumber);
-                        Main.CurrentEditor.Select((Core.Classes.Find.SearchIndex[Search.CurrentSearchIndex] - (Search.CurrentSearch.Length)), Search.CurrentSearch.Length);
+                        Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[Core.Controller.Search.CurrentSearchIndex]).LineNumber);
+                        Core.Controller.Main.CurrentEditor.Select((Core.Classes.Find.SearchIndex[Core.Controller.Search.CurrentSearchIndex] - (Core.Controller.Search.CurrentSearch.Length)), Core.Controller.Search.CurrentSearch.Length);
                     }
                     else
                     {
-                        utility.SetSearchInfo(Core.Properties.Resources.NoFurtherResult);
+                        Core.Utility.Search.SetSearchInfo(Core.Properties.Resources.NoFurtherResult);
                     }
                 }
                 else
@@ -63,39 +62,39 @@ namespace JAO_PI.EventsManager
                     if (Core.Classes.Find.SearchIndex.Count > 0)
                     {
                         Core.Classes.Find.SearchIndex.Clear();
-                        Search.CurrentSearchIndex = 0;
-                        Main.LastIndex = 0;
+                        Core.Controller.Search.CurrentSearchIndex = 0;
+                        Core.Controller.Main.LastIndex = 0;
                     }
 
-                    Search.CurrentSearch = Search.SearchBox.Text;
-                    if (Search.CurrentSearch != null)
+                    Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox.Text;
+                    if (Core.Controller.Search.CurrentSearch != null)
                     {
                         Core.Classes.Find find = new Core.Classes.Find();
-                        while ((find = utility.FindString(Main.CurrentEditor, Search.CurrentSearch, Main.LastIndex, !(Search.MatchCase.IsChecked.Value))) != null)
+                        while ((find = Core.Utility.Search.FindString(Core.Controller.Main.CurrentEditor, Core.Controller.Search.CurrentSearch, Core.Controller.Main.LastIndex, !(Core.Controller.Search.MatchCase.IsChecked.Value))) != null)
                         {
                             if (find.Index == -1) break;
-                            Main.LastIndex = find.Index + Search.CurrentSearch.Length;
-                            Core.Classes.Find.SearchIndex.Add(Main.LastIndex);
+                            Core.Controller.Main.LastIndex = find.Index + Core.Controller.Search.CurrentSearch.Length;
+                            Core.Classes.Find.SearchIndex.Add(Core.Controller.Main.LastIndex);
                         }
                         if (Core.Classes.Find.SearchIndex.Count > 0)
                         {
-                            Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[0]).LineNumber);
-                            int index = Core.Classes.Find.SearchIndex[0] - (Search.CurrentSearch.Length);
+                            Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Core.Classes.Find.SearchIndex[0]).LineNumber);
+                            int index = Core.Classes.Find.SearchIndex[0] - (Core.Controller.Search.CurrentSearch.Length);
                             if (index < 0)
                             {
                                 index = 0;
                             }
-                            Main.CurrentEditor.Select(index, Search.CurrentSearch.Length);
+                            Core.Controller.Main.CurrentEditor.Select(index, Core.Controller.Search.CurrentSearch.Length);
 
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Core.Properties.Resources.Result);
                             ResultText.Append(Core.Classes.Find.SearchIndex.Count);
 
-                            utility.SetSearchInfo(ResultText);
+                            Core.Utility.Search.SetSearchInfo(ResultText);
                         }
                         else
                         {
-                            utility.SetSearchInfo(Core.Properties.Resources.NoResult);
+                            Core.Utility.Search.SetSearchInfo(Core.Properties.Resources.NoResult);
                         }
                     }
                 }
@@ -104,16 +103,15 @@ namespace JAO_PI.EventsManager
 
         public void Count_Click(object sender, RoutedEventArgs e)
         {
-            if (Search.SearchBox != null)
+            if (Core.Controller.Search.SearchBox != null)
             {
-                Functions utility = new Functions();
-                if (Search.CurrentSearch != null && Search.CurrentSearch.Equals(Search.SearchBox.Text) == true)
+                if (Core.Controller.Search.CurrentSearch != null && Core.Controller.Search.CurrentSearch.Equals(Core.Controller.Search.SearchBox.Text) == true)
                 {
                     StringBuilder ResultText = new StringBuilder();
                     ResultText.Append(Core.Properties.Resources.Result);
                     ResultText.Append(Core.Classes.Find.SearchIndex.Count);
 
-                    utility.SetSearchInfo(ResultText);
+                    Core.Utility.Search.SetSearchInfo(ResultText);
                     return;
                 }
                 else
@@ -121,34 +119,34 @@ namespace JAO_PI.EventsManager
                     if (Core.Classes.Find.SearchIndex.Count > 0)
                     {
                         Core.Classes.Find.SearchIndex.Clear();
-                        Search.CurrentSearchIndex = 0;
-                        Main.LastIndex = 1;
+                        Core.Controller.Search.CurrentSearchIndex = 0;
+                        Core.Controller.Main.LastIndex = 1;
                     }
-                    Search.CurrentSearch = Search.SearchBox.Text;
-                    if (Search.CurrentSearch != null)
+                    Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox.Text;
+                    if (Core.Controller.Search.CurrentSearch != null)
                     {
                         Core.Classes.Find find = new Core.Classes.Find();
-                        while ((find = utility.FindString(Main.CurrentEditor, Search.CurrentSearch, Main.LastIndex, !(Search.MatchCase.IsChecked.Value))) != null)
+                        while ((find = Core.Utility.Search.FindString(Core.Controller.Main.CurrentEditor, Core.Controller.Search.CurrentSearch, Core.Controller.Main.LastIndex, !(Core.Controller.Search.MatchCase.IsChecked.Value))) != null)
                         {
                             if (find.Index == -1) break;
-                            Main.LastIndex = find.Index + Search.CurrentSearch.Length;
-                            Core.Classes.Find.SearchIndex.Add(Main.LastIndex);
+                            Core.Controller.Main.LastIndex = find.Index + Core.Controller.Search.CurrentSearch.Length;
+                            Core.Classes.Find.SearchIndex.Add(Core.Controller.Main.LastIndex);
                         }
                         if (Core.Classes.Find.SearchIndex.Count > 0)
                         {
-                            if (Search.SearchInfo.Visibility == Visibility.Collapsed)
+                            if (Core.Controller.Search.SearchInfo.Visibility == Visibility.Collapsed)
                             {
-                                Search.SearchInfo.Visibility = Visibility.Visible;
+                                Core.Controller.Search.SearchInfo.Visibility = Visibility.Visible;
                             }
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Core.Properties.Resources.Result);
                             ResultText.Append(Core.Classes.Find.SearchIndex.Count);
 
-                            utility.SetSearchInfo(ResultText);
+                            Core.Utility.Search.SetSearchInfo(ResultText);
                         }
                         else
                         {
-                            utility.SetSearchInfo(Core.Properties.Resources.NoResult);
+                            Core.Utility.Search.SetSearchInfo(Core.Properties.Resources.NoResult);
                         }
                     }
                 }

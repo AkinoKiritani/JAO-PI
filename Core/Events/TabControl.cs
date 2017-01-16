@@ -34,8 +34,7 @@ namespace JAO_PI.EventsManager
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.CloseSave, Core.Properties.Resources.CloseSaveHeader, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if(result == MessageBoxResult.Yes)
                 {
-                    Core.Utility.Functions utility = new Core.Utility.Functions();
-                    utility.SaveTab(Index.TabItem);
+                    Core.Utility.Tab.SaveTab(Index.TabItem);
                 }
             }
             Index.Editor.Clear();

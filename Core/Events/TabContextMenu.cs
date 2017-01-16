@@ -19,12 +19,14 @@ namespace JAO_PI.EventsManager
             MenuItem RenameItem = sender as MenuItem;
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Rename.Uid == RenameItem.Uid);
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.OverwritePrompt = true;
-            saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
-            saveFileDialog.Title = Core.Properties.Resources.SaveFile;
-            Functions utility = new Functions();
-            string HeaderText = utility.GetTabHeaderText(Index.TabItem);
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                OverwritePrompt = true,
+                Filter = Core.Properties.Resources.FileFilter,
+                Title = Core.Properties.Resources.SaveFile
+            };
+
+            string HeaderText = Tab.GetTabHeaderText(Index.TabItem);
             saveFileDialog.FileName = HeaderText;
             if (saveFileDialog.ShowDialog() == true)
             {
@@ -36,8 +38,8 @@ namespace JAO_PI.EventsManager
                 {
                     File.Delete(file);
                 }
-                utility.SaveTab(Index.TabItem, saveFileDialog);
-                utility.UpdateTabHeaderText(Index.TabItem, saveFileDialog.SafeFileName);
+                Tab.SaveTab(Index.TabItem, saveFileDialog);
+                Tab.UpdateTabHeaderText(Index.TabItem, saveFileDialog.SafeFileName);
             }
         }
 
@@ -45,8 +47,7 @@ namespace JAO_PI.EventsManager
         {
             MenuItem SaveItem = sender as MenuItem;
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Save.Uid == SaveItem.Uid);
-            Core.Utility.Functions utility = new Core.Utility.Functions();
-            utility.SaveTab(Index.TabItem);
+            Tab.SaveTab(Index.TabItem);
         }
 
         internal void CloseAllItem_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)

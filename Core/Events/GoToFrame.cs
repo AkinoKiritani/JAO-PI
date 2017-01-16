@@ -1,5 +1,4 @@
-﻿using JAO_PI.Core.Controller;
-using JAO_PI.Core.Utility;
+﻿using JAO_PI.Core.Utility;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -9,28 +8,27 @@ namespace JAO_PI.EventsManager
 {
     public class GoToFrame
     {
-        Functions ut = new Functions();
         public void Closing(object sender, CancelEventArgs e)
         {
-            Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
+            Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
             e.Cancel = true;
         }
         public void GoNowhere_Click(object sender, RoutedEventArgs e)
         {
-            Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
+            Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
         }
 
         public void Activated(object sender, EventArgs e)
         {
-            if (Main.Line.IsChecked.Value == true)
+            if (Core.Controller.Main.Line.IsChecked.Value == true)
             {
-                Main.MaxLineLabel.Content = Main.CurrentEditor.Document.LineCount.ToString();
-                Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Line.ToString();
+                Core.Controller.Main.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.LineCount.ToString();
+                Core.Controller.Main.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Line.ToString();
             }
             else
             {
-                Main.MaxLineLabel.Content = Main.CurrentEditor.Document.TextLength.ToString();
-                Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Offset.ToString();
+                Core.Controller.Main.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.TextLength.ToString();
+                Core.Controller.Main.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Offset.ToString();
             }
         }
 
@@ -45,39 +43,39 @@ namespace JAO_PI.EventsManager
 
         public void GoTo_Click(object sender, RoutedEventArgs e)
         {
-            if (Main.GoToBox.Text.Length > 0)
+            if (Core.Controller.Main.GoToBox.Text.Length > 0)
             {
-                int GoToValue = Convert.ToInt32(Main.GoToBox.Text);
-                Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
-                Main.Frames[(int)Structures.Frames.MainFrame].Activate();
-                if (Main.Line.IsChecked.Value == true)
+                int GoToValue = Convert.ToInt32(Core.Controller.Main.GoToBox.Text);
+                Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame].Activate();
+                if (Core.Controller.Main.Line.IsChecked.Value == true)
                 {
-                    if (GoToValue > Main.CurrentEditor.Document.LineCount)
+                    if (GoToValue > Core.Controller.Main.CurrentEditor.Document.LineCount)
                     {
-                        Main.CurrentEditor.TextArea.Caret.Line = Main.CurrentEditor.Document.LineCount;
-                        Main.CurrentEditor.TextArea.Caret.VisualColumn = Main.CurrentEditor.Document.LineCount;
-                        Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.Document.LineCount);
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.Line = Core.Controller.Main.CurrentEditor.Document.LineCount;
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.VisualColumn = Core.Controller.Main.CurrentEditor.Document.LineCount;
+                        Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.Document.LineCount);
                     }
                     else
                     {
-                        Main.CurrentEditor.TextArea.Caret.Line = GoToValue;
-                        Main.CurrentEditor.TextArea.Caret.VisualColumn = GoToValue;
-                        Main.CurrentEditor.ScrollToLine(GoToValue);
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.Line = GoToValue;
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.VisualColumn = GoToValue;
+                        Core.Controller.Main.CurrentEditor.ScrollToLine(GoToValue);
                     }
                 }
                 else
                 {
-                    if (GoToValue > Main.CurrentEditor.Document.TextLength)
+                    if (GoToValue > Core.Controller.Main.CurrentEditor.Document.TextLength)
                     {
-                        Main.CurrentEditor.TextArea.Caret.Line = Main.CurrentEditor.Document.TextLength;
-                        Main.CurrentEditor.TextArea.Caret.VisualColumn = Main.CurrentEditor.Document.TextLength;
-                        Main.CurrentEditor.ScrollToLine(Main.CurrentEditor.Document.LineCount);
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.Line = Core.Controller.Main.CurrentEditor.Document.TextLength;
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.VisualColumn = Core.Controller.Main.CurrentEditor.Document.TextLength;
+                        Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.Document.LineCount);
                     }
                     else
                     {
-                        Main.CurrentEditor.TextArea.Caret.Offset = GoToValue;
-                        Main.CurrentEditor.TextArea.Caret.VisualColumn = GoToValue;
-                        Main.CurrentEditor.ScrollToLine(GoToValue);
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.Offset = GoToValue;
+                        Core.Controller.Main.CurrentEditor.TextArea.Caret.VisualColumn = GoToValue;
+                        Core.Controller.Main.CurrentEditor.ScrollToLine(GoToValue);
                     }
                 }
             }
@@ -85,14 +83,14 @@ namespace JAO_PI.EventsManager
 
         public void Line_Checked(object sender, RoutedEventArgs e)
         {
-            Main.MaxLineLabel.Content = Main.CurrentEditor.Document.LineCount.ToString();
-            Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Line.ToString();
+            Core.Controller.Main.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.LineCount.ToString();
+            Core.Controller.Main.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Line.ToString();
         }
 
         public void Offset_Checked(object sender, RoutedEventArgs e)
         {
-            Main.MaxLineLabel.Content = Main.CurrentEditor.Document.TextLength.ToString();
-            Main.LineLabel.Content = Main.CurrentEditor.TextArea.Caret.Offset.ToString();
+            Core.Controller.Main.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.TextLength.ToString();
+            Core.Controller.Main.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Offset.ToString();
         }        
     }
 }

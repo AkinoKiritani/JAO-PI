@@ -23,7 +23,6 @@ namespace JAO_PI.EventsManager
 
             if (Core.Controller.Main.tabControl.Items.Count == 1)
             {
-                Functions utility = new Functions();
                 Toggle.SaveOptions(true);
                 Core.Controller.Main.CompileMenuItem.IsEnabled = true;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Visible;
@@ -34,13 +33,14 @@ namespace JAO_PI.EventsManager
         }
         public void Open_File_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = Core.Properties.Resources.FileFilter;
-            openFileDialog.Title = Core.Properties.Resources.OpenFile;
-            Functions utility = new Functions();
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                Filter = Core.Properties.Resources.FileFilter,
+                Title = Core.Properties.Resources.OpenFile
+            };
             if (openFileDialog.ShowDialog() == true)
             {
-                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => (x.TabItem.Uid + utility.GetTabHeaderText(x.TabItem)) == openFileDialog.FileName);
+                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => (x.TabItem.Uid + Tab.GetTabHeaderText(x.TabItem)) == openFileDialog.FileName);
                 if(Index != null)
                 {
                     return;
@@ -94,24 +94,24 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                Functions utility = new Functions();
-                utility.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
+                Core.Utility.Tab.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
             }
         }
         public void SaveAs_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.OverwritePrompt = true;
-                saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
-                saveFileDialog.Title = Core.Properties.Resources.SaveFile;
+                SaveFileDialog saveFileDialog = new SaveFileDialog()
+                {
+                    OverwritePrompt = true,
+                    Filter = Core.Properties.Resources.FileFilter,
+                    Title = Core.Properties.Resources.SaveFile
+                };
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     TabItem Tab = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
-                    Functions utility = new Functions();
-                    utility.SaveTab(Tab, saveFileDialog);
-                    utility.UpdateTabHeaderText(Tab, saveFileDialog.SafeFileName);
+                    Core.Utility.Tab.SaveTab(Tab, saveFileDialog);
+                    Core.Utility.Tab.UpdateTabHeaderText(Tab, saveFileDialog.SafeFileName);
                 }
             }
         }
@@ -182,11 +182,12 @@ namespace JAO_PI.EventsManager
         }
         public void Compiler_Path_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog CompilerPathDialog = new OpenFileDialog();
-            CompilerPathDialog = new OpenFileDialog();
-            CompilerPathDialog.Filter = Core.Properties.Resources.PathFilter;
-            CompilerPathDialog.Title = Core.Properties.Resources.SetPath;
-            CompilerPathDialog.InitialDirectory = Environment.CurrentDirectory;
+            OpenFileDialog CompilerPathDialog = new OpenFileDialog()
+            {
+                Filter = Core.Properties.Resources.PathFilter,
+                Title = Core.Properties.Resources.SetPath,
+                InitialDirectory = Environment.CurrentDirectory
+            };
             if (CompilerPathDialog.ShowDialog() == true)
             {
                 Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;

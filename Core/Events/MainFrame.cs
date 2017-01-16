@@ -15,20 +15,20 @@ namespace JAO_PI.EventsManager
     {
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            Functions utility = new Functions();
             Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
 
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {
                 
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.NoCompilerPath, Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if(result == MessageBoxResult.Yes)
+                if (result == MessageBoxResult.Yes)
                 {
-                    OpenFileDialog CompilerPathDialog = new OpenFileDialog();
-                    CompilerPathDialog = new OpenFileDialog();
-                    CompilerPathDialog.Filter = Core.Properties.Resources.PathFilter;
-                    CompilerPathDialog.Title = Core.Properties.Resources.SetPath;
-                    CompilerPathDialog.InitialDirectory = Environment.CurrentDirectory;
+                    OpenFileDialog CompilerPathDialog = new OpenFileDialog()
+                    {
+                        Filter = Core.Properties.Resources.PathFilter,
+                        Title = Core.Properties.Resources.SetPath,
+                        InitialDirectory = Environment.CurrentDirectory
+                    };
                     if (CompilerPathDialog.ShowDialog() == true)
                     {
                         Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
@@ -76,15 +76,16 @@ namespace JAO_PI.EventsManager
                 {
                     StringBuilder FileToSave = new StringBuilder();
 
-                    SaveFileDialog saveFileDialog = new SaveFileDialog();
-                    saveFileDialog.OverwritePrompt = true;
-                    saveFileDialog.Filter = Core.Properties.Resources.FileFilter;
-                    saveFileDialog.Title = Core.Properties.Resources.SaveFile;
-                    Functions utility = new Functions();
+                    SaveFileDialog saveFileDialog = new SaveFileDialog()
+                    {
+                        OverwritePrompt = true,
+                        Filter = Core.Properties.Resources.FileFilter,
+                        Title = Core.Properties.Resources.SaveFile
+                    };
                     string HeaderText = null;
                     for (int i = 0; i != notSavedList.Count; i++)
                     {
-                        HeaderText = utility.GetTabHeaderText(notSavedList[i].TabItem);
+                        HeaderText = Tab.GetTabHeaderText(notSavedList[i].TabItem);
                         FileToSave.Clear();
                         FileToSave.Append(notSavedList[i].TabItem.Uid);
                         FileToSave.Append(HeaderText);
@@ -104,13 +105,13 @@ namespace JAO_PI.EventsManager
                                 result = MessageBox.Show(OverwriteMessage.ToString(), Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Stop);
                                 if (result == MessageBoxResult.Yes)
                                 {
-                                    utility.SaveTab(notSavedList[i].TabItem);
+                                    Tab.SaveTab(notSavedList[i].TabItem);
                                 }
                                 else
                                 {
                                     if (saveFileDialog.ShowDialog() == true)
                                     {
-                                        utility.SaveTab(notSavedList[i].TabItem, saveFileDialog);
+                                        Tab.SaveTab(notSavedList[i].TabItem, saveFileDialog);
                                     }
                                 }
                             }
@@ -119,7 +120,7 @@ namespace JAO_PI.EventsManager
                         {
                             if (saveFileDialog.ShowDialog() == true)
                             {
-                                utility.SaveTab(notSavedList[i].TabItem, saveFileDialog);
+                                Tab.SaveTab(notSavedList[i].TabItem, saveFileDialog);
                             }
                         }
                     }

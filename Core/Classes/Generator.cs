@@ -17,21 +17,20 @@ namespace JAO_PI.Core.Classes
         EventsManager.Editor EditorEvents = new EventsManager.Editor();
         public TabItem TabItem(string path, string header, Stream content)
         {
-            Functions utility = new Functions();
-            TextEditor Editor = new TextEditor();
-
-            Editor.FontSize = 13;
-            Editor.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            Editor.FontFamily = new FontFamily("Consolas");
-            Editor.ShowLineNumbers = true;            
+            TextEditor Editor = new TextEditor()
+            {
+                FontSize = 13,
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
+                FontFamily = new FontFamily("Consolas"),
+                ShowLineNumbers = true,
+                Margin = new Thickness(0, 0, 5, 0)
+            };
 
             if (content != null)
             {
                 Editor.Load(content);
             }
-
-            Editor.Margin = new Thickness(0, 0, 5, 0); 
-
+            
             StringBuilder SyntaxPath = new StringBuilder();
             SyntaxPath.Append(System.Environment.CurrentDirectory);
             SyntaxPath.Append(@"\" + Core.Resources.Folder.Languages+ @"\PAWN.xshd");
@@ -55,13 +54,16 @@ namespace JAO_PI.Core.Classes
                     }
                 }
             }
-            utility.LoadSyntax(Editor, syntaxPath);
+            Main.LoadSyntax(Editor, syntaxPath);
             Grid grid = new Grid();
-            grid.Children.Add(Editor);        
+            grid.Children.Add(Editor);
 
-            TabItem tab = new TabItem();
-            tab.Header = GenerateTabHeader(header, Properties.Resources.save_text);
-            tab.Content = grid;
+            TabItem tab = new TabItem()
+            {
+                Header = GenerateTabHeader(header, Properties.Resources.save_text),
+                Content = grid
+            };
+            
             
             if (path.Contains(header) == true)
             {
@@ -95,33 +97,43 @@ namespace JAO_PI.Core.Classes
         {
             ContextMenu menu = new ContextMenu();
 
-            MenuItem CloseItem = new MenuItem();
-            CloseItem.Header = Core.Resources.ContextMenu.CloseItem;
-            CloseItem.Uid = Functions.RandomString(10);
+            MenuItem CloseItem = new MenuItem()
+            {
+                Header = Resources.ContextMenu.CloseItem,
+                Uid = Main.RandomString(10)
+            };
             CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseItem);
 
-            MenuItem CloseAllItem = new MenuItem();
-            CloseAllItem.Header = Core.Resources.ContextMenu.CloseAllItem;
-            CloseAllItem.Uid = Functions.RandomString(10);
+            MenuItem CloseAllItem = new MenuItem()
+            {
+                Header = Resources.ContextMenu.CloseAllItem,
+                Uid = Main.RandomString(10)
+            };
             CloseAllItem.PreviewMouseLeftButtonUp += TabEvents.CloseAllItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseAllItem);
 
-            MenuItem CloseAllButItem = new MenuItem();
-            CloseAllButItem.Header = Core.Resources.ContextMenu.CloseAllButItem;
-            CloseAllButItem.Uid = Functions.RandomString(10);
+            MenuItem CloseAllButItem = new MenuItem()
+            {
+                Header = Resources.ContextMenu.CloseAllButItem,
+                Uid = Main.RandomString(10)
+            };
             CloseAllButItem.PreviewMouseLeftButtonUp += TabEvents.CloseAllButItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(CloseAllButItem);
 
-            MenuItem RenameItem = new MenuItem();
-            RenameItem.Header = Core.Resources.ContextMenu.RenameItem;
-            RenameItem.Uid = Functions.RandomString(10);
+            MenuItem RenameItem = new MenuItem()
+            {
+                Header = Resources.ContextMenu.RenameItem,
+                Uid = Main.RandomString(10)
+            };
             RenameItem.PreviewMouseLeftButtonUp += TabEvents.RenameItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(RenameItem);
 
-            MenuItem SaveItem = new MenuItem();
-            SaveItem.Header = Core.Resources.ContextMenu.SaveItem;
-            SaveItem.Uid = Functions.RandomString(10);
+            MenuItem SaveItem = new MenuItem()
+            {
+                Header = Resources.ContextMenu.SaveItem,
+                Uid = Main.RandomString(10)
+            };
             SaveItem.PreviewMouseLeftButtonUp += TabEvents.SaveItem_PreviewMouseLeftButtonUp;
             menu.Items.Add(SaveItem);
 
@@ -130,24 +142,30 @@ namespace JAO_PI.Core.Classes
 
         private StackPanel GenerateTabHeader(string Header, System.Drawing.Bitmap Icon)
         {
-            StackPanel stack = new StackPanel();
-            stack.Orientation = Orientation.Horizontal;
-            
+
+
+
             // Load Image 
             Stream ImageStream = new MemoryStream();
             Icon.Save(ImageStream, ImageFormat.Png);
-            
+
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
             bitmap.StreamSource = ImageStream;
             bitmap.EndInit();
-            
-            Image SaveIcon = new Image();
-            SaveIcon.Source = bitmap;
-            SaveIcon.Width = 22;
-            SaveIcon.Height = 18;
-            SaveIcon.HorizontalAlignment = HorizontalAlignment.Left;
 
+            Image SaveIcon = new Image()
+            {
+                Source = bitmap,
+                Width = 22,
+                Height = 18,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+
+            StackPanel stack = new StackPanel()
+            {
+                Orientation = Orientation.Horizontal
+            };
             // Add Image and Textblock to the StackPanel
             stack.Children.Add(SaveIcon);
             stack.Children.Add(new TextBlock()
