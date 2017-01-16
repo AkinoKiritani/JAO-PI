@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:JAO_PI.Views.Properties"
-        xmlns:local="clr-namespace:JAO_PI.Views"
         mc:Ignorable="d"
         Height="300" Width="300" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
