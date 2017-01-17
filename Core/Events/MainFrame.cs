@@ -68,7 +68,7 @@ namespace JAO_PI.EventsManager
 
         public void MainFrame_Closing(object sender, CancelEventArgs e)
         {
-            List<Core.Controller.Tab> notSavedList = Core.Controller.Main.TabControlList.FindAll(x => x.Editor.Document.FileName.Contains(".JAOnotsaved"));
+            List<Core.Controller.Tab> notSavedList = Core.Controller.Main.TabControlList.FindAll(x => x.State.HasFlag(Structures.States.NotSaved));
             if (notSavedList.Count > 0)
             {
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.NotSaved, Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Warning);

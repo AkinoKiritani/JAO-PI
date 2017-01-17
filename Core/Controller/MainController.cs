@@ -6,7 +6,7 @@ using System.Windows.Controls.Primitives;
 
 namespace JAO_PI.Core.Controller
 {
-    public class Main
+    public static class Main
     {
         public static TabControl tabControl = null;
         public static TextEditor CurrentEditor = null;

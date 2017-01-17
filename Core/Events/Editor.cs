@@ -1,5 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Editing;
+using JAO_PI.Core.Utility;
 using System;
 using System.Windows;
 
@@ -9,13 +10,13 @@ namespace JAO_PI.EventsManager
     {
         internal void Document_Changed(object sender, DocumentChangeEventArgs e)
         {
-            TextDocument Document = sender as TextDocument;
-            if (Document.FileName.Contains(".JAOsaved"))
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.State.HasFlag(Structures.States.Saved) &&
+                                                                                      x.Editor.Document == (sender as TextDocument));
+            if (Index != null)
             {
-                Document.FileName = Document.FileName.Replace(".JAOsaved", ".JAOnotsaved");
-
-                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Editor.Document == Document);
-                Core.Utility.Toggle.UnsavedMark(Index.TabItem, true);
+                Index.State |= Structures.States.NotSaved;
+                Index.State &= ~Structures.States.Saved;
+                Toggle.UnsavedMark(Index.TabItem, true);
             }
         }
 
@@ -28,8 +29,8 @@ namespace JAO_PI.EventsManager
         internal void Caret_PositionChanged(object sender, EventArgs e)
         {
             Caret Area = sender as Caret;
-            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Area.Line;
-            Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Area.Column;
+            Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Area.Line;
+            Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Area.Column;
         }
     }
 }

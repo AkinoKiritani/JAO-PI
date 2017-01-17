@@ -65,7 +65,6 @@ namespace JAO_PI.Core.Classes
                 Content = grid
             };
             
-            
             if (path.Contains(header) == true)
             {
                 path = path.Remove(path.Length - header.Length, header.Length);
@@ -85,9 +84,10 @@ namespace JAO_PI.Core.Classes
                 Rename      = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Rename]        as MenuItem,
                 Save        = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save]          as MenuItem
             });
+            Controller.Main.TabControlList[Controller.Main.TabControlList.Count - 1].State |= Structures.States.Saved;
+
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
-            Editor.Document.FileName = header + ".JAOsaved";
             Editor.Unloaded += EditorEvents.Editor_Unloaded;
             Editor.TextArea.Caret.PositionChanged += EditorEvents.Caret_PositionChanged;
             Controller.Main.EditItem.IsEnabled = true;

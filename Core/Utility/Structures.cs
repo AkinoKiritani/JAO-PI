@@ -22,5 +22,12 @@
             Line,
             Column
         }
+
+        [System.Flags]
+        public enum States
+        {
+            Saved = 0,
+            NotSaved = 1
+        }
     }
 }

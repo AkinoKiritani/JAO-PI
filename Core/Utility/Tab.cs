@@ -11,57 +11,54 @@ namespace JAO_PI.Core.Utility
     {
         public static void SaveTab(TabItem SaveTab)
         {
-            if (Controller.Main.tabControl.Visibility == Visibility.Visible && Controller.Main.tabControl.Items.Contains(SaveTab) == true)
+            if (Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                Grid SaveGrid = SaveTab.Content as Grid;
-                TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
-
-                if (SaveEditor.Document.FileName.Contains(".JAOnotsaved"))
+                Controller.Tab Index = Controller.Main.TabControlList.Find(x => x.TabItem == SaveTab);
+                if (Index != null)
                 {
-                    SaveEditor.Document.FileName = SaveEditor.Document.FileName.Replace(".JAOnotsaved", ".JAOsaved");
-                }
-                
-                StringBuilder FileToSave = new StringBuilder();
-                FileToSave.Append(SaveTab.Uid);
-                FileToSave.Append(GetTabHeaderText(SaveTab));
-
-                if (File.Exists(FileToSave.ToString()))
-                {
-                    SaveEditor.Save(FileToSave.ToString());
-
-                    SaveEditor = null;
-                    SaveGrid = null;
-                    FileToSave = null;
-                }
-                else
-                {
-                    SaveFileDialog saveFileDialog = new SaveFileDialog()
+                    if (Index.State.HasFlag(Structures.States.NotSaved))
                     {
-                        OverwritePrompt = true,
-                        Filter = Properties.Resources.FileFilter,
-                        Title = Properties.Resources.SaveFile
-                    };
-                    if (saveFileDialog.ShowDialog() == true)
-                    {
-                        Tab.SaveTab(SaveTab, saveFileDialog);
-                        UpdateTabHeaderText(SaveTab, saveFileDialog.SafeFileName);
+                        Index.State |= Structures.States.Saved;
+                        Index.State &= ~Structures.States.NotSaved;
                     }
+
+                    StringBuilder FileToSave = new StringBuilder();
+                    FileToSave.Append(SaveTab.Uid);
+                    FileToSave.Append(GetTabHeaderText(SaveTab));
+
+                    if (File.Exists(FileToSave.ToString()))
+                    {
+                        Index.Editor.Save(FileToSave.ToString());
+                        FileToSave = null;
+                    }
+                    else
+                    {
+                        SaveFileDialog saveFileDialog = new SaveFileDialog()
+                        {
+                            OverwritePrompt = true,
+                            Filter = Properties.Resources.FileFilter,
+                            Title = Properties.Resources.SaveFile
+                        };
+                        if (saveFileDialog.ShowDialog() == true)
+                        {
+                            Tab.SaveTab(SaveTab, saveFileDialog);
+                            UpdateTabHeaderText(SaveTab, saveFileDialog.SafeFileName);
+                        }
+                    }
+                    Toggle.UnsavedMark(SaveTab, false);
                 }
-                Toggle.UnsavedMark(SaveTab, false);
             }
         }
         public static void SaveTab(TabItem SaveTab, SaveFileDialog saveFileDialog)
         {
-            if (Controller.Main.tabControl.Visibility == Visibility.Visible && Controller.Main.tabControl.Items.Contains(SaveTab) == true)
+            if (Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                Grid SaveGrid = SaveTab.Content as Grid;
-                TextEditor SaveEditor = SaveGrid.Children[0] as TextEditor;
-
-                SaveEditor.Save(saveFileDialog.FileName);
-                SaveEditor = null;
-                SaveGrid = null;
-
-                Toggle.UnsavedMark(SaveTab, false);
+                Controller.Tab Index = Controller.Main.TabControlList.Find(x => x.TabItem == SaveTab);
+                if (Index != null)
+                {
+                    Index.Editor.Save(saveFileDialog.FileName);
+                    Toggle.UnsavedMark(SaveTab, false);
+                }                
             }
         }
         public static bool UpdateTabHeaderText(TabItem tab, string newHeaderText)

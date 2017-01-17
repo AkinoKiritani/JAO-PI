@@ -29,7 +29,7 @@ namespace JAO_PI.EventsManager
 
         internal static void CloseFile(Core.Controller.Tab Index)
         {
-            if(Index.Editor.Document.FileName.Contains(".JAOnotsaved"))
+            if(Index.State.HasFlag(Core.Utility.Structures.States.NotSaved))
             {
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.CloseSave, Core.Properties.Resources.CloseSaveHeader, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if(result == MessageBoxResult.Yes)
