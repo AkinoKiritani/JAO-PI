@@ -32,13 +32,17 @@ namespace JAO_PI.Core.Classes
             }
             
             StringBuilder SyntaxPath = new StringBuilder();
-            SyntaxPath.Append(System.Environment.CurrentDirectory);
-            SyntaxPath.Append(@"\" + Core.Resources.Folder.Languages+ @"\PAWN.xshd");
 
+            SyntaxPath.Append(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            SyntaxPath.Append(@"\" + Core.Resources.Folder.Languages);
+            string FolderPath = SyntaxPath.ToString();
+
+            SyntaxPath.Append(@"\PAWN.xshd");
             string syntaxPath = SyntaxPath.ToString();
+
             if (File.Exists(syntaxPath) == false)
             {
-                Directory.CreateDirectory(Core.Resources.Folder.Languages);
+                Directory.CreateDirectory(FolderPath);
                 using (FileStream fs = File.Create(syntaxPath))
                 {
                     var assembly = Assembly.GetExecutingAssembly();
