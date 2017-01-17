@@ -50,6 +50,7 @@ namespace JAO_PI.Core.Classes
                         {
                             byte[] info = new UTF8Encoding(true).GetBytes(reader.ReadToEnd());
                             fs.Write(info, 0, info.Length);
+                            fs.Close();
                         }
                     }
                 }
@@ -142,9 +143,6 @@ namespace JAO_PI.Core.Classes
 
         private StackPanel GenerateTabHeader(string Header, System.Drawing.Bitmap Icon)
         {
-
-
-
             // Load Image 
             Stream ImageStream = new MemoryStream();
             Icon.Save(ImageStream, ImageFormat.Png);
