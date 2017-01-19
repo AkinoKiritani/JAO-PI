@@ -21,6 +21,7 @@ namespace JAO_PI.Core.Utility
                         Index.State |= Structures.States.Saved;
                         Index.State &= ~Structures.States.NotSaved;
                     }
+                    Index.State &= ~Structures.States.Changed;
 
                     StringBuilder FileToSave = new StringBuilder();
                     FileToSave.Append(SaveTab.Uid);

@@ -27,7 +27,8 @@
         public enum States
         {
             Saved = 0,
-            NotSaved = 1
+            NotSaved = 1,
+            Changed = 2
         }
     }
 }

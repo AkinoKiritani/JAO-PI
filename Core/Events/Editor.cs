@@ -12,12 +12,13 @@ namespace JAO_PI.EventsManager
         {
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.State.HasFlag(Structures.States.Saved) &&
                                                                                       x.Editor.Document == (sender as TextDocument));
-            if (Index != null)
+            if (Index != null && !Index.State.HasFlag(Structures.States.Changed))
             {
                 Index.State |= Structures.States.NotSaved;
                 Index.State &= ~Structures.States.Saved;
                 Toggle.UnsavedMark(Index.TabItem, true);
             }
+            Index.State |= Structures.States.Changed;
         }
 
         internal void Editor_Unloaded(object sender, RoutedEventArgs e)
