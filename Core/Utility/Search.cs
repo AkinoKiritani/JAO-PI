@@ -51,7 +51,7 @@ namespace JAO_PI.Core.Utility
             return false;
         }
 
-        public static void DoSearch(TextBox SearchBox)
+        public static void DoSearch(Controller.Tab Index, TextBox SearchBox)
         {
             if (Controller.Search.SearchBox != null)
             {
@@ -60,8 +60,8 @@ namespace JAO_PI.Core.Utility
                     Controller.Search.CurrentSearchIndex++;
                     if (Controller.Search.CurrentSearchIndex < Find.SearchIndex.Count)
                     {
-                        Controller.Main.CurrentEditor.ScrollToLine(Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Controller.Search.CurrentSearchIndex]).LineNumber);
-                        Controller.Main.CurrentEditor.Select((Find.SearchIndex[Controller.Search.CurrentSearchIndex] - (Controller.Search.CurrentSearch.Length)), Controller.Search.CurrentSearch.Length);
+                        Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Controller.Search.CurrentSearchIndex]).LineNumber);
+                        Index.Editor.Select((Find.SearchIndex[Controller.Search.CurrentSearchIndex] - (Controller.Search.CurrentSearch.Length)), Controller.Search.CurrentSearch.Length);
                     }
                     else
                     {
@@ -89,13 +89,13 @@ namespace JAO_PI.Core.Utility
                         }
                         if (Find.SearchIndex.Count > 0)
                         {
-                            Controller.Main.CurrentEditor.ScrollToLine(Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Find.SearchIndex[0]).LineNumber);
+                            Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Find.SearchIndex[0]).LineNumber);
                             int index = Find.SearchIndex[0] - (Controller.Search.CurrentSearch.Length);
                             if (index < 0)
                             {
                                 index = 0;
                             }
-                            Controller.Main.CurrentEditor.Select(index, Controller.Search.CurrentSearch.Length);
+                            Index.Editor.Select(index, Controller.Search.CurrentSearch.Length);
 
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Properties.Resources.Result);
@@ -110,6 +110,7 @@ namespace JAO_PI.Core.Utility
                     }
                 }
             }
+            Index.State &= ~Structures.States.Searching;
         }
         public static void DoCount(TextBox SearchBox)
         {
