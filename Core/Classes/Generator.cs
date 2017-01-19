@@ -77,6 +77,9 @@ namespace JAO_PI.Core.Classes
 
             tab.ContextMenu = GenerateContextMenu();
 
+            Structures.States Tabstate = 0;
+            Tabstate |= Structures.States.Saved;
+
             Controller.Main.TabControlList.Add(new Controller.Tab()
             {
                 TabItem     = tab,
@@ -86,9 +89,9 @@ namespace JAO_PI.Core.Classes
                 CloseAll    = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAll]      as MenuItem,
                 CloseAllBut = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.CloseAllBut]   as MenuItem,
                 Rename      = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Rename]        as MenuItem,
-                Save        = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save]          as MenuItem
+                Save        = tab.ContextMenu.Items[(int)Structures.ContextMenuItems.Save]          as MenuItem,
+                State       = Tabstate
             });
-            Controller.Main.TabControlList[Controller.Main.TabControlList.Count - 1].State |= Structures.States.Saved;
 
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
