@@ -14,7 +14,6 @@ namespace JAO_PI.EventsManager
                                                                                       x.Editor.Document == (sender as TextDocument));
             if (Index != null && !Index.State.HasFlag(Structures.States.Changed))
             {
-                Index.State |= Structures.States.NotSaved;
                 Index.State &= ~Structures.States.Saved;
                 Toggle.UnsavedMark(Index.TabItem, true);
             }

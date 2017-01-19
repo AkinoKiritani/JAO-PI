@@ -16,10 +16,9 @@ namespace JAO_PI.Core.Utility
                 Controller.Tab Index = Controller.Main.TabControlList.Find(x => x.TabItem == SaveTab);
                 if (Index != null)
                 {
-                    if (Index.State.HasFlag(Structures.States.NotSaved))
+                    if (!Index.State.HasFlag(Structures.States.Saved))
                     {
                         Index.State |= Structures.States.Saved;
-                        Index.State &= ~Structures.States.NotSaved;
                     }
                     Index.State &= ~Structures.States.Changed;
 
