@@ -15,6 +15,8 @@ namespace JAO_PI.EventsManager
     {
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
+            Core.Controller.Worker Worker = new Core.Controller.Worker();
+
             Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
 
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)

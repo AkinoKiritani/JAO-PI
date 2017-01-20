@@ -3,8 +3,8 @@
     [System.Flags]
     public enum States
     {
-        Saved = 0,
-        Changed = 1,
-        Searching = 2
+        Saved = 1,
+        Changed = 2,
+        Searching = 4
     }
 }
