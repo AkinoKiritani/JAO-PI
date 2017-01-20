@@ -21,6 +21,11 @@ namespace JAO_PI.EventsManager
             if (Core.Controller.Search.SearchInfo.Visibility == Visibility.Visible)
             {
                 Core.Controller.Search.SearchInfo.Visibility = Visibility.Collapsed;
+
+                foreach (Core.Controller.Tab tab in Core.Controller.Main.TabControlList)
+                {
+                    tab.SearchList.Clear();
+                }
             }
             e.Cancel = true;
         }
@@ -50,7 +55,12 @@ namespace JAO_PI.EventsManager
 
         public void Count_Click(object sender, RoutedEventArgs e)
         {
-            Search.DoCount(Core.Controller.Search.SearchBox);
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
+            if (Index != null)
+            {
+                Index.State |= Structures.States.Searching;
+                Search.DoCount(Index, Core.Controller.Search.SearchBox);
+            }
         }
 
         // Replace

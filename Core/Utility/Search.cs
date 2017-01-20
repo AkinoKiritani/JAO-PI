@@ -1,5 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
-using JAO_PI.Core.Classes;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Windows;
@@ -9,9 +9,9 @@ namespace JAO_PI.Core.Utility
 {
     static class Search
     {
-        public static Find FindString(TextEditor Editor, string SearchQuery, int lastIndex, bool IgnoreCase)
+        public static Controller.Find FindString(TextEditor Editor, string SearchQuery, int lastIndex, bool IgnoreCase)
         {
-            Find find = new Find();
+            Controller.Find find = new Controller.Find();
             CompareInfo myComp = CultureInfo.InvariantCulture.CompareInfo;
 
             string Text = Editor.Text;
@@ -22,6 +22,32 @@ namespace JAO_PI.Core.Utility
                 return find;
             }
             return find = null;
+        }
+
+        public static List<Controller.Find> FindString(TextEditor Editor, string SearchQuery, bool IgnoreCase)
+        {
+            Controller.Find find = new Controller.Find();
+            int lastIndex = 0;
+            CompareInfo myComp = CultureInfo.InvariantCulture.CompareInfo;
+
+            List<Controller.Find> curSearch = new List<Controller.Find>();
+
+            string Text = Editor.Text;
+            if (SearchQuery.Length > 0 && Text.Length > 0)
+            {
+                while ((find.Index = myComp.IndexOf(Text, SearchQuery, lastIndex, (IgnoreCase == true) ? CompareOptions.IgnoreCase : CompareOptions.None)) != -1)
+                {
+                    lastIndex = find.Index + SearchQuery.Length;
+                    find.Line = (find.Index == -1) ? -1 : Editor.TextArea.Document.GetLineByOffset(find.Index).LineNumber;
+                    curSearch.Add(new Controller.Find()
+                    {
+                        Index = find.Index,
+                        Line = find.Line
+                    });
+                }
+                return curSearch;
+            }
+            return curSearch = null;
         }
 
         public static bool SetSearchInfo(string text)
@@ -58,10 +84,10 @@ namespace JAO_PI.Core.Utility
                 if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(Controller.Search.SearchBox.Text) == true)
                 {
                     Controller.Search.CurrentSearchIndex++;
-                    if (Controller.Search.CurrentSearchIndex < Find.SearchIndex.Count)
+                    if (Index.SearchList != null && Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
                     {
-                        Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Find.SearchIndex[Controller.Search.CurrentSearchIndex]).LineNumber);
-                        Index.Editor.Select((Find.SearchIndex[Controller.Search.CurrentSearchIndex] - (Controller.Search.CurrentSearch.Length)), Controller.Search.CurrentSearch.Length);
+                        Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Index.SearchList[Controller.Search.CurrentSearchIndex].Index).LineNumber);
+                        Index.Editor.Select(Index.SearchList[Controller.Search.CurrentSearchIndex].Index, Controller.Search.CurrentSearch.Length);
                     }
                     else
                     {
@@ -70,9 +96,9 @@ namespace JAO_PI.Core.Utility
                 }
                 else
                 {
-                    if (Find.SearchIndex.Count > 0)
+                    if (Index.SearchList.Count > 0)
                     {
-                        Find.SearchIndex.Clear();
+                        Index.SearchList.Clear();
                         Controller.Search.CurrentSearchIndex = 0;
                         Controller.Main.LastIndex = 0;
                     }
@@ -80,17 +106,11 @@ namespace JAO_PI.Core.Utility
                     Controller.Search.CurrentSearch = Controller.Search.SearchBox.Text;
                     if (Controller.Search.CurrentSearch != null)
                     {
-                        Find find = new Find();
-                        while ((find = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, Controller.Main.LastIndex, !(Controller.Search.MatchCase.IsChecked.Value))) != null)
+                        Index.SearchList = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
+                        if (Index.SearchList != null && Index.SearchList.Count > 0)
                         {
-                            if (find.Index == -1) break;
-                            Controller.Main.LastIndex = find.Index + Controller.Search.CurrentSearch.Length;
-                            Find.SearchIndex.Add(Controller.Main.LastIndex);
-                        }
-                        if (Find.SearchIndex.Count > 0)
-                        {
-                            Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Find.SearchIndex[0]).LineNumber);
-                            int index = Find.SearchIndex[0] - (Controller.Search.CurrentSearch.Length);
+                            Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Index.SearchList[0].Index).LineNumber);
+                            int index = Index.SearchList[0].Index;
                             if (index < 0)
                             {
                                 index = 0;
@@ -99,7 +119,7 @@ namespace JAO_PI.Core.Utility
 
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Properties.Resources.Result);
-                            ResultText.Append(Find.SearchIndex.Count);
+                            ResultText.Append(Index.SearchList.Count);
 
                             SetSearchInfo(ResultText);
                         }
@@ -112,38 +132,32 @@ namespace JAO_PI.Core.Utility
             }
             Index.State &= ~Structures.States.Searching;
         }
-        public static void DoCount(TextBox SearchBox)
+        public static void DoCount(Controller.Tab Index, TextBox SearchBox)
         {
             if (Controller.Search.SearchBox != null)
             {
-                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(Core.Controller.Search.SearchBox.Text) == true)
+                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(Controller.Search.SearchBox.Text) == true)
                 {
                     StringBuilder ResultText = new StringBuilder();
                     ResultText.Append(Properties.Resources.Result);
-                    ResultText.Append(Find.SearchIndex.Count);
+                    ResultText.Append(Index.SearchList.Count);
 
                     SetSearchInfo(ResultText);
                     return;
                 }
                 else
                 {
-                    if (Find.SearchIndex.Count > 0)
+                    if (Index.SearchList.Count > 0)
                     {
-                        Find.SearchIndex.Clear();
+                        Index.SearchList.Clear();
                         Controller.Search.CurrentSearchIndex = 0;
                         Controller.Main.LastIndex = 1;
                     }
                     Controller.Search.CurrentSearch = Controller.Search.SearchBox.Text;
-                    if (Controller.Search.CurrentSearch != null)
+                    if (Index.SearchList != null && Controller.Search.CurrentSearch != null)
                     {
-                        Find find = new Find();
-                        while ((find = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, Controller.Main.LastIndex, !(Controller.Search.MatchCase.IsChecked.Value))) != null)
-                        {
-                            if (find.Index == -1) break;
-                            Controller.Main.LastIndex = find.Index + Controller.Search.CurrentSearch.Length;
-                            Find.SearchIndex.Add(Controller.Main.LastIndex);
-                        }
-                        if (Find.SearchIndex.Count > 0)
+                        Index.SearchList = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
+                        if (Index.SearchList != null && Index.SearchList.Count > 0)
                         {
                             if (Controller.Search.SearchInfo.Visibility == Visibility.Collapsed)
                             {
@@ -151,13 +165,9 @@ namespace JAO_PI.Core.Utility
                             }
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Properties.Resources.Result);
-                            ResultText.Append(Find.SearchIndex.Count);
+                            ResultText.Append(Index.SearchList.Count);
 
                             SetSearchInfo(ResultText);
-                        }
-                        else
-                        {
-                            SetSearchInfo(Properties.Resources.NoResult);
                         }
                     }
                 }

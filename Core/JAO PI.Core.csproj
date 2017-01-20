@@ -69,7 +69,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Find.cs" />
+    <Compile Include="Controller\FindController.cs" />
     <Compile Include="Controller\SearchController.cs" />
     <Compile Include="Events\CreditFrame.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

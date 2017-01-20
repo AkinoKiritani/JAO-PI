@@ -1,6 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit;
+using System.Collections.Generic;
 using System.Windows.Controls;
-using JAO_PI.Core.Utility;
 
 namespace JAO_PI.Core.Controller
 {
@@ -15,5 +15,7 @@ namespace JAO_PI.Core.Controller
         public MenuItem     Rename          { get; set; }
         public MenuItem     Save            { get; set; }
         internal Structures.States State    { get; set; }
+
+        internal List<Find> SearchList = new List<Find>();
     }
 }
