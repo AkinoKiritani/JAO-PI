@@ -16,8 +16,8 @@ namespace JAO_PI.EventsManager
                 Grid EditorGrid = item.Content as Grid;
                 Core.Controller.Main.CurrentEditor = EditorGrid.Children[0] as ICSharpCode.AvalonEdit.TextEditor;
                 
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
             }
             else
             {
@@ -29,7 +29,7 @@ namespace JAO_PI.EventsManager
 
         internal static void CloseFile(Core.Controller.Tab Index)
         {
-            if(!Index.State.HasFlag(Core.Utility.Structures.States.Saved))
+            if(!Index.State.HasFlag(Structures.States.Saved))
             {
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.CloseSave, Core.Properties.Resources.CloseSaveHeader, MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if(result == MessageBoxResult.Yes)
@@ -51,8 +51,8 @@ namespace JAO_PI.EventsManager
                 Core.Utility.Toggle.TabControl(false);
                 Core.Utility.Toggle.SaveOptions(false);
                 Core.Controller.Main.CompileMenuItem.IsEnabled = false;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
             }
             GC.ReRegisterForFinalize(Index);
             GC.Collect();

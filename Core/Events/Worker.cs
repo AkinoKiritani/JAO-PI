@@ -127,8 +127,8 @@ namespace JAO_PI.EventsManager
                 Core.Utility.Toggle.TabControl(false);
                 Core.Utility.Toggle.SaveOptions(false);
                 Core.Controller.Main.CompileMenuItem.IsEnabled = false;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
-                Core.Controller.Main.StatusBarItems[(int)Core.Utility.Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Visibility = Visibility.Collapsed;
             }
             GC.Collect(GC.GetGeneration(Core.Controller.Main.tabControl));
         }

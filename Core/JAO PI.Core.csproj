@@ -99,7 +99,6 @@
     </Compile>
     <Compile Include="Utility\Main.cs" />
     <Compile Include="Utility\Search.cs" />
-    <Compile Include="Utility\Structures.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\RegisterController.cs" />
     <Compile Include="Events\Editor.cs" />
@@ -113,6 +112,10 @@
     <Compile Include="Events\MainMenu.cs" />
     <Compile Include="Events\TabControl.cs" />
     <Compile Include="Events\Worker.cs" />
+    <Compile Include="Utility\Structures\ContextMenuItems.cs" />
+    <Compile Include="Utility\Structures\Frames.cs" />
+    <Compile Include="Utility\Structures\States.cs" />
+    <Compile Include="Utility\Structures\StatusBar.cs" />
     <Compile Include="Utility\Tab.cs" />
     <Compile Include="Utility\Toggle.cs" />
   </ItemGroup>
