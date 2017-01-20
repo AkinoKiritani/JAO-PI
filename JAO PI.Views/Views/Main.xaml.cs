@@ -15,6 +15,8 @@ namespace JAO_PI.Views
             EventsManager.TabControl TabControllEvents = new EventsManager.TabControl();
             EventsManager.MainMenu MenuEvents = new EventsManager.MainMenu();
 
+            Core.Controller.Worker Worker = new Core.Controller.Worker();
+
             InitializeComponent();
             
             Core.Controller.Register.TabControl(this.tabControl);
