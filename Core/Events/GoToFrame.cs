@@ -1,5 +1,4 @@
-﻿using JAO_PI.Core.Utility;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -32,13 +31,10 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void KeyDown(object sender, KeyEventArgs e)
+        public void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            System.Windows.Controls.TextBox GoToBox = sender as System.Windows.Controls.TextBox;
-            if (System.Text.RegularExpressions.Regex.IsMatch(GoToBox.Text, "\\d+") == false)
-            {
-                e.Handled = true;
-            }
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         public void GoTo_Click(object sender, RoutedEventArgs e)

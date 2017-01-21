@@ -20,7 +20,7 @@ namespace JAO_PI.Views
             Line.Checked += GoToEvents.Line_Checked;
             Offset.Checked += GoToEvents.Offset_Checked;
 
-            GoToBox.KeyDown += GoToEvents.KeyDown;
+            GoToBox.PreviewTextInput += GoToEvents.PreviewTextInput;
 
             Button_ToNowhere.Click += GoToEvents.GoNowhere_Click;
             Button_ToGo.Click += GoToEvents.GoTo_Click;
