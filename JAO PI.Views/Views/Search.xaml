@@ -4,11 +4,11 @@
         xmlns:p="clr-namespace:JAO_PI.Views.Properties"
         Height="220.5" Width="385" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" AllowsTransparency="True" WindowStyle="None">
     <Grid>
-
+   
         <Canvas x:Name="Head" Margin="0,4,0,0">
             <Border x:Name="FrameBorder" Margin="0,0,0,0" BorderThickness="1" BorderBrush="Bisque" Height="220" Width="385" Canvas.Top="-4" />
             <TextBlock x:Name="CloseBox" Canvas.Right="1" Canvas.Top="3" Text="  x" Width="18" Height="18" Background="#FFC75050" VerticalAlignment="Center" Foreground="White" Canvas.Left="365" />
-            <TextBlock x:Name="HeaderBox" Text="{x:Static p:Resources.SearchReplace}" Width="366" Height="18" Padding="5,2"/>
+            <TextBlock x:Name="HeaderBox" Text="{x:Static p:Resources.SearchReplace}" Width="385" Height="25" Padding="5,7,0,0" Canvas.Top="-4"/>
             <!-- use the width to dragmove the frame -->
         </Canvas>
 
