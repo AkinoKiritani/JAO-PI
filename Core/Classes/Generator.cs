@@ -21,9 +21,9 @@ namespace JAO_PI.Core.Classes
             {
                 ConvertTabsToSpaces = true,
                 AllowScrollBelowDocument = true,
-                CutCopyWholeLine = true
+                CutCopyWholeLine = true,
+                HighlightCurrentLine = true
             };
-
             TextEditor Editor = new TextEditor()
             {
                 FontSize = 13,
