@@ -17,13 +17,21 @@ namespace JAO_PI.Core.Classes
         EventsManager.Editor EditorEvents = new EventsManager.Editor();
         public TabItem TabItem(string path, string header, Stream content)
         {
+            TextEditorOptions Options = new TextEditorOptions()
+            {
+                ConvertTabsToSpaces = true,
+                AllowScrollBelowDocument = true,
+                CutCopyWholeLine = true
+            };
+
             TextEditor Editor = new TextEditor()
             {
                 FontSize = 13,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
                 FontFamily = new FontFamily("Consolas"),
                 ShowLineNumbers = true,
-                Margin = new Thickness(0, 0, 5, 0)
+                Margin = new Thickness(0, 0, 5, 0),
+                Options = Options
             };
 
             if (content != null)
