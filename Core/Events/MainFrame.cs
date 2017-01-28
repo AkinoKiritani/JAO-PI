@@ -64,6 +64,14 @@ namespace JAO_PI.EventsManager
             }
         }
 
+        public void MainFrame_Activated(object sender, EventArgs e)
+        {
+            if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].IsVisible)
+            {
+                Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Opacity = 0.4;
+            }
+        }
+
         public void MainFrame_Closed(object sender, EventArgs e)
         {
             Environment.Exit(0);

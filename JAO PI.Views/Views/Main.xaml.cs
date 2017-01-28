@@ -28,6 +28,8 @@ namespace JAO_PI.Views
             this.Loaded         += FrameEvents.MainFrame_Loaded;
             this.Closed         += FrameEvents.MainFrame_Closed;
             this.Closing        += FrameEvents.MainFrame_Closing;
+            //Event for transparency of the SearchFrame
+            this.Activated      += FrameEvents.MainFrame_Activated;
 
             tabControl.SelectionChanged += TabControllEvents.SelectionChanged;
 

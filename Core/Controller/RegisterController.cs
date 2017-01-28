@@ -56,6 +56,16 @@ namespace JAO_PI.Core.Controller
             return false;
         }
 
+        public static bool MoveHeader(Canvas Head)
+        {
+            if (Search.Head == null)
+            {
+                Search.Head = Head;
+                return true;
+            }
+            return false;
+        }
+
         public static bool Frames(Window[] Frame)
         {
             if (Main.Frames.Count == 0)

@@ -17,6 +17,9 @@ namespace JAO_PI.Views
             Core.Controller.Register.SearchControl(SearchControl);
             Core.Controller.Register.SearchInfo(SearchInfo);
 
+            // Register Header
+            Core.Controller.Register.MoveHeader(Head);
+
             // Register Search
             Core.Controller.Register.SearchBox(SearchBox);
             Core.Controller.Register.MatchCase(MatchCase);
@@ -37,7 +40,17 @@ namespace JAO_PI.Views
 
             SearchControl.Loaded += SearchEvents.Loaded;
             this.Closing += SearchEvents.Closing;
-            
+
+            // Event for transparency
+            this.Activated += SearchEvents.Activated;
+
+            // Events for the rebuild Header
+            CloseBox.MouseEnter += SearchEvents.Close_MouseEnter;
+            CloseBox.MouseLeave += SearchEvents.Close_MouseLeave;
+            CloseBox.MouseLeftButtonDown += SearchEvents.Close_MouseLeftButtonDown;
+
+            Head.MouseLeftButtonDown += SearchEvents.Head_MouseLeftButtonDown;
+            FrameBorder.BorderBrush = SystemParameters.WindowGlassBrush;
         }
     }
 }

@@ -10,6 +10,9 @@ namespace JAO_PI.Core.Controller
         public static int CurrentSearchIndex { get; set; }
         public static TextBlock SearchInfo = null;
 
+        // Header
+        public static Canvas Head = null;
+
         // Search
         public static TextBox SearchBox = null;
         public static CheckBox MatchCase = null;

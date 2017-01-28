@@ -1,7 +1,10 @@
 ﻿using JAO_PI.Core.Utility;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace JAO_PI.EventsManager
 {
@@ -30,11 +33,44 @@ namespace JAO_PI.EventsManager
             e.Cancel = true;
         }
 
+        // Header
+        public void Head_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].DragMove();
+        }
+
+        public void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Close();
+        }
+
+        public void Close_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBlock Close = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.CloseBox] as TextBlock;
+            Close.Background = new SolidColorBrush(Color.FromRgb(199, 80, 80));
+        }
+
+        public void Close_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBlock Close = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.CloseBox] as TextBlock;
+            Close.Background = new SolidColorBrush(Color.FromRgb(244, 67, 67));
+        }
+
         // TabControl
         public void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TabItem CurSelected = Core.Controller.Search.SearchControl.Items[Core.Controller.Search.SearchControl.SelectedIndex] as TabItem;
-            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Title = CurSelected.Header.ToString();
+            TextBlock Header = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.HeaderBox] as TextBlock;
+            Header.Text = CurSelected.Header.ToString();
+        }
+
+        public void Activated(object sender, EventArgs e)
+        {
+            Window SearchFrame = Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame];
+            if (SearchFrame.Opacity != 100)
+            {
+                SearchFrame.Opacity = 100;
+            }
         }
 
         // Search
