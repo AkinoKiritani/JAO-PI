@@ -16,6 +16,9 @@ namespace JAO_PI.EventsManager
             SearchFrame SearchEvents = new SearchFrame();
             Core.Controller.Search.SearchControl.SelectionChanged += SearchEvents.SelectionChanged;
             Core.Controller.Search.SearchControl.Loaded -= SearchEvents.Loaded;
+
+            Border FrameBorder = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.FrameBorder] as Border;
+            FrameBorder.BorderBrush = SystemParameters.WindowGlassBrush;
         }
 
         public void Closing(object sender, CancelEventArgs e)
@@ -70,6 +73,9 @@ namespace JAO_PI.EventsManager
             if (SearchFrame.Opacity != 100)
             {
                 SearchFrame.Opacity = 100;
+
+                Border FrameBorder = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.FrameBorder] as Border;
+                FrameBorder.BorderBrush = SystemParameters.WindowGlassBrush;
             }
         }
 

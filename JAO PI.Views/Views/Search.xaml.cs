@@ -50,7 +50,6 @@ namespace JAO_PI.Views
             CloseBox.MouseLeftButtonDown += SearchEvents.Close_MouseLeftButtonDown;
 
             Head.MouseLeftButtonDown += SearchEvents.Head_MouseLeftButtonDown;
-            FrameBorder.BorderBrush = SystemParameters.WindowGlassBrush;
         }
     }
 }

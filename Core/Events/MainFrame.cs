@@ -69,6 +69,9 @@ namespace JAO_PI.EventsManager
             if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].IsVisible)
             {
                 Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Opacity = 0.4;
+
+                Border FrameBorder = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.FrameBorder] as Border;
+                FrameBorder.BorderBrush = System.Windows.Media.Brushes.Transparent;
             }
         }
 
