@@ -65,6 +65,11 @@ namespace JAO_PI.EventsManager
             TabItem CurSelected = Core.Controller.Search.SearchControl.Items[Core.Controller.Search.SearchControl.SelectedIndex] as TabItem;
             TextBlock Header = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.HeaderBox] as TextBlock;
             Header.Text = CurSelected.Header.ToString();
+
+            if (Core.Controller.Search.SearchControl.SelectedIndex == 2)
+            {
+                GoTo.RefreshLineOffset();
+            }
         }
 
         public void Activated(object sender, EventArgs e)
@@ -76,6 +81,11 @@ namespace JAO_PI.EventsManager
 
                 Border FrameBorder = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.FrameBorder] as Border;
                 FrameBorder.BorderBrush = SystemParameters.WindowGlassBrush;
+            }
+
+            if (Core.Controller.Search.SearchControl.SelectedIndex == 2)
+            {
+                GoTo.RefreshLineOffset();
             }
         }
 

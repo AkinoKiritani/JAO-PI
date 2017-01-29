@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -7,28 +6,9 @@ namespace JAO_PI.EventsManager
 {
     public class GoToFrame
     {
-        public void Closing(object sender, CancelEventArgs e)
-        {
-            Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
-            e.Cancel = true;
-        }
         public void GoNowhere_Click(object sender, RoutedEventArgs e)
         {
-            Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
-        }
-
-        public void Activated(object sender, EventArgs e)
-        {
-            if (Core.Controller.Main.Line.IsChecked.Value == true)
-            {
-                Core.Controller.Main.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.LineCount.ToString();
-                Core.Controller.Main.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Line.ToString();
-            }
-            else
-            {
-                Core.Controller.Main.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.TextLength.ToString();
-                Core.Controller.Main.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Offset.ToString();
-            }
+            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
         }
 
         public void PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -42,7 +22,7 @@ namespace JAO_PI.EventsManager
             if (Core.Controller.Main.GoToBox.Text.Length > 0)
             {
                 int GoToValue = Convert.ToInt32(Core.Controller.Main.GoToBox.Text);
-                Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Collapsed;
+                Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
                 Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame].Activate();
                 if (Core.Controller.Main.Line.IsChecked.Value == true)
                 {

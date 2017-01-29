@@ -4,7 +4,6 @@
     {
         MainFrame,
         SearchFrame,
-        GoToFrame,
         CreditsFrame
     }
 }

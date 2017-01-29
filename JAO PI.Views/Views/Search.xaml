@@ -40,6 +40,24 @@
                     <Button x:Name="Cancel_Replace" Content="{x:Static p:Resources.CloseSearch}" HorizontalAlignment="Left" Margin="262,94,0,5" VerticalAlignment="Top" Width="89" Height="22" />
                 </Grid>
             </TabItem>
+            <TabItem x:Name="GoTo" Header="{x:Static p:Resources.GoTo}">
+                <Grid>
+                    <RadioButton x:Name="Line" Content="{x:Static p:Resources.Line}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsChecked="True" GroupName="GoToButtons"/>
+                    <RadioButton x:Name="Offset" Content="{x:Static p:Resources.Offset}" HorizontalAlignment="Left" Margin="161,10,0,0" VerticalAlignment="Top" GroupName="GoToButtons"/>
+                    
+                    <Label Content="{x:Static p:Resources.GoToLocation}" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{x:Static p:Resources.ToGoLocation}" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{x:Static p:Resources.MaxGoToLocation}" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="Position" Content="0" HorizontalAlignment="Left" Margin="161,30,0,0" VerticalAlignment="Top"/>
+                    
+                    <TextBox x:Name="GoToBox" HorizontalAlignment="Left" Height="20" Margin="161,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="124"/>
+                    
+                    <Label x:Name="Max_Position" Content="0" HorizontalAlignment="Left" Margin="161,92,0,0" VerticalAlignment="Top"/>
+                    
+                    <Button x:Name="Button_ToGo" Content="{x:Static p:Resources.Button_ToGo}" Margin="290,61,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
+                    <Button x:Name="Button_ToNowhere" Content="{x:Static p:Resources.Button_ToNowhere}" Margin="290,92,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80" />
+                </Grid>
+            </TabItem>
         </TabControl>
         <TextBlock x:Name="SearchInfo" HorizontalAlignment="Left" Margin="10,0,0,7" TextWrapping="Wrap" VerticalAlignment="Bottom" Visibility="Collapsed" />
     </Grid>

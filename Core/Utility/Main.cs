@@ -31,7 +31,20 @@ namespace JAO_PI.Core.Utility
             }
             catch (Exception)
             {
-                MessageBox.Show(Core.Properties.Resources.SyntaxReadingError);
+                MessageBox.Show(Properties.Resources.SyntaxReadingError);
+            }
+        }
+
+        public static void SelectAndOpenSearchTab(Structures.SearchControl Index)
+        {
+            if (Controller.Main.tabControl.Items.Count > 0 && Controller.Main.tabControl.Visibility == Visibility.Visible)
+            {
+                if (Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
+                {
+                    Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Visible;
+                }
+                Controller.Search.SearchControl.SelectedIndex = (int)Index;
+                Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Focus();
             }
         }
     }

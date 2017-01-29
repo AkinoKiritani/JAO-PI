@@ -77,6 +77,11 @@ namespace JAO_PI.EventsManager
             }
         }
 
+        public void Replace(object sender, ExecutedRoutedEventArgs e)
+        {
+            Main.SelectAndOpenSearchTab(Structures.SearchControl.Replace);
+        }
+
         public void Close_File_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
@@ -94,7 +99,7 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
-                Core.Utility.Tab.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
+                Tab.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
             }
         }
         public void SaveAs_Click(object sender, RoutedEventArgs e)
@@ -137,27 +142,11 @@ namespace JAO_PI.EventsManager
         }
         public void Find_Click(object sender, RoutedEventArgs e)
         {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
-                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
-            {
-                if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
-                {
-                    Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Visible;
-                }
-            }
+            Main.SelectAndOpenSearchTab(Structures.SearchControl.Search);
         }
         public void Search(object sender, ExecutedRoutedEventArgs e)
         {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
-                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
-            {
-                if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility == Visibility.Collapsed)
-                {
-                    Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Visible;
-                }
-            }
+            Main.SelectAndOpenSearchTab(Structures.SearchControl.Search);
         }
         public void FindNext(object sender, ExecutedRoutedEventArgs e)
         {
@@ -202,27 +191,11 @@ namespace JAO_PI.EventsManager
         }
         public void GoTo(object sender, ExecutedRoutedEventArgs e)
         {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
-                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
-            {
-                if (Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
-                {
-                    Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Visible;
-                }
-            }
+            Main.SelectAndOpenSearchTab(Structures.SearchControl.GoTo);
         }
         public void GoTo_Click(object sender, RoutedEventArgs e)
         {
-            if (Core.Controller.Main.tabControl.Items.Count > 0 &&
-                Core.Controller.Main.tabControl.Visibility == Visibility.Visible &&
-                Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
-            {
-                if (Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility == Visibility.Collapsed)
-                {
-                    Core.Controller.Main.Frames[(int)Structures.Frames.GoToFrame].Visibility = Visibility.Visible;
-                }
-            }
+            Main.SelectAndOpenSearchTab(Structures.SearchControl.GoTo);
         }
     }
 }

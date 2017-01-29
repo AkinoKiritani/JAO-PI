@@ -10,7 +10,7 @@ namespace JAO_PI.Views
     {
         public Main()
         {
-            Core.Controller.Register.Frames(new Window[] { this, new Search(), new GoTo(), new Credits() });
+            Core.Controller.Register.Frames(new Window[] { this, new Search(), new Credits() });
             EventsManager.MainFrame FrameEvents = new EventsManager.MainFrame();
             EventsManager.TabControl TabControllEvents = new EventsManager.TabControl();
             EventsManager.MainMenu MenuEvents = new EventsManager.MainMenu();
@@ -56,15 +56,22 @@ namespace JAO_PI.Views
             Copy.Click          += MenuEvents.Copy_Click;
             Paste.Click         += MenuEvents.Paste_Click;
 
-            // Find | GoTo
+            // Find
             RoutedCommand FindCmd = new RoutedCommand();
             FindCmd.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(FindCmd, MenuEvents.Search));
 
+            // Find Next
             RoutedCommand FindNextCmd = new RoutedCommand();
             FindNextCmd.InputGestures.Add(new KeyGesture(Key.F3));
             CommandBindings.Add(new CommandBinding(FindNextCmd, MenuEvents.FindNext));
 
+            // Replace
+            RoutedCommand ReplaceCmd = new RoutedCommand();
+            ReplaceCmd.InputGestures.Add(new KeyGesture(Key.H, ModifierKeys.Control));
+            CommandBindings.Add(new CommandBinding(ReplaceCmd, MenuEvents.Replace));
+
+            // GoTo
             RoutedCommand GoToCmd = new RoutedCommand();
             GoToCmd.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(GoToCmd, MenuEvents.GoTo));
