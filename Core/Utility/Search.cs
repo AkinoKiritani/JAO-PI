@@ -79,9 +79,9 @@ namespace JAO_PI.Core.Utility
 
         public static void DoSearch(Controller.Tab Index, TextBox SearchBox)
         {
-            if (Controller.Search.SearchBox != null)
+            if (SearchBox != null)
             {
-                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(Controller.Search.SearchBox.Text) == true)
+                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text) == true)
                 {
                     Controller.Search.CurrentSearchIndex++;
                     if (Index.SearchList != null && Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
@@ -96,26 +96,22 @@ namespace JAO_PI.Core.Utility
                 }
                 else
                 {
-                    if (Index.SearchList.Count > 0)
+                    if (Index.SearchList != null && Index.SearchList.Count > 0)
                     {
                         Index.SearchList.Clear();
-                        Controller.Search.CurrentSearchIndex = 0;
-                        Controller.Main.LastIndex = 0;
                     }
 
-                    Controller.Search.CurrentSearch = Controller.Search.SearchBox.Text;
+                    Controller.Search.CurrentSearchIndex = 0;
+                    Controller.Main.LastIndex = 0;
+                    Controller.Search.CurrentSearch = SearchBox.Text;
+
                     if (Controller.Search.CurrentSearch != null)
                     {
-                        Index.SearchList = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
+                        Index.SearchList = FindString(Index.Editor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
                         if (Index.SearchList != null && Index.SearchList.Count > 0)
                         {
                             Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Index.SearchList[0].Index).LineNumber);
-                            int index = Index.SearchList[0].Index;
-                            if (index < 0)
-                            {
-                                index = 0;
-                            }
-                            Index.Editor.Select(index, Controller.Search.CurrentSearch.Length);
+                            Index.Editor.Select(Index.SearchList[0].Index, Controller.Search.CurrentSearch.Length);
 
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Properties.Resources.Result);
@@ -134,9 +130,9 @@ namespace JAO_PI.Core.Utility
         }
         public static void DoCount(Controller.Tab Index, TextBox SearchBox)
         {
-            if (Controller.Search.SearchBox != null)
+            if (SearchBox != null)
             {
-                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(Controller.Search.SearchBox.Text) == true)
+                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text) == true)
                 {
                     StringBuilder ResultText = new StringBuilder();
                     ResultText.Append(Properties.Resources.Result);
@@ -153,10 +149,10 @@ namespace JAO_PI.Core.Utility
                         Controller.Search.CurrentSearchIndex = 0;
                         Controller.Main.LastIndex = 1;
                     }
-                    Controller.Search.CurrentSearch = Controller.Search.SearchBox.Text;
+                    Controller.Search.CurrentSearch = SearchBox.Text;
                     if (Index.SearchList != null && Controller.Search.CurrentSearch != null)
                     {
-                        Index.SearchList = FindString(Controller.Main.CurrentEditor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
+                        Index.SearchList = FindString(Index.Editor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
                         if (Index.SearchList != null && Index.SearchList.Count > 0)
                         {
                             if (Controller.Search.SearchInfo.Visibility == Visibility.Collapsed)

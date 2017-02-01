@@ -128,7 +128,12 @@ namespace JAO_PI.EventsManager
 
         public void Do_Search_Replace_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Click");
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
+            if (Index != null)
+            {
+                Index.State |= Structures.States.Searching;
+                Search.DoSearch(Index, Core.Controller.Search.SearchBox_Replace);
+            }
         }
     }
 }
