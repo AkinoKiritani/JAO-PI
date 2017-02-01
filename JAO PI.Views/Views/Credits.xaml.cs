@@ -17,6 +17,8 @@ namespace JAO_PI.Views
 
             CreditsFrameEvents = new EventsManager.CreditFrame();
 
+            Core.Controller.Register.CreditsFrameBorder(CreditsFrameBorder);
+
             // Load Image from Ressources
             Stream ImageStream = new MemoryStream();
             Properties.Resources.pawn.Save(ImageStream, ImageFormat.Png);
@@ -26,11 +28,14 @@ namespace JAO_PI.Views
             bitmap.StreamSource = ImageStream;
             bitmap.EndInit();
 
-            kek.Source = bitmap;
+            Icon.Source = bitmap;
 
-            SaveIconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.SaveIconByWebsite_MouseLeftButtonUp;
-            IconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.IconByWebsite_MouseLeftButtonUp;
+            SaveIconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.OpenWebsite;
+            IconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.OpenWebsite;
+            AvalonEditByWebsite.MouseLeftButtonDown += CreditsFrameEvents.OpenWebsite;
+
             CloseButton.Click += CreditsFrameEvents.CloseButton_Click;
+            this.Activated += CreditsFrameEvents.Activated;
         }
     }
 }

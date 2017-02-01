@@ -68,6 +68,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CreditsController.cs" />
     <Compile Include="Controller\FindController.cs" />
     <Compile Include="Controller\SearchController.cs" />
     <Compile Include="Events\CreditFrame.cs" />

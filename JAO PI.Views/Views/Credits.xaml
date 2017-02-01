@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Height="300" Width="300" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300" >
-        </Border>
-        <Image x:Name="kek" Margin="22,15,227,238" RenderTransformOrigin="0.5,0.5">
+        <Border x:Name="CreditsFrameBorder" BorderBrush="Bisque" BorderThickness="1" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300" />
+
+        <Image x:Name="Icon" Margin="22,15,227,238" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -32,21 +32,28 @@
                 </TransformGroup>
             </Border.RenderTransform>
         </Border>
-        
+
         <TextBlock x:Name="JAOPI_Version" Text="{x:Static p:Resources.JAOPI_Version}" Height="15" Width="203" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,33,16,0" />
-        <TextBlock x:Name="Author" Text="{x:Static p:Resources.Author}" Height="20" Width="203" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,68,76,0" />
-        <TextBlock x:Name="IconBy" Text="{x:Static p:Resources.IconBy}" Height="20" Width="203" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,88,76,0" />
+        <TextBlock x:Name="Author" Text="{x:Static p:Resources.Author}" Height="20" Width="263" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,68,16,0" />
+        <TextBlock x:Name="IconBy" Text="{x:Static p:Resources.IconBy}" Height="20" Width="263" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,88,16,0" />
         <TextBlock x:Name="IconByWebsite" Text="{x:Static p:Resources.IconByWebsite}" Height="20" Width="263" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,108,16,0" FlowDirection="RightToLeft" Cursor="Hand" TextDecorations="Underline" >
             <TextBlock.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HotTrackColorKey}}"/>
             </TextBlock.Foreground>
         </TextBlock>
-        <TextBlock x:Name="SaveIconBy" Text="{x:Static p:Resources.SaveIconBy}" Height="20" Width="203" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,128,76,0" />
+        <TextBlock x:Name="SaveIconBy" Text="{x:Static p:Resources.SaveIconBy}" Height="20" VerticalAlignment="Top" Margin="0,128,16,0" HorizontalAlignment="Right" Width="263" />
         <TextBlock x:Name="SaveIconByWebsite" Text="{x:Static p:Resources.SaveIconByWebsite}" Height="20" Width="267" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,148,10,0" FlowDirection="RightToLeft" Cursor="Hand" TextDecorations="Underline" >
             <TextBlock.Foreground>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HotTrackColorKey}}"/>
             </TextBlock.Foreground>
         </TextBlock>
+        <TextBlock x:Name="AvalonEditBy" Text="{x:Static p:Resources.AvalonEditBy}" Margin="21,168,16,115"/>
+        <TextBlock x:Name="AvalonEditByWebsite" Text="{x:Static p:Resources.AvalonEditByWebsite}" Height="20" Width="267" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,185,10,0" FlowDirection="RightToLeft" Cursor="Hand" TextDecorations="Underline" >
+            <TextBlock.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HotTrackColorKey}}"/>
+            </TextBlock.Foreground>
+        </TextBlock>
+
         <Button x:Name="CloseButton" Margin="124,270,124,10" Content="OK" />
     </Grid>
 </Window>

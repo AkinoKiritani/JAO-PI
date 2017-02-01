@@ -4,7 +4,7 @@ using System.Windows.Controls.Primitives;
 
 namespace JAO_PI.Core.Controller
 {
-    public class Register
+    public static class Register
     {
         public static bool Edit(MenuItem editItem)
         {
@@ -167,6 +167,16 @@ namespace JAO_PI.Core.Controller
             if (Search.MatchCase == null)
             {
                 Search.MatchCase = matchCase;
+                return true;
+            }
+            return false;
+        }        
+
+        public static bool CreditsFrameBorder(Border FrameBorder)
+        {
+            if (Credits.FrameBorder == null)
+            {
+                Credits.FrameBorder = FrameBorder;
                 return true;
             }
             return false;

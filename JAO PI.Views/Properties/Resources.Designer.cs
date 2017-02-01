@@ -79,6 +79,24 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die AvalonEdit by: icsharpcode ähnelt.
+        /// </summary>
+        public static string AvalonEditBy {
+            get {
+                return ResourceManager.GetString("AvalonEditBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die http://avalonedit.net ähnelt.
+        /// </summary>
+        public static string AvalonEditByWebsite {
+            get {
+                return ResourceManager.GetString("AvalonEditByWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Go ! ähnelt.
         /// </summary>
         public static string Button_ToGo {

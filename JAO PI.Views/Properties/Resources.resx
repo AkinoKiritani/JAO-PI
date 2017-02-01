@@ -271,4 +271,10 @@ by using Main in the Header.</value>
   <data name="SearchReplace" xml:space="preserve">
     <value>Search &amp; Replace</value>
   </data>
+  <data name="AvalonEditBy" xml:space="preserve">
+    <value>AvalonEdit by: icsharpcode</value>
+  </data>
+  <data name="AvalonEditByWebsite" xml:space="preserve">
+    <value>http://avalonedit.net</value>
+  </data>
 </root>
