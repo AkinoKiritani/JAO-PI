@@ -30,7 +30,10 @@ namespace JAO_PI.EventsManager
 
                 foreach (Core.Controller.Tab tab in Core.Controller.Main.TabControlList)
                 {
-                    tab.SearchList.Clear();
+                    if (tab.SearchList != null)
+                    {
+                        tab.SearchList.Clear();
+                    }
                 }
             }
             e.Cancel = true;
