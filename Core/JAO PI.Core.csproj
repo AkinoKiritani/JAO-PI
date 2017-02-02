@@ -115,6 +115,7 @@
     <Compile Include="Events\Worker.cs" />
     <Compile Include="Utility\Structures\ContextMenuItems.cs" />
     <Compile Include="Utility\Structures\Frames.cs" />
+    <Compile Include="Utility\Structures\LastSearch.cs" />
     <Compile Include="Utility\Structures\SearchControl.cs" />
     <Compile Include="Utility\Structures\SearchHeader.cs" />
     <Compile Include="Utility\Structures\States.cs" />

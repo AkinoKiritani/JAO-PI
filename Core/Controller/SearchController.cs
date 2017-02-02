@@ -9,6 +9,7 @@ namespace JAO_PI.Core.Controller
         public static string CurrentSearch = null;
         public static int CurrentSearchIndex { get; set; }
         public static TextBlock SearchInfo = null;
+        public static Structures.LastSearch LastSearchTyp = Structures.LastSearch.None;
 
         // Header
         public static Canvas Head = null;

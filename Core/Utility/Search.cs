@@ -79,6 +79,7 @@ namespace JAO_PI.Core.Utility
 
         public static void DoSearch(Controller.Tab Index, TextBox SearchBox)
         {
+            Index.State |= Structures.States.Searching;
             if (SearchBox != null)
             {
                 if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text) == true)

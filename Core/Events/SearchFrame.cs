@@ -100,7 +100,7 @@ namespace JAO_PI.EventsManager
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
             {
-                Index.State |= Structures.States.Searching;
+                Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Search;
                 Search.DoSearch(Index, Core.Controller.Search.SearchBox);
             }
         }
@@ -110,7 +110,7 @@ namespace JAO_PI.EventsManager
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
             {
-                Index.State |= Structures.States.Searching;
+                Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Count;
                 Search.DoCount(Index, Core.Controller.Search.SearchBox);
             }
         }
@@ -131,7 +131,7 @@ namespace JAO_PI.EventsManager
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
             {
-                Index.State |= Structures.States.Searching;
+                Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
                 Search.DoSearch(Index, Core.Controller.Search.SearchBox_Replace);
             }
         }

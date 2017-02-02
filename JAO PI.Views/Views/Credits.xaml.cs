@@ -28,7 +28,7 @@ namespace JAO_PI.Views
             bitmap.StreamSource = ImageStream;
             bitmap.EndInit();
 
-            Icon.Source = bitmap;
+            IconPic.Source = bitmap;
 
             SaveIconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.OpenWebsite;
             IconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.OpenWebsite;

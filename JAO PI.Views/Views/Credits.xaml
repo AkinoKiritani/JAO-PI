@@ -9,7 +9,7 @@
     <Grid>
         <Border x:Name="CreditsFrameBorder" BorderBrush="Bisque" BorderThickness="1" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300" />
 
-        <Image x:Name="Icon" Margin="22,15,227,238" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="IconPic" Margin="22,15,227,238" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
