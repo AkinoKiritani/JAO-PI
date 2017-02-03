@@ -130,14 +130,14 @@ namespace JAO_PI.EventsManager
             if (Index != null)
             {
                 Core.Controller.Search.CurrentSearchIndex++;
-                if (Core.Controller.Search.CurrentSearch != Core.Controller.Search.SearchBox_Replace.Text)
+                if (Core.Controller.Search.CurrentSearch != Core.Controller.Search.SearchBox_Replace.Text) // do a new search
                 {
                     Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
                     Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Search.SearchBox_Replace.Text, false);
                     Core.Controller.Search.CurrentSearchIndex = 0;
                     Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox_Replace.Text;
                 }
-                if (Core.Controller.Search.LastSearchTyp != Structures.LastSearch.Replace)
+                if (Core.Controller.Search.LastSearchTyp != Structures.LastSearch.Replace) // if a Search is already done with the "normal" Search
                 {
                     Core.Controller.Search.CurrentSearchIndex = 0;
                     Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
@@ -151,6 +151,7 @@ namespace JAO_PI.EventsManager
                     Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index).LineNumber);
                     Index.Editor.Select(Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.ReplaceBox.Text.Length);
 
+                    // Adding the new offset to the Search Index
                     offset = lenght - Core.Controller.Search.ReplaceBox.Text.Length;
                     for (int i = Core.Controller.Search.CurrentSearchIndex + 1; i != Index.SearchList.Count; i++)
                     {
