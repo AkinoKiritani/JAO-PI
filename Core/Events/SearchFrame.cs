@@ -126,7 +126,38 @@ namespace JAO_PI.EventsManager
 
         public void Do_Replace(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Click");
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
+            if (Index != null)
+            {
+                Core.Controller.Search.CurrentSearchIndex++;
+                if (Core.Controller.Search.CurrentSearch != Core.Controller.Search.SearchBox_Replace.Text)
+                {
+                    Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
+                    Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Search.SearchBox_Replace.Text, false);
+                    Core.Controller.Search.CurrentSearchIndex = 0;
+                    Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox_Replace.Text;
+                }
+                if (Core.Controller.Search.LastSearchTyp != Structures.LastSearch.Replace)
+                {
+                    Core.Controller.Search.CurrentSearchIndex = 0;
+                    Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
+                }
+                if (Core.Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
+                {
+                    int offset = Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index;
+                    int lenght = Core.Controller.Search.SearchBox_Replace.Text.Length;
+                    Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
+
+                    Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index).LineNumber);
+                    Index.Editor.Select(Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.ReplaceBox.Text.Length);
+
+                    offset = lenght - Core.Controller.Search.ReplaceBox.Text.Length;
+                    for (int i = Core.Controller.Search.CurrentSearchIndex + 1; i != Index.SearchList.Count; i++)
+                    {
+                        Index.SearchList[i].Index -= offset;
+                    }
+                }
+            }
         }
 
         public void Do_Search_Replace_Click(object sender, RoutedEventArgs e)
@@ -134,7 +165,7 @@ namespace JAO_PI.EventsManager
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
             {
-                Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
+                Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Search;
                 Search.DoSearch(Index, Core.Controller.Search.SearchBox_Replace);
             }
         }
