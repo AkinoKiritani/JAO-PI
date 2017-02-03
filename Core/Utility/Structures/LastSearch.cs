@@ -5,6 +5,7 @@
         None,
         Search,
         Count,
-        Replace
+        Replace,
+        ReplaceSearch
     }
 }
