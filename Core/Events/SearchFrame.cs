@@ -121,7 +121,33 @@ namespace JAO_PI.EventsManager
         // Replace
         public void Do_Replace_All(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Click");
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
+            if (Index != null)
+            {
+                Core.Controller.Search.LastSearchTyp = Structures.LastSearch.ReplaceAll;
+                Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Search.SearchBox_Replace.Text, false);
+                Core.Controller.Search.CurrentSearchIndex = 0;
+                Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox_Replace.Text;
+
+                int offset = 0;
+                int lenght = Core.Controller.Search.SearchBox_Replace.Text.Length;
+                for (int i = 0; i != Index.SearchList.Count; i++)
+                {
+                    offset = Index.SearchList[i].Index;
+                    Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
+
+                    offset = lenght - Core.Controller.Search.ReplaceBox.Text.Length;
+                    for (int j = i; j != Index.SearchList.Count; j++)
+                    {
+                        Index.SearchList[j].Index -= offset;
+                    }
+                }
+
+                if (Index.SearchList.Count > 0)
+                {
+                    Index.SearchList.Clear();
+                }
+            }
         }
 
         public void Do_Replace(object sender, RoutedEventArgs e)

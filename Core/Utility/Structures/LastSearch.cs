@@ -6,6 +6,7 @@
         Search,
         Count,
         Replace,
-        ReplaceSearch
+        ReplaceSearch,
+        ReplaceAll
     }
 }
