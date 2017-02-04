@@ -157,8 +157,7 @@ namespace JAO_PI.EventsManager
             {
                 if (Core.Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
                 {
-                    Core.Controller.Main.CurrentEditor.ScrollToLine(Core.Controller.Main.CurrentEditor.TextArea.Document.GetLineByOffset(Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index).LineNumber);
-                    Core.Controller.Main.CurrentEditor.Select(Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
+                    Main.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
                 }
                 else
                 {

@@ -87,8 +87,7 @@ namespace JAO_PI.Core.Utility
                     Controller.Search.CurrentSearchIndex++;
                     if (Index.SearchList != null && Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
                     {
-                        Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Index.SearchList[Controller.Search.CurrentSearchIndex].Index).LineNumber);
-                        Index.Editor.Select(Index.SearchList[Controller.Search.CurrentSearchIndex].Index, Controller.Search.CurrentSearch.Length);
+                        Main.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Controller.Search.CurrentSearch.Length);
                     }
                     else
                     {
@@ -111,8 +110,7 @@ namespace JAO_PI.Core.Utility
                         Index.SearchList = FindString(Index.Editor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
                         if (Index.SearchList != null && Index.SearchList.Count > 0)
                         {
-                            Index.Editor.ScrollToLine(Index.Editor.TextArea.Document.GetLineByOffset(Index.SearchList[0].Index).LineNumber);
-                            Index.Editor.Select(Index.SearchList[0].Index, Controller.Search.CurrentSearch.Length);
+                            Main.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
 
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Properties.Resources.Result);

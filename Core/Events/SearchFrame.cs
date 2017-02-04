@@ -158,9 +158,7 @@ namespace JAO_PI.EventsManager
                     int lenght = Core.Controller.Search.SearchBox_Replace.Text.Length;
                     Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
 
-                    Index.Editor.Select(offset, Core.Controller.Search.ReplaceBox.Text.Length);
-                    Index.Editor.TextArea.Caret.Offset = offset;
-                    Index.Editor.TextArea.Caret.BringCaretToView();
+                    Main.SelectAndBringToView(Index.Editor, offset, lenght);
 
                     // Adding the new offset to the Search Index
                     offset = lenght - Core.Controller.Search.ReplaceBox.Text.Length;
@@ -180,11 +178,7 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Search.LastSearchTyp == Structures.LastSearch.Replace || Core.Controller.Search.LastSearchTyp == Structures.LastSearch.ReplaceSearch)
                 {
                     Core.Controller.Search.CurrentSearchIndex++;
-
-                    Index.Editor.Select(Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
-                    Index.Editor.TextArea.Caret.Offset = Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index;
-                    Index.Editor.TextArea.Caret.BringCaretToView();
-
+                    Main.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
                     Core.Controller.Search.LastSearchTyp = Structures.LastSearch.ReplaceSearch;
                 }
                 else

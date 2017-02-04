@@ -47,5 +47,12 @@ namespace JAO_PI.Core.Utility
                 Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Focus();
             }
         }
+        public static void SelectAndBringToView(TextEditor Editor, int offset, int lenght)
+        {
+            Editor.Select(offset, lenght);
+            Editor.TextArea.Caret.Offset = offset;
+            Editor.TextArea.Caret.BringCaretToView();
+            Editor.TextArea.Caret.Show();
+        }
     }
 }
