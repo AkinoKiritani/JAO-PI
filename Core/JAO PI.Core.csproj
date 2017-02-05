@@ -113,6 +113,7 @@
     <Compile Include="Events\MainMenu.cs" />
     <Compile Include="Events\TabControl.cs" />
     <Compile Include="Events\Worker.cs" />
+    <Compile Include="Utility\Structures\CompilerPanel.cs" />
     <Compile Include="Utility\Structures\ContextMenuItems.cs" />
     <Compile Include="Utility\Structures\Frames.cs" />
     <Compile Include="Utility\Structures\LastSearch.cs" />

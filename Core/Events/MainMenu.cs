@@ -102,6 +102,12 @@ namespace JAO_PI.EventsManager
                 Tab.SaveTab(Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem);
             }
         }
+
+        public void Compiler_Close_Click(object sender, MouseButtonEventArgs e)
+        {
+            Core.Controller.Main.CompilerPanel.Visibility = Visibility.Collapsed;
+        }
+
         public void SaveAs_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)

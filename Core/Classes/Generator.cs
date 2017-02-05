@@ -193,5 +193,14 @@ namespace JAO_PI.Core.Classes
             });
             return stack;
         }
+        public ListBoxItem ListItem(string Text)
+        {
+            ListBoxItem Item = new ListBoxItem()
+            {
+                //Uid should contain the Errorline
+                Content = Text
+            };
+            return Item;
+        }
     }
 }

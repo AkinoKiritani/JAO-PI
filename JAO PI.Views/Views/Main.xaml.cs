@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace JAO_PI.Views
@@ -23,6 +24,7 @@ namespace JAO_PI.Views
             Core.Controller.Register.Compile(this.Compiling);
             Core.Controller.Register.Edit(this.Edit);
             Core.Controller.Register.StatusBar(this.Line, this.Column);
+            Core.Controller.Register.CompilePanel(this.CompilerPanel);
 
             // MainFrame
             this.Loaded         += FrameEvents.MainFrame_Loaded;
@@ -88,6 +90,8 @@ namespace JAO_PI.Views
 
             Compile.Click       += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
+
+            CompilerCloseBox.MouseLeftButtonDown += MenuEvents.Compiler_Close_Click;
 
             // About
             RoutedCommand AboutCmd = new RoutedCommand();

@@ -46,6 +46,18 @@ namespace JAO_PI.Core.Controller
             return false;
         }
 
+        public static bool CompilePanel(StackPanel compilerPanel)
+        {
+            if(Main.CompilerPanel == null)
+            {
+                Main.CompilerPanel = compilerPanel;
+                Main.PanelBorder = compilerPanel.Children[(int)Structures.CompilerPanel.PanelBorder] as Border;
+                Main.ErrorBox = compilerPanel.Children[(int)Structures.CompilerPanel.ErrorBox] as ListBox;
+                return true;
+            }
+            return false;
+        }
+
         public static bool SearchBox_Replace(TextBox searchBox_Replace)
         {
             if (Search.SearchBox_Replace == null)

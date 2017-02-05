@@ -20,6 +20,10 @@ namespace JAO_PI.Core.Controller
         public static List<StatusBarItem> StatusBarItems = new List<StatusBarItem>();
         public static MenuItem CompileMenuItem = null;
 
+        public static StackPanel CompilerPanel = null;
+        public static Border PanelBorder = null;
+        public static ListBox ErrorBox = null;
+
         //Frames
         public static List<Window> Frames = new List<Window>();
 
