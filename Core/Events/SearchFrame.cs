@@ -135,12 +135,6 @@ namespace JAO_PI.EventsManager
                 {
                     offset = Index.SearchList[i].Index;
                     Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
-
-                    offset = lenght - Core.Controller.Search.ReplaceBox.Text.Length;
-                    for (int j = i; j != Index.SearchList.Count; j++)
-                    {
-                        Index.SearchList[j].Index -= offset;
-                    }
                 }
 
                 if (Index.SearchList.Count > 0)
@@ -185,13 +179,6 @@ namespace JAO_PI.EventsManager
                     Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
 
                     Main.SelectAndBringToView(Index.Editor, offset, lenght);
-
-                    // Adding the new offset to the Search Index
-                    offset = lenght - Core.Controller.Search.ReplaceBox.Text.Length;
-                    for (int i = Core.Controller.Search.CurrentSearchIndex + 1; i != Index.SearchList.Count; i++)
-                    {
-                        Index.SearchList[i].Index -= offset;
-                    }
                 }
             }
         }
