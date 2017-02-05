@@ -15,6 +15,7 @@ namespace JAO_PI.Views
             EventsManager.MainFrame FrameEvents = new EventsManager.MainFrame();
             EventsManager.TabControl TabControllEvents = new EventsManager.TabControl();
             EventsManager.MainMenu MenuEvents = new EventsManager.MainMenu();
+            EventsManager.SearchFrame SearchEvents = new EventsManager.SearchFrame();
 
             InitializeComponent();
             
@@ -90,8 +91,10 @@ namespace JAO_PI.Views
 
             Compile.Click       += MenuEvents.Compile_Click;
             Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
-
-            CompilerCloseBox.MouseLeftButtonDown += MenuEvents.Compiler_Close_Click;
+            
+            CompilerCloseBox.MouseLeftButtonDown    += MenuEvents.Compiler_Close_Click;
+            CompilerCloseBox.MouseEnter             += SearchEvents.Close_MouseEnter;
+            CompilerCloseBox.MouseLeave             += SearchEvents.Close_MouseLeave;
 
             // About
             RoutedCommand AboutCmd = new RoutedCommand();

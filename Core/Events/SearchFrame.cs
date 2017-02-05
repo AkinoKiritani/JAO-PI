@@ -52,13 +52,13 @@ namespace JAO_PI.EventsManager
 
         public void Close_MouseLeave(object sender, MouseEventArgs e)
         {
-            TextBlock Close = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.CloseBox] as TextBlock;
+            TextBlock Close = sender as TextBlock;
             Close.Background = new SolidColorBrush(Color.FromRgb(199, 80, 80));
         }
 
         public void Close_MouseEnter(object sender, MouseEventArgs e)
         {
-            TextBlock Close = Core.Controller.Search.Head.Children[(int)Structures.SearchHeader.CloseBox] as TextBlock;
+            TextBlock Close = sender as TextBlock;
             Close.Background = new SolidColorBrush(Color.FromRgb(244, 67, 67));
         }
 
