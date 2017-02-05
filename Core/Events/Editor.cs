@@ -10,8 +10,7 @@ namespace JAO_PI.EventsManager
     {
         internal void Document_Changed(object sender, DocumentChangeEventArgs e)
         {
-            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.State.HasFlag(Structures.States.Saved) &&
-                                                                                      x.Editor.Document == (sender as TextDocument));
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.Editor.Document == (sender as TextDocument));
             if (Index != null)
             {
                 if (!Index.State.HasFlag(Structures.States.Changed))
@@ -20,6 +19,14 @@ namespace JAO_PI.EventsManager
                     Toggle.UnsavedMark(Index.TabItem, true);
                 }
                 Index.State |= Structures.States.Changed;
+                if (Index.SearchList.Count > 0)
+                {
+                    // Adding the new offset to the Search Index
+                    for (int i = Core.Controller.Search.CurrentSearchIndex; i != Index.SearchList.Count; i++)
+                    {
+                        Index.SearchList[i].Index += (e.InsertionLength > 0) ? e.InsertionLength : -e.RemovalLength;
+                    }
+                }
             }
         }
 
