@@ -81,9 +81,9 @@ namespace JAO_PI.EventsManager
                         Compiler.Dispose();
                     }
                 }
-                catch(Exception ee)
+                catch(Exception Error)
                 {
-                    MessageBox.Show(ee.ToString(), Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(Error.ToString(), Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else MessageBox.Show(Core.Properties.Resources.NoCompile, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
