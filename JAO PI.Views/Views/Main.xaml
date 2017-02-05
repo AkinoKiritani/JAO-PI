@@ -85,16 +85,14 @@
 
         <DockPanel LastChildFill="False" Margin="0,0,0,25" >
             <StackPanel x:Name="CompilerPanel" DockPanel.Dock="Bottom" Height="140" Visibility="Collapsed">
-                <Border BorderBrush="#FF8F8F8F" Background="Bisque" BorderThickness="0,1,0,0" Height="22">
-                    <Canvas x:Name="CompilerHead" Height="20">
-                        <TextBlock x:Name="CompilerCloseBox" Canvas.Right="1" Canvas.Top="1" Text="  x" Width="18" Height="18" Background="#FFC75050" VerticalAlignment="Center" Foreground="White"/>
-                        <TextBlock x:Name="CompilerHeaderBox" Canvas.Left="3" Height="18" Canvas.Top="1" Text="Ausgabe" FontSize="12"/>
-                    </Canvas>
-                </Border>
+                <Border BorderBrush="#FF8F8F8F" BorderThickness="0,1,0,0" Height="1" />
+                <Canvas Background="Bisque"  x:Name="CompilerHead" Height="20">
+                    <TextBlock x:Name="CompilerCloseBox" Canvas.Right="1" Canvas.Top="1" Text="  x" Width="18" Height="18" Background="#FFC75050" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock x:Name="CompilerHeaderBox" Canvas.Left="3" Height="18" Canvas.Top="1" Text="Ausgabe" FontSize="12"/>
+                </Canvas>
                 <ListBox x:Name="listBox" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="118" FontSize="10" />
             </StackPanel>
             <TabControl x:Name="tabControl" Margin="0,25,0,0" Visibility="Collapsed" DockPanel.Dock="Top" />
         </DockPanel>
     </Grid>
-
 </Window>
