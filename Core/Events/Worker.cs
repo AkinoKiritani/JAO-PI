@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,72 +11,75 @@ namespace JAO_PI.EventsManager
     public static class Worker
     {
         internal static void Compiler_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Core.Controller.Main.Compile.Dispatcher.Invoke(new Action(() =>
-            {
-                Core.Controller.Main.Compile.Visibility = Visibility.Visible;
-                Core.Controller.Main.ErrorBox.Items.Clear();
-            }));
-            
+        {            
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
                 try
                 {
-                    Process Compiler = new Process();
-                    ProcessStartInfo StartInfo = new ProcessStartInfo();
-
-                    TabItem itemToCompile = null;
-                    string Header = null;
-                    string uID = null;
-
-                    Core.Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
+                    if (File.Exists(Core.Properties.Settings.Default.CompilerPath))
                     {
-                        itemToCompile = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
-                        Header = Core.Utility.Tab.GetTabHeaderText(itemToCompile);
-                        uID = itemToCompile.Uid;
-                    }));
+                        Process Compiler = new Process();
+                        ProcessStartInfo StartInfo = new ProcessStartInfo();
 
-                    Compiler.StartInfo = new ProcessStartInfo()
-                    {
-                        FileName = Core.Properties.Settings.Default.CompilerPath,
-                        WorkingDirectory = uID,
-                        Arguments = Header,
-                        CreateNoWindow = true,
-                        RedirectStandardError = true,
-                        RedirectStandardOutput = true,
-                        UseShellExecute = false
-                    };
-
-                    Compiler.Start();
-                    Compiler.WaitForExit();
-
-                    System.IO.StreamReader error = Compiler.StandardError;
-                    string Line = null;
-                    Core.Classes.Generator generator = new Core.Classes.Generator();
-                    Core.Controller.Main.ErrorBox.Dispatcher.Invoke(new Action(() =>
-                    {
-                        while ((Line = error.ReadLine()) != null)
+                        Core.Controller.Main.Compile.Dispatcher.Invoke(new Action(() =>
                         {
-                            Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(Line));
-                        }
-                        error = Compiler.StandardOutput;
-                        while ((Line = error.ReadLine()) != null)
-                        {
-                            Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(Line));
-                        }
-                    }));
-                    
-                    Core.Controller.Main.CompilerPanel.Dispatcher.Invoke(new Action(() =>
-                    {
-                        if (Core.Controller.Main.CompilerPanel.Visibility != Visibility.Visible)
-                        {
-                            Core.Controller.Main.CompilerPanel.Visibility = Visibility.Visible;
-                        }
-                    }));
+                            Core.Controller.Main.Compile.Visibility = Visibility.Visible;
+                            Core.Controller.Main.ErrorBox.Items.Clear();
+                        }));
 
-                    error.Close();
-                    error.Dispose();
-                    Compiler.Dispose();
+                        TabItem itemToCompile = null;
+                        string Header = null;
+                        string uID = null;
+
+                        Core.Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
+                        {
+                            itemToCompile = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
+                            Header = Core.Utility.Tab.GetTabHeaderText(itemToCompile);
+                            uID = itemToCompile.Uid;
+                        }));
+
+                        Compiler.StartInfo = new ProcessStartInfo()
+                        {
+                            FileName = Core.Properties.Settings.Default.CompilerPath,
+                            WorkingDirectory = uID,
+                            Arguments = Header,
+                            CreateNoWindow = true,
+                            RedirectStandardError = true,
+                            RedirectStandardOutput = true,
+                            UseShellExecute = false
+                        };
+
+                        Compiler.Start();
+                        Compiler.WaitForExit();
+
+                        StreamReader error = Compiler.StandardError;
+                        string Line = null;
+                        Core.Classes.Generator generator = new Core.Classes.Generator();
+                        Core.Controller.Main.ErrorBox.Dispatcher.Invoke(new Action(() =>
+                        {
+                            while ((Line = error.ReadLine()) != null)
+                            {
+                                Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(Line));
+                            }
+                            error = Compiler.StandardOutput;
+                            while ((Line = error.ReadLine()) != null)
+                            {
+                                Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(Line));
+                            }
+                        }));
+
+                        Core.Controller.Main.CompilerPanel.Dispatcher.Invoke(new Action(() =>
+                        {
+                            if (Core.Controller.Main.CompilerPanel.Visibility != Visibility.Visible)
+                            {
+                                Core.Controller.Main.CompilerPanel.Visibility = Visibility.Visible;
+                            }
+                        }));
+
+                        error.Close();
+                        error.Dispose();
+                        Compiler.Dispose();
+                    }
                 }
                 catch(Exception ee)
                 {
