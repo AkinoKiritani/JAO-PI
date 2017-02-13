@@ -193,11 +193,82 @@ namespace JAO_PI.Core.Classes
             });
             return stack;
         }
+        
+        public ListBoxItem ListItem(string file, string line, string description, System.Drawing.Bitmap Icon)
+        {
+            // Load Image 
+            Stream ImageStream = new MemoryStream();
+            Icon.Save(ImageStream, ImageFormat.Png);
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.StreamSource = ImageStream;
+            bitmap.EndInit();
+
+            Image SaveIcon = new Image()
+            {
+                Source = bitmap,
+                Width = 14,
+                Height = 14,
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+
+            Grid ListItem = new Grid();
+
+            ListItem.ColumnDefinitions.Add(new ColumnDefinition() // icon
+            {
+                Width = new GridLength(1, GridUnitType.Auto),
+                MinWidth = 18
+            });
+            ListItem.ColumnDefinitions.Add(new ColumnDefinition() // line
+            {
+                Width = new GridLength(1, GridUnitType.Auto),
+                MinWidth = 20,
+            });
+            ListItem.ColumnDefinitions.Add(new ColumnDefinition()); // description
+            ListItem.ColumnDefinitions.Add(new ColumnDefinition() // file
+            {
+                Width = new GridLength(1, GridUnitType.Auto),
+                MinWidth = 50
+            });
+
+            TextBlock lineColumn = new TextBlock()
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Text = line
+            };
+            TextBlock descriptionColumn = new TextBlock()
+            {
+                Text = description
+            };
+            TextBlock fileColumn = new TextBlock()
+            {
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Text = file
+            };
+
+            SaveIcon.SetValue(Grid.ColumnProperty, 0);
+            lineColumn.SetValue(Grid.ColumnProperty, 1);
+            descriptionColumn.SetValue(Grid.ColumnProperty, 2);
+            fileColumn.SetValue(Grid.ColumnProperty, 3);
+            
+            ListItem.Children.Add(SaveIcon);
+            ListItem.Children.Add(lineColumn);
+            ListItem.Children.Add(descriptionColumn);
+            ListItem.Children.Add(fileColumn);
+
+            ListBoxItem Item = new ListBoxItem()
+            {
+                Uid = line,
+                Content = ListItem,
+                HorizontalContentAlignment = HorizontalAlignment.Stretch
+            };
+            return Item;
+        }
         public ListBoxItem ListItem(string Text)
         {
             ListBoxItem Item = new ListBoxItem()
             {
-                //Uid should contain the Errorline
                 Content = Text
             };
             return Item;

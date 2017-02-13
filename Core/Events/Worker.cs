@@ -3,6 +3,8 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -55,21 +57,33 @@ namespace JAO_PI.EventsManager
                         StreamReader error = Compiler.StandardError;
                         string Line = null;
                         Core.Classes.Generator generator = new Core.Classes.Generator();
+
                         Core.Controller.Main.ErrorBox.Dispatcher.Invoke(new Action(() =>
                         {
+                            System.Collections.Generic.List<string> result = null;
+                            Match Icon = null;
                             while ((Line = error.ReadLine()) != null)
                             {
-                                Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(Line));
+                                result = Regex.Matches(Line, @"\w[^\)\(]*").OfType<Match>().Select(m => m.Groups[0].Value).ToList();
+                                if (result.Count > 1)
+                                {
+                                    Icon = Regex.Match(result[2], "[a-z]+");
+                                    if(Icon.Value.Equals("warning"))
+                                    {
+                                        Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(result[0], result[1], result[2], Core.Properties.Resources.message_warning_x16));
+                                    }
+                                    else if(Icon.Value.Equals("error"))
+                                    {
+                                        Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(result[0], result[1], result[2], Core.Properties.Resources.message_error_x16));
+                                    }
+                                }
                             }
                             error = Compiler.StandardOutput;
                             while ((Line = error.ReadLine()) != null)
                             {
                                 Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(Line));
                             }
-                        }));
 
-                        Core.Controller.Main.CompilerPanel.Dispatcher.Invoke(new Action(() =>
-                        {
                             if (Core.Controller.Main.CompilerPanel.Visibility != Visibility.Visible)
                             {
                                 Core.Controller.Main.CompilerPanel.Visibility = Visibility.Visible;
