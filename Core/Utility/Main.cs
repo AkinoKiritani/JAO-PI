@@ -1,8 +1,10 @@
 ﻿using ICSharpCode.AvalonEdit;
 using System;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Xml;
 
 namespace JAO_PI.Core.Utility
@@ -53,6 +55,26 @@ namespace JAO_PI.Core.Utility
             Editor.TextArea.Caret.Offset = offset;
             Editor.TextArea.Caret.BringCaretToView();
             Editor.TextArea.Caret.Show();
+        }
+
+        public static System.Windows.Controls.Image CreateImage(System.Drawing.Bitmap Image, double Width, double Height, HorizontalAlignment Alignment)
+        {
+            Stream ImageStream = new MemoryStream();
+            Image.Save(ImageStream, ImageFormat.Png);
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.StreamSource = ImageStream;
+            bitmap.EndInit();
+
+            System.Windows.Controls.Image SaveIcon = new System.Windows.Controls.Image()
+            {
+                Source = bitmap,
+                Width = Width,
+                Height = Height,
+                HorizontalAlignment = Alignment
+            };
+            return SaveIcon;
         }
     }
 }

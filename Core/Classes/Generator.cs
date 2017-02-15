@@ -1,13 +1,11 @@
 ﻿using ICSharpCode.AvalonEdit;
 using JAO_PI.Core.Utility;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace JAO_PI.Core.Classes
 {
@@ -159,21 +157,7 @@ namespace JAO_PI.Core.Classes
         private StackPanel GenerateTabHeader(string Header, System.Drawing.Bitmap Icon)
         {
             // Load Image 
-            Stream ImageStream = new MemoryStream();
-            Icon.Save(ImageStream, ImageFormat.Png);
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.StreamSource = ImageStream;
-            bitmap.EndInit();
-
-            Image SaveIcon = new Image()
-            {
-                Source = bitmap,
-                Width = 22,
-                Height = 18,
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
+            Image SaveIcon = Main.CreateImage(Icon, 22, 18, HorizontalAlignment.Left);
 
             StackPanel stack = new StackPanel()
             {
@@ -193,28 +177,13 @@ namespace JAO_PI.Core.Classes
             });
             return stack;
         }
-        
+
         public ListBoxItem ListItem(string file, string line, string description, System.Drawing.Bitmap Icon)
         {
-            // Load Image 
-            Stream ImageStream = new MemoryStream();
-            Icon.Save(ImageStream, ImageFormat.Png);
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.StreamSource = ImageStream;
-            bitmap.EndInit();
-
-            Image SaveIcon = new Image()
-            {
-                Source = bitmap,
-                Width = 14,
-                Height = 14,
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
+            // Load Image
+            Image ErrorIcon = Main.CreateImage(Icon, 14, 14, HorizontalAlignment.Left);
 
             Grid ListItem = new Grid();
-
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // icon
             {
                 Width = new GridLength(1, GridUnitType.Auto),
@@ -247,12 +216,12 @@ namespace JAO_PI.Core.Classes
                 Text = file
             };
 
-            SaveIcon.SetValue(Grid.ColumnProperty, 0);
+            ErrorIcon.SetValue(Grid.ColumnProperty, 0);
             lineColumn.SetValue(Grid.ColumnProperty, 1);
             descriptionColumn.SetValue(Grid.ColumnProperty, 2);
             fileColumn.SetValue(Grid.ColumnProperty, 3);
             
-            ListItem.Children.Add(SaveIcon);
+            ListItem.Children.Add(ErrorIcon);
             ListItem.Children.Add(lineColumn);
             ListItem.Children.Add(descriptionColumn);
             ListItem.Children.Add(fileColumn);
