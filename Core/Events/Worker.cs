@@ -65,7 +65,7 @@ namespace JAO_PI.EventsManager
                             while ((Line = error.ReadLine()) != null)
                             {
                                 result = Regex.Matches(Line, @"\w[^\)\(]*").OfType<Match>().Select(m => m.Groups[0].Value).ToList();
-                                if (result.Count > 1)
+                                if (result.Count == 3)
                                 {
                                     Icon = Regex.Match(result[2], "[a-z]+");
                                     if(Icon.Value.Equals("warning"))
