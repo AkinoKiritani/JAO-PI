@@ -178,21 +178,26 @@ namespace JAO_PI.Core.Classes
             return stack;
         }
 
-        public ListBoxItem ListItem(string file, string line, string description, System.Drawing.Bitmap Icon)
+        public ListBoxItem ListItem(ushort ID, string file, string line, string description, System.Drawing.Bitmap Icon)
         {
             // Load Image
-            Image ErrorIcon = Main.CreateImage(Icon, 14, 14, HorizontalAlignment.Left);
+            Image ErrorIcon = Main.CreateImage(Icon, 14, 14, HorizontalAlignment.Center);
 
             Grid ListItem = new Grid();
+            ListItem.ColumnDefinitions.Add(new ColumnDefinition() // ID
+            {
+                Width = new GridLength(1, GridUnitType.Auto),
+                MinWidth = 12
+            });
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // icon
             {
                 Width = new GridLength(1, GridUnitType.Auto),
-                MinWidth = 18
+                MinWidth = 14
             });
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // line
             {
                 Width = new GridLength(1, GridUnitType.Auto),
-                MinWidth = 20,
+                MinWidth = 50
             });
             ListItem.ColumnDefinitions.Add(new ColumnDefinition()); // description
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // file
@@ -201,10 +206,14 @@ namespace JAO_PI.Core.Classes
                 MinWidth = 50
             });
 
+            TextBlock IDColumn = new TextBlock()
+            {
+                Text = ID.ToString()
+            };
             TextBlock lineColumn = new TextBlock()
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Text = line
+                Text = Properties.Resources.Line + ": " + line
             };
             TextBlock descriptionColumn = new TextBlock()
             {
@@ -216,11 +225,13 @@ namespace JAO_PI.Core.Classes
                 Text = file
             };
 
-            ErrorIcon.SetValue(Grid.ColumnProperty, 0);
-            lineColumn.SetValue(Grid.ColumnProperty, 1);
-            descriptionColumn.SetValue(Grid.ColumnProperty, 2);
-            fileColumn.SetValue(Grid.ColumnProperty, 3);
-            
+            IDColumn.SetValue(Grid.ColumnProperty, 0);
+            ErrorIcon.SetValue(Grid.ColumnProperty, 1);
+            lineColumn.SetValue(Grid.ColumnProperty, 2);
+            descriptionColumn.SetValue(Grid.ColumnProperty, 3);
+            fileColumn.SetValue(Grid.ColumnProperty, 4);
+
+            ListItem.Children.Add(IDColumn);
             ListItem.Children.Add(ErrorIcon);
             ListItem.Children.Add(lineColumn);
             ListItem.Children.Add(descriptionColumn);

@@ -62,6 +62,7 @@ namespace JAO_PI.EventsManager
                         {
                             System.Collections.Generic.List<string> result = null;
                             Match Icon = null;
+                            ushort ID = 1;
                             while ((Line = error.ReadLine()) != null)
                             {
                                 result = Regex.Matches(Line, @"\w[^\)\(]*").OfType<Match>().Select(m => m.Groups[0].Value).ToList();
@@ -70,13 +71,15 @@ namespace JAO_PI.EventsManager
                                     Icon = Regex.Match(result[2], "[a-z]+");
                                     if(Icon.Value.Equals("warning"))
                                     {
-                                        Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(result[0], result[1], result[2], Core.Properties.Resources.message_warning_x16));
+                                        Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(ID, result[0], result[1], result[2], Core.Properties.Resources.message_warning_x16));
                                     }
-                                    else if(Icon.Value.Equals("error"))
+                                    else if(Icon.Value.Equals("error") || Icon.Value.Equals("fatal"))
                                     {
-                                        Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(result[0], result[1], result[2], Core.Properties.Resources.message_error_x16));
+                                        Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(ID, result[0], result[1], result[2], Core.Properties.Resources.message_error_x16));
                                     }
+                                    else Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(Line));
                                 }
+                                ID++;
                             }
                             error = Compiler.StandardOutput;
                             while ((Line = error.ReadLine()) != null)
