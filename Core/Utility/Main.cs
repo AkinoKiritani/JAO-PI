@@ -57,6 +57,14 @@ namespace JAO_PI.Core.Utility
             Editor.TextArea.Caret.Show();
         }
 
+        public static void BringLineToView(TextEditor Editor, int Line)
+        {
+            Editor.TextArea.Caret.Line = Line;
+            Editor.TextArea.Caret.Column = 0;
+            Editor.TextArea.Caret.BringCaretToView();
+            Editor.TextArea.Caret.Show();
+        }
+
         public static System.Windows.Controls.Image CreateImage(System.Drawing.Bitmap Image, double Width, double Height, HorizontalAlignment Alignment)
         {
             Stream ImageStream = new MemoryStream();

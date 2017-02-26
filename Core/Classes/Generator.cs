@@ -236,13 +236,17 @@ namespace JAO_PI.Core.Classes
             ListItem.Children.Add(lineColumn);
             ListItem.Children.Add(descriptionColumn);
             ListItem.Children.Add(fileColumn);
-
+            
             ListBoxItem Item = new ListBoxItem()
             {
                 Uid = line,
                 Content = ListItem,
                 HorizontalContentAlignment = HorizontalAlignment.Stretch
             };
+
+            EventsManager.ListBoxItem ListBoxEvents = new EventsManager.ListBoxItem();
+
+            Item.MouseDoubleClick += ListBoxEvents.MouseDoubleClick;
             return Item;
         }
         public ListBoxItem ListItem(string Text)
