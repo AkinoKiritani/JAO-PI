@@ -113,6 +113,7 @@ namespace JAO_PI.EventsManager
                 Height = new GridLength(0),
                 MinHeight = 0
             };
+            Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.GridSplitter].Height = new GridLength(0);
 
             GridSplitter Splitter = Core.Controller.Main.MainView.Children[(int)Structures.MainView.GridSplitter] as GridSplitter;
             Splitter.Visibility = Visibility.Collapsed;
