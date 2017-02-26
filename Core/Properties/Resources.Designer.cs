@@ -166,6 +166,15 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die new.pwn ähnelt.
+        /// </summary>
+        public static string NewFileName {
+            get {
+                return ResourceManager.GetString("NewFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Nothing to compile ähnelt.
         /// </summary>
         public static string NoCompile {

@@ -14,7 +14,7 @@ namespace JAO_PI.EventsManager
         public void Create_File_Click(object sender, RoutedEventArgs e)
         {
             Generator generator = new Generator();
-            TabItem tab = generator.TabItem(Environment.CurrentDirectory, "new.pwn", null);
+            TabItem tab = generator.TabItem(Environment.CurrentDirectory, Core.Properties.Resources.NewFileName, null);
 
             Core.Controller.Main.tabControl.Items.Add(tab);
             Core.Controller.Main.tabControl.SelectedItem = tab;
