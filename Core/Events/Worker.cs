@@ -90,6 +90,11 @@ namespace JAO_PI.EventsManager
                             if (Core.Controller.Main.CompilerPanel.Visibility != Visibility.Visible)
                             {
                                 Core.Controller.Main.CompilerPanel.Visibility = Visibility.Visible;
+                                Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.CompilerPanel] = Core.Controller.Main.PanelHeight;
+
+                                GridSplitter Splitter = Core.Controller.Main.MainView.Children[(int)Structures.MainView.GridSplitter] as GridSplitter;
+                                Splitter.Visibility = Visibility.Visible;
+                                Splitter.IsEnabled = true;
                             }
                         }));
 

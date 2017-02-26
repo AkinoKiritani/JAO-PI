@@ -6,6 +6,16 @@ namespace JAO_PI.Core.Controller
 {
     public static class Register
     {
+        public static bool MainView(Grid MainView)
+        {
+            if(Main.MainView == null)
+            {
+                Main.MainView = MainView;
+                return true;
+            }
+            return false;
+        }
+
         public static bool Edit(MenuItem editItem)
         {
             if (Main.EditItem == null)

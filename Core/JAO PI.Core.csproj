@@ -114,6 +114,7 @@
     <Compile Include="Events\MainMenu.cs" />
     <Compile Include="Events\TabControl.cs" />
     <Compile Include="Events\Worker.cs" />
+    <Compile Include="Utility\Structures\MainView.cs" />
     <Compile Include="Utility\Structures\CompilerPanel.cs" />
     <Compile Include="Utility\Structures\ContextMenuItems.cs" />
     <Compile Include="Utility\Structures\Frames.cs" />

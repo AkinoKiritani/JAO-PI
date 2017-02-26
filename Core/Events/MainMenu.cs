@@ -106,6 +106,17 @@ namespace JAO_PI.EventsManager
         public void Compiler_Close_Click(object sender, MouseButtonEventArgs e)
         {
             Core.Controller.Main.CompilerPanel.Visibility = Visibility.Collapsed;
+
+            Core.Controller.Main.PanelHeight = Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.CompilerPanel];
+            Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.CompilerPanel] = new RowDefinition()
+            {
+                Height = new GridLength(0),
+                MinHeight = 0
+            };
+
+            GridSplitter Splitter = Core.Controller.Main.MainView.Children[(int)Structures.MainView.GridSplitter] as GridSplitter;
+            Splitter.Visibility = Visibility.Collapsed;
+            Splitter.IsEnabled = false;
         }
 
         public void SaveAs_Click(object sender, RoutedEventArgs e)

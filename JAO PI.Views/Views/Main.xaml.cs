@@ -18,7 +18,8 @@ namespace JAO_PI.Views
             EventsManager.SearchFrame SearchEvents = new EventsManager.SearchFrame();
 
             InitializeComponent();
-            
+
+            Core.Controller.Register.MainView(this.MainView);
             Core.Controller.Register.TabControl(this.tabControl);
             Core.Controller.Register.EmptyMessage(this.Message_Label);
             Core.Controller.Register.SaveOptions(this.Save, this.SaveAs, this.Close_File, this.Close_All);
