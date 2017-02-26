@@ -44,7 +44,7 @@ namespace JAO_PI.EventsManager
                         {
                             FileName = Core.Properties.Settings.Default.CompilerPath,
                             WorkingDirectory = uID,
-                            Arguments = Header,
+                            Arguments = Header + " -; -(",
                             CreateNoWindow = true,
                             RedirectStandardError = true,
                             RedirectStandardOutput = true,
@@ -53,7 +53,7 @@ namespace JAO_PI.EventsManager
 
                         Compiler.Start();
                         Compiler.WaitForExit();
-
+                        
                         StreamReader error = Compiler.StandardError;
                         string Line = null;
                         Core.Classes.Generator generator = new Core.Classes.Generator();

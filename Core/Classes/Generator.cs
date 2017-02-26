@@ -186,18 +186,15 @@ namespace JAO_PI.Core.Classes
             Grid ListItem = new Grid();
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // ID
             {
-                Width = new GridLength(1, GridUnitType.Auto),
-                MinWidth = 12
+                Width = new GridLength(12, GridUnitType.Pixel)
             });
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // icon
             {
-                Width = new GridLength(1, GridUnitType.Auto),
-                MinWidth = 14
+                Width = new GridLength(14, GridUnitType.Pixel)
             });
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // line
             {
-                Width = new GridLength(1, GridUnitType.Auto),
-                MinWidth = 50
+                Width = new GridLength(65, GridUnitType.Pixel)
             });
             ListItem.ColumnDefinitions.Add(new ColumnDefinition()); // description
             ListItem.ColumnDefinitions.Add(new ColumnDefinition() // file

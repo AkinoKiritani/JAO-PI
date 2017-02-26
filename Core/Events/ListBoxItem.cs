@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace JAO_PI.EventsManager
@@ -8,7 +9,10 @@ namespace JAO_PI.EventsManager
         internal void MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Controls.ListBoxItem Item = sender as System.Windows.Controls.ListBoxItem;
-            Core.Utility.Main.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(Item.Uid));
+            if (Regex.IsMatch(Item.Uid, @"^\d+$"))
+            {
+                Core.Utility.Main.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(Item.Uid));
+            }
         }
     }
 }
