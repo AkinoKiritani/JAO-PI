@@ -20,7 +20,7 @@ namespace JAO_PI.Views
             InitializeComponent();
             
             Core.Controller.Register.TabControl(this.tabControl);
-            Core.Controller.Register.EmptyMessage(this.Empty_Message);
+            Core.Controller.Register.EmptyMessage(this.Message_Label);
             Core.Controller.Register.SaveOptions(this.Save, this.SaveAs, this.Close_File, this.Close_All);
             Core.Controller.Register.Compile(this.Compiling);
             Core.Controller.Register.Edit(this.Edit);

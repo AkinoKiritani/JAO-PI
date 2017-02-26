@@ -78,21 +78,27 @@
                 <MenuItem Grid.Column="3" x:Name="About" Header="{x:Static p:Resources.About}" />
             </Menu>
         </StatusBar>
+        
+        <Label x:Name="Message_Label" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static p:Resources.Empty_Message}" Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26"/>
 
-        <Grid x:Name="Empty_Message" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label x:Name="Message_Label" Content="{x:Static p:Resources.Empty_Message}" Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26"/>
-        </Grid>
+        <Grid Margin="0,25">
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="100"/>
+                <RowDefinition Height="2" />
+                <RowDefinition MinHeight="140" Height="140" />
+            </Grid.RowDefinitions>
 
-        <DockPanel LastChildFill="False" Margin="0,0,0,25" >
-            <StackPanel x:Name="CompilerPanel" DockPanel.Dock="Bottom" Height="140" Visibility="Collapsed">
-                <Border BorderBrush="#FF8F8F8F" BorderThickness="0,1,0,0" Height="1" />
-                <Canvas Background="Bisque"  x:Name="CompilerHead" Height="20">
+            <TabControl Grid.Column="0" x:Name="tabControl" Visibility="Visible" DockPanel.Dock="Top" BorderThickness="0,1,0,0" />
+
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" ResizeDirection="Rows" ResizeBehavior="BasedOnAlignment" Cursor="SizeNS" />
+            <DockPanel Grid.Row="2" x:Name="CompilerPanel" Visibility="Visible" LastChildFill="True">
+                <Border BorderBrush="#FFABADB3" BorderThickness="0,1,0,0" DockPanel.Dock="Top" />
+                <Canvas DockPanel.Dock="Top" Background="Bisque" x:Name="CompilerHead" Height="20">
                     <TextBlock x:Name="CompilerCloseBox" Canvas.Right="1" Canvas.Top="1" Text="  x" Width="18" Height="18" Background="#FFC75050" VerticalAlignment="Center" Foreground="White"/>
                     <TextBlock x:Name="CompilerHeaderBox" Canvas.Left="3" Height="18" Canvas.Top="1" Text="Ausgabe" FontSize="12"/>
                 </Canvas>
-                <ListBox x:Name="listBox" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="118" FontSize="10" />
-            </StackPanel>
-            <TabControl x:Name="tabControl" Margin="0,25,0,0" Visibility="Collapsed" DockPanel.Dock="Top" />
-        </DockPanel>
+                <ListBox DockPanel.Dock="Bottom" x:Name="listBox" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="10" />
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>

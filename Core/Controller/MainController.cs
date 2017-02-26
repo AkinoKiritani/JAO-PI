@@ -10,7 +10,7 @@ namespace JAO_PI.Core.Controller
     {
         public static TabControl tabControl = null;
         public static TextEditor CurrentEditor = null;
-        public static Grid Empty_Message = null;
+        public static Label Empty_Message = null;
         public static List<MenuItem> SaveOptions = new List<MenuItem>();
         public static List<Tab> TabControlList = new List<Tab>();
         public static string Compiler_Errors = null;
@@ -20,7 +20,7 @@ namespace JAO_PI.Core.Controller
         public static List<StatusBarItem> StatusBarItems = new List<StatusBarItem>();
         public static MenuItem CompileMenuItem = null;
 
-        public static StackPanel CompilerPanel = null;
+        public static DockPanel CompilerPanel = null;
         public static Border PanelBorder = null;
         public static ListBox ErrorBox = null;
 

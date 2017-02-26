@@ -46,7 +46,7 @@ namespace JAO_PI.Core.Controller
             return false;
         }
 
-        public static bool CompilePanel(StackPanel compilerPanel)
+        public static bool CompilePanel(DockPanel compilerPanel)
         {
             if(Main.CompilerPanel == null)
             {
@@ -143,11 +143,11 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
-        public static bool EmptyMessage(Grid Empty_Message_Grid)
+        public static bool EmptyMessage(Label Empty_Message)
         {
             if (Main.Empty_Message == null)
             {
-                Main.Empty_Message = Empty_Message_Grid;
+                Main.Empty_Message = Empty_Message;
                 return true;
             }
             return false;
