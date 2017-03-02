@@ -65,7 +65,7 @@ namespace JAO_PI.Core.Classes
                     }
                 }
             }
-            Main.LoadSyntax(Editor, syntaxPath);
+            Utility.Editor.LoadSyntax(Editor, syntaxPath);
             Grid grid = new Grid();
             grid.Children.Add(Editor);
 

@@ -1,11 +1,9 @@
-﻿using ICSharpCode.AvalonEdit;
-using System;
+﻿using System;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Xml;
 
 namespace JAO_PI.Core.Utility
 {
@@ -16,26 +14,7 @@ namespace JAO_PI.Core.Utility
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcefghijklmnopqrstuvwxyz";
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-        
-        public static void LoadSyntax(TextEditor Editor, string Path)
-        {
-            try
-            {
-                using (Stream s = File.OpenRead(Path))
-                {
-                    using (XmlTextReader reader = new XmlTextReader(s))
-                    {
-                        Editor.SyntaxHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader.Load
-                                                    (reader, ICSharpCode.AvalonEdit.Highlighting.HighlightingManager.Instance);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(Properties.Resources.SyntaxReadingError);
-            }
-        }
+        }       
 
         public static void SelectAndOpenSearchTab(Structures.SearchControl Index)
         {
@@ -49,22 +28,7 @@ namespace JAO_PI.Core.Utility
                 Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Focus();
             }
         }
-        public static void SelectAndBringToView(TextEditor Editor, int offset, int lenght)
-        {
-            Editor.Select(offset, lenght);
-            Editor.TextArea.Caret.Offset = offset;
-            Editor.TextArea.Caret.BringCaretToView();
-            Editor.TextArea.Caret.Show();
-        }
-
-        public static void BringLineToView(TextEditor Editor, int Line)
-        {
-            Editor.TextArea.Caret.Line = Line;
-            Editor.TextArea.Caret.Column = 0;
-            Editor.TextArea.Caret.BringCaretToView();
-            Editor.TextArea.Caret.Show();
-        }
-
+        
         public static System.Windows.Controls.Image CreateImage(System.Drawing.Bitmap Image, double Width, double Height, HorizontalAlignment Alignment)
         {
             Stream ImageStream = new MemoryStream();

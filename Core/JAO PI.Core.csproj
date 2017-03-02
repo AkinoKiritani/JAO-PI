@@ -99,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Folder.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\Editor.cs" />
     <Compile Include="Utility\GoTo.cs" />
     <Compile Include="Utility\Main.cs" />
     <Compile Include="Utility\Search.cs" />

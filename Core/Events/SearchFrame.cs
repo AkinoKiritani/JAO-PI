@@ -178,7 +178,7 @@ namespace JAO_PI.EventsManager
                     int lenght = Core.Controller.Search.SearchBox_Replace.Text.Length;
                     Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
 
-                    Main.SelectAndBringToView(Index.Editor, offset, lenght);
+                    Core.Utility.Editor.SelectAndBringToView(Index.Editor, offset, lenght);
                 }
             }
         }
@@ -191,7 +191,7 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Search.LastSearchTyp == Structures.LastSearch.Replace || Core.Controller.Search.LastSearchTyp == Structures.LastSearch.ReplaceSearch)
                 {
                     Core.Controller.Search.CurrentSearchIndex++;
-                    Main.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
+                    Core.Utility.Editor.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
                     Core.Controller.Search.LastSearchTyp = Structures.LastSearch.ReplaceSearch;
                 }
                 else

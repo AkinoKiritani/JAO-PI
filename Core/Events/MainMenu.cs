@@ -175,7 +175,7 @@ namespace JAO_PI.EventsManager
             {
                 if (Core.Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
                 {
-                    Main.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
+                    Core.Utility.Editor.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
                 }
                 else
                 {
