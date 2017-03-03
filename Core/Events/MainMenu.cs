@@ -73,6 +73,7 @@ namespace JAO_PI.EventsManager
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
             {
+                Tab.RemoveTempTabs();
                 Core.Controller.Worker.CloseAllWorker.RunWorkerAsync();
             }
         }
@@ -105,6 +106,10 @@ namespace JAO_PI.EventsManager
 
         public void Compiler_Close_Click(object sender, MouseButtonEventArgs e)
         {
+            Tab.RemoveTempTabs();
+            Core.Controller.Main.tabControl.SelectedItem = Core.Controller.Main.CompiledTabItem;
+            Core.Controller.Main.CompiledTabItem = null;
+
             Core.Controller.Main.CompilerPanel.Visibility = Visibility.Collapsed;
 
             Core.Controller.Main.PanelHeight = Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.CompilerPanel];

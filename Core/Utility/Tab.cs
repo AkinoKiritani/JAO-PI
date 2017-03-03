@@ -88,5 +88,33 @@ namespace JAO_PI.Core.Utility
             Grid EditorGrid = item.Content as Grid;
             return EditorGrid.Children[0] as TextEditor;
         }
+
+        public static void RemoveTempTabs()
+        {
+            if (Controller.Main.tmpTabs.Count > 0)
+            {
+                TabItem tmp = null;
+                Controller.Tab Index = null;
+                Grid grid = null;
+                for (int i = Controller.Main.tmpTabs.Count; i != 0; i--)
+                {
+                    tmp = Controller.Main.tabControl.Items[Controller.Main.tmpTabs[i - 1]] as TabItem;
+                    Index = Controller.Main.TabControlList.Find(x => x.TabItem == tmp);
+
+                    if (Index == null) continue;
+
+                    Index.Editor.Clear();
+                    grid = Index.TabItem.Content as Grid;
+                    Index.Editor = null;
+                    grid.Children.Remove(Index.Editor);
+                    grid = null;
+                    Controller.Main.TabControlList.Remove(Index);
+
+                    Index.TabItem.ContextMenu.Items.Clear();
+                    Controller.Main.tabControl.Items.Remove(Index.TabItem);
+                }
+                Controller.Main.tmpTabs.Clear();
+            }
+        }
     }
 }

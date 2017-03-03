@@ -37,6 +37,27 @@ namespace JAO_PI.EventsManager
                     Core.Utility.Tab.SaveTab(Index.TabItem);
                 }
             }
+
+            if(Index.TabItem == Core.Controller.Main.CompiledTabItem)
+            {
+                Core.Utility.Tab.RemoveTempTabs();
+                Core.Controller.Main.CompiledTabItem = null;
+
+                Core.Controller.Main.CompilerPanel.Visibility = Visibility.Collapsed;
+
+                Core.Controller.Main.PanelHeight = Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.CompilerPanel];
+                Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.CompilerPanel] = new RowDefinition()
+                {
+                    Height = new GridLength(0),
+                    MinHeight = 0
+                };
+                Core.Controller.Main.MainView.RowDefinitions[(int)Structures.MainView.GridSplitter].Height = new GridLength(0);
+
+                GridSplitter Splitter = Core.Controller.Main.MainView.Children[(int)Structures.MainView.GridSplitter] as GridSplitter;
+                Splitter.Visibility = Visibility.Collapsed;
+                Splitter.IsEnabled = false;
+            }
+
             Index.Editor.Clear();
             Grid grid = Index.TabItem.Content as Grid;
             Index.Editor = null;

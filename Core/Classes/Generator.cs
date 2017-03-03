@@ -236,7 +236,7 @@ namespace JAO_PI.Core.Classes
             
             ListBoxItem Item = new ListBoxItem()
             {
-                Uid = line,
+                Uid = file + "|" + line,
                 Content = ListItem,
                 HorizontalContentAlignment = HorizontalAlignment.Stretch
             };

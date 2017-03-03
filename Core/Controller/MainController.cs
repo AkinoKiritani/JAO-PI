@@ -21,6 +21,9 @@ namespace JAO_PI.Core.Controller
         public static List<StatusBarItem> StatusBarItems = new List<StatusBarItem>();
         public static MenuItem CompileMenuItem = null;
 
+        public static List<int> tmpTabs = new List<int>();
+        public static TabItem CompiledTabItem = null;
+
         public static DockPanel CompilerPanel = null;
         public static RowDefinition PanelHeight = new RowDefinition()
         {
