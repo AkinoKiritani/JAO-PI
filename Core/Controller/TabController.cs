@@ -15,6 +15,7 @@ namespace JAO_PI.Core.Controller
         public MenuItem     Rename          { get; set; }
         public MenuItem     Save            { get; set; }
         internal Structures.States State    { get; set; }
+        public bool         Tmp             { get; set; }
 
         internal List<Find> SearchList = new List<Find>();
     }

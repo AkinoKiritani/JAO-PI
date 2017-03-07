@@ -57,7 +57,7 @@ namespace JAO_PI.EventsManager
                         // When the File isn't already open, then open the file and create a tmpTab
                         FileStream stream = new FileStream(matches[0], FileMode.Open, FileAccess.Read);
                         Generator generator = new Generator();
-                        TabItem tab = generator.TabItem(matches[0], file, stream);
+                        TabItem tab = generator.TmpTabItem(matches[0], file, stream);
 
                         Core.Controller.Main.tabControl.Items.Add(tab);
                         Core.Controller.Main.tabControl.SelectedItem = tab;
@@ -67,8 +67,6 @@ namespace JAO_PI.EventsManager
                         {
                             Core.Utility.Editor.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(matches[1]));
                         }
-
-                        Core.Controller.Main.tmpTabs.Add(Core.Controller.Main.tabControl.SelectedIndex);
                     }
                 }
             }

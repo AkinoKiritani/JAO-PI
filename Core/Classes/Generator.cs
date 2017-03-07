@@ -107,6 +107,120 @@ namespace JAO_PI.Core.Classes
             return tab;
         }
 
+        public TabItem TmpTabItem(string path, string header, Stream content)
+        {
+            TextEditorOptions Options = new TextEditorOptions()
+            {
+                ConvertTabsToSpaces = true,
+                AllowScrollBelowDocument = true,
+                CutCopyWholeLine = true,
+                HighlightCurrentLine = true
+            };
+            TextEditor Editor = new TextEditor()
+            {
+                FontSize = 13,
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
+                FontFamily = new FontFamily("Consolas"),
+                ShowLineNumbers = true,
+                Margin = new Thickness(0, 0, 5, 0),
+                Options = Options
+            };
+
+            if (content != null)
+            {
+                Editor.Load(content);
+            }
+
+            StringBuilder SyntaxPath = new StringBuilder();
+
+            SyntaxPath.Append(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            SyntaxPath.Append(@"\" + Core.Resources.Folder.Languages);
+            string FolderPath = SyntaxPath.ToString();
+
+            SyntaxPath.Append(@"\PAWN.xshd");
+            string syntaxPath = SyntaxPath.ToString();
+
+            if (File.Exists(syntaxPath) == false)
+            {
+                Directory.CreateDirectory(FolderPath);
+                using (FileStream fs = File.Create(syntaxPath))
+                {
+                    var assembly = Assembly.GetExecutingAssembly();
+                    var resourceName = "JAO_PI.Core.Resources.PAWN.xshd";
+
+                    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            byte[] info = new UTF8Encoding(true).GetBytes(reader.ReadToEnd());
+                            fs.Write(info, 0, info.Length);
+                            fs.Close();
+                        }
+                    }
+                }
+            }
+            Utility.Editor.LoadSyntax(Editor, syntaxPath);
+            Grid grid = new Grid();
+            grid.Children.Add(Editor);
+
+            TabItem tab = new TabItem()
+            {
+                Header = GenerateTabHeader(header),
+                Content = grid
+            };
+
+            if (path.Contains(header) == true)
+            {
+                path = path.Remove(path.Length - header.Length, header.Length);
+            }
+            tab.Uid = path;
+
+            tab.ContextMenu = GenerateContextMenuForTempTab();
+
+            Structures.States Tabstate = 0;
+            Tabstate |= Structures.States.Saved;
+
+            Controller.Main.TabControlList.Add(new Controller.Tab()
+            {
+                TabItem     = tab,
+                Editor      = Editor,
+                HeaderPanel = tab.Header,
+                Close       = tab.ContextMenu.Items[(int)Structures.ContextMenuItemsTemp.Close] as MenuItem,
+                Save        = tab.ContextMenu.Items[(int)Structures.ContextMenuItemsTemp.Save] as MenuItem,
+                State       = Tabstate,
+                Tmp         = true
+            });
+
+            Editor.Uid = path;
+            Editor.Document.Changed += EditorEvents.Document_Changed;
+            Editor.Unloaded += EditorEvents.Editor_Unloaded;
+            Editor.TextArea.Caret.PositionChanged += EditorEvents.Caret_PositionChanged;
+            Controller.Main.EditItem.IsEnabled = true;
+            return tab;
+        }
+        private ContextMenu GenerateContextMenuForTempTab()
+        {
+            ContextMenu menu = new ContextMenu();
+
+            MenuItem CloseItem = new MenuItem()
+            {
+                Header = Resources.ContextMenu.CloseItem,
+                Uid = Main.RandomString(10)
+            };
+            CloseItem.PreviewMouseLeftButtonUp += TabEvents.CloseItem_PreviewMouseLeftButtonUp;
+            menu.Items.Add(CloseItem);
+
+            MenuItem SaveItem = new MenuItem()
+            {
+                Header = Resources.ContextMenu.SaveItem,
+                Uid = Main.RandomString(10)
+            };
+            SaveItem.PreviewMouseLeftButtonUp += TabEvents.SaveItem_PreviewMouseLeftButtonUp;
+            menu.Items.Add(SaveItem);
+
+            return menu;
+
+        }
         private ContextMenu GenerateContextMenu()
         {
             ContextMenu menu = new ContextMenu();
@@ -165,6 +279,27 @@ namespace JAO_PI.Core.Classes
             };
             // Add Image and Textblock to the StackPanel
             stack.Children.Add(SaveIcon);
+            stack.Children.Add(new TextBlock()
+            {
+                Text = Header
+            });
+            // Add "unsaved mark" to the StackPanel
+            stack.Children.Add(new TextBlock()
+            {
+                Text = " *",
+                Visibility = Visibility.Collapsed
+            });
+            return stack;
+        }
+
+        private StackPanel GenerateTabHeader(string Header)
+        {
+            StackPanel stack = new StackPanel()
+            {
+                Orientation = Orientation.Horizontal
+            };
+            stack.Children.Add(new TextBlock()); // Add empty Text to prevent crashing when toggle the unsaved mark
+            // Add Textblock to the StackPanel
             stack.Children.Add(new TextBlock()
             {
                 Text = Header

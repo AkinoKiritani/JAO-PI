@@ -1,5 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit;
 using Microsoft.Win32;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -91,17 +92,14 @@ namespace JAO_PI.Core.Utility
 
         public static void RemoveTempTabs()
         {
-            if (Controller.Main.tmpTabs.Count > 0)
+            List<Controller.Tab> tmpTabs = Controller.Main.TabControlList.FindAll(x => x.Tmp == true);
+            if (tmpTabs.Count > 0)
             {
-                TabItem tmp = null;
                 Controller.Tab Index = null;
                 Grid grid = null;
-                for (int i = Controller.Main.tmpTabs.Count; i != 0; i--)
+                for (int i = 0; i != tmpTabs.Count; i++)
                 {
-                    tmp = Controller.Main.tabControl.Items[Controller.Main.tmpTabs[i - 1]] as TabItem;
-                    Index = Controller.Main.TabControlList.Find(x => x.TabItem == tmp);
-
-                    if (Index == null) continue;
+                    Index = tmpTabs[i];
 
                     Index.Editor.Clear();
                     grid = Index.TabItem.Content as Grid;
@@ -113,7 +111,6 @@ namespace JAO_PI.Core.Utility
                     Index.TabItem.ContextMenu.Items.Clear();
                     Controller.Main.tabControl.Items.Remove(Index.TabItem);
                 }
-                Controller.Main.tmpTabs.Clear();
             }
         }
     }

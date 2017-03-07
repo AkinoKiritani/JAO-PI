@@ -8,4 +8,9 @@
         CloseAll,
         CloseAllBut
     }
+    public enum ContextMenuItemsTemp
+    {
+        Close,
+        Save
+    }
 }
