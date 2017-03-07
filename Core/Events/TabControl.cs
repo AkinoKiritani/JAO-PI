@@ -12,12 +12,25 @@ namespace JAO_PI.EventsManager
 
             if (Control.SelectedIndex >= 0)
             {
-                TabItem item = Core.Controller.Main.tabControl.Items[Control.SelectedIndex] as TabItem;
+                TabItem item = Control.SelectedItem as TabItem;
                 Grid EditorGrid = item.Content as Grid;
                 Core.Controller.Main.CurrentEditor = EditorGrid.Children[0] as ICSharpCode.AvalonEdit.TextEditor;
                 
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
+                
+                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == item);
+                if(Index != null)
+                {
+                    if(Index.Tmp == true)
+                    {
+                        Core.Controller.Main.CompileMenuItem.IsEnabled = false;
+                    }
+                    else
+                    {
+                        Core.Controller.Main.CompileMenuItem.IsEnabled = true;
+                    }
+                }
             }
             else
             {

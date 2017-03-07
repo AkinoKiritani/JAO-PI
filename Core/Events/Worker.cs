@@ -230,7 +230,16 @@ namespace JAO_PI.EventsManager
 
         internal static void Save_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            Core.Controller.Worker.CompileWorker.RunWorkerAsync();
+            TabItem item = Core.Controller.Main.tabControl.SelectedItem as TabItem;
+            Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == item);
+            if (Index != null)
+            {
+                if (Index.Tmp == false)
+                {
+                    Core.Controller.Worker.CompileWorker.RunWorkerAsync();
+                }
+            }
+            
         }
     }
 }
