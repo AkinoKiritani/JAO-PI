@@ -123,7 +123,7 @@ namespace JAO_PI.EventsManager
                 Grid grid = null;
 
                 Core.Controller.Tab NoClose = Core.Controller.Main.TabControlList.Find(x => x.CloseAllBut.Uid == CloseAll_But.Uid);
-                
+
                 ushort index = 0;
                 Core.Controller.Tab Index = null;
                 while (Core.Controller.Main.TabControlList.Count > 0 + index)
@@ -215,29 +215,11 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
                 {
                     TabItem itemToSave = null;
-                    Grid SaveGrid = null;
-                    TextEditor SaveEditor = null;
-                    string Header = null;
-                    string uID = null;
                     Core.Controller.Main.tabControl.Items.Dispatcher.Invoke(new Action(() =>
                     {
                         itemToSave = Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem;
-                        SaveGrid = itemToSave.Content as Grid;
-                        SaveEditor = SaveGrid.Children[0] as TextEditor;
-                        Header = Core.Utility.Tab.GetTabHeaderText(itemToSave);
-                        uID = itemToSave.Uid;
+                        Core.Utility.Tab.SaveTab(itemToSave);
                     }));
-
-                    System.Text.StringBuilder FileToSave = new System.Text.StringBuilder();
-                    FileToSave.Append(uID);
-                    FileToSave.Append(Header);
-
-                    SaveEditor.Dispatcher.Invoke(new Action(() => SaveEditor.Save(FileToSave.ToString())));
-                    
-                    SaveEditor = null;
-                    SaveGrid = null;
-                    itemToSave = null;
-                    FileToSave = null;                    
                 }
             }
             catch(Exception ee)
