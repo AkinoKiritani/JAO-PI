@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace JAO_PI.Views
@@ -34,6 +33,7 @@ namespace JAO_PI.Views
             this.Closing        += FrameEvents.MainFrame_Closing;
             //Event for transparency of the SearchFrame
             this.Activated      += FrameEvents.MainFrame_Activated;
+            this.Drop           += FrameEvents.MainFrame_Drop;
 
             tabControl.SelectionChanged += TabControllEvents.SelectionChanged;
 
@@ -103,6 +103,6 @@ namespace JAO_PI.Views
             CommandBindings.Add(new CommandBinding(AboutCmd, MenuEvents.About_Click));
 
             About.Click += MenuEvents.About_Click;
-        }
+        }        
     }
 }

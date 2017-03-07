@@ -64,6 +64,11 @@ namespace JAO_PI.EventsManager
             }
         }
 
+        public void MainFrame_Drop(object sender, DragEventArgs e)
+        {
+            Main.LoadDropData(e);
+        }
+
         public void MainFrame_Activated(object sender, EventArgs e)
         {
             if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].IsVisible)
