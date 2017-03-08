@@ -74,6 +74,7 @@
     <Compile Include="Controller\SearchController.cs" />
     <Compile Include="Events\CreditFrame.cs" />
     <Compile Include="Events\ListBoxItem.cs" />
+    <Compile Include="Events\TabItem.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

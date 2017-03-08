@@ -99,6 +99,10 @@ namespace JAO_PI.Core.Classes
                 State       = Tabstate
             });
 
+            Events.TabItem TabItemEvents = new Events.TabItem();
+            tab.PreviewMouseMove    += TabItemEvents.PreviewMouseMove;
+            tab.Drop                += TabItemEvents.Drop;
+
             Editor.Uid = path;
             Editor.Document.Changed += EditorEvents.Document_Changed;
             Editor.Unloaded += EditorEvents.Editor_Unloaded;
