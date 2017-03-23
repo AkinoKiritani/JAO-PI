@@ -16,7 +16,10 @@ namespace JAO_PI.Core.Events
 
             if (Mouse.PrimaryDevice.LeftButton == MouseButtonState.Pressed)
             {
-                DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.All);
+                if (Controller.Main.tabControl.Items.Count > 1)
+                {
+                    DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.All);
+                }
             }
         }
 
@@ -56,6 +59,6 @@ namespace JAO_PI.Core.Events
             }
         }
 
-        
+
     }
 }
