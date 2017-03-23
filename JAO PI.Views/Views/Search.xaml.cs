@@ -35,7 +35,7 @@ namespace JAO_PI.Views
             Core.Controller.Register.ReplaceBox(ReplaceBox);
 
             // Register GoTo
-            Core.Controller.Register.GoToComponents(GoToBox, Position, Max_Position, Line, Offset);
+            Core.Controller.Register.GoToComponents(GoToGrid);
 
             // Events Search
             Cancel.Click    += SearchEvents.Cancel_Click;

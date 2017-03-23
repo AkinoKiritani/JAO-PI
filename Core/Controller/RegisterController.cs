@@ -108,15 +108,17 @@ namespace JAO_PI.Core.Controller
                 Main.Frames[i].Owner = main;
             }
         }
-        public static bool GoToComponents(TextBox GoToBox, Label lineLabel, Label MaxLineLabel, RadioButton Line, RadioButton Offset)
+
+        public static bool GoToComponents(Grid GoToGrid)
         {
-            Main.GoToBox = GoToBox;
-            Main.LineLabel = lineLabel;
-            Main.MaxLineLabel = MaxLineLabel;
-            Main.Line = Line;
-            Main.Offset = Offset;
+            Main.Line = GoToGrid.Children[(int)Structures.GoTo.Line] as RadioButton;
+            Main.Offset = GoToGrid.Children[(int)Structures.GoTo.Offset] as RadioButton;
+            Main.LineLabel = GoToGrid.Children[(int)Structures.GoTo.Position] as Label;
+            Main.GoToBox = GoToGrid.Children[(int)Structures.GoTo.GoToBox] as TextBox;
+            Main.MaxLineLabel = GoToGrid.Children[(int)Structures.GoTo.Max_Position] as Label;
             return true;
         }
+
         public static bool SearchBox(TextBox searchBox)
         {
             if (Search.SearchBox == null)
