@@ -1,14 +1,16 @@
 ﻿namespace Structures
 {
-    public enum GoTo
+    public enum GoToTab
     {
-        Line,
-        Offset,
-        // Text
-        // Text
-        // Text
-        Position = 5,
-        GoToBox,
-        Max_Position
+        Line,               // RadioButton
+        Offset,             // RadioButton
+        // GoToLocation,    // Label
+        // ToGoLocation,    // Label
+        // MaxGoToLocation, // Label
+        Position = 5,       // Label
+        GoToBox,            // TextBox
+        Max_Position,       // Label
+        // ToGo,            // Button
+        // ToNowhere        // Button
     }
 }

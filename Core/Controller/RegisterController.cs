@@ -46,16 +46,6 @@ namespace JAO_PI.Core.Controller
             return false;
         }
 
-        public static bool ReplaceBox(TextBox replaceBox)
-        {
-            if (Search.ReplaceBox == null)
-            {
-                Search.ReplaceBox = replaceBox;
-                return true;
-            }
-            return false;
-        }
-
         public static bool CompilePanel(DockPanel compilerPanel)
         {
             if(Main.CompilerPanel == null)
@@ -63,16 +53,6 @@ namespace JAO_PI.Core.Controller
                 Main.CompilerPanel = compilerPanel;
                 Main.PanelBorder = compilerPanel.Children[(int)Structures.CompilerPanel.PanelBorder] as Border;
                 Main.ErrorBox = compilerPanel.Children[(int)Structures.CompilerPanel.ErrorBox] as ListBox;
-                return true;
-            }
-            return false;
-        }
-
-        public static bool SearchBox_Replace(TextBox searchBox_Replace)
-        {
-            if (Search.SearchBox_Replace == null)
-            {
-                Search.SearchBox_Replace = searchBox_Replace;
                 return true;
             }
             return false;
@@ -109,25 +89,42 @@ namespace JAO_PI.Core.Controller
             }
         }
 
-        public static bool GoToComponents(Grid GoToGrid)
-        {
-            Main.Line = GoToGrid.Children[(int)Structures.GoTo.Line] as RadioButton;
-            Main.Offset = GoToGrid.Children[(int)Structures.GoTo.Offset] as RadioButton;
-            Main.LineLabel = GoToGrid.Children[(int)Structures.GoTo.Position] as Label;
-            Main.GoToBox = GoToGrid.Children[(int)Structures.GoTo.GoToBox] as TextBox;
-            Main.MaxLineLabel = GoToGrid.Children[(int)Structures.GoTo.Max_Position] as Label;
-            return true;
-        }
-
-        public static bool SearchBox(TextBox searchBox)
+        public static bool SearchComponents(Grid SearchTabGrid)
         {
             if (Search.SearchBox == null)
             {
-                Search.SearchBox = searchBox;
+                Search.SearchBox = SearchTabGrid.Children[(int)Structures.SearchTab.SearchBox] as TextBox;
+                Search.MatchCase = SearchTabGrid.Children[(int)Structures.SearchTab.MatchCase] as CheckBox;
                 return true;
             }
             return false;
         }
+
+        public static bool ReplaceComponents(Grid ReplaceTabGrid)
+        {
+            if (Search.SearchBox_Replace == null)
+            {
+                Search.SearchBox_Replace = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.SearchReplaceBox] as TextBox;
+                Search.ReplaceBox = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.ReplaceBox] as TextBox;
+                return true;
+            }
+            return false;
+        }
+
+        public static bool GoToComponents(Grid GoToTabGrid)
+        {
+            if(Main.Line == null)
+            { 
+                Main.Line = GoToTabGrid.Children[(int)Structures.GoToTab.Line] as RadioButton;
+                Main.Offset = GoToTabGrid.Children[(int)Structures.GoToTab.Offset] as RadioButton;
+                Main.LineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Position] as Label;
+                Main.GoToBox = GoToTabGrid.Children[(int)Structures.GoToTab.GoToBox] as TextBox;
+                Main.MaxLineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Max_Position] as Label;
+                return true;
+            }
+            return false;
+        }
+        
         public static bool SearchInfo(TextBlock searchInfo)
         {
             if (Search.SearchInfo == null)
@@ -184,17 +181,7 @@ namespace JAO_PI.Core.Controller
                 return true;
             }
             return false;
-        }
-
-        public static bool MatchCase(CheckBox matchCase)
-        {
-            if (Search.MatchCase == null)
-            {
-                Search.MatchCase = matchCase;
-                return true;
-            }
-            return false;
-        }        
+        }  
 
         public static bool CreditsFrameBorder(Border FrameBorder)
         {

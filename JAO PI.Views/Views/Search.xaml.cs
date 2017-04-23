@@ -27,12 +27,10 @@ namespace JAO_PI.Views
             Core.Controller.Register.MoveHeader(Head);
 
             // Register Search
-            Core.Controller.Register.SearchBox(SearchBox);
-            Core.Controller.Register.MatchCase(MatchCase);
+            Core.Controller.Register.SearchComponents(SearchTabGrid);
 
             //Register Replace
-            Core.Controller.Register.SearchBox_Replace(SearchBox_Replace);
-            Core.Controller.Register.ReplaceBox(ReplaceBox);
+            Core.Controller.Register.ReplaceComponents(ReplaceTabGrid);
 
             // Register GoTo
             Core.Controller.Register.GoToComponents(GoToGrid);
