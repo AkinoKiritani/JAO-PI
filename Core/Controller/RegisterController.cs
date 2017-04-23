@@ -113,13 +113,13 @@ namespace JAO_PI.Core.Controller
 
         public static bool GoToComponents(Grid GoToTabGrid)
         {
-            if(Main.Line == null)
-            { 
-                Main.Line = GoToTabGrid.Children[(int)Structures.GoToTab.Line] as RadioButton;
-                Main.Offset = GoToTabGrid.Children[(int)Structures.GoToTab.Offset] as RadioButton;
-                Main.LineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Position] as Label;
-                Main.GoToBox = GoToTabGrid.Children[(int)Structures.GoToTab.GoToBox] as TextBox;
-                Main.MaxLineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Max_Position] as Label;
+            if(Search.Line == null)
+            {
+                Search.Line = GoToTabGrid.Children[(int)Structures.GoToTab.Line] as RadioButton;
+                Search.Offset = GoToTabGrid.Children[(int)Structures.GoToTab.Offset] as RadioButton;
+                Search.LineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Position] as Label;
+                Search.GoToBox = GoToTabGrid.Children[(int)Structures.GoToTab.GoToBox] as TextBox;
+                Search.MaxLineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Max_Position] as Label;
                 return true;
             }
             return false;
@@ -161,14 +161,15 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
-        public static bool SaveOptions(MenuItem Save, MenuItem SaveAs, MenuItem CloseFile, MenuItem CloseAll)
+        public static bool SaveOptions(MenuItem MainMenu)
         {
             if (Main.SaveOptions.Count == 0)
             {
-                Main.SaveOptions.Add(Save);
-                Main.SaveOptions.Add(SaveAs);
-                Main.SaveOptions.Add(CloseFile);
-                Main.SaveOptions.Add(CloseAll);
+                Main.SaveOptions.Add(MainMenu.Items[(int)Structures.SaveOptions.CloseFile] as MenuItem);
+                Main.SaveOptions.Add(MainMenu.Items[(int)Structures.SaveOptions.CloseAll] as MenuItem);
+                Main.SaveOptions.Add(MainMenu.Items[(int)Structures.SaveOptions.Save] as MenuItem);
+                Main.SaveOptions.Add(MainMenu.Items[(int)Structures.SaveOptions.SaveAs] as MenuItem);
+                
                 return true;
             }
             return false;

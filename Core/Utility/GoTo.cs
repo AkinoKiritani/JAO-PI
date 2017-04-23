@@ -4,15 +4,15 @@
     {
         public static void RefreshLineOffset()
         {
-            if (Controller.Main.Line.IsChecked.Value == true)
+            if (Controller.Search.Line.IsChecked.Value == true)
             {
-                Controller.Main.MaxLineLabel.Content = Controller.Main.CurrentEditor.Document.LineCount.ToString();
-                Controller.Main.LineLabel.Content = Controller.Main.CurrentEditor.TextArea.Caret.Line.ToString();
+                Controller.Search.MaxLineLabel.Content = Controller.Main.CurrentEditor.Document.LineCount.ToString();
+                Controller.Search.LineLabel.Content = Controller.Main.CurrentEditor.TextArea.Caret.Line.ToString();
             }
             else
             {
-                Controller.Main.MaxLineLabel.Content = Controller.Main.CurrentEditor.Document.TextLength.ToString();
-                Controller.Main.LineLabel.Content = Controller.Main.CurrentEditor.TextArea.Caret.Offset.ToString();
+                Controller.Search.MaxLineLabel.Content = Controller.Main.CurrentEditor.Document.TextLength.ToString();
+                Controller.Search.LineLabel.Content = Controller.Main.CurrentEditor.TextArea.Caret.Offset.ToString();
             }
         }
     }

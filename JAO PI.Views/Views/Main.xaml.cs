@@ -21,7 +21,7 @@ namespace JAO_PI.Views
             Core.Controller.Register.MainView(this.MainView);
             Core.Controller.Register.TabControl(this.tabControl);
             Core.Controller.Register.EmptyMessage(this.Message_Label);
-            Core.Controller.Register.SaveOptions(this.Save, this.SaveAs, this.Close_File, this.Close_All);
+            Core.Controller.Register.SaveOptions(this.MainMenu);
             Core.Controller.Register.Compile(this.Compiling);
             Core.Controller.Register.Edit(this.Edit);
             Core.Controller.Register.StatusBar(this.Line, this.Column);
@@ -31,7 +31,7 @@ namespace JAO_PI.Views
             this.Loaded         += FrameEvents.MainFrame_Loaded;
             this.Closed         += FrameEvents.MainFrame_Closed;
             this.Closing        += FrameEvents.MainFrame_Closing;
-            //Event for transparency of the SearchFrame
+            // Event for transparency of the SearchFrame
             this.Activated      += FrameEvents.MainFrame_Activated;
             this.Drop           += FrameEvents.MainFrame_Drop;
 
