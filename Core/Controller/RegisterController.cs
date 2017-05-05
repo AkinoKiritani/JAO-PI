@@ -25,20 +25,12 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
-
-        public static bool Compile(StatusBarItem compile)
-        {
-            if (Main.Compile == null)
-            {
-                Main.Compile = compile;
-                return true;
-            }
-            return false;
-        }
-        public static bool StatusBar(StatusBarItem Line, StatusBarItem Column)
+        
+        public static bool StatusBar(StatusBarItem Compile, StatusBarItem Line, StatusBarItem Column)
         {
             if (Main.StatusBarItems.Count == 0)
             {
+                Main.StatusBarItems.Add(Compile);
                 Main.StatusBarItems.Add(Line);
                 Main.StatusBarItems.Add(Column);
                 return true;

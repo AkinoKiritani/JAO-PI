@@ -22,11 +22,11 @@ namespace JAO_PI.EventsManager
                     {
                         Process Compiler = new Process();
                         ProcessStartInfo StartInfo = new ProcessStartInfo();
-                        
-                        Core.Controller.Main.Compile.Dispatcher.Invoke(new Action(() =>
+
+                        Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Compiling].Dispatcher.Invoke(new Action(() =>
                         {
                             Core.Controller.Main.CompiledTabItem = Core.Controller.Main.tabControl.SelectedItem as TabItem;
-                            Core.Controller.Main.Compile.Visibility = Visibility.Visible;
+                            Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Compiling].Visibility = Visibility.Visible;
                             Core.Controller.Main.ErrorBox.Items.Clear();
 
                             Core.Utility.Tab.RemoveTempTabs();
@@ -204,7 +204,7 @@ namespace JAO_PI.EventsManager
                         MessageBox.Show(Core.Controller.Main.Compiler_Errors, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                Core.Controller.Main.Compile.Visibility = Visibility.Collapsed;
+                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Compiling].Visibility = Visibility.Collapsed;
             }
         }
 

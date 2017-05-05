@@ -22,9 +22,8 @@ namespace JAO_PI.Views
             Core.Controller.Register.TabControl(this.tabControl);
             Core.Controller.Register.EmptyMessage(this.Message_Label);
             Core.Controller.Register.SaveOptions(this.MainMenu);
-            Core.Controller.Register.Compile(this.Compiling);
             Core.Controller.Register.Edit(this.Edit);
-            Core.Controller.Register.StatusBar(this.Line, this.Column);
+            Core.Controller.Register.StatusBar(this.Compiling, this.Line, this.Column);
             Core.Controller.Register.CompilePanel(this.CompilerPanel);
 
             // MainFrame
