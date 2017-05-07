@@ -85,12 +85,30 @@ namespace JAO_PI.Core.Utility
                 if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text) == true)
                 {
                     Controller.Search.CurrentSearchIndex++;
+                    if (Controller.Search.CurrentSearchIndex == Index.SearchList.Count && Controller.Search.WrapAround.IsChecked == true && Controller.Search.WrapedAround == false)
+                    {
+                        Controller.Search.CurrentSearchIndex = 0;
+                        Controller.Search.WrapedAround = true;
+                        Editor.SelectAndBringToView(Index.Editor, Index.SearchList[0].Index, Controller.Search.CurrentSearch.Length);
+                        return;
+                    }
+
                     if (Index.SearchList != null && Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
                     {
-                        Editor.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Controller.Search.CurrentSearch.Length);
+                        if (Controller.Search.WrapedAround == true && Controller.Search.WrapAround.IsChecked == true)
+                        {
+                            if (Controller.Search.FirstIndex == Controller.Search.CurrentSearchIndex)
+                            {
+                                Controller.Search.CurrentSearchIndex = Index.SearchList.Count;
+                                SetSearchInfo(Properties.Resources.NoFurtherResult);
+                                return;
+                            }
+                        }
+                        Editor.SelectAndBringToView(Index.Editor, Index.SearchList[Controller.Search.CurrentSearchIndex].Index, Controller.Search.CurrentSearch.Length);
                     }
                     else
                     {
+                        Controller.Search.CurrentSearchIndex = Index.SearchList.Count;
                         SetSearchInfo(Properties.Resources.NoFurtherResult);
                     }
                 }
@@ -104,13 +122,24 @@ namespace JAO_PI.Core.Utility
                     Controller.Search.CurrentSearchIndex = 0;
                     Controller.Main.LastIndex = 0;
                     Controller.Search.CurrentSearch = SearchBox.Text;
+                    Controller.Search.FirstIndex = 0;
 
                     if (Controller.Search.CurrentSearch != null)
                     {
                         Index.SearchList = FindString(Index.Editor, Controller.Search.CurrentSearch, !(Controller.Search.MatchCase.IsChecked.Value));
                         if (Index.SearchList != null && Index.SearchList.Count > 0)
                         {
-                            Editor.SelectAndBringToView(Index.Editor, Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index, Core.Controller.Search.CurrentSearch.Length);
+                            for (int i = 0; i != Index.SearchList.Count; i++)
+                            {
+                                if (Index.SearchList[i].Index > Controller.Search.SearchBeginOffset)
+                                {
+                                    Controller.Search.CurrentSearchIndex = i;
+                                    Controller.Search.FirstIndex = i;
+                                    break;
+                                }
+                            }
+
+                            Editor.SelectAndBringToView(Index.Editor, Index.SearchList[Controller.Search.CurrentSearchIndex].Index, Controller.Search.CurrentSearch.Length);
 
                             StringBuilder ResultText = new StringBuilder();
                             ResultText.Append(Properties.Resources.Result);

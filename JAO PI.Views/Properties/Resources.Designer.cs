@@ -531,5 +531,14 @@ namespace JAO_PI.Views.Properties {
                 return ResourceManager.GetString("Website", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wrap around ähnelt.
+        /// </summary>
+        public static string WrapAround {
+            get {
+                return ResourceManager.GetString("WrapAround", resourceCulture);
+            }
+        }
     }
 }

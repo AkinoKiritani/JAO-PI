@@ -277,4 +277,7 @@ by using Main in the Header.</value>
   <data name="AvalonEditByWebsite" xml:space="preserve">
     <value>http://avalonedit.net</value>
   </data>
+  <data name="WrapAround" xml:space="preserve">
+    <value>Wrap around</value>
+  </data>
 </root>

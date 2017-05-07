@@ -246,4 +246,7 @@ by using Main in the Header.</value>
   <data name="Undo" xml:space="preserve">
     <value>Undo</value>
   </data>
+  <data name="WrapAround" xml:space="preserve">
+    <value>Wrap around</value>
+  </data>
 </root>

@@ -17,6 +17,10 @@ namespace JAO_PI.Core.Controller
         // Search
         public static TextBox SearchBox = null;
         public static CheckBox MatchCase = null;
+        public static CheckBox WrapAround = null;
+        public static int SearchBeginOffset = 0;
+        public static bool WrapedAround = false;
+        public static int FirstIndex = 0;
 
         // Replace
         public static TextBox SearchBox_Replace = null;

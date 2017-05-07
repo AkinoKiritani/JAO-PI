@@ -7,6 +7,7 @@
         // Do_Search = 2,   // Button
         // Do_Count,        // Button
         // Cancel,          // Button
-        MatchCase = 5       // CheckBox
+        MatchCase = 5,      // Checkbox
+        WrapAround          // Checkbox
     }
 }

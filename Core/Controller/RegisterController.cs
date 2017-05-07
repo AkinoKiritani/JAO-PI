@@ -87,6 +87,7 @@ namespace JAO_PI.Core.Controller
             {
                 Search.SearchBox = SearchTabGrid.Children[(int)Structures.SearchTab.SearchBox] as TextBox;
                 Search.MatchCase = SearchTabGrid.Children[(int)Structures.SearchTab.MatchCase] as CheckBox;
+                Search.WrapAround = SearchTabGrid.Children[(int)Structures.SearchTab.WrapAround] as CheckBox;
                 return true;
             }
             return false;

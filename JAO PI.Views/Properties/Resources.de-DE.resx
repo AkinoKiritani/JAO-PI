@@ -240,4 +240,7 @@ Erstelle oder Öffne eine Datei
   <data name="Undo" xml:space="preserve">
     <value>Rückgängig</value>
   </data>
+  <data name="WrapAround" xml:space="preserve">
+    <value>Am Ende von vorn beginnen</value>
+  </data>
 </root>

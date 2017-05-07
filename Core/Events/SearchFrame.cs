@@ -104,6 +104,7 @@ namespace JAO_PI.EventsManager
             if (Index != null)
             {
                 Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Search;
+                Core.Controller.Search.SearchBeginOffset = Index.Editor.CaretOffset;
                 Search.DoSearch(Index, Core.Controller.Search.SearchBox);
             }
         }
@@ -153,6 +154,7 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Search.CurrentSearch != Core.Controller.Search.SearchBox_Replace.Text) // do a new search
                 {
                     Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
+                    Core.Controller.Search.SearchBeginOffset = Index.Editor.CaretOffset;
                     Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Search.SearchBox_Replace.Text, false);
                     Core.Controller.Search.CurrentSearchIndex = 0;
                     Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox_Replace.Text;
