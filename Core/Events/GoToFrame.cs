@@ -19,12 +19,12 @@ namespace JAO_PI.EventsManager
 
         public void GoTo_Click(object sender, RoutedEventArgs e)
         {
-            if (Core.Controller.Search.GoToBox.Text.Length > 0)
+            if (Core.Controller.Goto.GoToBox.Text.Length > 0)
             {
-                int GoToValue = Convert.ToInt32(Core.Controller.Search.GoToBox.Text);
+                int GoToValue = Convert.ToInt32(Core.Controller.Goto.GoToBox.Text);
                 Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
                 Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame].Activate();
-                if (Core.Controller.Search.Line.IsChecked.Value == true)
+                if (Core.Controller.Goto.Line.IsChecked.Value == true)
                 {
                     if (GoToValue > Core.Controller.Main.CurrentEditor.Document.LineCount)
                     {
@@ -59,14 +59,14 @@ namespace JAO_PI.EventsManager
 
         public void Line_Checked(object sender, RoutedEventArgs e)
         {
-            Core.Controller.Search.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.LineCount.ToString();
-            Core.Controller.Search.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Line.ToString();
+            Core.Controller.Goto.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.LineCount.ToString();
+            Core.Controller.Goto.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Line.ToString();
         }
 
         public void Offset_Checked(object sender, RoutedEventArgs e)
         {
-            Core.Controller.Search.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.TextLength.ToString();
-            Core.Controller.Search.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Offset.ToString();
+            Core.Controller.Goto.MaxLineLabel.Content = Core.Controller.Main.CurrentEditor.Document.TextLength.ToString();
+            Core.Controller.Goto.LineLabel.Content = Core.Controller.Main.CurrentEditor.TextArea.Caret.Offset.ToString();
         }        
     }
 }

@@ -106,13 +106,13 @@ namespace JAO_PI.Core.Controller
 
         public static bool GoToComponents(Grid GoToTabGrid)
         {
-            if(Search.Line == null)
+            if(Goto.Line == null)
             {
-                Search.Line = GoToTabGrid.Children[(int)Structures.GoToTab.Line] as RadioButton;
-                Search.Offset = GoToTabGrid.Children[(int)Structures.GoToTab.Offset] as RadioButton;
-                Search.LineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Position] as Label;
-                Search.GoToBox = GoToTabGrid.Children[(int)Structures.GoToTab.GoToBox] as TextBox;
-                Search.MaxLineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Max_Position] as Label;
+                Goto.Line = GoToTabGrid.Children[(int)Structures.GoToTab.Line] as RadioButton;
+                Goto.Offset = GoToTabGrid.Children[(int)Structures.GoToTab.Offset] as RadioButton;
+                Goto.LineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Position] as Label;
+                Goto.GoToBox = GoToTabGrid.Children[(int)Structures.GoToTab.GoToBox] as TextBox;
+                Goto.MaxLineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Max_Position] as Label;
                 return true;
             }
             return false;
