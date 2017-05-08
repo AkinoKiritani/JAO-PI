@@ -39,6 +39,8 @@
                     <Button x:Name="Do_Replace_All" Content="{x:Static p:Resources.ReplaceAll}" HorizontalAlignment="Left" Margin="262,66,0,0" VerticalAlignment="Top" Width="89" Height="23" />
 
                     <Button x:Name="Cancel_Replace" Content="{x:Static p:Resources.CloseSearch}" HorizontalAlignment="Left" Margin="262,94,0,5" VerticalAlignment="Top" Width="89" Height="22" />
+                    <CheckBox x:Name="MatchCase_Replace" HorizontalAlignment="Left" Content="{x:Static p:Resources.MatchCase}" Margin="10,84,0,0" VerticalAlignment="Top" />
+                    <CheckBox x:Name="WrapAround_Replace" HorizontalAlignment="Left" Content="{x:Static p:Resources.WrapAround}" Margin="10,104,0,0" VerticalAlignment="Top" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="GoToTab" Header="{x:Static p:Resources.GoTo}">
