@@ -99,6 +99,8 @@ namespace JAO_PI.Core.Controller
             {
                 Replace.SearchBox_Replace = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.SearchReplaceBox] as TextBox;
                 Replace.ReplaceBox = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.ReplaceBox] as TextBox;
+                Replace.MatchCase = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.MatchCase] as CheckBox;
+                Replace.WrapAround = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.WrapAround] as CheckBox;
                 return true;
             }
             return false;

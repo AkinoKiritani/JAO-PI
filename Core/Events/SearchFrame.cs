@@ -203,5 +203,29 @@ namespace JAO_PI.EventsManager
                 }
             }
         }
+
+        public void WrapAround_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Search.WrapAround.IsChecked = false;
+            Core.Controller.Replace.WrapAround.IsChecked = false;
+        }
+
+        public void WrapAround_Checked(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Search.WrapAround.IsChecked = true;
+            Core.Controller.Replace.WrapAround.IsChecked = true;
+        }
+
+        public void MatchCase_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Search.MatchCase.IsChecked = false;
+            Core.Controller.Replace.MatchCase.IsChecked = false;
+        }
+
+        public void MatchCase_Checked(object sender, RoutedEventArgs e)
+        {
+            Core.Controller.Search.MatchCase.IsChecked = true;
+            Core.Controller.Replace.MatchCase.IsChecked = true;
+        }
     }
 }

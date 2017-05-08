@@ -9,6 +9,8 @@
         // Do_Search_Replace,   // Button
         // Do_Replace,          // Button
         // Do_Replace_All,      // Button
-        // Cancel_Replace       // Button
+        // Cancel               // Button
+        MatchCase = 8,          // CheckBox
+        WrapAround              // CheckBox
     }
 }

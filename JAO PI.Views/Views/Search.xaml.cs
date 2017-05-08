@@ -46,6 +46,16 @@ namespace JAO_PI.Views
             Do_Replace_All.Click    += SearchEvents.Do_Replace_All;
             Cancel_Replace.Click    += SearchEvents.Cancel_Click;
 
+            MatchCase.Checked += SearchEvents.MatchCase_Checked;
+            MatchCase.Unchecked += SearchEvents.MatchCase_Unchecked;
+            WrapAround.Checked += SearchEvents.WrapAround_Checked;
+            WrapAround.Unchecked += SearchEvents.WrapAround_Unchecked;
+
+            MatchCase_Replace.Checked += SearchEvents.MatchCase_Checked;
+            MatchCase_Replace.Unchecked += SearchEvents.MatchCase_Unchecked;
+            WrapAround_Replace.Checked += SearchEvents.WrapAround_Checked;
+            WrapAround_Replace.Unchecked += SearchEvents.WrapAround_Unchecked;
+
             // Events GoTo
             Line.Checked += GoToEvents.Line_Checked;
             Offset.Checked += GoToEvents.Offset_Checked;
