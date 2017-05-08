@@ -95,10 +95,10 @@ namespace JAO_PI.Core.Controller
 
         public static bool ReplaceComponents(Grid ReplaceTabGrid)
         {
-            if (Search.SearchBox_Replace == null)
+            if (Replace.SearchBox_Replace == null)
             {
-                Search.SearchBox_Replace = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.SearchReplaceBox] as TextBox;
-                Search.ReplaceBox = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.ReplaceBox] as TextBox;
+                Replace.SearchBox_Replace = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.SearchReplaceBox] as TextBox;
+                Replace.ReplaceBox = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.ReplaceBox] as TextBox;
                 return true;
             }
             return false;

@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Controller\CreditsController.cs" />
     <Compile Include="Controller\FindController.cs" />
+    <Compile Include="Controller\ReplaceController.cs" />
     <Compile Include="Controller\SearchController.cs" />
     <Compile Include="Events\CreditFrame.cs" />
     <Compile Include="Events\ListBoxItem.cs" />

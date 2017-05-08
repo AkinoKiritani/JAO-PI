@@ -21,10 +21,7 @@ namespace JAO_PI.Core.Controller
         public static int SearchBeginOffset = 0;
         public static bool WrapedAround = false;
         public static int FirstIndex = 0;
-
-        // Replace
-        public static TextBox SearchBox_Replace = null;
-        public static TextBox ReplaceBox = null;
+        
 
         //Goto
         public static TextBox GoToBox = null;

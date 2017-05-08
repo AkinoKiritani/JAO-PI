@@ -126,16 +126,16 @@ namespace JAO_PI.EventsManager
             if (Index != null)
             {
                 Core.Controller.Search.LastSearchTyp = Structures.LastSearch.ReplaceAll;
-                Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Search.SearchBox_Replace.Text, false);
+                Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Replace.SearchBox_Replace.Text, false);
                 Core.Controller.Search.CurrentSearchIndex = 0;
-                Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox_Replace.Text;
+                Core.Controller.Search.CurrentSearch = Core.Controller.Replace.SearchBox_Replace.Text;
 
                 int offset = 0;
-                int lenght = Core.Controller.Search.SearchBox_Replace.Text.Length;
+                int lenght = Core.Controller.Replace.SearchBox_Replace.Text.Length;
                 for (int i = 0; i != Index.SearchList.Count; i++)
                 {
                     offset = Index.SearchList[i].Index;
-                    Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
+                    Index.Editor.Document.Replace(offset, lenght, Core.Controller.Replace.ReplaceBox.Text);
                 }
 
                 if (Index.SearchList.Count > 0)
@@ -151,13 +151,13 @@ namespace JAO_PI.EventsManager
             if (Index != null)
             {
                 Core.Controller.Search.CurrentSearchIndex++;
-                if (Core.Controller.Search.CurrentSearch != Core.Controller.Search.SearchBox_Replace.Text) // do a new search
+                if (Core.Controller.Search.CurrentSearch != Core.Controller.Replace.SearchBox_Replace.Text) // do a new search
                 {
                     Core.Controller.Search.LastSearchTyp = Structures.LastSearch.Replace;
                     Core.Controller.Search.SearchBeginOffset = Index.Editor.CaretOffset;
-                    Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Search.SearchBox_Replace.Text, false);
+                    Index.SearchList = Search.FindString(Index.Editor, Core.Controller.Replace.SearchBox_Replace.Text, false);
                     Core.Controller.Search.CurrentSearchIndex = 0;
-                    Core.Controller.Search.CurrentSearch = Core.Controller.Search.SearchBox_Replace.Text;
+                    Core.Controller.Search.CurrentSearch = Core.Controller.Replace.SearchBox_Replace.Text;
                 }
                 
                 // if a "Replace"match were skiped and then replace where clicked
@@ -177,8 +177,8 @@ namespace JAO_PI.EventsManager
                 if (Core.Controller.Search.CurrentSearchIndex < Index.SearchList.Count)
                 {
                     int offset = Index.SearchList[Core.Controller.Search.CurrentSearchIndex].Index;
-                    int lenght = Core.Controller.Search.SearchBox_Replace.Text.Length;
-                    Index.Editor.Document.Replace(offset, lenght, Core.Controller.Search.ReplaceBox.Text);
+                    int lenght = Core.Controller.Replace.SearchBox_Replace.Text.Length;
+                    Index.Editor.Document.Replace(offset, lenght, Core.Controller.Replace.ReplaceBox.Text);
 
                     Core.Utility.Editor.SelectAndBringToView(Index.Editor, offset, lenght);
                 }
@@ -199,7 +199,7 @@ namespace JAO_PI.EventsManager
                 else
                 {
                     Core.Controller.Search.LastSearchTyp = Structures.LastSearch.ReplaceSearch;
-                    Search.DoSearch(Index, Core.Controller.Search.SearchBox_Replace);
+                    Search.DoSearch(Index, Core.Controller.Replace.SearchBox_Replace);
                 }
             }
         }
