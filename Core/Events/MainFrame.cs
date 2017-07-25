@@ -13,15 +13,17 @@ namespace JAO_PI.EventsManager
 {
     public class MainFrame
     {
+        private Data.Connector Data = null;
         public void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
+            Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
             Core.Controller.Worker Worker = new Core.Controller.Worker();
 
-            Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
+            Data = new Data.Connector(Core.Properties.Resources.IncludesDataBase);
+            int res = Data.Open(Core.Properties.Resources.IncludesDataBase).Result;
 
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {
-                
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.NoCompilerPath, Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
@@ -87,6 +89,8 @@ namespace JAO_PI.EventsManager
 
         public void MainFrame_Closing(object sender, CancelEventArgs e)
         {
+            Data.Close();
+
             List<Core.Controller.Tab> notSavedList = Core.Controller.Main.TabControlList.FindAll(x => !x.State.HasFlag(Structures.States.Saved));
             if (notSavedList.Count > 0)
             {

@@ -97,6 +97,15 @@ namespace JAO_PI.Core.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Includes.db ähnelt.
+        /// </summary>
+        public static string IncludesDataBase {
+            get {
+                return ResourceManager.GetString("IncludesDataBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Line ähnelt.
         /// </summary>
         public static string Line {

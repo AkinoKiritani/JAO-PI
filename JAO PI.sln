@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAO PI", "JAO PI\JAO PI.csproj", "{CB4FBDC7-DDB4-4437-93C9-1E509629C8D2}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -11,6 +11,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAO PI.Core", "Core\JAO PI.Core.csproj", "{4B322586-5D07-46F8-8E3B-0A3B6F07E4DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAO PI.Views", "JAO PI.Views\JAO PI.Views.csproj", "{F527D833-778B-471D-8CAB-3248428E0B0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAO PI.Data", "JAO PI.Data\JAO PI.Data.csproj", "{5B65CA3D-5882-4CA8-BBE9-8984CB1E0EB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{F527D833-778B-471D-8CAB-3248428E0B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F527D833-778B-471D-8CAB-3248428E0B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F527D833-778B-471D-8CAB-3248428E0B0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B65CA3D-5882-4CA8-BBE9-8984CB1E0EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B65CA3D-5882-4CA8-BBE9-8984CB1E0EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B65CA3D-5882-4CA8-BBE9-8984CB1E0EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B65CA3D-5882-4CA8-BBE9-8984CB1E0EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
