@@ -16,6 +16,7 @@ namespace JAO_PI.EventsManager
         public void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.Frames[(int)Structures.Frames.CreditsFrame].Visibility = Visibility.Collapsed;
+            Core.Controller.Main.Frames[(int) Structures.Frames.MainFrame].Focus();
         }
 
         public void Activated(object sender, EventArgs e)
