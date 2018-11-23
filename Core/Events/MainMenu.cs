@@ -125,6 +125,11 @@ namespace JAO_PI.EventsManager
             Splitter.IsEnabled = false;
         }
 
+        public void Analyse_Click(object sender, RoutedEventArgs e)
+        {
+            // Parser.Analysis("file.inc");
+        }
+
         public void SaveAs_Click(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)

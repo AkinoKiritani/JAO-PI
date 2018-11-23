@@ -102,6 +102,8 @@ namespace JAO_PI.Views
             CommandBindings.Add(new CommandBinding(AboutCmd, MenuEvents.About_Click));
 
             About.Click += MenuEvents.About_Click;
+
+            Analysis.Click += MenuEvents.Analyse_Click;
         }        
     }
 }
