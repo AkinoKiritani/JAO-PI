@@ -6,7 +6,7 @@ namespace JAO_PI.Data
 {
     public class Parser
     {
-        public static bool Analysis(string file)
+        public static bool Analysis(string file, Dictionary<string, string> dicToSave)
         {
             if (!File.Exists(file)) return false;
 
@@ -15,7 +15,7 @@ namespace JAO_PI.Data
             string[] checkStuff = { "native", "#define", "forward" };
             var ignoreTab = false;
             var paramLine = false;
-            var dic = new Dictionary<string, string>();
+
             var param = "";
             var name = "";
             while ((line = analytic.ReadLine()) != null)
@@ -55,7 +55,7 @@ namespace JAO_PI.Data
                     {
                         name = name.Remove(0, "\t".Length);
                     }
-                    dic.Add(name, param.Length > 0 ? param : " ");
+                    dicToSave.Add(name, param.Length > 0 ? param : " ");
                     paramLine = false;
                     continue;
                 }
@@ -120,7 +120,7 @@ namespace JAO_PI.Data
                         {
                             name = name.Remove(0, "\t".Length);
                         }
-                        dic.Add(name, param.Length > 0 ? param : " ");
+                        dicToSave.Add(name, param.Length > 0 ? param : " ");
                     }
                     else
                     {
@@ -146,7 +146,7 @@ namespace JAO_PI.Data
                         {
                             name = name.Remove(0, "\t".Length);
                         }
-                        dic.Add(name, param.Length > 0 ? param : " ");
+                        dicToSave.Add(name, param.Length > 0 ? param : " ");
                     }
                     ignoreTab = false;
                 }

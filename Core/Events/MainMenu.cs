@@ -2,6 +2,7 @@
 using JAO_PI.Core.Utility;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -127,7 +128,14 @@ namespace JAO_PI.EventsManager
 
         public void Analyse_Click(object sender, RoutedEventArgs e)
         {
-            // Parser.Analysis("file.inc");
+            var file = @"file.inc";
+
+            var checksum = Data.Utility.GetFileChecksum(file);
+            if (!string.IsNullOrEmpty(checksum))
+            {
+                var dic = new Dictionary<string, string>();
+                Data.Parser.Analysis(file, dic);
+            }
         }
 
         public void SaveAs_Click(object sender, RoutedEventArgs e)
