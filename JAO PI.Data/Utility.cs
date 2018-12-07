@@ -13,7 +13,7 @@ namespace JAO_PI.Data
                 FileStream stream = File.OpenRead(file);
                 var sha = new SHA256Managed();
                 byte[] checksum = sha.ComputeHash(stream);
-                return BitConverter.ToString(checksum).Replace("-", String.Empty);
+                return BitConverter.ToString(checksum).Replace("-", string.Empty);
             }
             return "";
         }

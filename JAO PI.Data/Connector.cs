@@ -11,7 +11,7 @@ namespace JAO_PI.Data
         {
             Connection.ConnectionString = "Data Source = " + database;
         }
-        public async Task<int> Open(string DataBase)
+        public async Task<int> Open()
         {
             await Connection.OpenAsync();
             return 1;
