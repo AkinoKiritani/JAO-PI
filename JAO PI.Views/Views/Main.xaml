@@ -43,9 +43,18 @@
             <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}">
                 <MenuItem Grid.Column="0" x:Name="MainMenu" Header="{x:Static p:Resources.Main}" StaysOpenOnClick="True">
                     <MenuItem Header="{x:Static p:Resources.File}">
+                        <MenuItem.Icon>
+                            <Image x:Name="DataMenuItem" />
+                        </MenuItem.Icon>
                         <MenuItem x:Name="Create_File" Header="{x:Static p:Resources.NewFile}" IsTabStop="False" Focusable="False" />
-                        <MenuItem x:Name="Open_File" Header="{x:Static p:Resources.OpenFile}" IsTabStop="False" Focusable="False" />
+                        <MenuItem x:Name="Open_File" Header="{x:Static p:Resources.OpenFile}" IsTabStop="False" Focusable="False">
+                            <MenuItem.Icon>
+                                <Image x:Name="OpenFileMenuItem" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+
                     </MenuItem>
+
                     <!--
                     <MenuItem x:Name="Project" Header="Project" IsEnabled="False">
                         <MenuItem x:Name="Open_Project" Header="Create Project" />
@@ -56,8 +65,16 @@
                     <MenuItem x:Name="Close_File" Header="{x:Static p:Resources.CloseFile}" IsEnabled="False" />
                     <MenuItem x:Name="Close_All" Header="{x:Static p:Resources.CloseAll}" IsEnabled="False" />
                     <Separator />
-                    <MenuItem x:Name="Save" Header="{x:Static p:Resources.Save}" IsEnabled="False" />
-                    <MenuItem x:Name="SaveAs" Header="{x:Static p:Resources.SaveAs}" IsEnabled="False" />
+                    <MenuItem x:Name="Save" Header="{x:Static p:Resources.Save}" IsEnabled="False" >
+                        <MenuItem.Icon>
+                            <Image x:Name="SaveMenuItem" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="SaveAs" Header="{x:Static p:Resources.SaveAs}" IsEnabled="False" >
+                        <MenuItem.Icon>
+                            <Image x:Name="SaveAsMenuItem" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator />
                     <MenuItem x:Name="Exit" Header="{x:Static p:Resources.Exit}" />
                 </MenuItem>
@@ -79,26 +96,21 @@
                 <MenuItem Grid.Column="3" x:Name="About" Header="{x:Static p:Resources.About}" />
             </Menu>
         </StatusBar>
-        
-        <Label x:Name="Message_Label" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static p:Resources.Empty_Message}" Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26" />
-                
-        <Grid x:Name="MainView" Margin="0,25">
-            <Grid.RowDefinitions>
-                <RowDefinition MinHeight="100" />
-                <RowDefinition Height="0" />
-                <RowDefinition Height="0" />
-            </Grid.RowDefinitions>
-            <TabControl Grid.Column="0" x:Name="tabControl" Visibility="Collapsed" BorderThickness="1,1,0,0" />
 
-            <GridSplitter x:Name="Splitter" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" ResizeDirection="Rows" ResizeBehavior="BasedOnAlignment" Cursor="SizeNS" />
-            <DockPanel Grid.Row="2" x:Name="CompilerPanel" Visibility="Collapsed" LastChildFill="True">
+        <Label x:Name="Message_Label" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static p:Resources.Empty_Message}" Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26" />
+
+        <Grid x:Name="MainView" Margin="0,25">
+            <TabControl Grid.Column="0" x:Name="tabControl" Visibility="Collapsed" BorderThickness="1,1,0,0" Grid.ColumnSpan="2" />
+
+            <GridSplitter x:Name="Splitter" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" ResizeDirection="Rows" ResizeBehavior="BasedOnAlignment" Cursor="SizeNS" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            <DockPanel Grid.Row="2" x:Name="CompilerPanel" Visibility="Collapsed" LastChildFill="True" Grid.ColumnSpan="2">
                 <Border BorderBrush="#FFABADB3" BorderThickness="0,1,0,0" DockPanel.Dock="Top" />
                 <Canvas DockPanel.Dock="Top" Background="Bisque" x:Name="CompilerHead" Height="20">
                     <TextBlock x:Name="CompilerCloseBox" Canvas.Right="1" Canvas.Top="1" Text="  x" Width="18" Height="18" Background="#FFC75050" VerticalAlignment="Center" Foreground="White"/>
                     <TextBlock x:Name="CompilerHeaderBox" Canvas.Left="3" Height="18" Canvas.Top="1" Text="Ausgabe" FontSize="12"/>
                 </Canvas>
                 <ListBox DockPanel.Dock="Bottom" x:Name="listBox" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="10" />
-            </DockPanel>            
+            </DockPanel>
         </Grid>
     </Grid>
 </Window>

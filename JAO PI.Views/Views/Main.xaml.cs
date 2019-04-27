@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Drawing.Imaging;
+using System.Windows;
 using System.Windows.Input;
 
 namespace JAO_PI.Views
@@ -17,6 +18,11 @@ namespace JAO_PI.Views
             EventsManager.SearchFrame SearchEvents = new EventsManager.SearchFrame();
 
             InitializeComponent();
+
+            Core.Utility.Main.SetResourceImage(Properties.Resources.box_full, ImageFormat.Png, DataMenuItem);
+            Core.Utility.Main.SetResourceImage(Properties.Resources.open_arrow, ImageFormat.Png, OpenFileMenuItem);
+            Core.Utility.Main.SetResourceImage(Properties.Resources.save_text, ImageFormat.Png, SaveMenuItem);
+            Core.Utility.Main.SetResourceImage(Properties.Resources.save_text, ImageFormat.Png, SaveAsMenuItem);
 
             Core.Controller.Register.MainView(this.MainView);
             Core.Controller.Register.TabControl(this.tabControl);

@@ -1,7 +1,5 @@
 ﻿using System.Drawing.Imaging;
-using System.IO;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace JAO_PI.Views
 {
@@ -20,15 +18,7 @@ namespace JAO_PI.Views
             Core.Controller.Register.CreditsFrameBorder(CreditsFrameBorder);
 
             // Load Image from Ressources
-            Stream ImageStream = new MemoryStream();
-            Properties.Resources.pawn.Save(ImageStream, ImageFormat.Png);
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.StreamSource = ImageStream;
-            bitmap.EndInit();
-
-            IconPic.Source = bitmap;
+            Core.Utility.Main.SetResourceImage(Properties.Resources.pawn, ImageFormat.Png, IconPic);
 
             SaveIconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.OpenWebsite;
             IconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.OpenWebsite;

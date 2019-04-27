@@ -20,7 +20,7 @@ namespace JAO_PI.EventsManager
             Core.Controller.Worker Worker = new Core.Controller.Worker();
 
             Data = new Data.Connector(Core.Properties.Resources.IncludesDataBase);
-            int res = Data.Open(Core.Properties.Resources.IncludesDataBase).Result;
+            int res = Data.Open().Result;
 
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {

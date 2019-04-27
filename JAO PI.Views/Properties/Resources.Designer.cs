@@ -19,7 +19,7 @@ namespace JAO_PI.Views.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -70,7 +70,7 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Author: Nils Peters ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Author: Nils &quot;Akino Kiritani&quot; Peters ähnelt.
         /// </summary>
         public static string Author {
             get {
@@ -93,6 +93,16 @@ namespace JAO_PI.Views.Properties {
         public static string AvalonEditByWebsite {
             get {
                 return ResourceManager.GetString("AvalonEditByWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap box_full {
+            get {
+                object obj = ResourceManager.GetObject("box_full", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -388,6 +398,16 @@ namespace JAO_PI.Views.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap open_arrow {
+            get {
+                object obj = ResourceManager.GetObject("open_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Open File ähnelt.
         /// </summary>
         public static string OpenFile {
@@ -448,6 +468,16 @@ namespace JAO_PI.Views.Properties {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap save_text {
+            get {
+                object obj = ResourceManager.GetObject("save_text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace JAO_PI.Core.Utility
 {
-    static class Main
+    public static class Main
     {
         public static string RandomString(int length)
         {
@@ -94,6 +94,18 @@ namespace JAO_PI.Core.Utility
                     }
                 }
             }
+        }
+        public static void SetResourceImage(System.Drawing.Bitmap img, ImageFormat format, System.Windows.Controls.Image control)
+        {
+            Stream ImageStream = new MemoryStream();
+            BitmapImage bitmap = new BitmapImage();
+
+            img.Save(ImageStream, format);
+
+            bitmap.BeginInit();
+            bitmap.StreamSource = ImageStream;
+            bitmap.EndInit();
+            control.Source = bitmap;
         }
     }
 }
