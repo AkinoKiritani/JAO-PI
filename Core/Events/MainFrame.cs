@@ -43,27 +43,28 @@ namespace JAO_PI.EventsManager
                 }
             }
 
-            MainMenu main = new MainMenu();
             Generator generator = new Generator();
             string[] arguments = Environment.GetCommandLineArgs();
+            TabItem tab = null;
+            FileStream stream = null;
             if (arguments.GetLength(0) > 1)
             {
                 string[] arg = arguments[1].Split('\\');
-
-                FileStream stream = new FileStream(arguments[1], FileMode.Open, FileAccess.Read);
-                TabItem tab = generator.TabItem(arguments[1], arg[arg.Length - 1], stream);
+                tab = generator.TabItem(arguments[1], arg[arg.Length - 1], stream);
+                stream = new FileStream(arguments[1], FileMode.Open, FileAccess.Read);
                 stream.Close();
-
-                Core.Controller.Main.tabControl.Items.Add(tab);
-                Core.Controller.Main.tabControl.SelectedItem = tab;
-
-                Toggle.TabControl(true);
-                if (Core.Controller.Main.tabControl.Items.Count == 1)
-                {
-                    Toggle.SaveOptions(true);
-                }
-                Core.Controller.Main.CompileMenuItem.IsEnabled = true;
             }
+            else tab = generator.TabItem(Environment.CurrentDirectory, Core.Properties.Resources.NewFileName, null);
+
+            Core.Controller.Main.tabControl.Items.Add(tab);
+            Core.Controller.Main.tabControl.SelectedItem = tab;
+
+            Toggle.TabControl(true);
+            if (Core.Controller.Main.tabControl.Items.Count == 1)
+            {
+                Toggle.SaveOptions(true);
+            }
+            Core.Controller.Main.CompileMenuItem.IsEnabled = true;
         }
 
         public void MainFrame_Drop(object sender, DragEventArgs e)
