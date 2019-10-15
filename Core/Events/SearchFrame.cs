@@ -23,43 +23,52 @@ namespace JAO_PI.EventsManager
 
         public void Closing(object sender, CancelEventArgs e)
         {
-            Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
-            if (Core.Controller.Search.SearchInfo.Visibility == Visibility.Visible)
+            if(e != null)
             {
-                Core.Controller.Search.SearchInfo.Visibility = Visibility.Collapsed;
-
-                foreach (Core.Controller.Tab tab in Core.Controller.Main.TabControlList)
+                Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
+                if (Core.Controller.Search.SearchInfo.Visibility == Visibility.Visible)
                 {
-                    if (tab.SearchList != null)
+                    Core.Controller.Search.SearchInfo.Visibility = Visibility.Collapsed;
+
+                    foreach (Core.Controller.Tab tab in Core.Controller.Main.TabControlList)
                     {
-                        tab.SearchList.Clear();
+                        if (tab.SearchList != null)
+                        {
+                            tab.SearchList.Clear();
+                        }
                     }
                 }
-            }
-            e.Cancel = true;
+                e.Cancel = true;
+            }            
         }
 
         // Header
-        public void Head_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public void HeadMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].DragMove();
         }
 
-        public void Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public void CloseMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Close();
         }
 
-        public void Close_MouseLeave(object sender, MouseEventArgs e)
+        public void CloseMouseLeave(object sender, MouseEventArgs e)
         {
-            TextBlock Close = sender as TextBlock;
-            Close.Background = new SolidColorBrush(Color.FromRgb(199, 80, 80));
+            if (sender != null)
+            {
+                TextBlock Close = sender as TextBlock;
+                Close.Background = new SolidColorBrush(Color.FromRgb(199, 80, 80));
+            }
         }
 
-        public void Close_MouseEnter(object sender, MouseEventArgs e)
+        public void CloseMouseEnter(object sender, MouseEventArgs e)
         {
-            TextBlock Close = sender as TextBlock;
-            Close.Background = new SolidColorBrush(Color.FromRgb(244, 67, 67));
+            if (sender != null)
+            {
+                TextBlock Close = sender as TextBlock;
+                Close.Background = new SolidColorBrush(Color.FromRgb(244, 67, 67));
+            }
         }
 
         // TabControl
@@ -93,12 +102,12 @@ namespace JAO_PI.EventsManager
         }
 
         // Search
-        public void Cancel_Click(object sender, RoutedEventArgs e)
+        public void CancelClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].Visibility = Visibility.Collapsed;
         }
 
-        public void Search_Click(object sender, RoutedEventArgs e)
+        public void SearchClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
@@ -109,7 +118,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void Count_Click(object sender, RoutedEventArgs e)
+        public void CountClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
@@ -120,7 +129,7 @@ namespace JAO_PI.EventsManager
         }
 
         // Replace
-        public void Do_Replace_All(object sender, RoutedEventArgs e)
+        public void DoReplaceAll(object sender, RoutedEventArgs e)
         {
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
@@ -145,7 +154,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void Do_Replace(object sender, RoutedEventArgs e)
+        public void DoReplace(object sender, RoutedEventArgs e)
         {
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
@@ -185,7 +194,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void Do_Search_Replace_Click(object sender, RoutedEventArgs e)
+        public void DoSearchReplaceClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == (Core.Controller.Main.tabControl.Items[Core.Controller.Main.tabControl.SelectedIndex] as TabItem));
             if (Index != null)
@@ -204,25 +213,25 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void WrapAround_Unchecked(object sender, RoutedEventArgs e)
+        public void WrapAroundUnchecked(object sender, RoutedEventArgs e)
         {
             Core.Controller.Search.WrapAround.IsChecked = false;
             Core.Controller.Replace.WrapAround.IsChecked = false;
         }
 
-        public void WrapAround_Checked(object sender, RoutedEventArgs e)
+        public void WrapAroundChecked(object sender, RoutedEventArgs e)
         {
             Core.Controller.Search.WrapAround.IsChecked = true;
             Core.Controller.Replace.WrapAround.IsChecked = true;
         }
 
-        public void MatchCase_Unchecked(object sender, RoutedEventArgs e)
+        public void MatchCaseUnchecked(object sender, RoutedEventArgs e)
         {
             Core.Controller.Search.MatchCase.IsChecked = false;
             Core.Controller.Replace.MatchCase.IsChecked = false;
         }
 
-        public void MatchCase_Checked(object sender, RoutedEventArgs e)
+        public void MatchCaseChecked(object sender, RoutedEventArgs e)
         {
             Core.Controller.Search.MatchCase.IsChecked = true;
             Core.Controller.Replace.MatchCase.IsChecked = true;

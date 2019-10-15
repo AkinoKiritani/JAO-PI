@@ -24,7 +24,7 @@ namespace JAO_PI.Views
             IconByWebsite.MouseLeftButtonUp += CreditsFrameEvents.OpenWebsite;
             AvalonEditByWebsite.MouseLeftButtonDown += CreditsFrameEvents.OpenWebsite;
 
-            CloseButton.Click += CreditsFrameEvents.CloseButton_Click;
+            CloseButton.Click += CreditsFrameEvents.CloseButtonClick;
             this.Activated += CreditsFrameEvents.Activated;
         }
     }

@@ -9,7 +9,7 @@
         // MaxGoToLocation, // Label
         Position = 5,       // Label
         GoToBox,            // TextBox
-        Max_Position,       // Label
+        MaxPosition,       // Label
         // ToGo,            // Button
         // ToNowhere        // Button
     }

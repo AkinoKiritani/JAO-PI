@@ -9,34 +9,36 @@ namespace JAO_PI.EventsManager
         public void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             System.Windows.Controls.TabControl Control = sender as System.Windows.Controls.TabControl;
-
-            if (Control.SelectedIndex >= 0)
+            if (Control != null)
             {
-                TabItem item = Control.SelectedItem as TabItem;
-                Grid EditorGrid = item.Content as Grid;
-                Core.Controller.Main.CurrentEditor = EditorGrid.Children[0] as ICSharpCode.AvalonEdit.TextEditor;
-                
-                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
-                Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
-                
-                Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == item);
-                if(Index != null)
+                if (Control.SelectedIndex >= 0)
                 {
-                    if(Index.Tmp == true)
+                    TabItem item = Control.SelectedItem as TabItem;
+                    Grid EditorGrid = item.Content as Grid;
+                    Core.Controller.Main.CurrentEditor = EditorGrid.Children[0] as ICSharpCode.AvalonEdit.TextEditor;
+
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Line].Content = Core.Properties.Resources.Line + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Line;
+                    Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": " + Core.Controller.Main.CurrentEditor.TextArea.Caret.Column;
+
+                    Core.Controller.Tab Index = Core.Controller.Main.TabControlList.Find(x => x.TabItem == item);
+                    if (Index != null)
                     {
-                        Core.Controller.Main.CompileMenuItem.IsEnabled = false;
-                    }
-                    else
-                    {
-                        Core.Controller.Main.CompileMenuItem.IsEnabled = true;
+                        if (Index.Tmp == true)
+                        {
+                            Core.Controller.Main.CompileMenuItem.IsEnabled = false;
+                        }
+                        else
+                        {
+                            Core.Controller.Main.CompileMenuItem.IsEnabled = true;
+                        }
                     }
                 }
-            }
-            else
-            {
-                GC.ReRegisterForFinalize(Core.Controller.Main.CurrentEditor);
-                GC.Collect();
-                Core.Controller.Main.CurrentEditor = null;
+                else
+                {
+                    GC.ReRegisterForFinalize(Core.Controller.Main.CurrentEditor);
+                    GC.Collect();
+                    Core.Controller.Main.CurrentEditor = null;
+                }
             }
         }
 
@@ -75,7 +77,6 @@ namespace JAO_PI.EventsManager
             Grid grid = Index.TabItem.Content as Grid;
             Index.Editor = null;
             grid.Children.Remove(Index.Editor);
-            grid = null;
             Core.Controller.Main.TabControlList.Remove(Index);
 
             Index.TabItem.ContextMenu.Items.Clear();

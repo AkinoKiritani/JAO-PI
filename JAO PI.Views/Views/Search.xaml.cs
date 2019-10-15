@@ -36,32 +36,32 @@ namespace JAO_PI.Views
             Core.Controller.Register.GoToComponents(GoToGrid);
 
             // Events Search
-            Cancel.Click    += SearchEvents.Cancel_Click;
-            Do_Search.Click += SearchEvents.Search_Click;
-            Do_Count.Click  += SearchEvents.Count_Click;
+            Cancel.Click    += SearchEvents.CancelClick;
+            Do_Search.Click += SearchEvents.SearchClick;
+            Do_Count.Click  += SearchEvents.CountClick;
 
             // Events Replace
-            Do_Search_Replace.Click += SearchEvents.Do_Search_Replace_Click;
-            Do_Replace.Click        += SearchEvents.Do_Replace;
-            Do_Replace_All.Click    += SearchEvents.Do_Replace_All;
-            Cancel_Replace.Click    += SearchEvents.Cancel_Click;
+            Do_Search_Replace.Click += SearchEvents.DoSearchReplaceClick;
+            Do_Replace.Click        += SearchEvents.DoReplace;
+            Do_Replace_All.Click    += SearchEvents.DoReplaceAll;
+            Cancel_Replace.Click    += SearchEvents.CancelClick;
 
-            MatchCase.Checked += SearchEvents.MatchCase_Checked;
-            MatchCase.Unchecked += SearchEvents.MatchCase_Unchecked;
-            WrapAround.Checked += SearchEvents.WrapAround_Checked;
-            WrapAround.Unchecked += SearchEvents.WrapAround_Unchecked;
+            MatchCase.Checked += SearchEvents.MatchCaseChecked;
+            MatchCase.Unchecked += SearchEvents.MatchCaseUnchecked;
+            WrapAround.Checked += SearchEvents.WrapAroundChecked;
+            WrapAround.Unchecked += SearchEvents.WrapAroundUnchecked;
 
-            MatchCase_Replace.Checked += SearchEvents.MatchCase_Checked;
-            MatchCase_Replace.Unchecked += SearchEvents.MatchCase_Unchecked;
-            WrapAround_Replace.Checked += SearchEvents.WrapAround_Checked;
-            WrapAround_Replace.Unchecked += SearchEvents.WrapAround_Unchecked;
+            MatchCase_Replace.Checked += SearchEvents.MatchCaseChecked;
+            MatchCase_Replace.Unchecked += SearchEvents.MatchCaseUnchecked;
+            WrapAround_Replace.Checked += SearchEvents.WrapAroundChecked;
+            WrapAround_Replace.Unchecked += SearchEvents.WrapAroundUnchecked;
 
             // Events GoTo
-            Line.Checked += GoToEvents.Line_Checked;
-            Offset.Checked += GoToEvents.Offset_Checked;
+            Line.Checked += GoToEvents.LineChecked;
+            Offset.Checked += GoToEvents.OffsetChecked;
             GoToBox.PreviewTextInput += GoToEvents.PreviewTextInput;
-            Button_ToNowhere.Click += GoToEvents.GoNowhere_Click;
-            Button_ToGo.Click += GoToEvents.GoTo_Click;
+            Button_ToNowhere.Click += GoToEvents.GoNowhereClick;
+            Button_ToGo.Click += GoToEvents.GoToClick;
 
             // Events Frame
             SearchControl.Loaded += SearchEvents.Loaded;
@@ -71,11 +71,11 @@ namespace JAO_PI.Views
             this.Activated += SearchEvents.Activated;
 
             // Events for the rebuild Header
-            CloseBox.MouseEnter += SearchEvents.Close_MouseEnter;
-            CloseBox.MouseLeave += SearchEvents.Close_MouseLeave;
-            CloseBox.MouseLeftButtonDown += SearchEvents.Close_MouseLeftButtonDown;
+            CloseBox.MouseEnter += SearchEvents.CloseMouseEnter;
+            CloseBox.MouseLeave += SearchEvents.CloseMouseLeave;
+            CloseBox.MouseLeftButtonDown += SearchEvents.CloseMouseLeftButtonDown;
 
-            Head.MouseLeftButtonDown += SearchEvents.Head_MouseLeftButtonDown;
+            Head.MouseLeftButtonDown += SearchEvents.HeadMouseLeftButtonDown;
 
             // Ctrl + G will switch to GoTo
             RoutedCommand GoToCmd = new RoutedCommand();

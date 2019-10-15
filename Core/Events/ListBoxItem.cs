@@ -1,6 +1,7 @@
 ﻿using JAO_PI.Core.Classes;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
@@ -22,11 +23,11 @@ namespace JAO_PI.EventsManager
                 if (Index != null)
                 {
                     string HeaderText = Core.Utility.Tab.GetTabHeaderText(Index.TabItem);
-                    if (matches[0].Equals(HeaderText))
+                    if (matches[0].Equals(HeaderText, StringComparison.CurrentCultureIgnoreCase))
                     {
                         if (Regex.IsMatch(matches[1], @"^\d+$"))
                         {
-                            Core.Utility.Editor.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(matches[1]));
+                            Core.Utility.Editor.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(matches[1], CultureInfo.InvariantCulture.NumberFormat));
                             Core.Controller.Main.tabControl.SelectedItem = Core.Controller.Main.CompiledTabItem;
                         }
                     }
@@ -36,19 +37,19 @@ namespace JAO_PI.EventsManager
                         string path = matches[0].Substring(0, slash);
                         string file = matches[0].Substring(slash, matches[0].Length - slash);
 
-                        List<Core.Controller.Tab> TabList = Core.Controller.Main.TabControlList.FindAll(x => x.TabItem.Uid.Equals(path));
+                        List<Core.Controller.Tab> TabList = Core.Controller.Main.TabControlList.FindAll(x => x.TabItem.Uid.Equals(path, StringComparison.CurrentCultureIgnoreCase));
                         if (TabList != null && TabList.Count > 0)
                         {
                             string Header = null;
                             for (int i = 0; i != TabList.Count; i++)
                             {
                                 Header = Core.Utility.Tab.GetTabHeaderText(TabList[i].TabItem);
-                                if (matches[0].Equals(path + Header))
+                                if (matches[0].Equals(path + Header, StringComparison.CurrentCultureIgnoreCase))
                                 {
                                     if (Regex.IsMatch(matches[1], @"^\d+$"))
                                     {
                                         Core.Controller.Main.tabControl.SelectedItem = TabList[i].TabItem;
-                                        Core.Utility.Editor.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(matches[1]));
+                                        Core.Utility.Editor.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(matches[1], CultureInfo.InvariantCulture.NumberFormat));
                                     }
                                     return;
                                 }
@@ -65,7 +66,7 @@ namespace JAO_PI.EventsManager
 
                         if (Regex.IsMatch(matches[1], @"^\d+$"))
                         {
-                            Core.Utility.Editor.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(matches[1]));
+                            Core.Utility.Editor.BringLineToView(Core.Controller.Main.CurrentEditor, Convert.ToInt32(matches[1], CultureInfo.InvariantCulture.NumberFormat));
                         }
                     }
                 }

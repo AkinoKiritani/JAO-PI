@@ -1,5 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit;
 using JAO_PI.Core.Utility;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -11,8 +12,8 @@ namespace JAO_PI.Core.Classes
 {
     class Generator
     {
-        EventsManager.TabContextMenu TabEvents = new EventsManager.TabContextMenu();
-        EventsManager.Editor EditorEvents = new EventsManager.Editor();
+        private EventsManager.TabContextMenu TabEvents = new EventsManager.TabContextMenu();
+        private EventsManager.Editor EditorEvents = new EventsManager.Editor();
         public TabItem TabItem(string path, string header, Stream content)
         {
             TextEditorOptions Options = new TextEditorOptions()
@@ -272,7 +273,7 @@ namespace JAO_PI.Core.Classes
             return menu;
         }
 
-        private StackPanel GenerateTabHeader(string Header, System.Drawing.Bitmap Icon)
+        private static StackPanel GenerateTabHeader(string Header, System.Drawing.Bitmap Icon)
         {
             // Load Image 
             Image SaveIcon = Main.CreateImage(Icon, 22, 18, HorizontalAlignment.Left);
@@ -296,7 +297,7 @@ namespace JAO_PI.Core.Classes
             return stack;
         }
 
-        private StackPanel GenerateTabHeader(string Header)
+        private static StackPanel GenerateTabHeader(string Header)
         {
             StackPanel stack = new StackPanel()
             {
@@ -344,7 +345,7 @@ namespace JAO_PI.Core.Classes
 
             TextBlock IDColumn = new TextBlock()
             {
-                Text = ID.ToString()
+                Text = ID.ToString(CultureInfo.InvariantCulture.NumberFormat)
             };
             TextBlock lineColumn = new TextBlock()
             {

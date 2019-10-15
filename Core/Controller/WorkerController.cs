@@ -13,9 +13,11 @@ namespace JAO_PI.Core.Controller
         {
             if (SaveWorker == null)
             {
-                SaveWorker = new BackgroundWorker();
-                SaveWorker.WorkerReportsProgress = true;
-                SaveWorker.WorkerSupportsCancellation = true;
+                SaveWorker = new BackgroundWorker
+                {
+                    WorkerReportsProgress = true,
+                    WorkerSupportsCancellation = true
+                };
 
                 SaveWorker.DoWork += new DoWorkEventHandler(EventsManager.Worker.Save_DoWork);
                 SaveWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(EventsManager.Worker.Save_Completed);
@@ -23,19 +25,23 @@ namespace JAO_PI.Core.Controller
 
             if(CompileWorker == null)
             {
-                CompileWorker = new BackgroundWorker();
-                CompileWorker.WorkerReportsProgress = true;
-                CompileWorker.WorkerSupportsCancellation = true;
-                
+                CompileWorker = new BackgroundWorker
+                {
+                    WorkerReportsProgress = true,
+                    WorkerSupportsCancellation = true
+                };
+
                 CompileWorker.DoWork += new DoWorkEventHandler(EventsManager.Worker.Compiler_DoWork);
                 CompileWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(EventsManager.Worker.Compiler_Completed);
             }
 
             if(CloseAllWorker == null)
             {
-                CloseAllWorker = new BackgroundWorker();
-                CloseAllWorker.WorkerReportsProgress = true;
-                CloseAllWorker.WorkerSupportsCancellation = true;
+                CloseAllWorker = new BackgroundWorker
+                {
+                    WorkerReportsProgress = true,
+                    WorkerSupportsCancellation = true
+                };
 
                 CloseAllWorker.DoWork += new DoWorkEventHandler(EventsManager.Worker.CloseAll_DoWork);
                 CloseAllWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(EventsManager.Worker.CloseAll_Completed);
@@ -43,9 +49,11 @@ namespace JAO_PI.Core.Controller
 
             if (CloseAllButWorker == null)
             {
-                CloseAllButWorker = new BackgroundWorker();
-                CloseAllButWorker.WorkerReportsProgress = true;
-                CloseAllButWorker.WorkerSupportsCancellation = true;
+                CloseAllButWorker = new BackgroundWorker
+                {
+                    WorkerReportsProgress = true,
+                    WorkerSupportsCancellation = true
+                };
 
                 CloseAllButWorker.DoWork += new DoWorkEventHandler(EventsManager.Worker.CloseAllBut_DoWork);
                 CloseAllButWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(EventsManager.Worker.CloseAllBut_Completed);

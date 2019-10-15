@@ -13,15 +13,18 @@ namespace JAO_PI.EventsManager
 {
     public class MainFrame
     {
-        private Data.Connector Data = null;
-        public void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        //private Data.Connector Data = null;
+        public void MainFrameLoaded(object sender, RoutedEventArgs e)
         {
             Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
             Core.Controller.Worker Worker = new Core.Controller.Worker();
 
-            Data = new Data.Connector(Core.Properties.Resources.IncludesDataBase);
+            /*Data = new Data.Connector(Core.Properties.Resources.IncludesDataBase);
             int res = Data.Open().Result;
-
+            if(res != null)
+            {
+                // do stuff
+            }*/
             if (Core.Properties.Settings.Default.CompilerPath.Length == 0 || File.Exists(Core.Properties.Settings.Default.CompilerPath) == false)
             {
                 MessageBoxResult result = MessageBox.Show(Core.Properties.Resources.NoCompilerPath, Core.Properties.Resources.ProgName, MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -45,7 +48,7 @@ namespace JAO_PI.EventsManager
 
             Generator generator = new Generator();
             string[] arguments = Environment.GetCommandLineArgs();
-            TabItem tab = null;
+            TabItem tab;
             FileStream stream = null;
             if (arguments.GetLength(0) > 1)
             {
@@ -67,12 +70,12 @@ namespace JAO_PI.EventsManager
             Core.Controller.Main.CompileMenuItem.IsEnabled = true;
         }
 
-        public void MainFrame_Drop(object sender, DragEventArgs e)
+        public void MainFrameDrop(object sender, DragEventArgs e)
         {
             Main.LoadDropData(e);
         }
 
-        public void MainFrame_Activated(object sender, EventArgs e)
+        public void MainFrameActivated(object sender, EventArgs e)
         {
             if (Core.Controller.Main.Frames[(int)Structures.Frames.SearchFrame].IsVisible)
             {
@@ -83,14 +86,14 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void MainFrame_Closed(object sender, EventArgs e)
+        public void MainFrameClosed(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }
 
-        public void MainFrame_Closing(object sender, CancelEventArgs e)
+        public void MainFrameClosing(object sender, CancelEventArgs e)
         {
-            Data.Close();
+            //Data.Close();
 
             List<Core.Controller.Tab> notSavedList = Core.Controller.Main.TabControlList.FindAll(x => !x.State.HasFlag(Structures.States.Saved));
             if (notSavedList.Count > 0)
@@ -117,7 +120,7 @@ namespace JAO_PI.EventsManager
                         saveFileDialog.InitialDirectory = notSavedList[i].TabItem.Uid;
                         saveFileDialog.FileName = HeaderText;
 
-                        if (HeaderText.Equals(arg[arg.Length - 1]))
+                        if (HeaderText.Equals(arg[arg.Length - 1], StringComparison.CurrentCulture))
                         {
                             if (File.Exists(FileToSave.ToString()))
                             {

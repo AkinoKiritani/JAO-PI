@@ -72,11 +72,11 @@ namespace JAO_PI.EventsManager
                                 if (result.Count == 3)
                                 {
                                     Icon = Regex.Match(result[2], "[a-z]+");
-                                    if(Icon.Value.Equals("warning"))
+                                    if(Icon.Value.Equals("warning", StringComparison.CurrentCultureIgnoreCase))
                                     {
                                         Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(ID, result[0], result[1], result[2], Core.Properties.Resources.message_warning_x16));
                                     }
-                                    else if(Icon.Value.Equals("error") || Icon.Value.Equals("fatal"))
+                                    else if(Icon.Value.Equals("error", StringComparison.CurrentCultureIgnoreCase) || Icon.Value.Equals("fatal", StringComparison.CurrentCultureIgnoreCase))
                                     {
                                         Core.Controller.Main.ErrorBox.Items.Add(generator.ListItem(ID, result[0], result[1], result[2], Core.Properties.Resources.message_error_x16));
                                     }

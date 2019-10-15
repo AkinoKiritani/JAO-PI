@@ -30,8 +30,10 @@ namespace JAO_PI.Data
         {
             if (Connection.State == System.Data.ConnectionState.Open)
             {
-                SQLiteCommand command = new SQLiteCommand(Connection);
-                command.CommandText = CommandText;
+                SQLiteCommand command = new SQLiteCommand(Connection)
+                {
+                    CommandText = CommandText
+                };
                 try
                 {
                     await command.ExecuteNonQueryAsync();

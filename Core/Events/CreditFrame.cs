@@ -9,11 +9,14 @@ namespace JAO_PI.EventsManager
     {
         public void OpenWebsite(object sender, MouseButtonEventArgs e)
         {
-            TextBlock target = sender as TextBlock;
-            System.Diagnostics.Process.Start(target.Text);
+            if(sender != null)
+            {
+                TextBlock target = sender as TextBlock;
+                System.Diagnostics.Process.Start(target.Text);
+            }
         }
 
-        public void CloseButton_Click(object sender, RoutedEventArgs e)
+        public void CloseButtonClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.Frames[(int)Structures.Frames.CreditsFrame].Visibility = Visibility.Collapsed;
             Core.Controller.Main.Frames[(int) Structures.Frames.MainFrame].Focus();

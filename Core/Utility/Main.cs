@@ -33,79 +33,89 @@ namespace JAO_PI.Core.Utility
         
         public static Image CreateImage(System.Drawing.Bitmap Image, double Width, double Height, HorizontalAlignment Alignment)
         {
-            Stream ImageStream = new MemoryStream();
-            Image.Save(ImageStream, ImageFormat.Png);
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.StreamSource = ImageStream;
-            bitmap.EndInit();
-
-            Image SaveIcon = new Image()
+            if(Image != null)
             {
-                Source = bitmap,
-                Width = Width,
-                Height = Height,
-                HorizontalAlignment = Alignment
-            };
-            return SaveIcon;
+                Stream ImageStream = new MemoryStream();
+                Image.Save(ImageStream, ImageFormat.Png);
+
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.StreamSource = ImageStream;
+                bitmap.EndInit();
+
+                Image SaveIcon = new Image()
+                {
+                    Source = bitmap,
+                    Width = Width,
+                    Height = Height,
+                    HorizontalAlignment = Alignment
+                };
+                return SaveIcon;
+            }
+            return null;
         }
 
         public static void LoadDropData(DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e != null)
             {
-                string[] files = e.Data.GetData(DataFormats.FileDrop) as string[];
-                Generator generator = new Generator();
-                string[] arg = null;
-                TabItem Index = null;
-                bool found = false;
-                for (int i = 0; i < files.Length; i++)
+                if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 {
-                    for(int j = 0; j < Controller.Main.tabControl.Items.Count; j++)
+                    string[] files = e.Data.GetData(DataFormats.FileDrop) as string[];
+                    Generator generator = new Generator();
+                    string[] arg;
+                    TabItem Index;
+                    bool found = false;
+                    for (int i = 0; i < files.Length; i++)
                     {
-                        Index = Controller.Main.tabControl.Items[j] as TabItem;
-                        if (Index != null)
+                        for (int j = 0; j < Controller.Main.tabControl.Items.Count; j++)
                         {
-                            if (files[i].Equals(Index.Uid + Tab.GetTabHeaderText(Index)))
+                            Index = Controller.Main.tabControl.Items[j] as TabItem;
+                            if (Index != null)
                             {
-                                found = true;
-                                break;
+                                if (files[i].Equals(Index.Uid + Tab.GetTabHeaderText(Index), StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                    found = true;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    if (found == false)
-                    {
-                        arg = files[i].Split('\\');
-
-                        FileStream stream = new FileStream(files[i], FileMode.Open, FileAccess.Read);
-                        TabItem tab = generator.TabItem(files[i], arg[arg.Length - 1], stream);
-                        stream.Close();
-
-                        Controller.Main.tabControl.Items.Add(tab);
-                        Controller.Main.tabControl.SelectedItem = tab;
-
-                        Toggle.TabControl(true);
-                        if (Controller.Main.tabControl.Items.Count == 1)
+                        if (found == false)
                         {
-                            Toggle.SaveOptions(true);
+                            arg = files[i].Split('\\');
+
+                            FileStream stream = new FileStream(files[i], FileMode.Open, FileAccess.Read);
+                            TabItem tab = generator.TabItem(files[i], arg[arg.Length - 1], stream);
+                            stream.Close();
+
+                            Controller.Main.tabControl.Items.Add(tab);
+                            Controller.Main.tabControl.SelectedItem = tab;
+
+                            Toggle.TabControl(true);
+                            if (Controller.Main.tabControl.Items.Count == 1)
+                            {
+                                Toggle.SaveOptions(true);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
             }
         }
-        public static void SetResourceImage(System.Drawing.Bitmap img, ImageFormat format, System.Windows.Controls.Image control)
+        public static void SetResourceImage(System.Drawing.Bitmap img, ImageFormat format, Image control)
         {
-            Stream ImageStream = new MemoryStream();
-            BitmapImage bitmap = new BitmapImage();
+            if(img != null && control != null)
+            {
+                Stream ImageStream = new MemoryStream();
+                BitmapImage bitmap = new BitmapImage();
 
-            img.Save(ImageStream, format);
+                img.Save(ImageStream, format);
 
-            bitmap.BeginInit();
-            bitmap.StreamSource = ImageStream;
-            bitmap.EndInit();
-            control.Source = bitmap;
+                bitmap.BeginInit();
+                bitmap.StreamSource = ImageStream;
+                bitmap.EndInit();
+                control.Source = bitmap;
+            }            
         }
     }
 }

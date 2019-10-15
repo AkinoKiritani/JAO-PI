@@ -33,37 +33,37 @@ namespace JAO_PI.Views
             Core.Controller.Register.CompilePanel(this.CompilerPanel);
 
             // MainFrame
-            this.Loaded         += FrameEvents.MainFrame_Loaded;
-            this.Closed         += FrameEvents.MainFrame_Closed;
-            this.Closing        += FrameEvents.MainFrame_Closing;
+            this.Loaded         += FrameEvents.MainFrameLoaded;
+            this.Closed         += FrameEvents.MainFrameClosed;
+            this.Closing        += FrameEvents.MainFrameClosing;
             // Event for transparency of the SearchFrame
-            this.Activated      += FrameEvents.MainFrame_Activated;
-            this.Drop           += FrameEvents.MainFrame_Drop;
+            this.Activated      += FrameEvents.MainFrameActivated;
+            this.Drop           += FrameEvents.MainFrameDrop;
 
             tabControl.SelectionChanged += TabControllEvents.SelectionChanged;
 
             // Data
-            Create_File.Click   += MenuEvents.Create_File_Click;
-            Open_File.Click     += MenuEvents.Open_File_Click;
-            Close_File.Click    += MenuEvents.Close_File_Click;
-            Close_All.Click     += MenuEvents.Close_All_Click;
-            Save.Click          += MenuEvents.Save_Click;
-            SaveAs.Click        += MenuEvents.SaveAs_Click;
-            Exit.Click          += MenuEvents.Exit_Click;
+            Create_File.Click   += MenuEvents.CreateFileClick;
+            Open_File.Click     += MenuEvents.OpenFileClick;
+            Close_File.Click    += MenuEvents.CloseFileClick;
+            Close_All.Click     += MenuEvents.CloseAllClick;
+            Save.Click          += MenuEvents.SaveClick;
+            SaveAs.Click        += MenuEvents.SaveAsClick;
+            Exit.Click          += MenuEvents.ExitClick;
 
             RoutedCommand SaveCmd = new RoutedCommand();
             SaveCmd.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(SaveCmd, MenuEvents.Save_Click));
+            CommandBindings.Add(new CommandBinding(SaveCmd, MenuEvents.SaveClick));
 
             RoutedCommand NewFileCmd = new RoutedCommand();
             NewFileCmd.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
-            CommandBindings.Add(new CommandBinding(NewFileCmd, MenuEvents.Create_File_Click));
+            CommandBindings.Add(new CommandBinding(NewFileCmd, MenuEvents.CreateFileClick));
 
             // Edit
-            Undo.Click          += MenuEvents.Undo_Click;
-            Cut.Click           += MenuEvents.Cut_Click;
-            Copy.Click          += MenuEvents.Copy_Click;
-            Paste.Click         += MenuEvents.Paste_Click;
+            Undo.Click          += MenuEvents.UndoClick;
+            Cut.Click           += MenuEvents.CutClick;
+            Copy.Click          += MenuEvents.CopyClick;
+            Paste.Click         += MenuEvents.PasteClick;
 
             // Find
             RoutedCommand FindCmd = new RoutedCommand();
@@ -85,8 +85,8 @@ namespace JAO_PI.Views
             GoToCmd.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
             CommandBindings.Add(new CommandBinding(GoToCmd, MenuEvents.GoTo));
 
-            Find.Click += MenuEvents.Find_Click;
-            Go_To.Click += MenuEvents.GoTo_Click;
+            Find.Click += MenuEvents.FindClick;
+            Go_To.Click += MenuEvents.GoToClick;
 
             // Compiler
             RoutedCommand CompileCmd = new RoutedCommand();
@@ -95,21 +95,21 @@ namespace JAO_PI.Views
 
             Core.Controller.Register.CompileMenuItem(this.Compile);
 
-            Compile.Click       += MenuEvents.Compile_Click;
-            Compiler_Path.Click += MenuEvents.Compiler_Path_Click;
+            Compile.Click       += MenuEvents.CompileClick;
+            Compiler_Path.Click += MenuEvents.CompilerPathClick;
             
-            CompilerCloseBox.MouseLeftButtonDown    += MenuEvents.Compiler_Close_Click;
-            CompilerCloseBox.MouseEnter             += SearchEvents.Close_MouseEnter;
-            CompilerCloseBox.MouseLeave             += SearchEvents.Close_MouseLeave;
+            CompilerCloseBox.MouseLeftButtonDown    += MenuEvents.CompilerCloseClick;
+            CompilerCloseBox.MouseEnter             += SearchEvents.CloseMouseEnter;
+            CompilerCloseBox.MouseLeave             += SearchEvents.CloseMouseLeave;
 
             // About
             RoutedCommand AboutCmd = new RoutedCommand();
             AboutCmd.InputGestures.Add(new KeyGesture(Key.F1));
-            CommandBindings.Add(new CommandBinding(AboutCmd, MenuEvents.About_Click));
+            CommandBindings.Add(new CommandBinding(AboutCmd, MenuEvents.AboutClick));
 
-            About.Click += MenuEvents.About_Click;
+            About.Click += MenuEvents.AboutClick;
 
-            Analysis.Click += MenuEvents.Analyse_Click;
+            Analysis.Click += MenuEvents.AnalyseClick;
         }        
     }
 }

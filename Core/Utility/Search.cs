@@ -21,7 +21,7 @@ namespace JAO_PI.Core.Utility
                 find.Line = (find.Index == -1) ? -1 : Editor.TextArea.Document.GetLineByOffset(find.Index).LineNumber;
                 return find;
             }
-            return find = null;
+            return null;
         }
 
         public static List<Controller.Find> FindString(TextEditor Editor, string SearchQuery, bool IgnoreCase)
@@ -47,7 +47,7 @@ namespace JAO_PI.Core.Utility
                 }
                 return curSearch;
             }
-            return curSearch = null;
+            return null;
         }
 
         public static bool SetSearchInfo(string text)
@@ -82,7 +82,7 @@ namespace JAO_PI.Core.Utility
             Index.State |= Structures.States.Searching;
             if (SearchBox != null)
             {
-                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text) == true)
+                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text, System.StringComparison.CurrentCultureIgnoreCase) == true)
                 {
                     Controller.Search.CurrentSearchIndex++;
                     if (Controller.Search.CurrentSearchIndex == Index.SearchList.Count && Controller.Search.WrapAround.IsChecked == true && Controller.Search.WrapedAround == false)
@@ -160,7 +160,7 @@ namespace JAO_PI.Core.Utility
         {
             if (SearchBox != null)
             {
-                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text) == true)
+                if (Controller.Search.CurrentSearch != null && Controller.Search.CurrentSearch.Equals(SearchBox.Text, System.StringComparison.CurrentCultureIgnoreCase) == true)
                 {
                     StringBuilder ResultText = new StringBuilder();
                     ResultText.Append(Properties.Resources.Result);

@@ -12,7 +12,7 @@ namespace JAO_PI.EventsManager
 {
     public class MainMenu
     {
-        public void Create_File_Click(object sender, RoutedEventArgs e)
+        public void CreateFileClick(object sender, RoutedEventArgs e)
         {
             Generator generator = new Generator();
             TabItem tab = generator.TabItem(Environment.CurrentDirectory, Core.Properties.Resources.NewFileName, null);
@@ -32,7 +32,7 @@ namespace JAO_PI.EventsManager
                 Core.Controller.Main.StatusBarItems[(int)Structures.StatusBar.Column].Content = Core.Properties.Resources.Column + ": 1";
             }
         }
-        public void Open_File_Click(object sender, RoutedEventArgs e)
+        public void OpenFileClick(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
@@ -70,7 +70,7 @@ namespace JAO_PI.EventsManager
             GC.ReRegisterForFinalize(openFileDialog);
         }
 
-        public void Close_All_Click(object sender, RoutedEventArgs e)
+        public void CloseAllClick(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
             {
@@ -84,7 +84,7 @@ namespace JAO_PI.EventsManager
             Main.SelectAndOpenSearchTab(Structures.SearchControl.Replace);
         }
 
-        public void Close_File_Click(object sender, RoutedEventArgs e)
+        public void CloseFileClick(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0)
             {
@@ -92,12 +92,12 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void About_Click(object sender, RoutedEventArgs e)
+        public void AboutClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.Frames[(int)Structures.Frames.CreditsFrame].Visibility = Visibility.Visible;
         }
 
-        public void Save_Click(object sender, RoutedEventArgs e)
+        public void SaveClick(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
@@ -105,7 +105,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void Compiler_Close_Click(object sender, MouseButtonEventArgs e)
+        public void CompilerCloseClick(object sender, MouseButtonEventArgs e)
         {
             Tab.RemoveTempTabs();
             Core.Controller.Main.tabControl.SelectedItem = Core.Controller.Main.CompiledTabItem;
@@ -126,7 +126,7 @@ namespace JAO_PI.EventsManager
             Splitter.IsEnabled = false;
         }
 
-        public void Analyse_Click(object sender, RoutedEventArgs e)
+        public void AnalyseClick(object sender, RoutedEventArgs e)
         {
             var file = @"file.inc";
 
@@ -138,7 +138,7 @@ namespace JAO_PI.EventsManager
             }
         }
 
-        public void SaveAs_Click(object sender, RoutedEventArgs e)
+        public void SaveAsClick(object sender, RoutedEventArgs e)
         {
             if (Core.Controller.Main.tabControl.Items.Count > 0 && Core.Controller.Main.tabControl.Visibility == Visibility.Visible)
             {
@@ -156,27 +156,27 @@ namespace JAO_PI.EventsManager
                 }
             }
         }
-        public void Exit_Click(object sender, RoutedEventArgs e)
+        public void ExitClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame].Close();
         }
-        public void Undo_Click(object sender, RoutedEventArgs e)
+        public void UndoClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.CurrentEditor.Undo();
         }
-        public void Cut_Click(object sender, RoutedEventArgs e)
+        public void CutClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.CurrentEditor.Cut();
         }
-        public void Copy_Click(object sender, RoutedEventArgs e)
+        public void CopyClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.CurrentEditor.Copy();
         }
-        public void Paste_Click(object sender, RoutedEventArgs e)
+        public void PasteClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Main.CurrentEditor.Paste();
         }
-        public void Find_Click(object sender, RoutedEventArgs e)
+        public void FindClick(object sender, RoutedEventArgs e)
         {
             Main.SelectAndOpenSearchTab(Structures.SearchControl.Search);
         }
@@ -201,7 +201,7 @@ namespace JAO_PI.EventsManager
                 }
             }
         }
-        public void Compile_Click(object sender, RoutedEventArgs e)
+        public void CompileClick(object sender, RoutedEventArgs e)
         {
             Core.Controller.Worker.SaveWorker.RunWorkerAsync(); // Will trigger the Compilerworker
         }
@@ -209,7 +209,7 @@ namespace JAO_PI.EventsManager
         {
             Core.Controller.Worker.SaveWorker.RunWorkerAsync(); // Will trigger the Compilerworker
         }
-        public void Compiler_Path_Click(object sender, RoutedEventArgs e)
+        public void CompilerPathClick(object sender, RoutedEventArgs e)
         {
             OpenFileDialog CompilerPathDialog = new OpenFileDialog()
             {
@@ -228,7 +228,7 @@ namespace JAO_PI.EventsManager
         {
             Main.SelectAndOpenSearchTab(Structures.SearchControl.GoTo);
         }
-        public void GoTo_Click(object sender, RoutedEventArgs e)
+        public void GoToClick(object sender, RoutedEventArgs e)
         {
             Main.SelectAndOpenSearchTab(Structures.SearchControl.GoTo);
         }

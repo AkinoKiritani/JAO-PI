@@ -40,7 +40,7 @@ namespace JAO_PI.Core.Controller
 
         public static bool CompilePanel(DockPanel compilerPanel)
         {
-            if(Main.CompilerPanel == null)
+            if(Main.CompilerPanel == null && compilerPanel != null)
             {
                 Main.CompilerPanel = compilerPanel;
                 Main.PanelBorder = compilerPanel.Children[(int)Structures.CompilerPanel.PanelBorder] as Border;
@@ -62,7 +62,7 @@ namespace JAO_PI.Core.Controller
 
         public static bool Frames(Window[] Frame)
         {
-            if (Main.Frames.Count == 0)
+            if (Main.Frames.Count == 0 && Frame != null)
             {
                 foreach (Window frame in Frame)
                 {
@@ -83,7 +83,7 @@ namespace JAO_PI.Core.Controller
 
         public static bool SearchComponents(Grid SearchTabGrid)
         {
-            if (Search.SearchBox == null)
+            if (Search.SearchBox == null && SearchTabGrid != null)
             {
                 Search.SearchBox = SearchTabGrid.Children[(int)Structures.SearchTab.SearchBox] as TextBox;
                 Search.MatchCase = SearchTabGrid.Children[(int)Structures.SearchTab.MatchCase] as CheckBox;
@@ -95,7 +95,7 @@ namespace JAO_PI.Core.Controller
 
         public static bool ReplaceComponents(Grid ReplaceTabGrid)
         {
-            if (Replace.SearchBox_Replace == null)
+            if (Replace.SearchBox_Replace == null && ReplaceTabGrid != null)
             {
                 Replace.SearchBox_Replace = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.SearchReplaceBox] as TextBox;
                 Replace.ReplaceBox = ReplaceTabGrid.Children[(int)Structures.ReplaceTab.ReplaceBox] as TextBox;
@@ -108,13 +108,13 @@ namespace JAO_PI.Core.Controller
 
         public static bool GoToComponents(Grid GoToTabGrid)
         {
-            if(Goto.Line == null)
+            if(Goto.Line == null && GoToTabGrid != null)
             {
                 Goto.Line = GoToTabGrid.Children[(int)Structures.GoToTab.Line] as RadioButton;
                 Goto.Offset = GoToTabGrid.Children[(int)Structures.GoToTab.Offset] as RadioButton;
                 Goto.LineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Position] as Label;
                 Goto.GoToBox = GoToTabGrid.Children[(int)Structures.GoToTab.GoToBox] as TextBox;
-                Goto.MaxLineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.Max_Position] as Label;
+                Goto.MaxLineLabel = GoToTabGrid.Children[(int)Structures.GoToTab.MaxPosition] as Label;
                 return true;
             }
             return false;
@@ -147,18 +147,18 @@ namespace JAO_PI.Core.Controller
             }
             return false;
         }
-        public static bool EmptyMessage(Label Empty_Message)
+        public static bool EmptyMessage(Label EmptyMessage)
         {
             if (Main.Empty_Message == null)
             {
-                Main.Empty_Message = Empty_Message;
+                Main.Empty_Message = EmptyMessage;
                 return true;
             }
             return false;
         }
         public static bool SaveOptions(MenuItem MainMenu)
         {
-            if (Main.SaveOptions.Count == 0)
+            if (Main.SaveOptions.Count == 0 && MainMenu != null)
             {
                 Main.SaveOptions.Add(MainMenu.Items[(int)Structures.SaveOptions.CloseFile] as MenuItem);
                 Main.SaveOptions.Add(MainMenu.Items[(int)Structures.SaveOptions.CloseAll] as MenuItem);
