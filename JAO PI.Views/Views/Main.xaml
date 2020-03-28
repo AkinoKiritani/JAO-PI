@@ -100,6 +100,11 @@
         <Label x:Name="Message_Label" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static p:Resources.Empty_Message}" Margin="22,22,22,22" Background="White" Foreground="#FF8F8F8F" FontSize="26" />
 
         <Grid x:Name="MainView" Margin="0,25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0" />
+                <RowDefinition Height="0" />
+            </Grid.RowDefinitions>
             <TabControl Grid.Column="0" x:Name="tabControl" Visibility="Collapsed" BorderThickness="1,1,0,0" Grid.ColumnSpan="2" />
 
             <GridSplitter x:Name="Splitter" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Stretch" ResizeDirection="Rows" ResizeBehavior="BasedOnAlignment" Cursor="SizeNS" Grid.ColumnSpan="2" Grid.RowSpan="2" />

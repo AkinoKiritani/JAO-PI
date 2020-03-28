@@ -17,7 +17,7 @@ namespace JAO_PI.EventsManager
         public void MainFrameLoaded(object sender, RoutedEventArgs e)
         {
             Core.Controller.Register.SetFrameAsOwner(Core.Controller.Main.Frames[(int)Structures.Frames.MainFrame]);
-            Core.Controller.Worker Worker = new Core.Controller.Worker();
+            _ = new Core.Controller.Worker();
 
             /*Data = new Data.Connector(Core.Properties.Resources.IncludesDataBase);
             int res = Data.Open().Result;
