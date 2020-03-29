@@ -133,7 +133,8 @@ namespace JAO_PI.EventsManager
             var checksum = Data.Utility.GetFileChecksum(file);
             if (!string.IsNullOrEmpty(checksum))
             {
-                Data.Parser.Analysis(file, Data.Utility.includeDictionary);
+                var dic = new Dictionary<string, string>();
+                Data.Parser.Analysis(file, dic);
             }
         }
 
