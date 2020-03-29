@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace JAO_PI.Data
 {
@@ -13,53 +14,29 @@ namespace JAO_PI.Data
             var analytic = new StreamReader(file);
             string line;
             string[] checkStuff = { "native", "#define", "forward" };
-            var ignoreTab = false;
+            char[] trimChars = { ' ', '\t' };
+
             var paramLine = false;
 
             var param = "";
             var name = "";
             while ((line = analytic.ReadLine()) != null)
             {
-                if (paramLine)
+                if (paramLine) // multible paramlines
                 {
-                    var braceIndex = line.IndexOf(')');
+                    var braceIndex = line.LastIndexOf(')');
                     if (braceIndex == -1)
                     {
                         param += line;
                         continue;
                     }
                     param += line.Substring(0, braceIndex - 1);
-                    if (param.StartsWith(" "))
-                    {
-                        param = param.Remove(0, 1);
-                    }
-                    else if (param.StartsWith("\t"))
-                    {
-                        param = param.Remove(0, "\t".Length-1);
-                    }
-
-                    if (param.EndsWith(" "))
-                    {
-                        param = param.Remove(line.Length - 1);
-                    }
-                    else if (param.EndsWith("\t"))
-                    {
-                        param = param.Remove(line.Length - "\t".Length);
-                    }
-
-                    if (name.StartsWith(" "))
-                    {
-                        name = name.Remove(0, 1);
-                    }
-                    else if (name.StartsWith("\t"))
-                    {
-                        name = name.Remove(0, "\t".Length);
-                    }
 
                     // check to prevent adding a key twice
+                    name = name.Trim(trimChars);
                     if (!dicToSave.ContainsKey(name))
                     {
-                        dicToSave.Add(name, param.Length > 0 ? param : " ");
+                        dicToSave.Add(name, param.Trim(trimChars));
                     }
                     paramLine = false;
                     continue;
@@ -70,100 +47,49 @@ namespace JAO_PI.Data
                     if (line.Contains("("))
                     {
                         name = line.Substring(checkStuff[i].Length, line.IndexOf('(') - checkStuff[i].Length);
-                        if (line.Contains("\t"))
-                        {
-                            if (line.Contains(";"))
-                            {
-                                var tabIndex = line.IndexOf("\t", StringComparison.Ordinal);
-                                if (tabIndex > line.IndexOf(";", StringComparison.Ordinal))
-                                {
-                                    line = line.Substring(0, tabIndex);
-                                    ignoreTab = true;
-                                }
-                            }
-                        }
-
-                        line = line.Substring(name.Length + checkStuff[i].Length);
+                        line = line.Substring(name.Length + checkStuff[i].Length).Trim(trimChars);
                         
-                        if (ignoreTab == false && line.Contains("\t"))
-                        {
-                            line = line.Substring(line.LastIndexOf('\t') + "\t".Length);
-                        }
-
-                        
-                        var braceIndex = line.IndexOf(')');
-                        if (braceIndex == -1)
+                        var braceIndex = line.LastIndexOf(')');
+                        if (braceIndex == -1) // check if the function has multible paramlines
                         {
                             param = line.Substring(line.IndexOf('(') + 1);
                             paramLine = true;
                             break;
                         }
                         param = line.Substring(line.IndexOf('(') + 1, braceIndex - 1);
-
-                        if (param.StartsWith(" "))
-                        {
-                            param = param.Remove(0,1);
-                        }
-                        else if (param.StartsWith("\t"))
-                        {
-                            param = param.Remove(0, "\t".Length);
-                        }
-
-                        if (param.EndsWith(" "))
-                        {
-                            param = param.Remove(line.Length - 1);
-                        }
-                        else if (param.EndsWith("\t"))
-                        {
-                            param = param.Remove(line.Length - "\t".Length);
-                        }
-                        if (name.StartsWith(" "))
-                        {
-                            name = name.Remove(0, 1);
-                        }
-                        else if (name.StartsWith("\t"))
-                        {
-                            name = name.Remove(0, "\t".Length);
-                        }
-
+                        if (!char.IsLetterOrDigit(param.FirstOrDefault())) continue;
+                        
                         // check to prevent adding a key twice
+                        name = name.Trim(trimChars);
                         if (!dicToSave.ContainsKey(name))
                         {
-                            dicToSave.Add(name, param.Length > 0 ? param : " ");
+                            dicToSave.Add(name, param.Trim(trimChars));
                         }
                     }
-                    else
+                    else // for e.g. defines 
                     {
-                        line = line.Substring(checkStuff[i].Length + 1);
-                        if (line.Contains("\t"))
+                        line = line.Substring(checkStuff[i].Length + 1).Trim(trimChars);
                         {
-                            name = line.Substring(0, line.IndexOf("\t", StringComparison.Ordinal));
-                            param = line.Substring(line.LastIndexOf('\t') + "\t".Length);
-                            
-                        }
-                        else if (line.Contains(" "))
-                        {
-                            name = line.Substring(0, line.IndexOf(" ", StringComparison.Ordinal));
-                            param = line.Substring(line.LastIndexOf(' ') + 1);
-                        }
-                        else continue;
+                            if (line.Contains("\t"))
+                            {
+                                name = line.Substring(0, line.IndexOf("\t", StringComparison.Ordinal));
+                                param = line.Substring(line.LastIndexOf('\t') + "\t".Length);
+                            }
+                            else if (line.Contains(" "))
+                            {
+                                name = line.Substring(0, line.IndexOf(" ", StringComparison.Ordinal));
+                                param = line.Substring(line.LastIndexOf(' ') + 1);
+                            }
+                            else continue;
 
-                        if (name.StartsWith(" "))
-                        {
-                            name = name.Remove(0, 1);
-                        }
-                        else if (name.StartsWith("\t"))
-                        {
-                            name = name.Remove(0, "\t".Length);
-                        }
-
-                        // check to prevent adding a key twice
-                        if (!dicToSave.ContainsKey(name))
-                        {
-                            dicToSave.Add(name, param.Length > 0 ? param : " ");
+                            // check to prevent adding a key twice
+                            name = name.Trim(trimChars);                            
+                            if (!dicToSave.ContainsKey(name))
+                            {
+                                dicToSave.Add(name, char.IsDigit(param.FirstOrDefault()) ? string.Empty : param.Trim(trimChars));
+                            }
                         }
                     }
-                    ignoreTab = false;
                 }
             }
             analytic.Close();
