@@ -55,7 +55,12 @@ namespace JAO_PI.Data
                     {
                         name = name.Remove(0, "\t".Length);
                     }
-                    dicToSave.Add(name, param.Length > 0 ? param : " ");
+
+                    // check to prevent adding a key twice
+                    if (!dicToSave.ContainsKey(name))
+                    {
+                        dicToSave.Add(name, param.Length > 0 ? param : " ");
+                    }
                     paramLine = false;
                     continue;
                 }
@@ -120,7 +125,12 @@ namespace JAO_PI.Data
                         {
                             name = name.Remove(0, "\t".Length);
                         }
-                        dicToSave.Add(name, param.Length > 0 ? param : " ");
+
+                        // check to prevent adding a key twice
+                        if (!dicToSave.ContainsKey(name))
+                        {
+                            dicToSave.Add(name, param.Length > 0 ? param : " ");
+                        }
                     }
                     else
                     {
@@ -146,7 +156,12 @@ namespace JAO_PI.Data
                         {
                             name = name.Remove(0, "\t".Length);
                         }
-                        dicToSave.Add(name, param.Length > 0 ? param : " ");
+
+                        // check to prevent adding a key twice
+                        if (!dicToSave.ContainsKey(name))
+                        {
+                            dicToSave.Add(name, param.Length > 0 ? param : " ");
+                        }
                     }
                     ignoreTab = false;
                 }
