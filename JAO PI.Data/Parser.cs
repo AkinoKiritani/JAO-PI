@@ -32,18 +32,29 @@ namespace JAO_PI.Data
                     }
                     param += line.Substring(0, braceIndex - 1);
 
-                    // check to prevent adding a key twice
-                    name = name.Trim(trimChars);
-                    if (!dicToSave.ContainsKey(name))
-                    {
-                        dicToSave.Add(name, param.Trim(trimChars));
-                    }
+                    Utility.SaveToDictonary(dicToSave, name, param);
+                    name = string.Empty;
+                    param = string.Empty;
                     paramLine = false;
                     continue;
                 }
                 for (var i = 0; i != checkStuff.Length; i++)
                 {
                     if (!line.StartsWith(checkStuff[i])) continue;
+                    if (i == 1) // there is something special with #define
+                    {
+                        name = line.Substring(checkStuff[i].Length).Trim(trimChars);
+
+                        var len = name.IndexOfAny("( \t".ToCharArray());                        
+                        if(len != -1)  name = name.Substring(0, len).Trim(trimChars);
+
+                        if (!char.IsLetterOrDigit(name.FirstOrDefault())) continue;
+                        Utility.SaveToDictonary(dicToSave, name, param);
+
+                        name = string.Empty;
+                        param = string.Empty;
+                        continue;
+                    }
                     if (line.Contains("("))
                     {
                         name = line.Substring(checkStuff[i].Length, line.IndexOf('(') - checkStuff[i].Length);
@@ -57,14 +68,12 @@ namespace JAO_PI.Data
                             break;
                         }
                         param = line.Substring(line.IndexOf('(') + 1, braceIndex - 1);
-                        if (!char.IsLetterOrDigit(param.FirstOrDefault())) continue;
-                        
+
                         // check to prevent adding a key twice
-                        name = name.Trim(trimChars);
-                        if (!dicToSave.ContainsKey(name))
-                        {
-                            dicToSave.Add(name, param.Trim(trimChars));
-                        }
+                        Utility.SaveToDictonary(dicToSave, name, param);
+
+                        name = string.Empty;
+                        param = string.Empty;
                     }
                     else // for e.g. defines 
                     {
@@ -82,12 +91,12 @@ namespace JAO_PI.Data
                             }
                             else continue;
 
-                            // check to prevent adding a key twice
-                            name = name.Trim(trimChars);                            
-                            if (!dicToSave.ContainsKey(name))
-                            {
-                                dicToSave.Add(name, char.IsDigit(param.FirstOrDefault()) ? string.Empty : param.Trim(trimChars));
-                            }
+                            param = char.IsDigit(param.FirstOrDefault()) ? string.Empty : param;
+                            if (!char.IsLetterOrDigit(name.FirstOrDefault())) continue;
+                            Utility.SaveToDictonary(dicToSave, name, param);
+
+                            name = string.Empty;
+                            param = string.Empty;
                         }
                     }
                 }
