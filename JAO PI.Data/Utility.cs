@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -18,6 +17,5 @@ namespace JAO_PI.Data
             }
             return "";
         }
-        public static Dictionary<string, string> includeDictionary;
     }
 }
