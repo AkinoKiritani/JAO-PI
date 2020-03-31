@@ -128,13 +128,11 @@ namespace JAO_PI.EventsManager
 
         public void AnalyseClick(object sender, RoutedEventArgs e)
         {
-            var file = @"file.inc";
-
-            var checksum = Data.Utility.GetFileChecksum(file);
-            if (!string.IsNullOrEmpty(checksum))
+            DirectoryInfo directoryInfo = new DirectoryInfo(Core.Properties.Settings.Default.CompilerDirectoy + "\\include");
+            IEnumerable<FileInfo> fList = directoryInfo.EnumerateFiles("*.inc", SearchOption.AllDirectories);
+            foreach(var file in fList)
             {
-                var dic = new Dictionary<string, string>();
-                Data.Parser.Analysis(file, dic);
+                Data.Parser.Analysis(file.FullName, Data.Utility.includeDictonary);
             }
         }
 
@@ -215,11 +213,12 @@ namespace JAO_PI.EventsManager
             {
                 Filter = Core.Properties.Resources.PathFilter,
                 Title = Core.Properties.Resources.SetPath,
-                InitialDirectory = Environment.CurrentDirectory
+                InitialDirectory = string.IsNullOrEmpty(Core.Properties.Settings.Default.CompilerDirectoy) ? Environment.CurrentDirectory : Core.Properties.Settings.Default.CompilerDirectoy
             };
             if (CompilerPathDialog.ShowDialog() == true)
             {
                 Core.Properties.Settings.Default.CompilerPath = CompilerPathDialog.FileName;
+                Core.Properties.Settings.Default.CompilerDirectoy = CompilerPathDialog.FileName.Remove(CompilerPathDialog.FileName.IndexOf($"\\{Core.Properties.Resources.CompilerFileName}"));
                 MessageBox.Show(Core.Properties.Resources.PathSet, Core.Properties.Resources.ProgName, MessageBoxButton.OK, MessageBoxImage.Information);
                 Core.Properties.Settings.Default.Save();
             }

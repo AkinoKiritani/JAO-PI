@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace JAO_PI.Data
 {
@@ -18,11 +19,11 @@ namespace JAO_PI.Data
             }
             return "";
         }
-        
+        public static Dictionary<string, string> includeDictonary = new Dictionary<string, string>();
+
         public static bool IsInvalidSymbolInString(string str)
         {
-            if (str.IndexOfAny("+-*/:%#|".ToCharArray()) != -1) return true;
-            return false;
+            return !new Regex(@"[a-zA-Z0-9_@:]+").IsMatch(str);
         }
 
         public static void SaveToDictonary(Dictionary<string, string> dic, string key, string value)

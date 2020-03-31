@@ -13,7 +13,7 @@ namespace JAO_PI.Data
 
             var analytic = new StreamReader(file);
             string line;
-            string[] checkStuff = { "native", "#define", "forward" };
+            string[] checkStuff = { "native", /*"#define",*/ "forward" };
             char[] trimChars = { ' ', '\t' };
 
             var paramLine = false;
@@ -41,7 +41,7 @@ namespace JAO_PI.Data
                 for (var i = 0; i != checkStuff.Length; i++)
                 {
                     if (!line.StartsWith(checkStuff[i])) continue;
-                    if (i == 1) // there is something special with #define
+                    /*if (i == 1) // there is something special with #define
                     {
                         name = line.Substring(checkStuff[i].Length).Trim(trimChars);
 
@@ -54,7 +54,7 @@ namespace JAO_PI.Data
                         name = string.Empty;
                         param = string.Empty;
                         continue;
-                    }
+                    }*/
                     if (line.Contains("("))
                     {
                         name = line.Substring(checkStuff[i].Length, line.IndexOf('(') - checkStuff[i].Length);

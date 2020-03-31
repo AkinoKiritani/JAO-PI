@@ -211,4 +211,7 @@
   <data name="IncludesDataBase" xml:space="preserve">
     <value>Includes.db</value>
   </data>
+  <data name="CompilerFileName" xml:space="preserve">
+    <value>pawncc.exe</value>
+  </data>
 </root>
